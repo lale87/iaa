@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+  "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+  "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="de.nak.hibernate.model.Room">
+		<id name="id">
+			<generator class="native"/>
+		</id>
+		<property name="building" length="1"/>
+		<property name="roomNumber" column="room_number"/>
+		<property name="seats" not-null="false"/>
+		<property name="beamerPresent" column="beamer_present"/>
+		<mapping resource="de/nak/hibernate/model/Room.hbm.xml"/>
+	</class>
+</hibernate-mapping>
