@@ -20,10 +20,10 @@ public class Room {
 	public void setBuilding(String building) {
 		this.building = building;
 	}
-	public Integer getRoomnumber() {
+	public Integer getRoomNumber() {
 		return roomNumber;
 	}
-	public void setRoomnumber(Integer roomnumber) {
+	public void setRoomNumber(Integer roomnumber) {
 		this.roomNumber = roomnumber;
 	}
 	public Integer getSeats() {
