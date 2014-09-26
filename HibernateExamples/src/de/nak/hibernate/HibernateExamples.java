@@ -25,13 +25,19 @@ public class HibernateExamples {
 		Session currentSession = sessionFactory.getCurrentSession();
 		currentSession.beginTransaction();
 //		currentSession.save(room);
-		Room room = (Room) currentSession.get(Room.class, 1L);
-		room.setBuilding("B");
-		//TODO Welcher Typ?
-		List rooms = currentSession.createQuery("from Room room WHERE room.building = 'B'").list();
-		room.setSeats(45);
-		System.out.println(room.getBuilding());
-		System.out.println(room.getSeats());
+//		Room room = (Room) currentSession.get(Room.class, 1L);
+//		room.setBuilding("B");
+		
+		List results = currentSession.createQuery("from Room WHERE roomNumer = :roomNumber")
+				.setParameter("roomnumber", 1).list();
+		
+		for (Object object : results) {
+			System.out.println(object);
+		}
+		
+//		room.setSeats(45);
+//		System.out.println(room.getBuilding());
+//		System.out.println(room.getSeats());
 		currentSession.getTransaction().commit();
 		
 	}
