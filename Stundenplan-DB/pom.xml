@@ -128,10 +128,10 @@
     </dependency>
     
     <!-- DOM4J -->
-    <dependency>
-      <groupId>org.dom4j</groupId>
-      <artifactId>com.springsource.org.dom4j</artifactId>
-      <version>${org.dom4j.version}</version>
-    </dependency>
+<!--     <dependency> -->
+<!--       <groupId>org.dom4j</groupId> -->
+<!--       <artifactId>com.springsource.org.dom4j</artifactId> -->
+<!--       <version>${org.dom4j.version}</version> -->
+<!--     </dependency> -->
   </dependencies>
 </project>
