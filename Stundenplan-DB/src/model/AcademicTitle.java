@@ -49,7 +49,7 @@ public enum AcademicTitle {
 	 * @param shortTitle
 	 *            the shortTitle to set
 	 */
-	public void setShortTitle(String shortTitle) {
+	private void setShortTitle(String shortTitle) {
 		this.shortTitle = shortTitle;
 	}
 
