@@ -40,7 +40,7 @@ public class Lecturer {
 	/**
 	 * The lecturer's shortest time between two meetings
 	 */
-	private int minBreak;
+	private Integer minBreak;
 
 	/**
 	 * @return the id
@@ -110,7 +110,7 @@ public class Lecturer {
 	 * @return the minBreak
 	 */
 	@Column(name = "MIN_BREAK", nullable = false)
-	public int getMinBreak() {
+	public Integer getMinBreak() {
 		return minBreak;
 	}
 
@@ -118,7 +118,7 @@ public class Lecturer {
 	 * @param minBreak
 	 *            the minBreak to set
 	 */
-	public void setMinBreak(int minBreak) {
+	public void setMinBreak(Integer minBreak) {
 		this.minBreak = minBreak;
 	}
 
