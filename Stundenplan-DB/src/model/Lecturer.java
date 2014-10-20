@@ -1,6 +1,10 @@
 package model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 /**
  * Lecturer Entity
@@ -15,7 +19,7 @@ public class Lecturer {
 	 */
 	private Long id;
 	/**
-	 * The lecturer's academic title (e.g. Prof / Dr)
+	 * The lecturer's academic title 
 	 */
 	private AcademicTitle academicTitle;
 	/**
@@ -23,72 +27,115 @@ public class Lecturer {
 	 */
 	private String firstName;
 	/**
+	 * The lecturer's unique abbreviation to distinguish two lecturers with the
+	 * same name
+	 */
+	private String abbreviation;
+
+	/**
+	 * The lecturer's lastname
+	 */
+	private String lastname;
+
+	/**
+	 * The lecturer's shortest time between two meetings
+	 */
+	private int minBreak;
+
+	/**
 	 * @return the id
 	 */
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	public Long getId() {
 		return id;
 	}
+
 	/**
-	 * @param id the id to set
+	 * @param id
+	 *            the id to set
 	 */
 	public void setId(Long id) {
 		this.id = id;
 	}
+
 	/**
 	 * @return the academic title
 	 */
 	public AcademicTitle getTitle() {
 		return academicTitle;
 	}
+
 	/**
-	 * @param title the academic title to set
+	 * @param title
+	 *            the academic title to set
 	 */
 	public void setTitle(AcademicTitle title) {
 		this.academicTitle = title;
 	}
+
 	/**
 	 * @return the firstName
 	 */
+	@Column(name = "FIRST_NAME", length = 30, nullable = false)
 	public String getFirstName() {
 		return firstName;
 	}
+
 	/**
-	 * @param firstName the firstName to set
+	 * @param firstName
+	 *            the firstName to set
 	 */
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
+
 	/**
 	 * @return the lastName
 	 */
+	@Column(length = 50, nullable = false)
 	public String getLastName() {
-		return lastName;
+		return lastname;
 	}
+
 	/**
-	 * @param lastName the lastName to set
+	 * @param lastName
+	 *            the lastName to set
 	 */
 	public void setLastName(String lastName) {
-		this.lastName = lastName;
+		this.lastname = lastName;
 	}
+
 	/**
 	 * @return the minBreak
 	 */
+	@Column(name = "MIN_BREAK", nullable = false)
 	public int getMinBreak() {
 		return minBreak;
 	}
+
 	/**
-	 * @param minBreak the minBreak to set
+	 * @param minBreak
+	 *            the minBreak to set
 	 */
 	public void setMinBreak(int minBreak) {
 		this.minBreak = minBreak;
 	}
+
 	/**
-	 * The lecturer's lastname
+	 * @return the abbreviation
 	 */
-	private String lastName;
+	@Column(length = 5, nullable = false)
+	public String getAbbreviation() {
+		return abbreviation;
+	}
+
 	/**
-	 * The lecturer's shortest time between two meetings
+	 * @param abbreviation
+	 *            the abbreviation to set
 	 */
-	private int minBreak;
+	public void setAbbreviation(String abbreviation) {
+		this.abbreviation = abbreviation;
+	}
 
 }
