@@ -1,6 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <!-- Allgemeine Projektinformationen -->
   <modelVersion>4.0.0</modelVersion>
   <groupId>de.nak</groupId>
   <artifactId>stundenplan-db</artifactId>
@@ -9,6 +10,7 @@
   <name>Stundenplan-DB</name>
   <description>Hausarbeit des Moduls Internet-Anwendungsarchitekturen von Arne Röver, Lars Lembke und Fabian Kolossa</description>
   
+  <!-- Maven-Plugins -->
   <build>
     <sourceDirectory>src</sourceDirectory>
     <plugins>
@@ -39,12 +41,12 @@
     <com.h2database.version>1.3.176</com.h2database.version>
     <junit.version>4.11</junit.version>
     <org.mockito.version>1.10.8</org.mockito.version>
-    <org.dom4j.version>1.6.1</org.dom4j.version>
   </properties>
   
   <!-- Eingebundene Bibliotheken -->
   <dependencies>
     <!-- SPRING -->
+    <!-- http://spring.io/ -->
     <!-- http://spring.io/blog/2009/12/02/obtaining-spring-3-artifacts-with-maven/ -->
     <dependency>
       <groupId>org.springframework</groupId>
@@ -99,6 +101,7 @@
     </dependency>
     
     <!-- STRUTS -->
+    <!-- https://struts.apache.org/ -->
     <dependency>
       <groupId>org.apache.struts</groupId>
       <artifactId>struts2-core</artifactId>
@@ -116,6 +119,7 @@
     </dependency>
     
     <!-- HIBERNATE -->
+    <!-- http://hibernate.org/ -->
     <dependency>
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-core</artifactId>
@@ -123,6 +127,7 @@
     </dependency>
     
     <!-- H2 -->
+    <!-- http://www.h2database.com/ -->
     <dependency>
       <groupId>com.h2database</groupId>
       <artifactId>h2</artifactId>
@@ -130,6 +135,7 @@
     </dependency>
     
     <!-- JUnit -->
+    <!-- http://junit.org/ -->
     <dependency>
 	  <groupId>junit</groupId>
 	  <artifactId>junit</artifactId>
@@ -138,6 +144,7 @@
 	</dependency>
 	
 	<!-- Mockito -->
+	<!-- https://code.google.com/p/mockito/ -->
 	<dependency>
 		<groupId>org.mockito</groupId>
 		<artifactId>mockito-core</artifactId>  
