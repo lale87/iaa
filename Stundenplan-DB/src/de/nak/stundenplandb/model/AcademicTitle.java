@@ -1,4 +1,4 @@
-package model;
+package de.nak.stundenplandb.model;
 
 /**
  * Enumeration for acedemic titles

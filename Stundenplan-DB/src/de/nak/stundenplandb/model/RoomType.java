@@ -1,4 +1,4 @@
-package model;
+package de.nak.stundenplandb.model;
 
 public enum RoomType {
 	COMPUTER_LAB(15), CLASSROOM(0);

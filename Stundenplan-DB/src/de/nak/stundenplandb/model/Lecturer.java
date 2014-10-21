@@ -1,4 +1,4 @@
-package model;
+package de.nak.stundenplandb.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
