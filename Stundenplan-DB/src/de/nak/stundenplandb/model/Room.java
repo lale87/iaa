@@ -2,6 +2,8 @@ package de.nak.stundenplandb.model;
 
 import javax.persistence.Column;
 
+import org.hibernate.annotations.NaturalId;
+
 public class Room {
 	/**
 	 * The Identifier
@@ -32,6 +34,7 @@ public class Room {
 	 * @return the building
 	 */
 	@Column(length = 1, nullable = false)
+	@NaturalId
 	public String getBuilding() {
 		return building;
 	}
@@ -48,6 +51,7 @@ public class Room {
 	 * @return the roomNumber
 	 */
 	@Column(name = "ROOM_NUMBER", nullable = false)
+	@NaturalId
 	public Integer getRoomNumber() {
 		return roomNumber;
 	}
