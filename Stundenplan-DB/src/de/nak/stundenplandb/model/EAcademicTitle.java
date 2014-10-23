@@ -6,10 +6,10 @@ package de.nak.stundenplandb.model;
  * @author Lars Lembke
  *
  */
-public enum AcademicTitle {
+public enum EAcademicTitle {
 	PROF("Professor", "Prof."), DR("Doktor", "Dr."), PROF_DR(
 			"Professor Doktor", "Prof. Dr.");
-	private String LongTitle;
+	private String longTitle;
 	private String shortTitle;
 
 	/**
@@ -18,7 +18,7 @@ public enum AcademicTitle {
 	 * @param longTitle
 	 * @param shortTitle
 	 */
-	private AcademicTitle(String longTitle, String shortTitle) {
+	private EAcademicTitle(String longTitle, String shortTitle) {
 		this.setLongTitle(longTitle);
 		this.setShortTitle(shortTitle);
 	}
@@ -27,7 +27,7 @@ public enum AcademicTitle {
 	 * @return the longTitle
 	 */
 	public String getLongTitle() {
-		return LongTitle;
+		return longTitle;
 	}
 
 	/**
@@ -35,7 +35,7 @@ public enum AcademicTitle {
 	 *            the longTitle to set
 	 */
 	public void setLongTitle(String longTitle) {
-		LongTitle = longTitle;
+		this.longTitle = longTitle;
 	}
 
 	/**

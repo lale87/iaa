@@ -1,6 +1,6 @@
 package de.nak.stundenplandb.model;
 
-public enum RoomType {
+public enum ERoomType {
 	COMPUTER_LAB(15), CLASSROOM(0);
 	/**
 	 * The minimum chanigingTime for this RoomType
@@ -12,7 +12,7 @@ public enum RoomType {
 	 * 
 	 * @param minBreak
 	 */
-	private RoomType(Integer minBreak) {
+	private ERoomType(Integer minBreak) {
 		this.setMinBreak(minBreak);
 	}
 

@@ -21,7 +21,7 @@ public class Lecturer {
 	/**
 	 * The lecturer's academic title 
 	 */
-	private AcademicTitle academicTitle;
+	private EAcademicTitle academicTitle;
 	/**
 	 * The lecturer's first name
 	 */
@@ -33,9 +33,9 @@ public class Lecturer {
 	private String abbreviation;
 
 	/**
-	 * The lecturer's lastname
+	 * The lecturer's last name
 	 */
-	private String lastname;
+	private String lastName;
 
 	/**
 	 * The lecturer's shortest time between two meetings
@@ -62,7 +62,7 @@ public class Lecturer {
 	/**
 	 * @return the academic title
 	 */
-	public AcademicTitle getTitle() {
+	public EAcademicTitle getTitle() {
 		return academicTitle;
 	}
 
@@ -70,7 +70,7 @@ public class Lecturer {
 	 * @param title
 	 *            the academic title to set
 	 */
-	public void setTitle(AcademicTitle title) {
+	public void setTitle(EAcademicTitle title) {
 		this.academicTitle = title;
 	}
 
@@ -95,7 +95,7 @@ public class Lecturer {
 	 */
 	@Column(length = 50, nullable = false)
 	public String getLastName() {
-		return lastname;
+		return lastName;
 	}
 
 	/**
@@ -103,7 +103,7 @@ public class Lecturer {
 	 *            the lastName to set
 	 */
 	public void setLastName(String lastName) {
-		this.lastname = lastName;
+		this.lastName = lastName;
 	}
 
 	/**

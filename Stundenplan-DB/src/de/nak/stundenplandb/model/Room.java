@@ -10,7 +10,7 @@ public class Room {
 	/**
 	 * The minimum time between two meetings in this room
 	 */
-	private Integer ChangingTime;
+	private Integer changingTime;
 	/**
 	 * The maximum available seats in this room
 	 */
@@ -18,7 +18,7 @@ public class Room {
 	/**
 	 * The RoomType
 	 */
-	private RoomType roomType;
+	private ERoomType roomType;
 	/**
 	 * The Building
 	 */
@@ -80,7 +80,7 @@ public class Room {
 	 */
 	@Column(name = "CHANGING_TIME", nullable = false)
 	public Integer getChangingTime() {
-		return ChangingTime;
+		return changingTime;
 	}
 
 	/**
@@ -88,7 +88,7 @@ public class Room {
 	 *            the changingTime to set
 	 */
 	public void setChangingTime(Integer changingTime) {
-		ChangingTime = changingTime;
+		this.changingTime = changingTime;
 	}
 
 	/**
@@ -110,7 +110,7 @@ public class Room {
 	/**
 	 * @return the roomType
 	 */
-	public RoomType getRoomType() {
+	public ERoomType getRoomType() {
 		return roomType;
 	}
 
@@ -118,7 +118,7 @@ public class Room {
 	 * @param roomType
 	 *            the roomType to set
 	 */
-	public void setRoomType(RoomType roomType) {
+	public void setRoomType(ERoomType roomType) {
 		this.roomType = roomType;
 	}
 
