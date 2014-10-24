@@ -1,9 +1,11 @@
 package de.nak.stundenplandb.model;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 
 import org.hibernate.annotations.NaturalId;
 
+@Entity
 public class Room {
 	/**
 	 * The Identifier

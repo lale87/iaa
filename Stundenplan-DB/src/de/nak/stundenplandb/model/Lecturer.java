@@ -15,7 +15,7 @@ import org.hibernate.annotations.NaturalId;
  *
  */
 @Entity
-public class Lecturer {
+public class Lecturer implements DomainObject {
 	/**
 	 * The identifier
 	 */
