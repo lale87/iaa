@@ -1,22 +1,24 @@
 # Files to ignore
-# from https://github.com/github/gitignore
+#  from https://github.com/github/gitignore
+
 # Mac OS
 .DS_Store
 .AppleDouble
 .LSOverride
-# Icon must end with two \r
+#  Icon must end with two \r
 Icon
-# Thumbnails
+#  Thumbnails
 ._*
-# Files that might appear on external disk
+#  Files that might appear on external disk
 .Spotlight-V100
 .Trashes
-# Directories potentially created on remote AFP share
+#  Directories potentially created on remote AFP share
 .AppleDB
 .AppleDesktop
 Network Trash Folder
 Temporary Items
 .apdisk
+
 # Eclipse
 *.pydevproject
 .metadata
@@ -30,30 +32,32 @@ tmp/
 local.properties
 .settings/
 .loadpath
-# External tool builders
+#  External tool builders
 .externalToolBuilders/
-# Locally stored "Eclipse launch configurations"
+#  Locally stored "Eclipse launch configurations"
 *.launch
-# CDT-specific
+#  CDT-specific
 .cproject
-# PDT-specific
+#  PDT-specific
 .buildpath
-# sbteclipse plugin
+#  sbteclipse plugin
 .target
-# TeXlipse plugin
+#  TeXlipse plugin
 .texlipse
+
 # Java
 *.class
-# Mobile Tools for Java (J2ME)
+#  Mobile Tools for Java (J2ME)
 .mtj.tmp/
-# Package Files #
+#  Package Files
 *.jar
 *.war
 *.ear
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+#  virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+
 # Weitere
-# ArgoUML-Tmp
+#  ArgoUML-Tmp
 *.zargo~
 
 /build/
