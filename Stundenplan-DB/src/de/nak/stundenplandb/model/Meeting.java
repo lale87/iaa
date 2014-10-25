@@ -8,7 +8,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 
 /**
  * Meeting Entity
@@ -64,7 +63,6 @@ public abstract class Meeting {
 		this.rooms = rooms;
 	}
 	
-	@OneToOne
 	public Lecturer getLecturer() {
 		return lecturer;
 	}
@@ -72,7 +70,7 @@ public abstract class Meeting {
 		this.lecturer = lecturer;
 	}
 	
-	@OneToMany(mappedBy = "meeting")
+	@OneToMany
 	public Set<Appointment> getAppointments() {
 		return appointments;
 	}
