@@ -2,9 +2,11 @@ package de.nak.stundenplandb.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import org.hibernate.annotations.ManyToAny;
+import org.hibernate.annotations.Type;
 
 /**
  * Lecture Entity.
