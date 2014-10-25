@@ -16,9 +16,24 @@
 		<put-attribute name="content" value="/mainMenu.jsp"/>
 	</definition>
 	
-	<!-- The main menu -->
+	<!-- The masterdata menu -->
  	<definition name="masterData" extends="mainLayout">
 		<put-attribute name="content" value="/masterData.jsp"/>
+	</definition>
+	
+	<!-- The lecturer form -->
+ 	<definition name="lecturerForm" extends="mainLayout">
+		<put-attribute name="content" value="/lecturerForm.jsp"/>
+	</definition>
+	
+	<!-- The room form -->
+ 	<definition name="roomForm" extends="mainLayout">
+		<put-attribute name="content" value="/roomForm.jsp"/>
+	</definition>
+	
+	<!-- The student group form -->
+ 	<definition name="studentGroupForm" extends="mainLayout">
+		<put-attribute name="content" value="/studentGroupForm.jsp"/>
 	</definition>
 	
 

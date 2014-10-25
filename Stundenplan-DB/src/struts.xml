@@ -17,8 +17,20 @@
 			<result type="tiles">masterData</result>
 		</action>
 		
-		<action name="CancelMasterData">
+		<action name="CancelMasterDataMenu">
 			<result type="redirect">ShowMainMenu.action</result>
+		</action>
+		
+		<action name="ShowLecturerForm">
+			<result type="tiles">lecturerForm</result>
+		</action>
+		
+		<action name="ShowRoomForm">
+			<result type="tiles">roomForm</result>
+		</action>
+		
+		<action name="ShowStudentGroupForm">
+			<result type="tiles">studentGroupForm</result>
 		</action>
 
 		<!-- Action that displays the list of cars. -->
