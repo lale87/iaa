@@ -16,6 +16,10 @@
 		<action name="ShowMasterData">
 			<result type="tiles">masterData</result>
 		</action>
+		
+		<action name="CancelMasterData">
+			<result type="redirect">ShowMainMenu.action</result>
+		</action>
 
 		<!-- Action that displays the list of cars. -->
 <!--
