@@ -81,10 +81,8 @@
     </bean>
 	
 	<!-- Services -->
-<!--
-	<bean id="carService" class="de.nak.stundenplandb.service.CarServiceImpl">
-		<property name="carDAO" ref="carDAO"/>
+	<bean id="roomService" class="de.nak.stundenplandb.service.RoomServiceImpl">
+		<property name="roomDAO" ref="roomDAO"/>
 	</bean>
--->
 
 </beans>
