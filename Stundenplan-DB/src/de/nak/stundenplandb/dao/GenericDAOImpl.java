@@ -30,6 +30,7 @@ public class GenericDAOImpl<T extends DomainObject> implements GenericDAO<T> {
 	public GenericDAOImpl(Class<T> type) {
 		super();
 		this.type = type;
+		System.out.println("*********" + type.getName());
 	}
 	
 	/* (non-Javadoc)
