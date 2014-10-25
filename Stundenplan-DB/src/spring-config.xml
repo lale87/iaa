@@ -84,5 +84,11 @@
 	<bean id="roomService" class="de.nak.stundenplandb.service.RoomServiceImpl">
 		<property name="roomDAO" ref="roomDAO"/>
 	</bean>
+	<bean id="lecturerService" class="de.nak.stundenplandb.service.LecturerServiceImpl">
+        <property name="lecturerDAO" ref="lecturerDAO"/>
+    </bean>
+    <bean id="studentGroupService" class="de.nak.stundenplandb.service.StudentGroupServiceImpl">
+        <property name="studentGroupDAO" ref="studentGroupDAO"/>
+    </bean>
 
 </beans>
