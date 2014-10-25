@@ -2,11 +2,6 @@ package de.nak.stundenplandb.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-
-import org.hibernate.annotations.ManyToAny;
-import org.hibernate.annotations.Type;
 
 /**
  * Lecture Entity.
@@ -16,6 +11,10 @@ import org.hibernate.annotations.Type;
  */
 @Entity
 public class Lecture extends Meeting {
+	/**
+	 * Serial UID
+	 */
+	private static final long serialVersionUID = 7305304331461460366L;
 	/**
 	 * Zenturie der Vorlesung
 	 */

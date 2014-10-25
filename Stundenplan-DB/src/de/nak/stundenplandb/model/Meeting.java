@@ -20,7 +20,12 @@ import javax.persistence.Transient;
  */
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class Meeting {
+public abstract class Meeting implements DomainObject{
+	/**
+	 * Serial UID
+	 */
+	private static final long serialVersionUID = -1617091957188183873L;
+
 	/**
 	 * The meeting's shortest time between this and the following meeting
 	 * Can be overitten in subclasses. Default: 0

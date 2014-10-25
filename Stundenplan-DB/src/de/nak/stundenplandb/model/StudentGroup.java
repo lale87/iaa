@@ -16,6 +16,10 @@ import org.hibernate.annotations.NaturalId;
 @Entity
 public class StudentGroup implements DomainObject {
 	/**
+	 * Serial UID
+	 */
+	private static final long serialVersionUID = 6911496656780567139L;
+	/**
 	 * Identifier
 	 */
 	private Long id;

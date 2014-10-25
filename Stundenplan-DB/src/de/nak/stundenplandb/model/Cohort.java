@@ -18,6 +18,10 @@ import org.hibernate.annotations.NaturalId;
 @Entity
 public class Cohort implements DomainObject {
 	/**
+	 * Serial UID
+	 */
+	private static final long serialVersionUID = -767019587578069195L;
+	/**
 	 * Identifier
 	 */
 	private Long id;

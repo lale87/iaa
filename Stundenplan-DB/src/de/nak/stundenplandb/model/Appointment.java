@@ -19,6 +19,10 @@ import org.hibernate.annotations.Type;
 @Entity
 public class Appointment implements DomainObject {
 	/**
+	 * Serial UID
+	 */
+	private static final long serialVersionUID = -595891360018945845L;
+	/**
 	 * The identifier
 	 */
 	private Long id;
