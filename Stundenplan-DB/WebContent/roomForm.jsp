@@ -12,5 +12,5 @@
 
 	<%-- The buttons --%>
 	<s:submit key="btn.save" action="SaveRoom"/>
-	<s:submit key="btn.cancel"/>
+	<s:submit key="btn.cancel" action="CancelMasterData"/>
 </s:form>

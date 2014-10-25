@@ -37,6 +37,10 @@
 			<result type="redirect">ShowRoomForm.action</result>
 			<result type="tiles" name="input">roomForm</result>
 		</action>
+		
+		<action name="CancelMasterData">
+			<result type="redirect">ShowMasterData.action</result>
+		</action>
 
 		<!-- Action that displays the list of cars. -->
 <!--
