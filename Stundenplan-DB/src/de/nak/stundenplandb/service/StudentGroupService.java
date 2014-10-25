@@ -3,6 +3,7 @@ package de.nak.stundenplandb.service;
 import java.util.List;
 
 import de.nak.stundenplandb.model.Room;
+import de.nak.stundenplandb.model.StudentGroup;
 
 /**
  * Schnittstelle für den StudentGroupService
@@ -16,7 +17,7 @@ public interface StudentGroupService {
 	 * @param studentGroup
 	 *            The studentGroup.
 	 */
-	void getStudentGroup(StudentGroupService studentGroup);
+	void saveStudentGroup(StudentGroup studentGroup);
 
 	/**
 	 * Loads a list of all studentGroups.
