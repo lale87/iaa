@@ -6,6 +6,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import org.hibernate.annotations.NaturalId;
+
 /**
  * Entitiy of a Cohort. A Chort is an age group at the NAK. A Cohort consists of
  * a various number of StudentGroups
@@ -42,6 +44,7 @@ public class Cohort implements DomainObject {
 	/**
 	 * @return the yearOfAdmission
 	 */
+	@NaturalId
 	public Integer getYearOfAdmission() {
 		return yearOfAdmission;
 	}
@@ -51,4 +54,35 @@ public class Cohort implements DomainObject {
 	public void setYearOfAdmission(Integer yearOfAdmission) {
 		this.yearOfAdmission = yearOfAdmission;
 	}
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result
+				+ ((yearOfAdmission == null) ? 0 : yearOfAdmission.hashCode());
+		return result;
+	}
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Cohort other = (Cohort) obj;
+		if (yearOfAdmission == null) {
+			if (other.yearOfAdmission != null)
+				return false;
+		} else if (!yearOfAdmission.equals(other.yearOfAdmission))
+			return false;
+		return true;
+	}
+	
 }
