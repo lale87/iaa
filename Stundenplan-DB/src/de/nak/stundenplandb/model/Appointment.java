@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import org.hibernate.annotations.Type;
+
 /**
  * Appointment Entity
  * 
@@ -20,13 +22,6 @@ public class Appointment {
 	 * The identifier
 	 */
 	private Long id;
-	
-//TODO ggf löschen, wenn nicht benötigt
-//	/**
-//	 * The related meeting
-//	 * (foreign key)
-//	 */
-//	private Meeting meeting;
 	/**
 	 * Start date and time
 	 */
@@ -45,17 +40,8 @@ public class Appointment {
 		this.id = id;
 	}
 	
-//TODO ggf löschen, wenn nicht benötigt
-//	@ManyToOne
-//	@JoinColumn(name = "ROOM_ID") 
-//	public Meeting getMeeting() {
-//		return meeting;
-//	}
-//	public void setMeeting(Meeting meeting) {
-//		this.meeting = meeting;
-//	}
-	
 	@Column(nullable = false)
+	@Type(type = "timestamp")
 	public Date getStart() {
 		return start;
 	}
@@ -64,6 +50,7 @@ public class Appointment {
 	}
 	
 	@Column(nullable = false)
+	@Type(type = "timestamp")
 	public Date getEnd() {
 		return end;
 	}
