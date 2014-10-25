@@ -24,5 +24,5 @@ public interface StudentGroupService {
 	 *
 	 * @return a list which is empty if no studentGroup was found.
 	 */
-	List<Room> loadAllStudentGroups();
+	List<StudentGroup> loadAllStudentGroups();
 }

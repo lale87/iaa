@@ -23,9 +23,8 @@ public class StudentGroupServiceImpl implements StudentGroupService {
 	}
 
 	@Override
-	public List<Room> loadAllStudentGroups() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<StudentGroup> loadAllStudentGroups() {
+		return studentGroupDAO.loadAll();
 	}
 
 	public void setStudentGroupDAO(StudentGroupDAO studentGroupDAO){
