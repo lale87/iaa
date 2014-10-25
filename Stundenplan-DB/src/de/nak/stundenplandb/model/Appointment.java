@@ -17,7 +17,7 @@ import org.hibernate.annotations.Type;
  *
  */
 @Entity
-public class Appointment {
+public class Appointment implements DomainObject {
 	/**
 	 * The identifier
 	 */
