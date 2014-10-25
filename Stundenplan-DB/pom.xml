@@ -125,6 +125,11 @@
       <artifactId>hibernate-core</artifactId>
       <version>${org.hibernate.version}</version>
     </dependency>
+    <dependency>
+  <groupId>commons-dbcp</groupId>
+  <artifactId>commons-dbcp</artifactId>
+  <version>1.4</version>
+</dependency>
     
     <!-- H2 -->
     <!-- http://www.h2database.com/ -->

@@ -42,14 +42,14 @@ public class StudentGroup implements DomainObject {
 	/**
 	 * @return the id
 	 */
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	public Long getId() {
 		return id;
 	}
 	/**
 	 * @param id the id to set
 	 */
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	public void setId(Long id) {
 		this.id = id;
 	}

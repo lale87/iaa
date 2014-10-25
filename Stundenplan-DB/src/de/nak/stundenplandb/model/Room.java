@@ -2,6 +2,9 @@ package de.nak.stundenplandb.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 import org.hibernate.annotations.NaturalId;
 
@@ -10,7 +13,7 @@ public class Room implements DomainObject{
 	/**
 	 * The Identifier
 	 */
-	private long id;
+	private Long id;
 	/**
 	 * The minimum time between two meetings in this room
 	 */
@@ -69,7 +72,9 @@ public class Room implements DomainObject{
 	/**
 	 * @return the id
 	 */
-	public long getId() {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	public Long getId() {
 		return id;
 	}
 
@@ -77,7 +82,7 @@ public class Room implements DomainObject{
 	 * @param id
 	 *            the id to set
 	 */
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
