@@ -8,7 +8,7 @@ import de.nak.stundenplandb.model.Lecture;
  * @author Lars Lembke
  *
  */
-public class LectureDAOImpl extends GenericDaoImplTemp<Lecture> implements
+public class LectureDAOImpl extends GenericDAOImpl<Lecture> implements
 		LectureDAO {
 
 	public LectureDAOImpl() {

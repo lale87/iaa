@@ -7,7 +7,7 @@ import de.nak.stundenplandb.model.Appointment;
  * @author Lars Lembke
  *
  */
-public class AppointmentDAOImpl extends GenericDaoImplTemp<Appointment> implements AppointmentDAO{
+public class AppointmentDAOImpl extends GenericDAOImpl<Appointment> implements AppointmentDAO{
 
 	public AppointmentDAOImpl() {
 		super(Appointment.class);

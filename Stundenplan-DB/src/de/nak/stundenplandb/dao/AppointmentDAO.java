@@ -8,6 +8,6 @@ import de.nak.stundenplandb.model.Appointment;
  * @author Lars Lembke
  *
  */
-public interface AppointmentDAO extends GenericDaoTemp<Appointment> {
+public interface AppointmentDAO extends GenericDAO<Appointment> {
 	// TODO nyi
 }

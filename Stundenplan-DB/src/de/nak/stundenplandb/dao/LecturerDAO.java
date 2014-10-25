@@ -10,6 +10,6 @@ import de.nak.stundenplandb.model.Lecturer;
  * @author Fabian Kolossa
  *
  */
-public interface LecturerDaoTemp extends GenericDaoTemp<Lecturer> {
+public interface LecturerDAO extends GenericDAO<Lecturer> {
 
 }

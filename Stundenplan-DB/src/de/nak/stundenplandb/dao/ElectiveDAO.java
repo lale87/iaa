@@ -8,6 +8,6 @@ import de.nak.stundenplandb.model.Elective;
  * @author Lars Lembke
  *
  */
-public interface ElectiveDAO extends GenericDaoTemp<Elective> {
+public interface ElectiveDAO extends GenericDAO<Elective> {
 	// TODO nyi
 }

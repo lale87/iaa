@@ -8,7 +8,7 @@ import de.nak.stundenplandb.model.Exam;
  * @author Lars Lembke
  *
  */
-public class ExamDAOImpl extends GenericDaoImplTemp<Exam> implements ExamDAO {
+public class ExamDAOImpl extends GenericDAOImpl<Exam> implements ExamDAO {
 
 	public ExamDAOImpl() {
 		super(Exam.class);

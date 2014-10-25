@@ -15,7 +15,7 @@ import de.nak.stundenplandb.model.DomainObject;
  *
  * @param <T> Typ der Objekte in der Datenbank
  */
-public class GenericDaoImplTemp<T extends DomainObject> implements GenericDaoTemp<T> {
+public class GenericDAOImpl<T extends DomainObject> implements GenericDAO<T> {
 
 	/**
 	 * Typ der Objekte in der Datenbank
@@ -27,7 +27,7 @@ public class GenericDaoImplTemp<T extends DomainObject> implements GenericDaoTem
 	 */
 	protected SessionFactory sessionFactory;
 	
-	public GenericDaoImplTemp(Class<T> type) {
+	public GenericDAOImpl(Class<T> type) {
 		super();
 		this.type = type;
 	}

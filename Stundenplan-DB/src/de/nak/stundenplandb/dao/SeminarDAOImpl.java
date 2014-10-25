@@ -8,7 +8,7 @@ import de.nak.stundenplandb.model.Seminar;
  * @author Lars Lembke
  *
  */
-public class SeminarDAOImpl extends GenericDaoImplTemp<Seminar> implements
+public class SeminarDAOImpl extends GenericDAOImpl<Seminar> implements
 		SeminarDAO {
 
 	public SeminarDAOImpl() {

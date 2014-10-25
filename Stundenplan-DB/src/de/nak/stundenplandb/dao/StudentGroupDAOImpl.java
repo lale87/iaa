@@ -8,7 +8,7 @@ import de.nak.stundenplandb.model.StudentGroup;
  * @author Lars Lembke
  *
  */
-public class StudentGroupDAOImpl extends GenericDaoImplTemp<StudentGroup> implements
+public class StudentGroupDAOImpl extends GenericDAOImpl<StudentGroup> implements
 		StudentGroupDAO {
 
 	public StudentGroupDAOImpl() {
