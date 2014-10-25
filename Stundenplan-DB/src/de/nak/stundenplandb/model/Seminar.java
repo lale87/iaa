@@ -7,5 +7,10 @@ package de.nak.stundenplandb.model;
  *
  */
 public class Seminar extends Meeting {
+
+	/**
+	 * Serial UID
+	 */
+	private static final long serialVersionUID = 1613888580600161216L;
 	// TODO nyi
 }

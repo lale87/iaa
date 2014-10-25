@@ -15,6 +15,11 @@ import javax.persistence.Transient;
  */
 @Entity
 public class Exam extends Meeting {
+	/**
+	 * Serial UID
+	 */
+	private static final long serialVersionUID = -1082604805966586549L;
+
 	@Transient
 	private Integer minBreak = 30;
 	

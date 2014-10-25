@@ -12,6 +12,10 @@ import javax.persistence.Entity;
 @Entity
 public class Elective extends Meeting {
 	/**
+	 * Serial UID
+	 */
+	private static final long serialVersionUID = -1110670613194853340L;
+	/**
 	 * Kohorte
 	 */
 	private Cohort cohort;
