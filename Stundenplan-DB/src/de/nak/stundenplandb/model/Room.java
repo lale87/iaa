@@ -6,7 +6,7 @@ import javax.persistence.Entity;
 import org.hibernate.annotations.NaturalId;
 
 @Entity
-public class Room {
+public class Room implements DomainObject{
 	/**
 	 * The Identifier
 	 */
