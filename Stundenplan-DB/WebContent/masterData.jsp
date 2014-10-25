@@ -6,6 +6,6 @@
 	<s:submit key="btn.lecturer"/>
 	<s:submit key="btn.room"/>
 	<s:submit key="btn.studentgroup"/>
-	<s:submit key="btn.cancel"/>
+	<s:submit key="btn.cancel" action="ShowMainMenu"/>
 
 </s:form>
