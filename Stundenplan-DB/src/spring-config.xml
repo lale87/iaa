@@ -51,13 +51,36 @@
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="serviceMethods"/>
 	</aop:config>
 
-	<!-- Car DAO -->
-<!--
-	<bean id="carDAO" class="de.nak.stundenplandb.dao.CarDAO">
+	<!-- DAOs -->
+ 	<bean id="appointmentDAO" class="de.nak.stundenplandb.dao.AppointmentDAOImpl">
 		<property name="sessionFactory" ref="sessionFactory"/>
 	</bean>
--->
-	<!-- Car Service -->
+	<bean id="cohortDAO" class="de.nak.stundenplandb.dao.CohortDAOImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="electiveDAO" class="de.nak.stundenplandb.dao.ElectiveDAOImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="examDAO" class="de.nak.stundenplandb.dao.ExamDAOImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="lectureDAO" class="de.nak.stundenplandb.dao.LectureDAOImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="lecturerDAO" class="de.nak.stundenplandb.dao.LecturerDAOImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="roomDAO" class="de.nak.stundenplandb.dao.RoomDAOImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="seminarDAO" class="de.nak.stundenplandb.dao.SeminarDAOImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="studentGroupDAO" class="de.nak.stundenplandb.dao.StudentGroupDAOImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+	
+	<!-- Services -->
 <!--
 	<bean id="carService" class="de.nak.stundenplandb.service.CarServiceImpl">
 		<property name="carDAO" ref="carDAO"/>
