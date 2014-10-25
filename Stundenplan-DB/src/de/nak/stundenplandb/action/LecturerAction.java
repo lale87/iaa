@@ -15,8 +15,7 @@ public class LecturerAction extends ActionSupport {
 
 	/** Serial version UID.	 */
 	private static final long serialVersionUID = 4082240062555980968L;
-	
-	
+		
 	/** The current lecturer. */
 	private Lecturer lecturer;	
 	
