@@ -6,22 +6,23 @@ import de.nak.stundenplandb.model.Room;
 
 /**
  * Schnittstelle für den RoomService
+ * 
  * @author Lars Lembke
  *
  */
 public interface RoomService {
 	/**
-	 * Creates or updates a car.
+	 * Creates a room.
 	 *
-	 * @param car The car.
+	 * @param room
+	 *            The room.
 	 */
-	void saveRoom(Room car);
-
+	void saveRoom(Room room);
 
 	/**
-	 * Loads a list of all cars.
+	 * Loads a list of all room.
 	 *
-	 * @return a list which is empty if no car was found.
+	 * @return a list which is empty if no room was found.
 	 */
 	List<Room> loadAllRooms();
 }
