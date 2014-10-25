@@ -8,6 +8,6 @@ import de.nak.stundenplandb.model.Exam;
  * @author Lars Lembke
  *
  */
-public interface ExamDAO extends GenericDao<Exam> {
+public interface ExamDAO extends GenericDaoTemp<Exam> {
 	// TODO nyi
 }

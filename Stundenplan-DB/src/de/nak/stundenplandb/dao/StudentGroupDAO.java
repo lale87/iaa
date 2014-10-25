@@ -7,6 +7,6 @@ import de.nak.stundenplandb.model.StudentGroup;
  * @author Lars Lembke
  *
  */
-public interface StudentGroupDAO extends GenericDao<StudentGroup> {
+public interface StudentGroupDAO extends GenericDaoTemp<StudentGroup> {
 //TODO nyi
 }

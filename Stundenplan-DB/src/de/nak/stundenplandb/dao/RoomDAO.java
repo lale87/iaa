@@ -7,6 +7,6 @@ import de.nak.stundenplandb.model.Room;
  * @author Lars Lembke
  *
  */
-public interface RoomDAO extends GenericDao<Room> {
+public interface RoomDAO extends GenericDaoTemp<Room> {
 //TODO nyi
 }

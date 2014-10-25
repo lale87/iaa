@@ -8,6 +8,6 @@ import de.nak.stundenplandb.model.Seminar;
  * @author Lars Lembke
  *
  */
-public interface SeminarDAO extends GenericDao<Seminar> {
+public interface SeminarDAO extends GenericDaoTemp<Seminar> {
 	// TODO nyi
 }

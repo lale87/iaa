@@ -7,6 +7,6 @@ import de.nak.stundenplandb.model.Cohort;
  * @author Lars Lembke
  *
  */
-public interface CohortDAO extends GenericDao<Cohort> {
+public interface CohortDAO extends GenericDaoTemp<Cohort> {
 //TODO nyi
 }

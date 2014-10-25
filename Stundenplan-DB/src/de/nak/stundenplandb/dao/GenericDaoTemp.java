@@ -10,7 +10,7 @@ import de.nak.stundenplandb.model.DomainObject;
  *
  * @param <T> Typ der Objekte in der Datenbank
  */
-public interface GenericDao<T extends DomainObject> {
+public interface GenericDaoTemp<T extends DomainObject> {
 	
 	/**
 	 * Lädt ein Objekt anhand der zugehörigen ID aus der Datenbank.

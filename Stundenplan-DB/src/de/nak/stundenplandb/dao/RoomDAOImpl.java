@@ -8,7 +8,7 @@ import de.nak.stundenplandb.model.Room;
  * @author Lars Lembke
  *
  */
-public class RoomDAOImpl extends GenericDaoImpl<Room> implements RoomDAO {
+public class RoomDAOImpl extends GenericDaoImplTemp<Room> implements RoomDAO {
 
 	public RoomDAOImpl() {
 		super(Room.class);

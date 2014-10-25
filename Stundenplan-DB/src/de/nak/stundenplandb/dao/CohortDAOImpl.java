@@ -6,7 +6,7 @@ import de.nak.stundenplandb.model.Cohort;
  * @author Lars Lembke
  *
  */
-public class CohortDAOImpl extends GenericDaoImpl<Cohort> implements CohortDAO {
+public class CohortDAOImpl extends GenericDaoImplTemp<Cohort> implements CohortDAO {
 
 	public CohortDAOImpl() {
 		super(Cohort.class);

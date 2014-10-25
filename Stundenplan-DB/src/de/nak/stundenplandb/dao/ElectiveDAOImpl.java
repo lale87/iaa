@@ -8,7 +8,7 @@ import de.nak.stundenplandb.model.Elective;
  * @author Lars Lembke
  *
  */
-public class ElectiveDAOImpl extends GenericDaoImpl<Elective> implements
+public class ElectiveDAOImpl extends GenericDaoImplTemp<Elective> implements
 		ElectiveDAO {
 
 	public ElectiveDAOImpl() {
