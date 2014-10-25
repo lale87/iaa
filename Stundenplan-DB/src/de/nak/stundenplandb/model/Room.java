@@ -52,7 +52,7 @@ public class Room {
 	/**
 	 * @return the roomNumber
 	 */
-	@Column(name = "ROOM_NUMBER", nullable = false)
+	@Column(name = "ROOM_NUMBER", scale = 4, nullable = false)
 	@NaturalId
 	public Integer getRoomNumber() {
 		return roomNumber;
@@ -84,7 +84,7 @@ public class Room {
 	/**
 	 * @return the changingTime
 	 */
-	@Column(name = "CHANGING_TIME", nullable = false)
+	@Column(name = "CHANGING_TIME", scale = 3, nullable = false)
 	public Integer getChangingTime() {
 		return changingTime;
 	}
@@ -100,7 +100,7 @@ public class Room {
 	/**
 	 * @return the seats
 	 */
-	@Column(nullable = false)
+	@Column(nullable = false, scale = 3)
 	public Integer getSeats() {
 		return seats;
 	}

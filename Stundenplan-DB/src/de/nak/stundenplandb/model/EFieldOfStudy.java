@@ -14,15 +14,14 @@ public enum EFieldOfStudy {
 	 */
 	private String longTitle;
 	/**
-	 * The abreviation for this field of study
+	 * The abbreviation for this field of study
 	 */
-	private String abreviation;
+	private String abbreviation;
 
 	private EFieldOfStudy(String bezeichnung, String kuerzel) {
 		this.longTitle = bezeichnung;
-		this.abreviation = kuerzel;
+		this.abbreviation = kuerzel;
 	}
-
 	/**
 	 * @return the longTitle
 	 */
@@ -34,6 +33,6 @@ public enum EFieldOfStudy {
 	 * @return the abreviation
 	 */
 	public String getAbreviation() {
-		return abreviation;
+		return abbreviation;
 	}
 }

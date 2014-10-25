@@ -7,8 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 
 /**
  * Appointment Entity
@@ -22,11 +20,13 @@ public class Appointment {
 	 * The identifier
 	 */
 	private Long id;
-	/**
-	 * The related meeting
-	 * (foreign key)
-	 */
-	private Meeting meeting;
+	
+//TODO ggf löschen, wenn nicht benötigt
+//	/**
+//	 * The related meeting
+//	 * (foreign key)
+//	 */
+//	private Meeting meeting;
 	/**
 	 * Start date and time
 	 */
@@ -45,14 +45,15 @@ public class Appointment {
 		this.id = id;
 	}
 	
-	@ManyToOne
-	@JoinColumn(name = "ROOM_ID") // TODO fk: Spaltenname richtig?
-	public Meeting getMeeting() {
-		return meeting;
-	}
-	public void setMeeting(Meeting meeting) {
-		this.meeting = meeting;
-	}
+//TODO ggf löschen, wenn nicht benötigt
+//	@ManyToOne
+//	@JoinColumn(name = "ROOM_ID") 
+//	public Meeting getMeeting() {
+//		return meeting;
+//	}
+//	public void setMeeting(Meeting meeting) {
+//		this.meeting = meeting;
+//	}
 	
 	@Column(nullable = false)
 	public Date getStart() {

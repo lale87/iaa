@@ -111,7 +111,7 @@ public class Lecturer implements DomainObject {
 	/**
 	 * @return the minBreak
 	 */
-	@Column(name = "MIN_BREAK", nullable = false)
+	@Column(name = "MIN_BREAK", scale = 3, nullable = false)
 	public Integer getMinBreak() {
 		return minBreak;
 	}
