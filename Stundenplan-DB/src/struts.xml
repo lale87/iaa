@@ -32,6 +32,11 @@
 		<action name="ShowStudentGroupForm">
 			<result type="tiles">studentGroupForm</result>
 		</action>
+		
+		<action name="SaveRoom" class="de.nak.stundenplandb.action.RoomAction" method="save">
+			<result type="redirect">ShowRoomForm.action</result>
+			<result type="tiles" name="input">roomForm</result>
+		</action>
 
 		<!-- Action that displays the list of cars. -->
 <!--

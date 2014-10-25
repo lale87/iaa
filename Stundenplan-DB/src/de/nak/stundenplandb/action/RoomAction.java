@@ -1,7 +1,9 @@
 package de.nak.stundenplandb.action;
 
 import com.opensymphony.xwork2.ActionSupport;
+
 import de.nak.stundenplandb.model.Room;
+import de.nak.stundenplandb.service.RoomService;
 
 /**
  * Action for a single Room.
@@ -9,20 +11,36 @@ import de.nak.stundenplandb.model.Room;
  * @author Arne Roever
  */
 public class RoomAction extends ActionSupport {
-	
-	 /** Serial version UID. */	 
+
+	/** Serial version UID. */
 	private static final long serialVersionUID = 5195981410155741713L;
-	
+
 	/** The room. */
 	private Room room;
-	
+
+	/** The room service. */
+	private RoomService roomService;
+
 	/**
-	 * Saves the current room to the database
+	 * Saves the current room to the database.
 	 *
 	 * @return the result string
 	 */
-	private String save(){
+	public String save() {
+		roomService.saveRoom(room);
 		return SUCCESS;
 	}
+
+	public Room getRoom() {
+		return room;
+	}
+
+	public void setRoom(Room room) {
+		this.room = room;
+	}
+
+	public void setRoomService(RoomService roomService) {
+		this.roomService = roomService;
+	}	
 
 }
