@@ -20,7 +20,7 @@ import javax.persistence.Transient;
  */
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class Meeting {
+public abstract class Meeting implements DomainObject{
 	/**
 	 * The meeting's shortest time between this and the following meeting
 	 * Can be overitten in subclasses. Default: 0
