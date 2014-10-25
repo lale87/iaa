@@ -2,21 +2,32 @@ package de.nak.stundenplandb.service;
 
 import java.util.List;
 
+import de.nak.stundenplandb.dao.LecturerDAO;
 import de.nak.stundenplandb.model.Lecturer;
-import de.nak.stundenplandb.model.Room;
 
+/**
+ * Implementation for the LecturerService
+ * 
+ * @author Lars Lembke
+ *
+ */
 public class LecturerServiceImpl implements LecturerService {
+	/**
+	 * Injected DAO
+	 */
+	private LecturerDAO lecturerDAO;
 
 	@Override
 	public void saveLecturer(Lecturer lecturer) {
-		// TODO Auto-generated method stub
-
+		lecturerDAO.save(lecturer);
 	}
 
 	@Override
-	public List<Room> loadAllLecturers() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Lecturer> loadAllLecturers() {
+		return lecturerDAO.loadAll();
 	}
 
+	public void setLecturerDAO(LecturerDAO lecturerDAO) {
+		this.lecturerDAO = lecturerDAO;
+	}
 }

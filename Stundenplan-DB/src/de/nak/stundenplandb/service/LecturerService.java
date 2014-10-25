@@ -25,5 +25,5 @@ public interface LecturerService {
 	 *
 	 * @return a list which is empty if no lecturer was found.
 	 */
-	List<Room> loadAllLecturers();
+	List<Lecturer> loadAllLecturers();
 }
