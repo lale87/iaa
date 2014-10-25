@@ -6,6 +6,12 @@
 
 <struts>
 	<package name="default" extends="tiles-default">
+		
+		<!--  Action that displays the main menu. -->
+		
+		<action name="ShowMainMenu">
+			<result type="tiles">mainMenu</result>
+		</action>
 
 		<!-- Action that displays the list of cars. -->
 <!--

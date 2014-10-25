@@ -7,18 +7,14 @@
 <tiles-definitions>
 	<!-- The main layout. -->
 	<definition name="mainLayout" template="/layout/mainLayout.jsp">
-		<put-attribute name="title" value="Cars"/>
+		<put-attribute name="title" value="Stundenplan"/>
 		<put-attribute name="header" value="/header.jsp"/>
 	</definition>
 
-	<!-- The list screen for all cars. -->
-	<definition name="carList" extends="mainLayout">
-		<put-attribute name="content" value="/carList.jsp"/>
+	<!-- The main menu -->
+ 	<definition name="mainMenu" extends="mainLayout">
+		<put-attribute name="content" value="/mainMenu.jsp"/>
 	</definition>
-
-	<!-- The form for a single car. -->
-	<definition name="carForm" extends="mainLayout">
-		<put-attribute name="content" value="/carForm.jsp"/>
-	</definition>
+	
 
 </tiles-definitions>

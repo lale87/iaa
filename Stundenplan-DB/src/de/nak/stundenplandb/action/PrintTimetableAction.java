@@ -22,7 +22,6 @@ public class PrintTimetableAction extends ActionSupport {
     /** The meeting list. */
     private List<Meeting> meetingList;
         
-    
     @Override
     public String execute(){
     	return SUCCESS;
