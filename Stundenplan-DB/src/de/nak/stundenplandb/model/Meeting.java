@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 
 /**
  * Meeting Entity
@@ -20,6 +21,12 @@ import javax.persistence.OneToMany;
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Meeting {
+	/**
+	 * The meeting's shortest time between this and the following meeting
+	 * Can be overitten in subclasses. Default: 0
+	 */
+	protected Integer minBreak = 0;
+	
 	/**
 	 * The identifier
 	 */
@@ -58,6 +65,7 @@ public abstract class Meeting {
 		this.name = name;
 	}
 	
+	@Column(nullable = false)
 	@OneToMany
 	public Set<Room> getRooms() {
 		return rooms;
@@ -66,6 +74,7 @@ public abstract class Meeting {
 		this.rooms = rooms;
 	}
 	
+	@Column(nullable = false)
 	public Lecturer getLecturer() {
 		return lecturer;
 	}
@@ -73,11 +82,20 @@ public abstract class Meeting {
 		this.lecturer = lecturer;
 	}
 	
+	@Column(nullable = false)
 	@OneToMany
 	public Set<Appointment> getAppointments() {
 		return appointments;
 	}
 	public void setAppointments(Set<Appointment> appointments) {
 		this.appointments = appointments;
+	}
+	
+	@Transient
+	public Integer getMinBreak() {
+		return minBreak;
+	}
+	public void setMinBreak(Integer minBreak) {
+		this.minBreak = minBreak;
 	}
 }

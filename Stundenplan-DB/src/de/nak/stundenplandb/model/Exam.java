@@ -5,6 +5,7 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 
 /**
  * Exam Entity
@@ -14,8 +15,11 @@ import javax.persistence.OneToMany;
  */
 @Entity
 public class Exam extends Meeting {
+	@Transient
+	private Integer minBreak = 30;
+	
 	/**
-	 * Teilnehmende Zenturien
+	 * Zenturien
 	 */
 	private Set<StudentGroup> studentGroups;
 
