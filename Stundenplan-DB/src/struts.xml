@@ -12,6 +12,10 @@
 		<action name="ShowMainMenu">
 			<result type="tiles">mainMenu</result>
 		</action>
+		
+		<action name="ShowMasterData">
+			<result type="tiles">masterData</result>
+		</action>
 
 		<!-- Action that displays the list of cars. -->
 <!--

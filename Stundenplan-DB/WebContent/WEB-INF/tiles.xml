@@ -16,5 +16,10 @@
 		<put-attribute name="content" value="/mainMenu.jsp"/>
 	</definition>
 	
+	<!-- The main menu -->
+ 	<definition name="masterData" extends="mainLayout">
+		<put-attribute name="content" value="/masterData.jsp"/>
+	</definition>
+	
 
 </tiles-definitions>

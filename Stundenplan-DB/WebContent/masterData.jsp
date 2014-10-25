@@ -3,7 +3,9 @@
 
 <s:form>
 	<%-- The buttons --%>
-	<s:submit key="btn.masterdata" action="ShowMasterData"/>
-	<s:submit key="btn.meeting"/>
-	<s:submit key="btn.timetable"/>
+	<s:submit key="btn.lecturer"/>
+	<s:submit key="btn.room"/>
+	<s:submit key="btn.studentgroup"/>
+	<s:submit key="btn.cancel"/>
+
 </s:form>
