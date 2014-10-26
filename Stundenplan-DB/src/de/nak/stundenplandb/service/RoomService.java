@@ -2,6 +2,7 @@ package de.nak.stundenplandb.service;
 
 import java.util.List;
 
+import de.nak.stundenplandb.model.ERoomType;
 import de.nak.stundenplandb.model.Room;
 
 /**
@@ -25,4 +26,10 @@ public interface RoomService {
 	 * @return a list which is empty if no room was found.
 	 */
 	List<Room> loadAllRooms();
+	
+	/**
+	 * Returns the Enum ERoomType as a list
+	 * @return roomType
+	 */
+	List<ERoomType> getAllRoomTypes();
 }

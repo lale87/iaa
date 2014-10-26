@@ -3,6 +3,7 @@ package de.nak.stundenplandb.service;
 import java.util.List;
 
 import de.nak.stundenplandb.dao.RoomDAO;
+import de.nak.stundenplandb.model.ERoomType;
 import de.nak.stundenplandb.model.Room;
 
 /**
@@ -35,6 +36,12 @@ public class RoomServiceImpl implements RoomService {
 	public void setRoomDAO(RoomDAO roomDAO) {
 		this.roomDAO = roomDAO;
 		System.out.println("*******SET_DAO: " + roomDAO.getClass());
+	}
+
+	@Override
+	public List<ERoomType> getAllRoomTypes() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
