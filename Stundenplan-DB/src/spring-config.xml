@@ -32,6 +32,14 @@
 			</props>
 		</property>
 	</bean>
+	
+	<!-- provides a H2 console to look into the db if necessary -->
+	<!-- https://stackoverflow.com/questions/2012292/spring-configuration-for-embedded-h2-database-for-tests -->
+	<bean id="org.h2.tools.Server-WebServer" class="org.h2.tools.Server" 
+	    factory-method="createWebServer" depends-on="dataSource" 
+	    init-method="start" lazy-init="false">
+	    <constructor-arg value="-web,-webPort,8081" />
+	</bean>
 
 	<!-- The transaction manager -->
 	<bean id="txManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
