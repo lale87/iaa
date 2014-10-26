@@ -6,7 +6,7 @@ package de.nak.stundenplandb.model;
  *
  */
 public enum EFieldOfStudy {
-	BUSINESS("Betriebswirtschaftslehre", "B"), ENGINEERIN(
+	BUSINESS("Betriebswirtschaftslehre", "B"), ENGINEERING(
 			"Wirtschaftingenieurwesen", "W"), INFORMATICS(
 			"Wirtschaftsinformatik", "I");
 	/**
