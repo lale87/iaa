@@ -25,7 +25,6 @@ public class ElectiveDAOImpl extends GenericDAOImpl<Elective> implements
 	@Override
 	public List<Elective> loadElectivesForStudentGroup(Cohort cohort,
 			Date start, Date end) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
