@@ -1,5 +1,8 @@
 package de.nak.stundenplandb.service;
 
+import java.util.Date;
+import java.util.List;
+
 import de.nak.stundenplandb.dao.ElectiveDAO;
 import de.nak.stundenplandb.dao.ExamDAO;
 import de.nak.stundenplandb.dao.LectureDAO;
@@ -7,7 +10,11 @@ import de.nak.stundenplandb.dao.SeminarDAO;
 import de.nak.stundenplandb.model.Elective;
 import de.nak.stundenplandb.model.Exam;
 import de.nak.stundenplandb.model.Lecture;
+import de.nak.stundenplandb.model.Lecturer;
+import de.nak.stundenplandb.model.Meeting;
+import de.nak.stundenplandb.model.Room;
 import de.nak.stundenplandb.model.Seminar;
+import de.nak.stundenplandb.model.StudentGroup;
 
 /**
  * Implementation for the MeetingService
@@ -107,6 +114,38 @@ public class MeetingServiceImpl implements MeetingService {
 	 */
 	public void setElectiveDAO(ElectiveDAO electiveDAO) {
 		this.electiveDAO = electiveDAO;
+	}
+
+	@Override
+	public boolean isPossible(Meeting meeting) {
+		
+		//TODO hier wird es kompliziert! Wechselzeiten werden schwierig zu ermitteln
+		//List conflicts
+		//List meetings := Get * from Meeting between start AND end
+		//if meetings > 0
+		//if meetings contain lecturer -> conflicts.add(lecturer)
+		//if meetings contain 
+		return true;
+	}
+
+	@Override
+	public List<Meeting> loadMeetingsForStudentGroup(StudentGroup studentGroup,
+			Date start, Date end) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Meeting> loadMeetingsForLecturer(Lecturer lecturer, Date start,
+			Date end) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Meeting> loadMeetingsForRoom(Room room, Date start, Date end) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
