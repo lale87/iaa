@@ -1,5 +1,6 @@
 package de.nak.stundenplandb.service;
 
+import java.util.Arrays;
 import java.util.List;
 
 import de.nak.stundenplandb.dao.RoomDAO;
@@ -40,8 +41,7 @@ public class RoomServiceImpl implements RoomService {
 
 	@Override
 	public List<ERoomType> getAllRoomTypes() {
-		// TODO Auto-generated method stub
-		return null;
+		return Arrays.asList(ERoomType.values());
 	}
 
 }
