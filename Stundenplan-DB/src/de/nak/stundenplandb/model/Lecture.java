@@ -1,7 +1,7 @@
 package de.nak.stundenplandb.model;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 
 /**
  * Lecture Entity.
@@ -20,7 +20,7 @@ public class Lecture extends Meeting {
 	 */
 	private StudentGroup studentGroup;
 
-	@Column(nullable = false)
+	@ManyToOne(optional = false)
 	public StudentGroup getStudentGroup() {
 		return studentGroup;
 	}
