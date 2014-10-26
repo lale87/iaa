@@ -4,6 +4,6 @@
 <s:form>
 	<%-- The buttons --%>
 	<s:submit key="btn.masterdata" action="ShowMasterData"/>
-	<s:submit key="btn.meeting"/>
+	<s:submit key="btn.meeting" action="ShowMeetingList"/>
 	<s:submit key="btn.timetable"/>
 </s:form>

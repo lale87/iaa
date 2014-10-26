@@ -36,5 +36,10 @@
 		<put-attribute name="content" value="/studentGroupForm.jsp"/>
 	</definition>
 	
+	<!-- The Meeting Menu -->
+ 	<definition name="meetingMenu" extends="mainLayout">
+		<put-attribute name="content" value="/meetingMenu.jsp"/>
+	</definition>
+	
 
 </tiles-definitions>

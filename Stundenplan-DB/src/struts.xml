@@ -52,6 +52,10 @@
 			<result type="redirect">ShowMasterData.action</result>
 		</action>
 		
+		<action name="ShowMeetingList">
+			<result type="tiles">meetingMenu</result>
+		</action>
+		
 		
 
 		<!-- Action that displays the list of cars. -->

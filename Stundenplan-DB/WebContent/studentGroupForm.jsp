@@ -2,7 +2,7 @@
 <%@ taglib uri="/struts-tags" prefix="s" %>
 
 <s:form>
-	<%-- Form fields for the car's attributes --%>
+	<%-- Form fields for the student group attributes --%>
 	<s:select name="studentGroup.fieldOfStudy" key="lbl.fieldOfStudy" list="allFieldsOfStudy" requiredLabel="true"/>
 	<s:textfield name="studentGroup.cohort.yearOfAdmission" key="lbl.yearOfAdmission" size="4" maxlength="4" requiredLabel="true"/>
 	<s:textfield name="studentGroup.groupIdentifier" key="lbl.groupIdentifier" size="1" maxlength="1" requiredLabel="true"/>
