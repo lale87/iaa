@@ -14,5 +14,6 @@ public class LecturerDAOImpl extends GenericDAOImpl<Lecturer> implements Lecture
 
 	public LecturerDAOImpl() {
 		super(Lecturer.class);
+		System.out.println("************LecturerDaoImpl INIT");
 	}
 }
