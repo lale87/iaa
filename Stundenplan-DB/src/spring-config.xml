@@ -89,6 +89,7 @@
     </bean>
     <bean id="studentGroupService" class="de.nak.stundenplandb.service.StudentGroupServiceImpl">
         <property name="studentGroupDAO" ref="studentGroupDAO"/>
+        <property name="cohortDAO" ref="cohortDAO"/>
     </bean>
 
 </beans>

@@ -28,7 +28,7 @@ public interface LecturerService {
 	List<Lecturer> loadAllLecturers();
 
 	/**
-	 * Returns the Enum EAcademixTitle as a list
+	 * Returns the Enum EAcademicTitle as a list
 	 * 
 	 * @return academicTitle
 	 */
