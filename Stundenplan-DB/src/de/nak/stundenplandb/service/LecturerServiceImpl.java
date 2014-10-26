@@ -1,8 +1,10 @@
 package de.nak.stundenplandb.service;
 
+import java.util.Arrays;
 import java.util.List;
 
 import de.nak.stundenplandb.dao.LecturerDAO;
+import de.nak.stundenplandb.model.EAcademicTitle;
 import de.nak.stundenplandb.model.Lecturer;
 
 /**
@@ -29,5 +31,10 @@ public class LecturerServiceImpl implements LecturerService {
 
 	public void setLecturerDAO(LecturerDAO lecturerDAO) {
 		this.lecturerDAO = lecturerDAO;
+	}
+
+	@Override
+	public List<EAcademicTitle> getAllAcademicTitles() {
+		return Arrays.asList(EAcademicTitle.values());
 	}
 }

@@ -1,9 +1,10 @@
 package de.nak.stundenplandb.service;
 
+import java.util.Arrays;
 import java.util.List;
 
 import de.nak.stundenplandb.dao.StudentGroupDAO;
-import de.nak.stundenplandb.model.Room;
+import de.nak.stundenplandb.model.EFieldOfStudy;
 import de.nak.stundenplandb.model.StudentGroup;
 /**
  * Implementation for the StudentGroupService
@@ -29,6 +30,11 @@ public class StudentGroupServiceImpl implements StudentGroupService {
 
 	public void setStudentGroupDAO(StudentGroupDAO studentGroupDAO){
 		this.studentGroupDAO = studentGroupDAO;
+	}
+
+	@Override
+	public List<EFieldOfStudy> getAllFieldsOfStudy() {
+		return Arrays.asList(EFieldOfStudy.values());
 	}
 		
 }
