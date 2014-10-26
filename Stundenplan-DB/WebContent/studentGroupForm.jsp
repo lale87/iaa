@@ -3,14 +3,13 @@
 
 <s:form>
 	<%-- Form fields for the car's attributes --%>
-	<s:hidden name="car.id"/>
-	<s:textfield name="car.brand" key="lbl.brand" size="40" maxlength="100" requiredLabel="true"/>
-	<s:textfield name="car.color" key="lbl.color" size="10" maxlength="50" requiredLabel="true"/>
-	<s:textfield name="car.wheelCount" key="lbl.wheelCount" size="1" maxlength="1" requiredLabel="true"/>
-	<s:textfield name="car.yearOfProduction" key="lbl.yearOfProduction" size="4" maxlength="4"/>
-	<s:checkbox name="car.isDieselEngine" key="lbl.isDieselEngine"/>
+	<s:select name="studentGroup.fieldOfStudy" key="lbl.fieldOfStudy" list="allFieldsOfStudy" requiredLabel="true"/>
+	<s:textfield name="studentGroup.cohort.yearOfAdmission" key="lbl.yearOfAdmission" size="4" maxlength="4" requiredLabel="true"/>
+	<s:textfield name="studentGroup.groupIdentifier" key="lbl.groupIdentifier" size="1" maxlength="1" requiredLabel="true"/>
+	<s:textfield name="studentGroup.studentCount" key="lbl.studentCount" size="4" maxlength="4" requiredLabel="true"/>
+	<s:textfield name="studentGroup.minBreak" key="lbl.minBreak" size="3" maxlength="3" requiredLabel="true"/>	
 
 	<%-- The buttons --%>
-	<s:submit key="btn.save"/>
-	<s:submit key="btn.cancel"/>
+	<s:submit key="btn.save" action="SaveStudentGroup"/>
+	<s:submit key="btn.cancel" action="CancelMasterData"/>
 </s:form>

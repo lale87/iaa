@@ -41,7 +41,7 @@ public class Cohort implements DomainObject {
 	/**
 	 * @param id the id to set
 	 */
-	@Column(name = "YEAR_OF_ADMISSION", nullable = false)
+	
 	public void setId(Long id) {
 		this.id = id;
 	}
@@ -49,6 +49,7 @@ public class Cohort implements DomainObject {
 	 * @return the yearOfAdmission
 	 */
 	@NaturalId
+	@Column(name = "YEAR_OF_ADMISSION", nullable = false)
 	public Integer getYearOfAdmission() {
 		return yearOfAdmission;
 	}

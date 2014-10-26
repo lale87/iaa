@@ -21,7 +21,7 @@
 			<result type="redirect">ShowMainMenu.action</result>
 		</action>
 		
-		<action name="ShowLecturerForm">
+		<action name="ShowLecturerForm" class="de.nak.stundenplandb.action.LecturerAction">
 			<result type="tiles">lecturerForm</result>
 		</action>
 		
@@ -29,18 +29,30 @@
 			<result type="tiles">roomForm</result>
 		</action>
 		
-		<action name="ShowStudentGroupForm">
+		<action name="ShowStudentGroupForm" class="de.nak.stundenplandb.action.StudentGroupAction">
 			<result type="tiles">studentGroupForm</result>
 		</action>
 		
 		<action name="SaveRoom" class="de.nak.stundenplandb.action.RoomAction" method="save">
 			<result type="redirect">ShowRoomForm.action</result>
 			<result type="tiles" name="input">roomForm</result>
+		</action>		
+		
+		<action name="SaveLecturer" class="de.nak.stundenplandb.action.LecturerAction" method="save">
+			<result type="redirect">ShowLecturerForm.action</result>
+			<result type="tiles" name="input">lecturerForm</result>
+		</action>		
+		
+		<action name="SaveStudentGroup" class="de.nak.stundenplandb.action.StudentGroupAction" method="save">
+			<result type="redirect">ShowStudentGroupForm.action</result>
+			<result type="tiles" name="input">studentGroupForm</result>
 		</action>
 		
 		<action name="CancelMasterData">
 			<result type="redirect">ShowMasterData.action</result>
 		</action>
+		
+		
 
 		<!-- Action that displays the list of cars. -->
 <!--

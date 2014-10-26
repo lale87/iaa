@@ -2,15 +2,15 @@
 <%@ taglib uri="/struts-tags" prefix="s" %>
 
 <s:form>
-	<%-- Form fields for the car's attributes --%>
-	<s:hidden name="car.id"/>
-	<s:textfield name="car.brand" key="lbl.brand" size="40" maxlength="100" requiredLabel="true"/>
-	<s:textfield name="car.color" key="lbl.color" size="10" maxlength="50" requiredLabel="true"/>
-	<s:textfield name="car.wheelCount" key="lbl.wheelCount" size="1" maxlength="1" requiredLabel="true"/>
-	<s:textfield name="car.yearOfProduction" key="lbl.yearOfProduction" size="4" maxlength="4"/>
-	<s:checkbox name="car.isDieselEngine" key="lbl.isDieselEngine"/>
-
+	<%-- Form fields for the lecturer's attributes --%>	
+	<s:hidden 	 name="lecturer.id"/>
+	<s:select    name="lecturer.title" key="lbl.academicTitle" list="allAcademicTitles" listkey="shortTitle" requiredLabel="true"/>	
+	<s:textfield name="lecturer.firstName" key="lbl.firstName" size="30" maxlength="30" requiredLabel="true"/>
+	<s:textfield name="lecturer.lastName" key="lbl.lastName" size="30" maxlength="50" requiredLabel="true"/>	
+	<s:textfield name="lecturer.abbreviation" key="lbl.abbreviation" size="5" maxlength="5" requiredLabel="true"/>
+	<s:textfield name="lecturer.minBreak" key="lbl.minBreak" size="3" maxlength="3" requiredLabel="true"/>
+	
 	<%-- The buttons --%>
-	<s:submit key="btn.save"/>
-	<s:submit key="btn.cancel"/>
+	<s:submit key="btn.save" action="SaveLecturer"/>
+	<s:submit key="btn.cancel" action="CancelMasterData"/>
 </s:form>
