@@ -15,7 +15,7 @@ public class MeetingAction extends ActionSupport {
 	private static final long serialVersionUID = 7376786519031302846L;
 	
 	/** The current meeting. */
-	private Meeting meeting;
+	private Meeting meeting;	
 	
 	/** The meeting id. */
 	private Long meetingId;

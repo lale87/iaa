@@ -56,6 +56,23 @@
 			<result type="tiles">meetingMenu</result>
 		</action>
 		
+		<action name="ShowMeetingTypeMenu">
+			<result type="tiles">meetingTypeMenu</result>
+		</action>
+		
+		<action name="CancelMeetingTypeMenu">
+			<result type="redirect">ShowMeetingList.action</result>
+		</action>
+		
+		<action name="ShowLectureForm" class="de.nak.stundenplandb.action.LectureAction">
+			<result type="tiles">lectureForm</result>
+		</action>
+		
+		<action name="SaveLecture" class="de.nak.stundenplandb.action.LectureAction" method="save">
+			<result type="redirect">ShowLectureForm.action</result>
+			<result type="tiles" name="input">lectureForm</result>
+		</action>	
+		
 		
 
 		<!-- Action that displays the list of cars. -->

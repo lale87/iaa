@@ -25,7 +25,7 @@ public class LecturerAction extends ActionSupport {
 
 	/** The lecturer service. */
 	private LecturerService lecturerService;
-	
+
 	/**
 	 * Save the lecturer to the database.
 	 *

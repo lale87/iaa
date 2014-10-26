@@ -3,7 +3,7 @@
 
 <s:form>
 	<%-- The buttons --%>
-	<s:submit key="btn.newMeeting"/>
+	<s:submit key="btn.newMeeting" action="ShowMeetingTypeMenu"/>
 	<s:submit key="btn.editMeeting"/>
 	<s:submit key="btn.deleteMeeting"/>
 	<s:submit key="btn.cancel" action="ShowMainMenu"/>
