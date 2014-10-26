@@ -161,4 +161,14 @@ public class MeetingServiceImpl implements MeetingService {
 		return meetingsForRoom;
 	}
 
+	@Override
+	public List<Meeting> loadAllMeetings() {
+		List<Meeting> allMeetings = new ArrayList<Meeting>();
+		allMeetings.add((Meeting) examDAO.loadAll());
+		allMeetings.add((Meeting) lectureDAO.loadAll());
+		allMeetings.add((Meeting) electiveDAO.loadAll());
+		allMeetings.add((Meeting) seminarDAO.loadAll());
+		return allMeetings;
+	}
+
 }

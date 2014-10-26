@@ -113,4 +113,11 @@ public interface MeetingService {
 	 * @return a List of Meeting
 	 */
 	List<Meeting> loadMeetingsForRoom(Room room, Date start, Date end);
+
+	/**
+	 * Loads all existing meetings
+	 * 
+	 * @return a List of Meetings
+	 */
+	List<Meeting> loadAllMeetings();
 }
