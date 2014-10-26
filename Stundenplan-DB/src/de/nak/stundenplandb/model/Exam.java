@@ -4,7 +4,7 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 import javax.persistence.Transient;
 
 /**
@@ -29,7 +29,7 @@ public class Exam extends Meeting {
 	private Set<StudentGroup> studentGroups;
 
 	@Column(nullable = false)
-	@OneToMany
+	@ManyToMany
 	public Set<StudentGroup> getStudentGroups() {
 		return studentGroups;
 	}
