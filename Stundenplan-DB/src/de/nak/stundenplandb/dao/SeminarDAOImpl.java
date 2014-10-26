@@ -24,14 +24,23 @@ public class SeminarDAOImpl extends GenericDAOImpl<Seminar> implements
 	@Override
 	public List<Meeting> loadSeminarsForLecturer(Lecturer lecturer, Date start,
 			Date end) {
-		// TODO Auto-generated method stub
-		return null;
+		// TODO DATE
+		return sessionFactory
+				.getCurrentSession()
+				.createQuery(
+						"from SEMINAR as seminar where seminar.lecturer = :lecturer")
+				.setEntity("lecturer", lecturer).list();
+
 	}
 
 	@Override
 	public List<Meeting> loadSeminarsForRoom(Room room, Date start, Date end) {
-		// TODO Auto-generated method stub
-		return null;
+		// TODO DATE
+				return sessionFactory
+						.getCurrentSession()
+						.createQuery(
+								"from SEMINAR as seminar where seminar.room = :room")
+						.setEntity("room", room).list();
 	}
 
 }

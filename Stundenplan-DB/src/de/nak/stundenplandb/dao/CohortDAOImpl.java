@@ -16,7 +16,6 @@ public class CohortDAOImpl extends GenericDAOImpl<Cohort> implements CohortDAO {
 	
 	@Override
 	public List<Cohort> loadCohortByYearOfAdmission(Integer yearOfAdmission){
-		//TODO LL - bisher ungetestet 26.10.14
 		return (List<Cohort>) sessionFactory.getCurrentSession().createQuery("from Cohort as cohort where cohort.yearOfAdmission = :yoa").setInteger("yoa", yearOfAdmission).list();	
 	}
 }

@@ -25,20 +25,29 @@ public class ElectiveDAOImpl extends GenericDAOImpl<Elective> implements
 	@Override
 	public List<Elective> loadElectivesForStudentGroup(Cohort cohort,
 			Date start, Date end) {
-		return null;
+		// TODO Datum berücksichtigen
+		return (List<Elective>) sessionFactory.getCurrentSession()
+				.createQuery("from ELECTIVE as elective where elective.cohort = :cohort")
+				.setEntity("cohort", cohort).list();
 	}
 
 	@Override
 	public List<Elective> loadElectivesForLecturer(Lecturer lecturer,
 			Date start, Date end) {
-		// TODO Auto-generated method stub
-		return null;
+		// TODO Datum berücksichtigen
+		return (List<Elective>) sessionFactory
+				.getCurrentSession()
+				.createQuery(
+						"from ELECTIVE as elective where elective.lecturer = :lecturer")
+				.setEntity("lecturer", lecturer).list();
 	}
 
 	@Override
 	public List<Meeting> loadElectivesForRoom(Room room, Date start, Date end) {
-		// TODO Auto-generated method stub
-		return null;
+		// TODO Datum berücksichtigen
+		return (List<Meeting>) sessionFactory.getCurrentSession()
+				.createQuery("from ELECTIVE as elective where elective.room = :room")
+				.setEntity("room", room).list();
 	}
 
 }

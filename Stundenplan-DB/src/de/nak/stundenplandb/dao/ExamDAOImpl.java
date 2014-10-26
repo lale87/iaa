@@ -24,21 +24,31 @@ public class ExamDAOImpl extends GenericDAOImpl<Exam> implements ExamDAO {
 	@Override
 	public List<Exam> loadExamForStudentGroup(StudentGroup studentGroup,
 			Date start, Date end) {
-		// TODO Auto-generated method stub
-		return null;
+		// TODO DATE
+		return sessionFactory
+				.getCurrentSession()
+				.createQuery(
+						"from EXAM as exam where exam.studentGroup = :studentGroup")
+				.setEntity("studentGroup", studentGroup).list();
 	}
 
 	@Override
 	public List<Exam> loadExamForLecturer(Lecturer lecturer, Date start,
 			Date end) {
-		// TODO Auto-generated method stub
-		return null;
+		// TODO DATE
+		return sessionFactory
+				.getCurrentSession()
+				.createQuery(
+						"from EXAM as exam where exam.lecturer = :lecturer")
+				.setEntity("lecturer", lecturer).list();
 	}
 
 	@Override
 	public List<Meeting> loadExamsForRoom(Room room, Date start, Date end) {
-		// TODO Auto-generated method stub
-		return null;
+		// TODO DATE
+		return sessionFactory.getCurrentSession()
+				.createQuery("from EXAM as exam where exam.room = :room")
+				.setEntity("room", room).list();
 	}
 
 }
