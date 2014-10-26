@@ -206,11 +206,14 @@ public class MeetingServiceImpl implements MeetingService {
 		Set<Appointment> appointmentSet = new HashSet<Appointment>();
 		for (int i = 0; i < numberOfAppointments; i++) {
 			Calendar c = Calendar.getInstance();
+			Appointment appointment = new Appointment();
 			c.setTime(begin);
 			c.add(Calendar.DATE, i * 7);
-			Appointment appointment = new Appointment();
-			appointment.setStart(begin);
-			appointment.setEnd(end);
+			appointment.setStart(c.getTime());
+
+			c.setTime(end);
+			c.add(Calendar.DATE, i * 7);
+			appointment.setEnd(c.getTime());
 			appointmentSet.add(appointment);
 		}
 
