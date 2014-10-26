@@ -1,5 +1,6 @@
 package de.nak.stundenplandb.service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -131,21 +132,33 @@ public class MeetingServiceImpl implements MeetingService {
 	@Override
 	public List<Meeting> loadMeetingsForStudentGroup(StudentGroup studentGroup,
 			Date start, Date end) {
-		// TODO Auto-generated method stub
-		return null;
+		List<Meeting> meetingsForStudentGroup = new ArrayList<Meeting>();
+		meetingsForStudentGroup.add((Meeting) examDAO.loadExamForStudentGroup(studentGroup, start, end));
+		meetingsForStudentGroup.add((Meeting) lectureDAO.loadLecturesForStudentGroup(studentGroup, start, end));
+		meetingsForStudentGroup.add((Meeting) electiveDAO.loadElectivesForStudentGroup(studentGroup.getCohort(), start, end));
+		return meetingsForStudentGroup;
 	}
 
 	@Override
 	public List<Meeting> loadMeetingsForLecturer(Lecturer lecturer, Date start,
 			Date end) {
-		// TODO Auto-generated method stub
-		return null;
+		List<Meeting> meetingsForLecturer = new ArrayList<Meeting>();
+		meetingsForLecturer.add((Meeting) examDAO.loadExamForLecturer(lecturer, start, end));
+		meetingsForLecturer.add((Meeting) lectureDAO.loadLecturesForLecturer(lecturer, start, end));
+		meetingsForLecturer.add((Meeting) electiveDAO.loadElectivesForLecturer(lecturer, start, end));
+		meetingsForLecturer.add((Meeting) seminarDAO.loadSeminarsForLecturer(lecturer, start, end));
+		return meetingsForLecturer;
+		
 	}
 
 	@Override
 	public List<Meeting> loadMeetingsForRoom(Room room, Date start, Date end) {
-		// TODO Auto-generated method stub
-		return null;
+		List<Meeting> meetingsForRoom = new ArrayList<Meeting>();
+		meetingsForRoom.add((Meeting) examDAO.loadExamsForRoom(room, start, end));
+		meetingsForRoom.add((Meeting) lectureDAO.loadLecturesForRoom(room, start, end));
+		meetingsForRoom.add((Meeting) electiveDAO.loadElectivesForRoom(room, start, end));
+		meetingsForRoom.add((Meeting) seminarDAO.loadSeminarsForRoom(room, start, end));
+		return meetingsForRoom;
 	}
 
 }

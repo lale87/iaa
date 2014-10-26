@@ -1,6 +1,14 @@
 package de.nak.stundenplandb.dao;
 
+import java.util.Date;
+import java.util.List;
+
+import de.nak.stundenplandb.model.Cohort;
 import de.nak.stundenplandb.model.Elective;
+import de.nak.stundenplandb.model.Lecturer;
+import de.nak.stundenplandb.model.Meeting;
+import de.nak.stundenplandb.model.Room;
+import de.nak.stundenplandb.model.StudentGroup;
 
 /**
  * Schnittstelle für das Elective-DAO
@@ -9,5 +17,26 @@ import de.nak.stundenplandb.model.Elective;
  *
  */
 public interface ElectiveDAO extends GenericDAO<Elective> {
-	// TODO nyi
-}
+	/**
+	 * Loads all Electives for a StudentGroup within the given period
+	 * 
+	 * @return a List of Electives
+	 */
+	List<Elective> loadElectivesForStudentGroup(Cohort cohort,
+			Date start, Date end);
+
+	/**
+	 * Loads all Electives for a Lecturer within the given period
+	 * 
+	 * @return a List of Electives
+	 */
+	List<Elective> loadElectivesForLecturer(Lecturer lecturer, Date start,
+			Date end);
+
+	/**
+	 * Loads all Electives in a Room within the given period
+	 * 
+	 * @return a List of Meeting
+	 */
+	List<Meeting> loadElectivesForRoom(Room room, Date start, Date end);
+	}
