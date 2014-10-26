@@ -3,7 +3,7 @@ package de.nak.stundenplandb.model;
 public enum ERoomType {
 	COMPUTER_LAB(15), CLASSROOM(0);
 	/**
-	 * The minimum chanigingTime for this RoomType
+	 * The minimum changingTime for this RoomType
 	 */
 	private Integer minChangingTime;
 

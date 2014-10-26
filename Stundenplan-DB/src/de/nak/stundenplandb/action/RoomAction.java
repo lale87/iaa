@@ -1,7 +1,10 @@
 package de.nak.stundenplandb.action;
 
+import java.util.List;
+
 import com.opensymphony.xwork2.ActionSupport;
 
+import de.nak.stundenplandb.model.ERoomType;
 import de.nak.stundenplandb.model.Room;
 import de.nak.stundenplandb.service.RoomService;
 
@@ -41,6 +44,10 @@ public class RoomAction extends ActionSupport {
 
 	public void setRoomService(RoomService roomService) {
 		this.roomService = roomService;
-	}	
+	}
+	
+	public List<ERoomType> getAllRoomTypes(){
+		return roomService.getAllRoomTypes();
+	}
 
 }

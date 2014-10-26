@@ -1,9 +1,11 @@
 package de.nak.stundenplandb.action;
 
+import java.util.Arrays;
 import java.util.List;
 
 import com.opensymphony.xwork2.ActionSupport;
 
+import de.nak.stundenplandb.model.ERoomType;
 import de.nak.stundenplandb.model.Meeting;
 
 /**
@@ -27,7 +29,7 @@ public class PrintTimetableAction extends ActionSupport {
     	return SUCCESS;
     }
 
-	public Long getSelectedId() {
+	public Long getSelectedId() {		
 		return selectedId;
 	}
 

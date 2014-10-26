@@ -25,7 +25,7 @@
 			<result type="tiles">lecturerForm</result>
 		</action>
 		
-		<action name="ShowRoomForm">
+		<action name="ShowRoomForm" class="de.nak.stundenplandb.action.RoomAction">
 			<result type="tiles">roomForm</result>
 		</action>
 		

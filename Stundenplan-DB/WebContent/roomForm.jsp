@@ -6,7 +6,7 @@
 	<s:hidden name="room.id"/>
 	<s:textfield name="room.changingTime" key="lbl.changingTime" size="5" maxlength="5" requiredLabel="true"/>
 	<s:textfield name="room.seats" key="lbl.seats" size="5" maxlength="5" requiredLabel="true"/>
-	<s:textfield name="room.roomType" key="lbl.roomType" size="40" maxlength="100" requiredLabel="true"/>
+	<s:select key="lbl.roomType" list="allRoomTypes" requiredLabel="true"/>
 	<s:textfield name="room.building" key="lbl.building" size="1" maxlength="1" requiredLabel="true"/>
 	<s:textfield name="room.roomNumber" key="lbl.roomNumber" size="4" maxlength="4" requiredLabel="true"/>
 
