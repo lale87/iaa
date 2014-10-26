@@ -1,13 +1,18 @@
 package de.nak.stundenplandb.service;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import de.nak.stundenplandb.dao.ElectiveDAO;
 import de.nak.stundenplandb.dao.ExamDAO;
 import de.nak.stundenplandb.dao.LectureDAO;
 import de.nak.stundenplandb.dao.SeminarDAO;
+import de.nak.stundenplandb.model.Appointment;
 import de.nak.stundenplandb.model.Elective;
 import de.nak.stundenplandb.model.Exam;
 import de.nak.stundenplandb.model.Lecture;
@@ -42,7 +47,8 @@ public class MeetingServiceImpl implements MeetingService {
 	private LectureDAO lectureDAO;
 
 	@Override
-	public void saveExam(Exam exam) {
+	public void saveExam(Exam exam, Integer numberOfAppointments, Date begin, Date end) {
+		exam.setAppointments(createAppointments(numberOfAppointments, begin, end));
 		examDAO.save(exam);
 	}
 
@@ -52,7 +58,8 @@ public class MeetingServiceImpl implements MeetingService {
 	}
 
 	@Override
-	public void saveLecture(Lecture lecture) {
+	public void saveLecture(Lecture lecture, Integer numberOfAppointments, Date begin, Date end) {
+		lecture.setAppointments(createAppointments(numberOfAppointments, begin, end));
 		lectureDAO.save(lecture);
 	}
 
@@ -62,7 +69,8 @@ public class MeetingServiceImpl implements MeetingService {
 	}
 
 	@Override
-	public void saveSeminar(Seminar seminar) {
+	public void saveSeminar(Seminar seminar, Integer numberOfAppointments, Date begin, Date end) {
+		seminar.setAppointments(createAppointments(numberOfAppointments, begin, end));
 		seminarDAO.save(seminar);
 	}
 
@@ -72,7 +80,8 @@ public class MeetingServiceImpl implements MeetingService {
 	}
 
 	@Override
-	public void saveElective(Elective elective) {
+	public void saveElective(Elective elective, Integer numberOfAppointments, Date begin, Date end) {
+		elective.setAppointments(createAppointments(numberOfAppointments, begin, end));
 		electiveDAO.save(elective);
 	}
 
@@ -169,6 +178,18 @@ public class MeetingServiceImpl implements MeetingService {
 		allMeetings.add((Meeting) electiveDAO.loadAll());
 		allMeetings.add((Meeting) seminarDAO.loadAll());
 		return allMeetings;
+	}
+	
+	private Set<Appointment> createAppointments(Integer numberOfAppointments, Date begin, Date end){
+		Set<Appointment> appointmentSet = new HashSet<Appointment>();
+		Appointment appointment = new Appointment();
+		appointment.setStart(begin);
+		appointment.setEnd(end);
+		appointmentSet.add(appointment);
+//		for (int i = 0; i < numberOfAppointments; i++) {
+//		}
+		
+		return appointmentSet;
 	}
 
 }

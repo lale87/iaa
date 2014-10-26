@@ -25,7 +25,7 @@ public interface MeetingService {
 	 * @param exam
 	 *            The exam.
 	 */
-	void saveExam(Exam exam);
+	void saveExam(Exam exam, Integer numberOfAppointments, Date begin, Date end);
 
 	/**
 	 * deletes an Exam.
@@ -41,7 +41,7 @@ public interface MeetingService {
 	 * @param Lecture
 	 *            The lecture.
 	 */
-	void saveLecture(Lecture lecture);
+	void saveLecture(Lecture lecture, Integer numberOfAppointments, Date begin, Date end);
 
 	/**
 	 * deletes a Lecture.
@@ -57,7 +57,7 @@ public interface MeetingService {
 	 * @param seminar
 	 *            The seminar.
 	 */
-	void saveSeminar(Seminar seminar);
+	void saveSeminar(Seminar seminar, Integer numberOfAppointments, Date begin, Date end);
 
 	/**
 	 * deletes a Seminar.
@@ -73,7 +73,7 @@ public interface MeetingService {
 	 * @param elective
 	 *            The elective.
 	 */
-	void saveElective(Elective elective);
+	void saveElective(Elective elective, Integer numberOfAppointments, Date begin, Date end);
 
 	/**
 	 * deletes an Elective.
