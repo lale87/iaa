@@ -3,7 +3,6 @@ package de.nak.stundenplandb.service;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -206,25 +205,30 @@ public class MeetingServiceImpl implements MeetingService {
 	 * repitition of an appointment starts seven days later than the appointment
 	 * before
 	 * 
-	 * @param numberOfAppointments<Integer>
-	 * @param begin<Date>
-	 * @param end<Date>
+	 * @param numberOfAppointments
+	 *            <Integer>
+	 * @param begin
+	 *            <Date>
+	 * @param end
+	 *            <Date>
 	 * @return a Set of Appointments
 	 */
 	private Set<Appointment> createAppointments(Integer numberOfAppointments,
 			Date begin, Date end) {
 		Set<Appointment> appointmentSet = new HashSet<Appointment>();
-		// TODO Addieren von Tagen noch ordentlich implementieren
+		//
 		for (int i = 0; i < numberOfAppointments; i++) {
 			Calendar c = Calendar.getInstance();
 			Appointment appointment = new Appointment();
+			// ADD 7 day to the begin-date to match the next appointment
 			c.setTime(begin);
 			c.add(Calendar.DATE, i * 7);
 			appointment.setStart(c.getTime());
-
+			// ADD 7 day to the end-date to match the next appointment
 			c.setTime(end);
 			c.add(Calendar.DATE, i * 7);
 			appointment.setEnd(c.getTime());
+			// ADD the appointment to the set
 			appointmentSet.add(appointment);
 		}
 
