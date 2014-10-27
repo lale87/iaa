@@ -201,9 +201,20 @@ public class MeetingServiceImpl implements MeetingService {
 		return allMeetings;
 	}
 
+	/**
+	 * creates a Set of Appointments starting with the first date. For each
+	 * repitition of an appointment starts seven days later than the appointment
+	 * before
+	 * 
+	 * @param numberOfAppointments<Integer>
+	 * @param begin<Date>
+	 * @param end<Date>
+	 * @return a Set of Appointments
+	 */
 	private Set<Appointment> createAppointments(Integer numberOfAppointments,
 			Date begin, Date end) {
 		Set<Appointment> appointmentSet = new HashSet<Appointment>();
+		// TODO Addieren von Tagen noch ordentlich implementieren
 		for (int i = 0; i < numberOfAppointments; i++) {
 			Calendar c = Calendar.getInstance();
 			Appointment appointment = new Appointment();
