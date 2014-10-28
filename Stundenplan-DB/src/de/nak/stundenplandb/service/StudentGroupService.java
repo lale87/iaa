@@ -27,13 +27,14 @@ public interface StudentGroupService {
 	 * @return a list which is empty if no studentGroup was found.
 	 */
 	List<StudentGroup> loadAllStudentGroups();
+
 	/**
 	 * Loads a list of all cohorts.
 	 *
 	 * @return a list which is empty if no cohort was found.
 	 */
 	List<Cohort> loadAllCohorts();
-	
+
 	/**
 	 * Loads a list of all cohorts.
 	 *
@@ -47,4 +48,12 @@ public interface StudentGroupService {
 	 * @return fieldOfStudy
 	 */
 	List<EFieldOfStudy> getAllFieldsOfStudy();
+
+	/**
+	 * Loads a list of all studentGroups. The Groups are sorted by the Year of
+	 * Admission, the Abbreviation of the FielOfStudy and the GroupIdentifier
+	 *
+	 * @return a list which is empty if no studentGroup was found.
+	 */
+	List<StudentGroup> loadAllStudentGroupsSorted();
 }

@@ -5,13 +5,17 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import org.hibernate.cfg.ExtendsQueueEntry;
+
 import de.nak.stundenplandb.dao.CohortDAO;
 import de.nak.stundenplandb.dao.StudentGroupDAO;
 import de.nak.stundenplandb.model.Cohort;
 import de.nak.stundenplandb.model.EFieldOfStudy;
 import de.nak.stundenplandb.model.StudentGroup;
+
 /**
  * Implementation for the StudentGroupService
+ * 
  * @author Lars Lembke
  *
  */
@@ -25,13 +29,53 @@ public class StudentGroupServiceImpl implements StudentGroupService {
 	 * Injected DAO
 	 */
 	private CohortDAO cohortDAO;
-	
-	
+
+	/**
+	 * Comparator for a Cohort
+	 */
+	private Comparator<Cohort> cohortComparator = new Comparator<Cohort>() {
+
+		@Override
+		public int compare(Cohort o1, Cohort o2) {
+			return o1.getYearOfAdmission().compareTo(o2.getYearOfAdmission());
+		}
+	};
+
+	/**
+	 * Comparator for a StudentGroup
+	 */
+	private Comparator<StudentGroup> studentGroupComparator = new Comparator<StudentGroup>() {
+
+		@Override
+		public int compare(StudentGroup o1, StudentGroup o2) {
+			int cohortCompare = cohortComparator.compare(o1.getCohort(),
+					o2.getCohort());
+			// If Cohort is the same campare the FieldOfStudy by Abbreviation
+			if (cohortCompare == 0) {
+				// If FieldOfStudy-Abbreviation is the same compare the
+				// GroupIdentifier
+				int fieldCompare = o1.getFieldOfStudy().getAbreviation()
+						.compareTo(o2.getFieldOfStudy().getAbreviation());
+				if (fieldCompare == 0) {
+					return o1.getGroupIdentifier().compareTo(
+							o2.getGroupIdentifier());
+				} else {
+					return fieldCompare;
+				}
+			} else {
+				return cohortCompare;
+			}
+		}
+	};
+
 	@Override
 	public void saveStudentGroup(StudentGroup studentGroup) {
-		List<Cohort> cohortFromDBList = cohortDAO.loadCohortByYearOfAdmission(studentGroup.getCohort().getYearOfAdmission());
-		//Replace Cohort by Cohort from DB - Should be just one element in the list
-		if(cohortFromDBList != null && cohortFromDBList.size() == 1){
+		List<Cohort> cohortFromDBList = cohortDAO
+				.loadCohortByYearOfAdmission(studentGroup.getCohort()
+						.getYearOfAdmission());
+		// Replace Cohort by Cohort from DB - Should be just one element in the
+		// list
+		if (cohortFromDBList != null && cohortFromDBList.size() == 1) {
 			studentGroup.setCohort(cohortFromDBList.get(0));
 		}
 		studentGroupDAO.save(studentGroup);
@@ -41,45 +85,58 @@ public class StudentGroupServiceImpl implements StudentGroupService {
 	public List<StudentGroup> loadAllStudentGroups() {
 		return studentGroupDAO.loadAll();
 	}
+
+	@Override
+	public List<StudentGroup> loadAllStudentGroupsSorted() {
+		// load the groups
+		List<StudentGroup> studentGroups = studentGroupDAO.loadAll();
+		// sort the groups
+		Collections.sort(studentGroups, studentGroupComparator);
+		// return the sorted groups
+		return studentGroups;
+	}
+
 	@Override
 	public List<Cohort> loadAllCohorts() {
 		return cohortDAO.loadAll();
 	}
-	
+
 	@Override
 	public List<Cohort> loadAllCohortsSortedByYearOfAdmission() {
 		List<Cohort> cohortList = cohortDAO.loadAll();
-		//Orders the list of cohorts by the year of admission
-		Comparator<Cohort> cohortComparator = new Comparator<Cohort>() {
-
-			@Override
-			public int compare(Cohort o1, Cohort o2) {
-				return o1.getYearOfAdmission().compareTo(o2.getYearOfAdmission());
-			}
-		};
+		// Orders the list of cohorts by the year of admission
+		// Comparator<Cohort> cohortComparator = new Comparator<Cohort>() {
+		//
+		// @Override
+		// public int compare(Cohort o1, Cohort o2) {
+		// return o1.getYearOfAdmission().compareTo(o2.getYearOfAdmission());
+		// }
+		// };
 		Collections.sort(cohortList, cohortComparator);
 		return cohortList;
 	}
-	
+
 	@Override
 	public List<EFieldOfStudy> getAllFieldsOfStudy() {
 		return Arrays.asList(EFieldOfStudy.values());
 	}
+
 	/**
 	 * Injects the studentGroupDAO
+	 * 
 	 * @param studentGroupDAO
 	 */
-	public void setStudentGroupDAO(StudentGroupDAO studentGroupDAO){
+	public void setStudentGroupDAO(StudentGroupDAO studentGroupDAO) {
 		this.studentGroupDAO = studentGroupDAO;
 	}
+
 	/**
 	 * Injects the studentGroupDAO
+	 * 
 	 * @param studentGroupDAO
 	 */
-	public void setCohortDAO(CohortDAO cohortDAO){
+	public void setCohortDAO(CohortDAO cohortDAO) {
 		this.cohortDAO = cohortDAO;
 	}
 
-
-		
 }
