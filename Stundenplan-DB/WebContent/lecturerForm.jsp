@@ -1,8 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="/struts-tags" prefix="s" %>
 
+<h3><s:text name="hdl.newLecturer"></s:text></h3>
 <s:form>
-	<%-- Form fields for the lecture's attributes --%>	
+	<%-- Form fields for the lecturer's attributes --%>	
 	<s:hidden 	 name="lecturer.id"/>
 	<s:select    name="lecturer.title" key="lbl.academicTitle" list="allAcademicTitles" listkey="shortTitle" requiredLabel="true"/>	
 	<s:textfield name="lecturer.firstName" key="lbl.firstName" size="30" maxlength="30" requiredLabel="true"/>

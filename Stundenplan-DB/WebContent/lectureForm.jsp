@@ -2,8 +2,9 @@
 <%@ taglib uri="/struts-tags" prefix="s" %>
 <%@ taglib prefix="sj" uri="/struts-jquery-tags"%>
 
+<h3><s:text name="hdl.newLecture"></s:text></h3>
 <s:form>
-	<%-- Form fields for the car's attributes --%>
+	<%-- Form fields for the lecture's attributes --%>
 	<s:hidden name="lecture.id"/>
   	<s:select name="lecture.lecturer" key="lbl.lecturer" list="allLecturers" listKey="id" listValue="firstName +' ' + lastName + ', ' + abbreviation" requiredLabel="true"/>	
 	<s:select name="lecture.rooms" key="lbl.rooms" list="allRooms" listKey="id" listValue="roomNumber + ' ' + building + ', ' + roomType" multiple="true" size="5" requiredLabel="true"/> 

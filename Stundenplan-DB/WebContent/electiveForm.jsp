@@ -2,6 +2,7 @@
 <%@ taglib uri="/struts-tags" prefix="s" %>
 <%@ taglib prefix="sj" uri="/struts-jquery-tags"%>
 
+<h3><s:text name="hdl.newElective"></s:text></h3>
 <s:form>
 	<%-- Form fields for the elective's attributes --%>
 	<s:hidden name="elective.id"/>

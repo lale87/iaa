@@ -3,9 +3,9 @@
 
 <s:form>
 	<%-- The buttons --%>
-	<s:submit key="btn.lecturer" action="ShowLecturerForm"/>
-	<s:submit key="btn.room" action="ShowRoomForm"/>
-	<s:submit key="btn.studentgroup" action="ShowStudentGroupForm"/>
+	<s:submit key="btn.newLecturer" action="ShowLecturerForm"/>
+	<s:submit key="btn.newRoom" action="ShowRoomForm"/>
+	<s:submit key="btn.newStudentGroup" action="ShowStudentGroupForm"/>
 	<s:submit key="btn.cancel" action="CancelMasterDataMenu"/>
 
 </s:form>
