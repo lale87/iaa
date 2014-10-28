@@ -80,7 +80,7 @@ public abstract class MeetingAction extends ActionSupport {
 	 * @return all cohorts
 	 */
 	public List<Cohort> getAllCohorts(){		
-		return studentGroupService.loadAllCohorts();
+		return studentGroupService.loadAllCohortsSortedByYearOfAdmission();
 	}
 	
 	public Date getStartDate() {
