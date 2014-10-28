@@ -3,8 +3,6 @@
  */
 package de.nak.stundenplandb.action;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -48,10 +46,10 @@ public class LectureAction extends ActionSupport {
 	private Long studentGroupId;	
 
 	/** The start date. */
-	private String startDate;
+	private Date startDate;
 	
 	/** The end date. */
-	private String endDate;
+	private Date endDate;
 	
 	/** The number of appointments. */
 	private Integer numberOfAppointments;
@@ -90,17 +88,8 @@ public class LectureAction extends ActionSupport {
 	}
 	
 	public String save(){
-		SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.YYYY HH:mm:ss");
-		Date formatStartDate;
-		Date formatEndDate;
-		try {
-			formatStartDate = formatter.parse(startDate);
-			formatEndDate = formatter.parse(endDate);
-			meetingService.saveLecture(lecture, numberOfAppointments, formatStartDate, formatEndDate);
-			//meetingService.saveLecture(lecturerId,roomIds,studentGroupId,lectureName,startDate,endDate, numberOfAppointments);
-		} catch (ParseException e) {			
-			e.printStackTrace();
-		}		
+		meetingService.saveLecture(lecture, numberOfAppointments, startDate, endDate);
+		//meetingService.saveLecture(lecturerId,roomIds,studentGroupId,lectureName,startDate,endDate, numberOfAppointments);
 		return SUCCESS;
 	}
 
@@ -131,11 +120,11 @@ public class LectureAction extends ActionSupport {
 		this.roomIds = roomIds;
 	}
 
-	public String getStartDate() {
+	public Date getStartDate() {
 		return startDate;
 	}
 
-	public void setStartDate(String startDate) {
+	public void setStartDate(Date startDate) {
 		this.startDate = startDate;
 	}
 
@@ -155,11 +144,11 @@ public class LectureAction extends ActionSupport {
 		this.studentGroupId = studentGroupId;
 	}
 
-	public String getEndDate() {
+	public Date getEndDate() {
 		return endDate;
 	}
 
-	public void setEndDate(String endDate) {
+	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
 	}
 	
