@@ -39,11 +39,6 @@
 	<!-- The Meeting Menu -->
  	<definition name="meetingMenu" extends="mainLayout">
 		<put-attribute name="content" value="/meetingMenu.jsp"/>
-	</definition>
-	
-	<!-- The Meeting Type Menu -->
- 	<definition name="meetingTypeMenu" extends="mainLayout">
-		<put-attribute name="content" value="/meetingTypeMenu.jsp"/>
 	</definition>	
 	
 	<!-- The Lecture Form -->

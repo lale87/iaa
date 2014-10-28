@@ -54,15 +54,7 @@
 		
 		<action name="ShowMeetingList">
 			<result type="tiles">meetingMenu</result>
-		</action>
-		
-		<action name="ShowMeetingTypeMenu">
-			<result type="tiles">meetingTypeMenu</result>
-		</action>
-		
-		<action name="CancelMeetingTypeMenu">
-			<result type="redirect">ShowMeetingList.action</result>
-		</action>
+		</action>		
 		
 		<action name="ShowLectureForm" class="de.nak.stundenplandb.action.LectureAction">
 			<result type="tiles">lectureForm</result>
@@ -74,7 +66,7 @@
 		</action>			
 		
 		<action name="CancelNewMeeting">
-			<result type="redirect">ShowMeetingTypeMenu.action</result>
+			<result type="redirect">ShowMeetingList.action</result>
 		</action>
 		
 		<action name="ShowExamForm" class="de.nak.stundenplandb.action.ExamAction">

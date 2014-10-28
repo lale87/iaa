@@ -38,7 +38,7 @@
 	</tr>
 	<s:iterator value="allLecturers">
 		<tr>
-			<td><s:property value="academicTitle" /></td>
+			<td><s:property value="title.shortTitle" /></td>
 			<td><s:property value="firstName" /></td>
 			<td><s:property value="lastName" /></td>
 			<td><s:property value="abbreviation" /></td>

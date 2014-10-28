@@ -3,7 +3,10 @@
 
 <s:form>
 	<%-- The buttons --%>
-	<s:submit key="btn.newMeeting" action="ShowMeetingTypeMenu"/>
+	<s:submit key="btn.newLecture" action="ShowLectureForm"/>
+	<s:submit key="btn.newExam" action="ShowExamForm"/>
+	<s:submit key="btn.newElective" action="ShowElectiveForm"/>
+	<s:submit key="btn.newSeminar" action="ShowSeminarForm"/>
 	<s:submit key="btn.editMeeting"/>
 	<s:submit key="btn.deleteMeeting"/>
 	<s:submit key="btn.cancel" action="ShowMainMenu"/>
