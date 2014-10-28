@@ -1,6 +1,8 @@
 package de.nak.stundenplandb.service;
 
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import de.nak.stundenplandb.dao.CohortDAO;
@@ -43,6 +45,23 @@ public class StudentGroupServiceImpl implements StudentGroupService {
 	public List<Cohort> loadAllCohorts() {
 		return cohortDAO.loadAll();
 	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Cohort> loadAllCohortsSortedDyYearOfAdmission() {
+		//Orders the list of cohorts by the year of admission
+		Comparator<Cohort> cohortComparator = new Comparator<Cohort>() {
+
+			@Override
+			public int compare(Cohort o1, Cohort o2) {
+				return o1.getYearOfAdmission().compareTo(o2.getYearOfAdmission());
+			}
+		};
+		Collections.sort(cohortDAO.loadAll(), cohortComparator);
+		//TODO diesen Cast nochmal prüfen, ob notwendig
+		return (List<Cohort>) cohortComparator;
+	}
+	
 	@Override
 	public List<EFieldOfStudy> getAllFieldsOfStudy() {
 		return Arrays.asList(EFieldOfStudy.values());
@@ -61,6 +80,7 @@ public class StudentGroupServiceImpl implements StudentGroupService {
 	public void setCohortDAO(CohortDAO cohortDAO){
 		this.cohortDAO = cohortDAO;
 	}
+
 
 		
 }
