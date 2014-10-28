@@ -40,6 +40,10 @@ public class StudentGroupServiceImpl implements StudentGroupService {
 		return studentGroupDAO.loadAll();
 	}
 	@Override
+	public List<Cohort> loadAllCohorts() {
+		return cohortDAO.loadAll();
+	}
+	@Override
 	public List<EFieldOfStudy> getAllFieldsOfStudy() {
 		return Arrays.asList(EFieldOfStudy.values());
 	}
