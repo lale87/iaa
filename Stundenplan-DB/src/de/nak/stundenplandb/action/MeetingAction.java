@@ -26,25 +26,25 @@ public abstract class MeetingAction extends ActionSupport {
 	private static final long serialVersionUID = 7376786519031302846L;
 	
 	/** The start date. */
-	private Date startDate;
+	protected Date startDate;
 	
 	/** The end date. */
-	private Date endDate;
+	protected Date endDate;
 	
 	/** The number of appointments. */
-	private Integer numberOfAppointments;
+	protected Integer numberOfAppointments;
 	
 	/** The lecturer service. */
-	private LecturerService lecturerService;
+	protected LecturerService lecturerService;
 	
 	/** The room service. */
-	private RoomService roomService;
+	protected RoomService roomService;
 	
 	/** The student group service. */
-	private StudentGroupService studentGroupService;
+	protected StudentGroupService studentGroupService;
 	
 	/** The meeting service. */
-	private MeetingService meetingService;
+	protected MeetingService meetingService;
 	
 	public abstract String save();
 	

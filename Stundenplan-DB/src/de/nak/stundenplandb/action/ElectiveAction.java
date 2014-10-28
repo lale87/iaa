@@ -19,7 +19,7 @@ public class ElectiveAction extends MeetingAction {
 	
 	@Override
 	public String save() {
-		//super.getMeetingService().saveElective(elective, getNumberOfAppointments(), getStartDate(), getEndDate());
+		//meetingService.saveElective(elective, numberOfAppointments, startDate, endDate);
 		return SUCCESS;
 	}
 	

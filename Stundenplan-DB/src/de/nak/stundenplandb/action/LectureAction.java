@@ -19,8 +19,7 @@ public class LectureAction extends MeetingAction {
 	private Lecture lecture;
 	
 	public String save(){
-		getMeetingService().saveLecture(lecture, getNumberOfAppointments(), getStartDate(), getEndDate());
-		//meetingService.saveLecture(lecturerId,roomIds,studentGroupId,lectureName,startDate,endDate, numberOfAppointments);
+		//meetingService.saveLecture(lecture, numberOfAppointments, startDate, endDate);
 		return SUCCESS;
 	}
 

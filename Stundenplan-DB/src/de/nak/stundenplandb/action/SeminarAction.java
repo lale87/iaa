@@ -19,7 +19,7 @@ public class SeminarAction extends MeetingAction {
 	
 	@Override
 	public String save() {
-		// TODO Auto-generated method stub
+		//meetingService.saveSeminar(seminar, numberOfAppointments, startDate, endDate);
 		return SUCCESS;
 	}
 	public Seminar getSeminar() {
