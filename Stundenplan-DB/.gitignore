@@ -60,6 +60,8 @@ hs_err_pid*
 #  ArgoUML-Tmp
 *.zargo~
 
+# Kompilierte Dateien und DB
 /build/
 /target/
 /_Daten/
+/db/
