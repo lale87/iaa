@@ -56,13 +56,13 @@
 		<put-attribute name="content" value="/examForm.jsp"/>
 	</definition>	
 	
-	<!-- The Exam Form -->
+	<!-- The Elective Form -->
  	<definition name="electiveForm" extends="mainLayout">
 		<put-attribute name="content" value="/electiveForm.jsp"/>
+	</definition>		
+	
+	<!-- The Seminar Form -->
+ 	<definition name="seminarForm" extends="mainLayout">
+		<put-attribute name="content" value="/seminarForm.jsp"/>
 	</definition>
-	
-	
-	
-	
-
 </tiles-definitions>

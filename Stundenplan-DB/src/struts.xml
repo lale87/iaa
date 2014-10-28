@@ -95,6 +95,16 @@
 			<result type="tiles" name="input">electiveForm</result>
 		</action>
 		
+		<action name="ShowSeminarForm" class="de.nak.stundenplandb.action.SeminarAction">
+			<result type="tiles">seminarForm</result>
+		</action>
+		
+		<action name="SaveSeminar" class="de.nak.stundenplandb.action.SeminarAction" method="save">
+			<result type="redirect">ShowSeminarForm.action</result>
+			<result type="tiles" name="input">seminarForm</result>
+		</action>
+		
+		
 		
 
 		<!-- Action that displays the list of cars. -->

@@ -6,6 +6,6 @@
 	<s:submit key="btn.newLecture" action="ShowLectureForm"/>
 	<s:submit key="btn.newExam" action="ShowExamForm"/>
 	<s:submit key="btn.newElective" action="ShowElectiveForm"/>
-	<s:submit key="btn.newSeminar"/>
+	<s:submit key="btn.newSeminar" action="ShowSeminarForm"/>
 	<s:submit key="btn.cancel" action="CancelMeetingTypeMenu"/>
 </s:form>
