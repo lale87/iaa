@@ -81,9 +81,7 @@ public class ExamAction extends ActionSupport {
 	public String save(){
 		//meetingService.saveExam(exam, numberOfAppointments, startDate, endDate);
 		return SUCCESS;
-	}
-	
-	
+	}	
 	
 	public Exam getExam() {
 		return exam;

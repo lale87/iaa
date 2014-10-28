@@ -1,82 +1,143 @@
 package de.nak.stundenplandb.action;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
 import com.opensymphony.xwork2.ActionSupport;
 
-import de.nak.stundenplandb.model.Meeting;
+import de.nak.stundenplandb.model.Cohort;
+import de.nak.stundenplandb.model.Lecturer;
+import de.nak.stundenplandb.model.Room;
+import de.nak.stundenplandb.model.StudentGroup;
+import de.nak.stundenplandb.service.LecturerService;
+import de.nak.stundenplandb.service.MeetingService;
+import de.nak.stundenplandb.service.RoomService;
+import de.nak.stundenplandb.service.StudentGroupService;
 
 /**
  * Action for a single meeting.
  *
  * @author Arne Roever
  */
-public class MeetingAction extends ActionSupport {
+public abstract class MeetingAction extends ActionSupport {
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 7376786519031302846L;
 	
-	/** The current meeting. */
-	private Meeting meeting;	
+	/** The start date. */
+	private Date startDate;
 	
-	/** The meeting id. */
-	private Long meetingId;
+	/** The end date. */
+	private Date endDate;
 	
-	/**
-	 * Saves the current meeting.
-	 *
-	 * @return the result string
-	 */
-	public String save(){
-		return SUCCESS;
-	}
+	/** The number of appointments. */
+	private Integer numberOfAppointments;
 	
-	/**
-	 * Deletes the currently selected meeting from the database.
-	 *
-	 * @return the result string
-	 */
-	public String delete(){
-		return SUCCESS;
-	}
+	/** The lecturer service. */
+	private LecturerService lecturerService;
 	
-	/**
-	 * Displays the selected meeting in the meeting form.
-	 *
-	 * @return the result string
-	 */
-	public String load(){
-		return SUCCESS;
-	}
+	/** The room service. */
+	private RoomService roomService;
+	
+	/** The student group service. */
+	private StudentGroupService studentGroupService;
+	
+	/** The meeting service. */
+	private MeetingService meetingService;
+	
+	public abstract String save();
 	
 	/**
-	 * Cancels the editing.
+	 * Gets all lecturers.
 	 *
-	 * @return the string
+	 * @return the all lecturers
 	 */
-	public String cancel(){
-		return SUCCESS;
+	public List<Lecturer> getAllLecturers(){
+		return lecturerService.loadAllLecturers();
 	}
 	
-	@Override
-	public void validate(){
-		
-	}
-
-	public Meeting getMeeting() {
-		return meeting;
-	}
-
-	public void setMeeting(Meeting meeting) {
-		this.meeting = meeting;
-	}
-
-	public Long getMeetingId() {
-		return meetingId;
-	}
-
-	public void setMeetingId(Long meetingId) {
-		this.meetingId = meetingId;
+	/**
+	 * Gets all rooms.
+	 *
+	 * @return the all rooms
+	 */
+	public List<Room> getAllRooms(){
+		return roomService.loadAllRooms();
 	}
 	
+	/**
+	 * Gets all student groups.
+	 *
+	 * @return the student groups
+	 */
+	public List<StudentGroup> getAllStudentGroups(){
+		return studentGroupService.loadAllStudentGroups();
+	}
 	
+	/**
+	 * Gets the all cohorts.
+	 *
+	 * @return all cohorts
+	 */
+	public List<Cohort> getAllCohorts(){
+		// Muss noch ergänzt werden
+		return new ArrayList<Cohort>();	
+	}
 	
+	public Date getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
+	}
+
+	public Date getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
+	}
+
+	public Integer getNumberOfAppointments() {
+		return numberOfAppointments;
+	}
+
+	public void setNumberOfAppointments(Integer numberOfAppointments) {
+		this.numberOfAppointments = numberOfAppointments;
+	}
+
+	public LecturerService getLecturerService() {
+		return lecturerService;
+	}
+
+	public void setLecturerService(LecturerService lecturerService) {
+		this.lecturerService = lecturerService;
+	}
+
+	public RoomService getRoomService() {
+		return roomService;
+	}
+
+	public void setRoomService(RoomService roomService) {
+		this.roomService = roomService;
+	}
+
+	public StudentGroupService getStudentGroupService() {
+		return studentGroupService;
+	}
+
+	public void setStudentGroupService(StudentGroupService studentGroupService) {
+		this.studentGroupService = studentGroupService;
+	}
+
+	public MeetingService getMeetingService() {
+		return meetingService;
+	}
+
+	public void setMeetingService(MeetingService meetingService) {
+		this.meetingService = meetingService;
+	}
 }

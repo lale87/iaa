@@ -54,6 +54,11 @@
 	<!-- The Exam Form -->
  	<definition name="examForm" extends="mainLayout">
 		<put-attribute name="content" value="/examForm.jsp"/>
+	</definition>	
+	
+	<!-- The Exam Form -->
+ 	<definition name="electiveForm" extends="mainLayout">
+		<put-attribute name="content" value="/electiveForm.jsp"/>
 	</definition>
 	
 	
