@@ -21,6 +21,10 @@
 			<result type="redirect">ShowMainMenu.action</result>
 		</action>
 		
+		<action name="CancelMeetingMenu">
+			<result type="redirect">ShowMainMenu.action</result>
+		</action>		
+		
 		<action name="ShowLecturerForm" class="de.nak.stundenplandb.action.LecturerAction">
 			<result type="tiles">lecturerForm</result>
 		</action>
