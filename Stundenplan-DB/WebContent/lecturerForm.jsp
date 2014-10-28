@@ -5,7 +5,7 @@
 <s:form>
 	<%-- Form fields for the lecturer's attributes --%>	
 	<s:hidden 	 name="lecturer.id"/>
-	<s:select    name="lecturer.title" key="lbl.academicTitle" list="allAcademicTitles" listkey="shortTitle" requiredLabel="true"/>	
+	<s:select    name="lecturer.title" key="lbl.academicTitle" list="allAcademicTitles" listValue="shortTitle" requiredLabel="true"/>	
 	<s:textfield name="lecturer.firstName" key="lbl.firstName" size="30" maxlength="30" requiredLabel="true"/>
 	<s:textfield name="lecturer.lastName" key="lbl.lastName" size="30" maxlength="50" requiredLabel="true"/>	
 	<s:textfield name="lecturer.abbreviation" key="lbl.abbreviation" size="5" maxlength="5" requiredLabel="true"/>
