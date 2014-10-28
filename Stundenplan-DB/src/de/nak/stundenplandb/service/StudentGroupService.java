@@ -39,7 +39,7 @@ public interface StudentGroupService {
 	 *
 	 * @return a list which is empty if no cohort was found.
 	 */
-	List<Cohort> loadAllCohortsSortedDyYearOfAdmission();
+	List<Cohort> loadAllCohortsSortedByYearOfAdmission();
 
 	/**
 	 * Returns the Enum EFieldOfStudy as a list
