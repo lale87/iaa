@@ -14,3 +14,27 @@
 	<s:submit key="btn.save" action="SaveStudentGroup"/>
 	<s:submit key="btn.cancel" action="CancelMasterData"/>
 </s:form>
+
+
+<%-- The table of existing studentGroups --%>
+<h3>
+	<s:text name="hdl.existingStudentGroups"></s:text>
+</h3>
+<table style="border-collapse: collapse; border: #CCC;" border="1">
+	<tr>		
+		<th><s:text name="lbl.fieldOfStudy" /></th>
+		<th><s:text name="lbl.yearOfAdmission" /></th>
+		<th><s:text name="lbl.groupIdentifier" /></th>
+		<th><s:text name="lbl.studentCount" /></th>
+		<th><s:text name="lbl.minBreak" /></th>
+	</tr>
+	<s:iterator value="allStudentGroups">
+		<tr>
+			<td><s:property value="fieldOfStudy.longTitle" /></td>
+			<td><s:property value="cohort.yearOfAdmission" /></td>
+			<td><s:property value="groupIdentifier" /></td>
+			<td><s:property value="studentCount" /></td>
+			<td><s:property value="minBreak" /></td>
+		</tr>
+	</s:iterator>
+</table>

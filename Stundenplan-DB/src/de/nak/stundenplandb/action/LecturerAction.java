@@ -37,12 +37,21 @@ public class LecturerAction extends ActionSupport {
 	}
 	
 	/**
-	 * Gets the all academic titles.
+	 * Gets all academic titles.
 	 *
-	 * @return the all academic titles
+	 * @return all academic titles
 	 */
 	public List<EAcademicTitle> getAllAcademicTitles(){
 		return lecturerService.getAllAcademicTitles();
+	}
+	
+	/**
+	 * Gets all existing lecturers in the database
+	 *
+	 * @return all lecturers
+	 */
+	public List<Lecturer> getAllLecturers(){
+		return lecturerService.loadAllLecturers();
 	}
 	
 	public Lecturer getLecturer() {

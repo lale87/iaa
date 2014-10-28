@@ -37,6 +37,10 @@ public class StudentGroupAction extends ActionSupport {
 		return SUCCESS;
 	}
 	
+	public List<StudentGroup> getAllStudentGroups(){
+		return studentGroupService.loadAllStudentGroups();
+	}
+	
 	public StudentGroup getStudentGroup() {
 		return studentGroup;
 	}

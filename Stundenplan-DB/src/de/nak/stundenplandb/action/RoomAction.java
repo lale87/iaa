@@ -33,6 +33,10 @@ public class RoomAction extends ActionSupport {
 		roomService.saveRoom(room);
 		return SUCCESS;
 	}
+	
+	public List<Room> getAllRooms(){
+		return roomService.loadAllRooms();
+	}
 
 	public Room getRoom() {
 		return room;
