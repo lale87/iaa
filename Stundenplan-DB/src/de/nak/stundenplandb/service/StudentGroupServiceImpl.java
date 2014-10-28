@@ -46,9 +46,9 @@ public class StudentGroupServiceImpl implements StudentGroupService {
 		return cohortDAO.loadAll();
 	}
 	
-	@SuppressWarnings("unchecked")
 	@Override
 	public List<Cohort> loadAllCohortsSortedDyYearOfAdmission() {
+		List<Cohort> cohortList = cohortDAO.loadAll();
 		//Orders the list of cohorts by the year of admission
 		Comparator<Cohort> cohortComparator = new Comparator<Cohort>() {
 
@@ -57,9 +57,8 @@ public class StudentGroupServiceImpl implements StudentGroupService {
 				return o1.getYearOfAdmission().compareTo(o2.getYearOfAdmission());
 			}
 		};
-		Collections.sort(cohortDAO.loadAll(), cohortComparator);
-		//TODO diesen Cast nochmal prüfen, ob notwendig
-		return (List<Cohort>) cohortComparator;
+		Collections.sort(cohortList, cohortComparator);
+		return cohortList;
 	}
 	
 	@Override
