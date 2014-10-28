@@ -47,7 +47,7 @@ public class StudentGroupServiceImpl implements StudentGroupService {
 	}
 	
 	@Override
-	public List<Cohort> loadAllCohortsSortedDyYearOfAdmission() {
+	public List<Cohort> loadAllCohortsSortedByYearOfAdmission() {
 		List<Cohort> cohortList = cohortDAO.loadAll();
 		//Orders the list of cohorts by the year of admission
 		Comparator<Cohort> cohortComparator = new Comparator<Cohort>() {
