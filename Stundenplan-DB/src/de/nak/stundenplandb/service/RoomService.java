@@ -26,10 +26,19 @@ public interface RoomService {
 	 * @return a list which is empty if no room was found.
 	 */
 	List<Room> loadAllRooms();
-	
+
 	/**
 	 * Returns the Enum ERoomType as a list
+	 * 
 	 * @return roomType
 	 */
 	List<ERoomType> getAllRoomTypes();
+
+	/**
+	 * Returns the Enum ERoomType as a list The list is sorted by the building
+	 * and afterwards by the roomNumber
+	 * 
+	 * @return roomType
+	 */
+	List<Room> loadAllRoomsSortedBYBuildungAndNumber();
 }

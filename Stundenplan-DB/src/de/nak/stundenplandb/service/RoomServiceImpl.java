@@ -1,6 +1,8 @@
 package de.nak.stundenplandb.service;
 
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import de.nak.stundenplandb.dao.RoomDAO;
@@ -27,6 +29,27 @@ public class RoomServiceImpl implements RoomService {
 	@Override
 	public List<Room> loadAllRooms() {
 		return roomDAO.loadAll();
+	}
+	
+	@Override
+	public List<Room> loadAllRoomsSortedBYBuildungAndNumber() {
+		List<Room> rooms = roomDAO.loadAll();
+		Comparator<Room> roomComparator = new Comparator<Room>() {
+			
+			@Override
+			public int compare(Room o1, Room o2) {
+				//First comparing the buildung
+				int buildingCompare = o1.getBuilding().compareTo(o2.getBuilding());
+				//If building is the same, the roomNumber is relevant
+				if(buildingCompare == 0){
+					return o1.getRoomNumber().compareTo(o2.getRoomNumber());
+				}else{
+					return buildingCompare;
+				}
+			}
+		};
+		Collections.sort(rooms, roomComparator);
+		return rooms;
 	}
 
 	/**
