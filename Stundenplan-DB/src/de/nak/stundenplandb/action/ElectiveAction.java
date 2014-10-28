@@ -14,7 +14,7 @@ public class ElectiveAction extends MeetingAction {
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 5802592208250231904L;
 	
-	/** The elective. */
+	/** The current elective. */
 	private Elective elective;	
 	
 	@Override

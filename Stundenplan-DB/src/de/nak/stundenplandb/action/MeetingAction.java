@@ -1,6 +1,5 @@
 package de.nak.stundenplandb.action;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -76,13 +75,12 @@ public abstract class MeetingAction extends ActionSupport {
 	}
 	
 	/**
-	 * Gets the all cohorts.
+	 * Gets all cohorts.
 	 *
 	 * @return all cohorts
 	 */
-	public List<Cohort> getAllCohorts(){
-		// Muss noch ergänzt werden
-		return new ArrayList<Cohort>();	
+	public List<Cohort> getAllCohorts(){		
+		return studentGroupService.loadAllCohorts();
 	}
 	
 	public Date getStartDate() {
