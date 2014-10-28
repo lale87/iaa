@@ -71,7 +71,20 @@
 		<action name="SaveLecture" class="de.nak.stundenplandb.action.LectureAction" method="save">
 			<result type="redirect">ShowLectureForm.action</result>
 			<result type="tiles" name="input">lectureForm</result>
-		</action>	
+		</action>			
+		
+		<action name="CancelNewMeeting">
+			<result type="redirect">ShowMeetingTypeMenu.action</result>
+		</action>
+		
+		<action name="ShowExamForm" class="de.nak.stundenplandb.action.ExamAction">
+			<result type="tiles">examForm</result>
+		</action>
+		
+		<action name="SaveExam" class="de.nak.stundenplandb.action.ExamAction" method="save">
+			<result type="redirect">ShowExamForm.action</result>
+			<result type="tiles" name="input">examForm</result>
+		</action>
 		
 		
 

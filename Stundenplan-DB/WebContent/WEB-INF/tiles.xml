@@ -49,6 +49,11 @@
 	<!-- The Lecture Form -->
  	<definition name="lectureForm" extends="mainLayout">
 		<put-attribute name="content" value="/lectureForm.jsp"/>
+	</definition>	
+	
+	<!-- The Exam Form -->
+ 	<definition name="examForm" extends="mainLayout">
+		<put-attribute name="content" value="/examForm.jsp"/>
 	</definition>
 	
 	

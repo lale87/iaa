@@ -8,6 +8,7 @@ import java.util.List;
 
 import com.opensymphony.xwork2.ActionSupport;
 
+import de.nak.stundenplandb.model.Exam;
 import de.nak.stundenplandb.model.Lecture;
 import de.nak.stundenplandb.model.Lecturer;
 import de.nak.stundenplandb.model.Room;
@@ -18,26 +19,16 @@ import de.nak.stundenplandb.service.RoomService;
 import de.nak.stundenplandb.service.StudentGroupService;
 
 /**
- * The Class LectureAction.
- *
  * @author Arne Roever
+ *
  */
-public class LectureAction extends ActionSupport {
+public class ExamAction extends ActionSupport {
 
 	/** The Constant serialVersionUID. */
-	private static final long serialVersionUID = 5470788664512099858L;
-	
-	/** The lecture. */
-	private Lecture lecture;
-	
-	/** The lecturer service. */
-	private LecturerService lecturerService;
-	
-	/** The room service. */
-	private RoomService roomService;
-	
-	/** The student group service. */
-	private StudentGroupService studentGroupService;
+	private static final long serialVersionUID = -6938348041955775951L;
+
+	/** The exam. */
+	private Exam exam;
 	
 	/** The start date. */
 	private Date startDate;
@@ -47,6 +38,15 @@ public class LectureAction extends ActionSupport {
 	
 	/** The number of appointments. */
 	private Integer numberOfAppointments;
+	
+	/** The lecturer service. */
+	private LecturerService lecturerService;
+	
+	/** The room service. */
+	private RoomService roomService;
+	
+	/** The student group service. */
+	private StudentGroupService studentGroupService;
 	
 	/** The meeting service. */
 	private MeetingService meetingService;
@@ -79,9 +79,42 @@ public class LectureAction extends ActionSupport {
 	}
 	
 	public String save(){
-		meetingService.saveLecture(lecture, numberOfAppointments, startDate, endDate);
-		//meetingService.saveLecture(lecturerId,roomIds,studentGroupId,lectureName,startDate,endDate, numberOfAppointments);
+		//meetingService.saveExam(exam, numberOfAppointments, startDate, endDate);
 		return SUCCESS;
+	}
+	
+	
+	
+	public Exam getExam() {
+		return exam;
+	}
+
+	public void setExam(Exam exam) {
+		this.exam = exam;
+	}
+
+	public Date getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
+	}
+
+	public Date getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
+	}
+
+	public Integer getNumberOfAppointments() {
+		return numberOfAppointments;
+	}
+
+	public void setNumberOfAppointments(Integer numberOfAppointments) {
+		this.numberOfAppointments = numberOfAppointments;
 	}
 
 	public void setLecturerService(LecturerService lecturerService) {
@@ -94,44 +127,12 @@ public class LectureAction extends ActionSupport {
 
 	public void setStudentGroupService(StudentGroupService studentGroupService) {
 		this.studentGroupService = studentGroupService;
-	}	
-
-	public Date getStartDate() {
-		return startDate;
-	}
-
-	public void setStartDate(Date startDate) {
-		this.startDate = startDate;
-	}
-
-	public Integer getNumberOfAppointments() {
-		return numberOfAppointments;
-	}
-
-	public void setNumberOfAppointments(Integer numberOfAppointments) {
-		this.numberOfAppointments = numberOfAppointments;
-	}
-
-	public Date getEndDate() {
-		return endDate;
-	}
-
-	public void setEndDate(Date endDate) {
-		this.endDate = endDate;
-	}
-	
-	public Lecture getLecture() {
-		return lecture;
-	}
-
-	public void setLecture(Lecture lecture) {
-		this.lecture = lecture;
 	}
 
 	public void setMeetingService(MeetingService meetingService) {
 		this.meetingService = meetingService;
 	}
-	
+		
 	
 	
 	
