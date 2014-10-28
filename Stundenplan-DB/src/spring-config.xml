@@ -10,94 +10,9 @@
 	                       http://www.springframework.org/schema/aop 
 	                       http://www.springframework.org/schema/aop/spring-aop-2.0.xsd">
 
-	<!-- The data source -->
-	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
-		<property name="driverClassName" value="org.h2.Driver"/>
-		<property name="url"
-				  value="jdbc:h2:db/nak"/>
-		<property name="username" value="sa"/>
-		<property name="password" value=""/>
-	</bean>
-
-	<!-- The session factory -->
-	<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
-		<property name="dataSource" ref="dataSource"/>
-		<property name="packagesToScan" value="de.nak.stundenplandb.model"/>
-		<property name="hibernateProperties">
-			<props>
-				<prop key="hibernate.dialect">org.hibernate.dialect.H2Dialect</prop>
-				<prop key="hibernate.show_sql">true</prop>
-				<prop key="hibernate.format_sql">true</prop>
-				<prop key="hibernate.hbm2ddl.auto">update</prop>
-			</props>
-		</property>
-	</bean>
-	
-	<!-- provides a H2 console to look into the db if necessary -->
-	<!-- https://stackoverflow.com/questions/2012292/spring-configuration-for-embedded-h2-database-for-tests -->
-	<bean id="org.h2.tools.Server-WebServer" class="org.h2.tools.Server" 
-	    factory-method="createWebServer" depends-on="dataSource" 
-	    init-method="start" lazy-init="false">
-	    <constructor-arg value="-web,-webPort,8081" />
-	</bean>
-
-	<!-- The transaction manager -->
-	<bean id="txManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
-		<property name="sessionFactory" ref="sessionFactory"/>
-	</bean>
-
-	<!-- The advice -->
-	<tx:advice id="txAdvice" transaction-manager="txManager">
-		<tx:attributes>
-			<tx:method name="*" propagation="REQUIRED"/>
-		</tx:attributes>
-	</tx:advice>
-
-	<!-- The pointcut definition -->
-	<aop:config>
-		<aop:pointcut id="serviceMethods" expression="execution(* de.nak.stundenplandb.service.*.*(..))"/>
-		<aop:advisor advice-ref="txAdvice" pointcut-ref="serviceMethods"/>
-	</aop:config>
-
-	<!-- DAOs -->
- 	<bean id="appointmentDAO" class="de.nak.stundenplandb.dao.AppointmentDAOImpl">
-		<property name="sessionFactory" ref="sessionFactory"/>
-	</bean>
-	<bean id="cohortDAO" class="de.nak.stundenplandb.dao.CohortDAOImpl">
-        <property name="sessionFactory" ref="sessionFactory"/>
-    </bean>
-    <bean id="electiveDAO" class="de.nak.stundenplandb.dao.ElectiveDAOImpl">
-        <property name="sessionFactory" ref="sessionFactory"/>
-    </bean>
-    <bean id="examDAO" class="de.nak.stundenplandb.dao.ExamDAOImpl">
-        <property name="sessionFactory" ref="sessionFactory"/>
-    </bean>
-    <bean id="lectureDAO" class="de.nak.stundenplandb.dao.LectureDAOImpl">
-        <property name="sessionFactory" ref="sessionFactory"/>
-    </bean>
-    <bean id="lecturerDAO" class="de.nak.stundenplandb.dao.LecturerDAOImpl">
-        <property name="sessionFactory" ref="sessionFactory"/>
-    </bean>
-    <bean id="roomDAO" class="de.nak.stundenplandb.dao.RoomDAOImpl">
-        <property name="sessionFactory" ref="sessionFactory"/>
-    </bean>
-    <bean id="seminarDAO" class="de.nak.stundenplandb.dao.SeminarDAOImpl">
-        <property name="sessionFactory" ref="sessionFactory"/>
-    </bean>
-    <bean id="studentGroupDAO" class="de.nak.stundenplandb.dao.StudentGroupDAOImpl">
-        <property name="sessionFactory" ref="sessionFactory"/>
-    </bean>
-	
-	<!-- Services -->
-	<bean id="roomService" class="de.nak.stundenplandb.service.RoomServiceImpl">
-		<property name="roomDAO" ref="roomDAO"/>
-	</bean>
-	<bean id="lecturerService" class="de.nak.stundenplandb.service.LecturerServiceImpl">
-        <property name="lecturerDAO" ref="lecturerDAO"/>
-    </bean>
-    <bean id="studentGroupService" class="de.nak.stundenplandb.service.StudentGroupServiceImpl">
-        <property name="studentGroupDAO" ref="studentGroupDAO"/>
-        <property name="cohortDAO" ref="cohortDAO"/>
-    </bean>
-
+    <!-- DB config -->
+    <import resource="spring-db-config.xml" />
+    <!-- Beans config -->
+    <import resource="spring-beans-config.xml" />
+    
 </beans>
