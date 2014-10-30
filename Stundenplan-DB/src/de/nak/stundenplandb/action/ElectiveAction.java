@@ -17,9 +17,11 @@ public class ElectiveAction extends MeetingAction {
 	/** The current elective. */
 	private Elective elective;	
 	
+	private Long cohortId;
+
 	@Override
 	public String save() {
-		//meetingService.saveElective(elective, numberOfAppointments, startDate, endDate);
+		//meetingService.saveLecture(meetingName,lecturerId,roomIds,cohortId,  numberOfAppointments, startDate, endDate);
 		return SUCCESS;
 	}
 	
@@ -29,6 +31,14 @@ public class ElectiveAction extends MeetingAction {
 
 	public void setElective(Elective elective) {
 		this.elective = elective;
+	}
+	
+	public Long getCohortId() {
+		return cohortId;
+	}
+
+	public void setCohortId(Long cohortId) {
+		this.cohortId = cohortId;
 	}
 	
 }

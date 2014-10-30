@@ -6,13 +6,13 @@
 <s:form>
 	<%-- Form fields for the elective's attributes --%>
 	<s:hidden name="elective.id"/>
-  	<s:select name="elective.lecturer" key="lbl.lecturer" list="allLecturers" listKey="id" 
+  	<s:select name="lecturerId" key="lbl.lecturer" list="allLecturers" listKey="id" 
   		listValue="firstName +' ' + lastName + ', ' + abbreviation" requiredLabel="true"/>	
-	<s:select name="elective.rooms" key="lbl.rooms" list="allRooms" listKey="id" 
+	<s:select name="roomIds" key="lbl.rooms" list="allRooms" listKey="id" 
 		listValue="roomNumber + ' ' + building + ', ' + roomType" multiple="true" size="5" requiredLabel="true"/> 
- 	<s:select name="elective.cohort" key="lbl.cohort" list="allCohorts" listKey="id" 
+ 	<s:select name="cohortId" key="lbl.cohort" list="allCohorts" listKey="id" 
  		listValue="yearOfAdmission" requiredLabel="true"/>
-	<s:textfield name="elective.name" key="lbl.meetingName" size="40" maxlength="100" requiredLabel="true"/>
+	<s:textfield name="meetingName" key="lbl.meetingName" size="40" maxlength="100" requiredLabel="true"/>
 	<s:textfield name="numberOfAppointments" key="lbl.numberOfAppointments" size="3" maxlength="3" requiredLabel="true"/>
 	
 	<sj:head  />	

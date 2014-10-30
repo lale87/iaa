@@ -6,11 +6,11 @@
 <s:form>
 	<%-- Form fields for the seminar's attributes --%>
 	<s:hidden name="seminar.id"/>
-  	<s:select name="seminar.lecturer" key="lbl.lecturer" list="allLecturers" listKey="id" 
+  	<s:select name="lecturerId" key="lbl.lecturer" list="allLecturers" listKey="id" 
   		listValue="firstName +' ' + lastName + ', ' + abbreviation" requiredLabel="true"/>	
-	<s:select name="seminar.rooms" key="lbl.rooms" list="allRooms" listKey="id" 
+	<s:select name="roomIds" key="lbl.rooms" list="allRooms" listKey="id" 
 		listValue="roomNumber + ' ' + building + ', ' + roomType" multiple="true" size="5" requiredLabel="true"/>  	
-	<s:textfield name="seminar.name" key="lbl.meetingName" size="40" maxlength="100" requiredLabel="true"/>
+	<s:textfield name="meetingName" key="lbl.meetingName" size="40" maxlength="100" requiredLabel="true"/>
 	<s:textfield name="numberOfAppointments" key="lbl.numberOfAppointments" size="3" maxlength="3" requiredLabel="true"/>
 	
 	<sj:head  />	

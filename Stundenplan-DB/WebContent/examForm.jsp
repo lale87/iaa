@@ -6,14 +6,14 @@
 <s:form>
 	<%-- Form fields for the exam's attributes --%>
 	<s:hidden name="exam.id"/>
-  	<s:select name="exam.lecturer" key="lbl.lecturer" list="allLecturers" listKey="id" 
+  	<s:select name="lecturerId" key="lbl.lecturer" list="allLecturers" listKey="id" 
   		listValue="firstName +' ' + lastName + ', ' + abbreviation" requiredLabel="true"/>	
-	<s:select name="exam.rooms" key="lbl.rooms" list="allRooms" listKey="id" 
+	<s:select name="roomIds" key="lbl.rooms" list="allRooms" listKey="id" 
 		listValue="roomNumber + ' ' + building + ', ' + roomType" multiple="true" size="5" requiredLabel="true"/> 
- 	<s:select name="exam.studentGroup" key="lbl.studentGroup" list="allStudentGroups" listKey="id" 
+ 	<s:select name="studentGroupIds" key="lbl.studentGroup" list="allStudentGroups" listKey="id" 
  		listValue="fieldOfStudy.abreviation + cohort.yearOfAdmission + groupIdentifier" 
  		multiple="true" requiredLabel="true"/>
-	<s:textfield name="exam.name" key="lbl.meetingName" size="40" maxlength="100" requiredLabel="true"/>
+	<s:textfield name="meetingName" key="lbl.meetingName" size="40" maxlength="100" requiredLabel="true"/>
 	<s:textfield name="numberOfAppointments" key="lbl.numberOfAppointments" size="3" maxlength="3" requiredLabel="true"/>
 	
 	<sj:head  />	

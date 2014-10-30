@@ -19,7 +19,7 @@ public class SeminarAction extends MeetingAction {
 	
 	@Override
 	public String save() {
-		//meetingService.saveSeminar(seminar, numberOfAppointments, startDate, endDate);
+		//meetingService.saveLecture(meetingName,lecturerId,roomIds, numberOfAppointments, startDate, endDate);
 		return SUCCESS;
 	}
 	public Seminar getSeminar() {

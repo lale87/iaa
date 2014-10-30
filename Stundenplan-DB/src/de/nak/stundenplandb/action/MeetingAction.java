@@ -22,8 +22,14 @@ import de.nak.stundenplandb.service.StudentGroupService;
 public abstract class MeetingAction extends ActionSupport {
 
 	/** The Constant serialVersionUID. */
-	private static final long serialVersionUID = 7376786519031302846L;
+	private static final long serialVersionUID = 7376786519031302846L;	
 	
+	/** The selected lecturer id. */
+	protected Long lecturerId;
+	
+	/** The selected room ids. */
+	protected List<Long> roomIds;
+
 	/** The start date. */
 	protected Date startDate;
 	
@@ -33,6 +39,9 @@ public abstract class MeetingAction extends ActionSupport {
 	/** The number of appointments. */
 	protected Integer numberOfAppointments;
 	
+	/** The meeting name. */
+	protected String meetingName;
+
 	/** The lecturer service. */
 	protected LecturerService lecturerService;
 	
@@ -83,6 +92,22 @@ public abstract class MeetingAction extends ActionSupport {
 		return studentGroupService.loadAllCohortsSortedByYearOfAdmission();
 	}
 	
+	public Long getLecturerId() {
+		return lecturerId;
+	}
+
+	public void setLecturerId(Long lecturerId) {
+		this.lecturerId = lecturerId;
+	}
+
+	public List<Long> getRoomIds() {
+		return roomIds;
+	}
+
+	public void setRoomIds(List<Long> roomIds) {
+		this.roomIds = roomIds;
+	}
+	
 	public Date getStartDate() {
 		return startDate;
 	}
@@ -105,6 +130,14 @@ public abstract class MeetingAction extends ActionSupport {
 
 	public void setNumberOfAppointments(Integer numberOfAppointments) {
 		this.numberOfAppointments = numberOfAppointments;
+	}
+	
+	public String getMeetingName() {
+		return meetingName;
+	}
+
+	public void setMeetingName(String meetingName) {
+		this.meetingName = meetingName;
 	}
 
 	public LecturerService getLecturerService() {
