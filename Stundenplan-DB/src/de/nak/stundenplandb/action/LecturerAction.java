@@ -32,6 +32,7 @@ public class LecturerAction extends ActionSupport {
 	 * @return the result string
 	 */
 	public String save(){
+		System.out.println("HIer");
 		lecturerService.saveLecturer(lecturer);
 		return SUCCESS;
 	}
@@ -41,7 +42,7 @@ public class LecturerAction extends ActionSupport {
 	 *
 	 * @return all academic titles
 	 */
-	public List<EAcademicTitle> getAllAcademicTitles(){
+	public List<EAcademicTitle> getAllAcademicTitles(){		
 		return lecturerService.getAllAcademicTitles();
 	}
 	
