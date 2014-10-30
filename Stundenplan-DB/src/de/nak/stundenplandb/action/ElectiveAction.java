@@ -17,6 +17,7 @@ public class ElectiveAction extends MeetingAction {
 	/** The current elective. */
 	private Elective elective;	
 	
+	/** The selected cohort id. */
 	private Long cohortId;
 
 	@Override

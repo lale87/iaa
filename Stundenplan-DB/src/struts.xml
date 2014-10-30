@@ -70,7 +70,10 @@
 		</action>		
 		
 		<action name="ShowLectureForm" class="de.nak.stundenplandb.action.LectureAction">
-			<result type="tiles">lectureForm</result>
+		    <interceptor-ref name="validation">
+		        <param name="excludeMethods">execute</param>
+		    </interceptor-ref>
+			<result type="tiles">lectureForm</result>			
 		</action>
 		
 		<action name="SaveLecture" class="de.nak.stundenplandb.action.LectureAction" method="save">
@@ -83,6 +86,9 @@
 		</action>
 		
 		<action name="ShowExamForm" class="de.nak.stundenplandb.action.ExamAction">
+		    <interceptor-ref name="validation">
+		        <param name="excludeMethods">execute</param>
+		    </interceptor-ref>
 			<result type="tiles">examForm</result>
 		</action>
 		
@@ -92,6 +98,9 @@
 		</action>
 		
 		<action name="ShowElectiveForm" class="de.nak.stundenplandb.action.ElectiveAction">
+		    <interceptor-ref name="validation">
+		        <param name="excludeMethods">execute</param>
+		    </interceptor-ref>
 			<result type="tiles">electiveForm</result>
 		</action>
 		
@@ -101,6 +110,9 @@
 		</action>
 		
 		<action name="ShowSeminarForm" class="de.nak.stundenplandb.action.SeminarAction">
+		    <interceptor-ref name="validation">
+		        <param name="excludeMethods">execute</param>
+		    </interceptor-ref>
 			<result type="tiles">seminarForm</result>
 		</action>
 		
