@@ -26,14 +26,23 @@
 		</action>		
 		
 		<action name="ShowLecturerForm" class="de.nak.stundenplandb.action.LecturerAction">
+		    <interceptor-ref name="validation">
+		        <param name="excludeMethods">execute</param>
+		    </interceptor-ref>
 			<result type="tiles">lecturerForm</result>
 		</action>
 		
 		<action name="ShowRoomForm" class="de.nak.stundenplandb.action.RoomAction">
+		    <interceptor-ref name="validation">
+		        <param name="excludeMethods">execute</param>
+		    </interceptor-ref>
 			<result type="tiles">roomForm</result>
 		</action>
 		
 		<action name="ShowStudentGroupForm" class="de.nak.stundenplandb.action.StudentGroupAction">
+		    <interceptor-ref name="validation">
+		        <param name="excludeMethods">execute</param>
+		    </interceptor-ref>
 			<result type="tiles">studentGroupForm</result>
 		</action>
 		
