@@ -62,7 +62,7 @@ public abstract class MeetingAction extends ActionSupport {
 	 * @return the all rooms
 	 */
 	public List<Room> getAllRooms(){
-		return roomService.loadAllRooms();
+		return roomService.loadAllRoomsSortedBYBuildungAndNumber();
 	}
 	
 	/**
@@ -71,7 +71,7 @@ public abstract class MeetingAction extends ActionSupport {
 	 * @return the student groups
 	 */
 	public List<StudentGroup> getAllStudentGroups(){
-		return studentGroupService.loadAllStudentGroups();
+		return studentGroupService.loadAllStudentGroupsSorted();
 	}
 	
 	/**

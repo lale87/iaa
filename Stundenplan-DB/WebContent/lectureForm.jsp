@@ -8,7 +8,7 @@
 	<s:hidden name="lecture.id"/>
   	<s:select name="lecture.lecturer" key="lbl.lecturer" list="allLecturers" listKey="id" listValue="firstName +' ' + lastName + ', ' + abbreviation" requiredLabel="true"/>	
 	<s:select name="lecture.rooms" key="lbl.rooms" list="allRooms" listKey="id" listValue="roomNumber + ' ' + building + ', ' + roomType" multiple="true" size="5" requiredLabel="true"/> 
- 	<s:select name="lecture.studentGroup" key="lbl.studentGroup" list="allStudentGroups" listKey="id" listValue="fieldOfStudy + ', ' + cohort.yearOfAdmission + groupIdentifier" requiredLabel="true"/>
+ 	<s:select name="lecture.studentGroup" key="lbl.studentGroup" list="allStudentGroups" listKey="id" listValue="fieldOfStudy.abreviation + cohort.yearOfAdmission + groupIdentifier" requiredLabel="true"/>
 	<s:textfield name="lecture.name" key="lbl.meetingName" size="40" maxlength="100" requiredLabel="true"/>
 	<s:textfield name="numberOfAppointments" key="lbl.numberOfAppointments" size="3" maxlength="3" requiredLabel="true"/>
 	
