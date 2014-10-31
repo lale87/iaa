@@ -59,5 +59,10 @@
 	<!-- The Seminar Form -->
  	<definition name="seminarForm" extends="mainLayout">
 		<put-attribute name="content" value="/seminarForm.jsp"/>
+	</definition>		
+	
+	<!-- The timetable menu -->
+ 	<definition name="timetableMenu" extends="mainLayout">
+		<put-attribute name="content" value="/timetableMenu.jsp"/>
 	</definition>
 </tiles-definitions>

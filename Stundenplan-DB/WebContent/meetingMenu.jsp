@@ -16,7 +16,7 @@
 </s:form>	
 
 <h3><s:text name="hdl.editMeeting"></s:text></h3>
-<s:form>
+<s:form>	
 	<%-- The table of existing meetings--%>
 	<table style="border-collapse: collapse; border: #CCC;" border="1">
 		<tr>			
@@ -31,11 +31,11 @@
 				<td><s:property value="lecturer.firstName + ' ' lecturer.lastName"/></td>
 			</tr>
 		</s:iterator>
-	</table>
+	</table>	
 	<%-- Buttons for changing or editing meetings --%>
-	<s:submit key="btn.editMeeting"/>
-	<s:submit key="btn.deleteMeeting"/>	
-	<s:submit key="btn.cancel" action="CancelMeetingMenu"/>
+		<s:submit key="btn.editMeeting"/>
+		<s:submit key="btn.deleteMeeting"/>	
+		<s:submit key="btn.return" action="ShowMainMenu"/>	
 </s:form>
 
 

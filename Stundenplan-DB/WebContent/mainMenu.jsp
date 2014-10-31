@@ -11,5 +11,5 @@
 	<%-- The buttons --%>
 	<s:submit key="btn.masterdata" action="ShowMasterData"/>
 	<s:submit key="btn.meeting" action="ShowMeetingMenu"/>
-	<s:submit key="btn.timetable"/>
+	<s:submit key="btn.timetable" action="ShowTimetableMenu"/>	
 </s:form>

@@ -12,6 +12,5 @@
 	<s:submit key="btn.newLecturer" action="ShowLecturerForm"/>
 	<s:submit key="btn.newRoom" action="ShowRoomForm"/>
 	<s:submit key="btn.newStudentGroup" action="ShowStudentGroupForm"/>
-	<s:submit key="btn.cancel" action="CancelMasterDataMenu"/>
-
+	<s:submit key="btn.return" action="ShowMainMenu"/>
 </s:form>
