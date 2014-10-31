@@ -65,7 +65,7 @@
 			<result type="redirect">ShowMasterData.action</result>
 		</action>
 		
-		<action name="ShowMeetingList">
+		<action name="ShowMeetingMenu" class="de.nak.stundenplandb.action.ShowMeetingMenuAction">
 			<result type="tiles">meetingMenu</result>
 		</action>		
 		
@@ -82,7 +82,7 @@
 		</action>			
 		
 		<action name="CancelNewMeeting">
-			<result type="redirect">ShowMeetingList.action</result>
+			<result type="redirect">ShowMeetingMenu.action</result>
 		</action>
 		
 		<action name="ShowExamForm" class="de.nak.stundenplandb.action.ExamAction">

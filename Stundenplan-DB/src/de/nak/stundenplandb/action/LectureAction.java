@@ -23,12 +23,13 @@ public class LectureAction extends MeetingAction {
 	private Lecture lecture;
 	
 	private LectureService lectureService;
+	
 	public void setLectureService(LectureService lectureService) {
 		this.lectureService = lectureService;
 	}
 
 	public String save(){
-		lectureService.saveOrUpdateLecture(null, meetingName, lecturerId,
+		lectureService.saveOrUpdateLecture(lecture.getId(), meetingName, lecturerId,
 				roomIds, studentGroupId, numberOfAppointments, startDate, endDate);
 		
 		return SUCCESS;

@@ -4,6 +4,7 @@
 package de.nak.stundenplandb.action;
 
 import de.nak.stundenplandb.model.Elective;
+import de.nak.stundenplandb.service.ElectiveService;
 
 /**
  * @author Arne Roever
@@ -19,10 +20,13 @@ public class ElectiveAction extends MeetingAction {
 	
 	/** The selected cohort id. */
 	private Long cohortId;
+	
+	/** The elective service. */
+	private ElectiveService electiveService;
 
 	@Override
 	public String save() {
-		//meetingService.saveLecture(meetingName,lecturerId,roomIds,cohortId,  numberOfAppointments, startDate, endDate);
+		electiveService.saveOrUpdateElective(elective.getId(),meetingName,lecturerId,roomIds,cohortId,  numberOfAppointments, startDate, endDate);
 		return SUCCESS;
 	}
 	
@@ -40,6 +44,10 @@ public class ElectiveAction extends MeetingAction {
 
 	public void setCohortId(Long cohortId) {
 		this.cohortId = cohortId;
+	}
+
+	public void setElectiveService(ElectiveService electiveService) {
+		this.electiveService = electiveService;
 	}
 	
 }

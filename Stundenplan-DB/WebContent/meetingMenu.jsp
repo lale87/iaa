@@ -13,6 +13,21 @@
 
 <h3><s:text name="hdl.editMeeting"></s:text></h3>
 <s:form>
+	<%-- The meeting table --%>
+	<table style="border-collapse: collapse; border: #CCC;" border="1">
+		<tr>
+			<th></th>
+			<th><s:text name="lbl.meetingName"/></th>
+			<th><s:text name="lbl.lecturer"/></th>			
+		</tr>
+		<s:iterator value="meetingList">
+			<tr>
+				<td><s:radio name="id" list="#{id:''}" theme="simple"/></td>
+				<td><s:property value="meetingName"/></td>
+				<td><s:property value="lecturer"/></td>
+			</tr>
+		</s:iterator>
+	</table>
 	<%-- Buttons for changing or editing meetings --%>
 	<s:submit key="btn.editMeeting"/>
 	<s:submit key="btn.deleteMeeting"/>	

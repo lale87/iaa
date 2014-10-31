@@ -4,6 +4,7 @@
 package de.nak.stundenplandb.action;
 
 import de.nak.stundenplandb.model.Seminar;
+import de.nak.stundenplandb.service.SeminarService;
 
 /**
  * @author Arne Roever
@@ -17,9 +18,12 @@ public class SeminarAction extends MeetingAction {
 	/** The current seminar. */
 	private Seminar seminar;
 	
+	/** The seminar service. */
+	private SeminarService seminarService;
+	
 	@Override
 	public String save() {
-		//meetingService.saveLecture(meetingName,lecturerId,roomIds, numberOfAppointments, startDate, endDate);
+		seminarService.saveOrUpdateSeminar(seminar.getId(), meetingName,lecturerId,roomIds, numberOfAppointments, startDate, endDate);
 		return SUCCESS;
 	}
 	public Seminar getSeminar() {
@@ -28,6 +32,10 @@ public class SeminarAction extends MeetingAction {
 
 	public void setSeminar(Seminar seminar) {
 		this.seminar = seminar;
+	}
+	
+	public void setSeminarService(SeminarService seminarService) {
+		this.seminarService = seminarService;
 	}
 
 

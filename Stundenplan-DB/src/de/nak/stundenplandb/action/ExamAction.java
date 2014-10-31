@@ -6,6 +6,7 @@ package de.nak.stundenplandb.action;
 import java.util.List;
 
 import de.nak.stundenplandb.model.Exam;
+import de.nak.stundenplandb.service.ExamService;
 
 
 /**
@@ -23,8 +24,11 @@ public class ExamAction extends MeetingAction {
 	/** The selected studentgroup id. */
 	private List<Long> studentGroupIds; 
 	
+	/** The exam service. */
+	private ExamService examService;
+
 	public String save(){
-		//meetingService.saveLecture(meetingName,lecturerId,roomIds,studentGroupIds,  numberOfAppointments, startDate, endDate);
+		examService.saveOrUpdateExam(exam.getId(), meetingName,lecturerId,roomIds,studentGroupIds,  numberOfAppointments, startDate, endDate);
 		return SUCCESS;
 	}	
 	
@@ -42,6 +46,10 @@ public class ExamAction extends MeetingAction {
 
 	public void setStudentGroupIds(List<Long> studentGroupIds) {
 		this.studentGroupIds = studentGroupIds;
+	}
+	
+	public void setExamService(ExamService examService) {
+		this.examService = examService;
 	}
 
 	
