@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 import org.hibernate.annotations.Type;
 
@@ -35,6 +36,10 @@ public class Appointment implements DomainObject {
 	 * End date and time
 	 */
 	private Date end;
+	/**
+	 * The meeting
+	 */
+	private Meeting meeting;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -62,6 +67,15 @@ public class Appointment implements DomainObject {
 	public void setEnd(Date end) {
 		this.end = end;
 	}
+	
+	@ManyToOne(optional = false)
+	public Meeting getMeeting() {
+		return meeting;
+	}
+	public void setMeeting(Meeting meeting) {
+		this.meeting = meeting;
+	}
+	
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
 	 */

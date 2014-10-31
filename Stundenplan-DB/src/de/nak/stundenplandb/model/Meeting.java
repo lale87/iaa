@@ -2,6 +2,7 @@ package de.nak.stundenplandb.model;
 
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,6 +13,9 @@ import javax.persistence.InheritanceType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
+
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 /**
  * Meeting Entity
@@ -29,7 +33,7 @@ public abstract class Meeting implements DomainObject{
 
 	/**
 	 * The meeting's shortest time between this and the following meeting
-	 * Can be overitten in subclasses. Default: 0
+	 * Can be overwritten in subclasses. Default: 0
 	 */
 	protected Integer minBreak = 0;
 	
@@ -71,8 +75,7 @@ public abstract class Meeting implements DomainObject{
 		this.name = name;
 	}
 	
-	@Column(nullable = false)
-	@OneToMany
+	@OneToMany(cascade = CascadeType.ALL)
 	public Set<Room> getRooms() {
 		return rooms;
 	}
@@ -88,8 +91,8 @@ public abstract class Meeting implements DomainObject{
 		this.lecturer = lecturer;
 	}
 	
-	@Column(nullable = false)
-	@OneToMany
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "meeting")
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	public Set<Appointment> getAppointments() {
 		return appointments;
 	}
@@ -103,5 +106,10 @@ public abstract class Meeting implements DomainObject{
 	}
 	public void setMinBreak(Integer minBreak) {
 		this.minBreak = minBreak;
+	}
+	
+	public void addAppointmentToMeeting(Appointment appointment) {
+		appointment.setMeeting(this);
+		this.getAppointments().add(appointment);
 	}
 }
