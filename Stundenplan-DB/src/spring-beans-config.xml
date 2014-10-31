@@ -59,7 +59,6 @@
     
     <!-- Services -->
     <bean id="roomService" class="de.nak.stundenplandb.service.RoomServiceImpl">
-        <property name="meetingService" ref="meetingService"/>
         <property name="roomDAO" ref="roomDAO"/>
     </bean>
     <bean id="lecturerService" class="de.nak.stundenplandb.service.LecturerServiceImpl">
@@ -74,5 +73,26 @@
         <property name="seminarDAO" ref="seminarDAO"/>
         <property name="electiveDAO" ref="electiveDAO"/>
         <property name="lectureDAO" ref="lectureDAO"/>
+        <property name="lecturerDAO" ref="lecturerDAO"/>
+        <property name="roomDAO" ref="roomDAO"/>
+    </bean>
+    <bean id="lectureService" class="de.nak.stundenplandb.service.LectureServiceImpl">
+        <property name="meetingService" ref="meetingService"/>
+        <property name="lectureDAO" ref="lectureDAO"/>
+        <property name="studentGroupDAO" ref="studentGroupDAO"/>
+    </bean>
+    <bean id="examService" class="de.nak.stundenplandb.service.ExamServiceImpl">
+        <property name="meetingService" ref="meetingService"/>
+        <property name="examDAO" ref="examDAO"/>
+        <property name="studentGroupDAO" ref="studentGroupDAO"/>
+    </bean>
+    <bean id="seminarService" class="de.nak.stundenplandb.service.SeminarServiceImpl">
+        <property name="meetingService" ref="meetingService"/>
+        <property name="seminarDAO" ref="seminarDAO"/>
+    </bean>
+    <bean id="electiveService" class="de.nak.stundenplandb.service.ElectiveServiceImpl">
+        <property name="meetingService" ref="meetingService"/>
+        <property name="electiveDAO" ref="electiveDAO"/>
+        <property name="cohortDAO" ref="cohortDAO"/>    
     </bean>
 </beans>

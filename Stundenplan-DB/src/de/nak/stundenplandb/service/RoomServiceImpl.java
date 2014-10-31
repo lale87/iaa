@@ -19,10 +19,6 @@ import de.nak.stundenplandb.model.Room;
  */
 public class RoomServiceImpl implements RoomService {
 	/**
-	 * Injected MeetingService
-	 */
-	private MeetingService meetingService;
-	/**
 	 * Injected RoomDAO
 	 */
 	private RoomDAO roomDAO;
@@ -68,15 +64,6 @@ public class RoomServiceImpl implements RoomService {
 		System.out.println("*******SET_DAO: " + roomDAO.getClass());
 	}
 	
-	/**
-	 * Inject MeetingService
-	 * 
-	 * @param meetingService
-	 */
-	public void setMeetingService(MeetingService meetingService) {
-		this.meetingService = meetingService;
-	}
-
 	@Override
 	public List<ERoomType> getAllRoomTypes() {
 		return Arrays.asList(ERoomType.values());

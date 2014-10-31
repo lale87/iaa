@@ -10,15 +10,13 @@ import java.util.Set;
 import de.nak.stundenplandb.dao.ElectiveDAO;
 import de.nak.stundenplandb.dao.ExamDAO;
 import de.nak.stundenplandb.dao.LectureDAO;
+import de.nak.stundenplandb.dao.LecturerDAO;
+import de.nak.stundenplandb.dao.RoomDAO;
 import de.nak.stundenplandb.dao.SeminarDAO;
 import de.nak.stundenplandb.model.Appointment;
-import de.nak.stundenplandb.model.Elective;
-import de.nak.stundenplandb.model.Exam;
-import de.nak.stundenplandb.model.Lecture;
 import de.nak.stundenplandb.model.Lecturer;
 import de.nak.stundenplandb.model.Meeting;
 import de.nak.stundenplandb.model.Room;
-import de.nak.stundenplandb.model.Seminar;
 import de.nak.stundenplandb.model.StudentGroup;
 
 /**
@@ -28,111 +26,14 @@ import de.nak.stundenplandb.model.StudentGroup;
  *
  */
 public class MeetingServiceImpl implements MeetingService {
-	/**
-	 * Injected ExamDAO
-	 */
+
 	private ExamDAO examDAO;
-	/**
-	 * Injected SeminarDAO
-	 */
 	private SeminarDAO seminarDAO;
-	/**
-	 * Injected ElectiveDAO
-	 */
 	private ElectiveDAO electiveDAO;
-	/**
-	 * Injected LectureDAO
-	 */
 	private LectureDAO lectureDAO;
-
-	@Override
-	public void saveExam(Exam exam, Integer numberOfAppointments, Date begin,
-			Date end) {
-		exam.setAppointments(createAppointments(numberOfAppointments, begin,
-				end));
-		examDAO.save(exam);
-	}
-
-	@Override
-	public void deleteExam(Exam exam) {
-		examDAO.delete(exam);
-	}
-
-	@Override
-	public void saveLecture(Lecture lecture, Integer numberOfAppointments,
-			Date begin, Date end) {
-		lecture.setAppointments(createAppointments(numberOfAppointments, begin,
-				end));
-		lectureDAO.save(lecture);
-	}
-
-	@Override
-	public void deleteLecture(Lecture lecture) {
-		lectureDAO.delete(lecture);
-	}
-
-	@Override
-	public void saveSeminar(Seminar seminar, Integer numberOfAppointments,
-			Date begin, Date end) {
-		seminar.setAppointments(createAppointments(numberOfAppointments, begin,
-				end));
-		seminarDAO.save(seminar);
-	}
-
-	@Override
-	public void deleteSeminar(Seminar seminar) {
-		seminarDAO.delete(seminar);
-	}
-
-	@Override
-	public void saveElective(Elective elective, Integer numberOfAppointments,
-			Date begin, Date end) {
-		elective.setAppointments(createAppointments(numberOfAppointments,
-				begin, end));
-		electiveDAO.save(elective);
-	}
-
-	@Override
-	public void deleteElective(Elective elective) {
-		electiveDAO.delete(elective);
-	}
-
-	/**
-	 * Injects the ExamDAO
-	 * 
-	 * @param examDAO
-	 */
-	public void setExamDAO(ExamDAO examDAO) {
-		this.examDAO = examDAO;
-	}
-
-	/**
-	 * Injects the SeminarDAO
-	 * 
-	 * @param seminarDAO
-	 */
-	public void setSeminarDAO(SeminarDAO seminarDAO) {
-		this.seminarDAO = seminarDAO;
-	}
-
-	/**
-	 * Injects the LectureDAO
-	 * 
-	 * @param lectureDAO
-	 */
-	public void setLectureDAO(LectureDAO lectureDAO) {
-		this.lectureDAO = lectureDAO;
-	}
-
-	/**
-	 * Injects the ElectiveDAO
-	 * 
-	 * @param electiveDAO
-	 */
-	public void setElectiveDAO(ElectiveDAO electiveDAO) {
-		this.electiveDAO = electiveDAO;
-	}
-
+	private LecturerDAO lecturerDAO;
+	private RoomDAO roomDAO;
+	
 	@Override
 	public boolean isPossible(Meeting meeting) {
 
@@ -213,7 +114,7 @@ public class MeetingServiceImpl implements MeetingService {
 	 *            <Date>
 	 * @return a Set of Appointments
 	 */
-	private Set<Appointment> createAppointments(Integer numberOfAppointments,
+	protected Set<Appointment> createAppointments(Integer numberOfAppointments,
 			Date begin, Date end) {
 		Set<Appointment> appointmentSet = new HashSet<Appointment>();
 		//
@@ -234,5 +135,52 @@ public class MeetingServiceImpl implements MeetingService {
 
 		return appointmentSet;
 	}
+	
+	@Override
+	public void fillMeeting(Meeting meeting, String meetingName,
+			Long lecturerId, List<Long> roomIds, int numberOfAppointments,
+			Date startDate, Date endDate) {
+		// get referenced entities
+		Lecturer lecturer = lecturerDAO.load(lecturerId);
+		Set<Room> rooms = new HashSet<Room>();
+		for (Long id : roomIds) {
+			Room room = roomDAO.load(id);
+			rooms.add(room);
+		}
+		Set<Appointment> appointments =
+				this.createAppointments(numberOfAppointments, startDate, endDate);
+		
+		meeting.setName(meetingName);
+		meeting.setLecturer(lecturer);
+		meeting.setRooms(rooms);
+		for (Appointment appointment : appointments) {			
+			meeting.addAppointmentToMeeting(appointment);
+		}
+		// no return due to a given reference!
+	}
 
+	public void setExamDAO(ExamDAO examDAO) {
+		this.examDAO = examDAO;
+	}
+
+	public void setSeminarDAO(SeminarDAO seminarDAO) {
+		this.seminarDAO = seminarDAO;
+	}
+
+	public void setElectiveDAO(ElectiveDAO electiveDAO) {
+		this.electiveDAO = electiveDAO;
+	}
+
+	public void setLectureDAO(LectureDAO lectureDAO) {
+		this.lectureDAO = lectureDAO;
+	}
+
+	public void setLecturerDAO(LecturerDAO lecturerDAO) {
+		this.lecturerDAO = lecturerDAO;
+		System.out.println("****lecturerDAO="+this.lecturerDAO);
+	}
+
+	public void setRoomDAO(RoomDAO roomDAO) {
+		this.roomDAO = roomDAO;
+	}
 }

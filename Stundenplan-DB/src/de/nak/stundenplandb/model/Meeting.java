@@ -1,5 +1,6 @@
 package de.nak.stundenplandb.model;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -110,6 +111,9 @@ public abstract class Meeting implements DomainObject{
 	
 	public void addAppointmentToMeeting(Appointment appointment) {
 		appointment.setMeeting(this);
+		if (this.getAppointments() == null) {
+			this.setAppointments(new HashSet<Appointment>());
+		}
 		this.getAppointments().add(appointment);
 	}
 }

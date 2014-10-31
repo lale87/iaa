@@ -20,7 +20,7 @@ public interface RoomService {
 	 *            The room.
 	 */
 	void saveRoom(Room room);
-
+	
 	/**
 	 * Loads a list of all room.
 	 *

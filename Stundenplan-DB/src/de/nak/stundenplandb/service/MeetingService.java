@@ -3,13 +3,9 @@ package de.nak.stundenplandb.service;
 import java.util.Date;
 import java.util.List;
 
-import de.nak.stundenplandb.model.Elective;
-import de.nak.stundenplandb.model.Exam;
-import de.nak.stundenplandb.model.Lecture;
 import de.nak.stundenplandb.model.Lecturer;
 import de.nak.stundenplandb.model.Meeting;
 import de.nak.stundenplandb.model.Room;
-import de.nak.stundenplandb.model.Seminar;
 import de.nak.stundenplandb.model.StudentGroup;
 
 /**
@@ -19,70 +15,6 @@ import de.nak.stundenplandb.model.StudentGroup;
  *
  */
 public interface MeetingService {
-	/**
-	 * Creates or updates an Exam.
-	 *
-	 * @param exam
-	 *            The exam.
-	 */
-	void saveExam(Exam exam, Integer numberOfAppointments, Date begin, Date end);
-
-	/**
-	 * deletes an Exam.
-	 *
-	 * @param exam
-	 *            The exam.
-	 */
-	void deleteExam(Exam exam);
-
-	/**
-	 * Creates or updates a Lecture.
-	 *
-	 * @param Lecture
-	 *            The lecture.
-	 */
-	void saveLecture(Lecture lecture, Integer numberOfAppointments, Date begin, Date end);
-
-	/**
-	 * deletes a Lecture.
-	 *
-	 * @param lecture
-	 *            The lecture.
-	 */
-	void deleteLecture(Lecture lecture);
-
-	/**
-	 * Creates or updates a Seminar.
-	 *
-	 * @param seminar
-	 *            The seminar.
-	 */
-	void saveSeminar(Seminar seminar, Integer numberOfAppointments, Date begin, Date end);
-
-	/**
-	 * deletes a Seminar.
-	 *
-	 * @param Seminar
-	 *            The seminar.
-	 */
-	void deleteSeminar(Seminar seminar);
-
-	/**
-	 * Creates or updates an Elective.
-	 *
-	 * @param elective
-	 *            The elective.
-	 */
-	void saveElective(Elective elective, Integer numberOfAppointments, Date begin, Date end);
-
-	/**
-	 * deletes an Elective.
-	 *
-	 * @param elective
-	 *            The elective.
-	 */
-	void deleteElective(Elective elective);
-
 	/**
 	 * checks for conflicts
 	 * 
@@ -120,4 +52,17 @@ public interface MeetingService {
 	 * @return a List of Meetings
 	 */
 	List<Meeting> loadAllMeetings();
+	/**
+	 * TODO FK: comment
+	 * @param meeting
+	 * @param meetingName
+	 * @param lecturerId
+	 * @param roomIds
+	 * @param numberOfAppointments
+	 * @param startDate
+	 * @param endDate
+	 */
+	void fillMeeting(Meeting meeting, String meetingName,
+			Long lecturerId, List<Long> roomIds, int numberOfAppointments,
+			Date startDate, Date endDate);
 }
