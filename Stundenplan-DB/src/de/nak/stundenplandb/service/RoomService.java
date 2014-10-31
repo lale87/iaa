@@ -1,5 +1,6 @@
 package de.nak.stundenplandb.service;
 
+import java.util.Date;
 import java.util.List;
 
 import de.nak.stundenplandb.model.ERoomType;
@@ -41,4 +42,12 @@ public interface RoomService {
 	 * @return roomType
 	 */
 	List<Room> loadAllRoomsSortedBYBuildungAndNumber();
+	
+	/**
+	 * Search for unused rooms in a specific period of time.
+	 * @param startDate Start of timeperiod
+	 * @param endDate End of timeperiod
+	 * @return List of free rooms
+	 */
+	List<Room> findFreeRoomsForTimeperiod(Date startDate, Date endDate);
 }

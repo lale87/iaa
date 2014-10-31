@@ -1,8 +1,10 @@
 package de.nak.stundenplandb.service;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 
 import de.nak.stundenplandb.dao.RoomDAO;
@@ -16,6 +18,10 @@ import de.nak.stundenplandb.model.Room;
  *
  */
 public class RoomServiceImpl implements RoomService {
+	/**
+	 * Injected MeetingService
+	 */
+	private MeetingService meetingService;
 	/**
 	 * Injected RoomDAO
 	 */
@@ -61,10 +67,25 @@ public class RoomServiceImpl implements RoomService {
 		this.roomDAO = roomDAO;
 		System.out.println("*******SET_DAO: " + roomDAO.getClass());
 	}
+	
+	/**
+	 * Inject MeetingService
+	 * 
+	 * @param meetingService
+	 */
+	public void setMeetingService(MeetingService meetingService) {
+		this.meetingService = meetingService;
+	}
 
 	@Override
 	public List<ERoomType> getAllRoomTypes() {
 		return Arrays.asList(ERoomType.values());
+	}
+	
+	@Override
+	public List<Room> findFreeRoomsForTimeperiod(Date startDate, Date endDate) {
+		// TODO FK: Suche freier Räume implementieren
+		return new ArrayList<Room>();
 	}
 
 }

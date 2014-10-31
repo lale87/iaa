@@ -59,6 +59,7 @@
     
     <!-- Services -->
     <bean id="roomService" class="de.nak.stundenplandb.service.RoomServiceImpl">
+        <property name="meetingService" ref="meetingService"/>
         <property name="roomDAO" ref="roomDAO"/>
     </bean>
     <bean id="lecturerService" class="de.nak.stundenplandb.service.LecturerServiceImpl">
@@ -67,5 +68,11 @@
     <bean id="studentGroupService" class="de.nak.stundenplandb.service.StudentGroupServiceImpl">
         <property name="studentGroupDAO" ref="studentGroupDAO"/>
         <property name="cohortDAO" ref="cohortDAO"/>
+    </bean>
+    <bean id="meetingService" class="de.nak.stundenplandb.service.MeetingServiceImpl">
+        <property name="examDAO" ref="examDAO"/>
+        <property name="seminarDAO" ref="seminarDAO"/>
+        <property name="electiveDAO" ref="electiveDAO"/>
+        <property name="lectureDAO" ref="lectureDAO"/>
     </bean>
 </beans>
