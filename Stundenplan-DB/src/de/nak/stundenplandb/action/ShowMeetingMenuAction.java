@@ -11,7 +11,8 @@ import de.nak.stundenplandb.model.Meeting;
 import de.nak.stundenplandb.service.MeetingService;
 
 /**
- * Action for showing the meeting list.
+ * Action for showing the meeting menu 
+ * and a list of all existing meetings.
  * 
  * @author Arne Roever
  */
@@ -26,6 +27,11 @@ public class ShowMeetingMenuAction extends ActionSupport {
 	/** The meeting service. */
 	private MeetingService meetingService;
 	
+	/**
+	 * Gets a list of all meetings in the database
+	 *
+	 * @return the meeting list
+	 */
 	public List<Meeting> getMeetingList() {
 		return meetingService.loadAllMeetings();		
 	}	

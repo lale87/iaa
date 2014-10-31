@@ -7,6 +7,8 @@ import de.nak.stundenplandb.model.Seminar;
 import de.nak.stundenplandb.service.SeminarService;
 
 /**
+ * Action for a single Seminar
+ * 
  * @author Arne Roever
  *
  */
@@ -22,6 +24,12 @@ public class SeminarAction extends MeetingAction {
 	private SeminarService seminarService;
 	
 	@Override
+	/**
+	 * Saves the seminar to the database or
+	 * updates the seminar in the database.
+	 * 
+	 * @result the result string
+	 */
 	public String save() {
 		seminarService.saveOrUpdateSeminar(seminar.getId(), meetingName,lecturerId,roomIds, numberOfAppointments, startDate, endDate);
 		return SUCCESS;

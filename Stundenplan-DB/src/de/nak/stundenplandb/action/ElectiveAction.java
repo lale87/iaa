@@ -7,8 +7,9 @@ import de.nak.stundenplandb.model.Elective;
 import de.nak.stundenplandb.service.ElectiveService;
 
 /**
- * @author Arne Roever
- *
+ * Action for a single Elective
+ * 
+ * @author Arne Roever *
  */
 public class ElectiveAction extends MeetingAction {
 
@@ -18,12 +19,17 @@ public class ElectiveAction extends MeetingAction {
 	/** The current elective. */
 	private Elective elective;	
 	
-	/** The selected cohort id. */
+	/** The cohort id selected by the user. */
 	private Long cohortId;
 	
 	/** The elective service. */
 	private ElectiveService electiveService;
 
+	/**
+	 * Saves the elective to the database
+	 *  
+	 *  @return the result string.
+	 */
 	@Override
 	public String save() {
 		electiveService.saveOrUpdateElective(elective.getId(),meetingName,lecturerId,roomIds,cohortId,  numberOfAppointments, startDate, endDate);

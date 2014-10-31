@@ -1,6 +1,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="/struts-tags" prefix="s" %>
 
+<%-- 
+  - Author: Arne Roever
+  - Description: Form for saving new room.
+--%>
+
 <h3><s:text name="hdl.newRoom"></s:text></h3>
 <s:form>
 	<%-- Form fields for the room attributes --%>
@@ -16,9 +21,8 @@
 	<s:submit key="btn.cancel" action="CancelMasterData"/>
 </s:form>
 
-<h3>
-	<s:text name="hdl.existingRooms"></s:text>
-</h3>
+<%-- Table for displaying existing rooms --%>
+<h3><s:text name="hdl.existingRooms"></s:text></h3>
 <table style="border-collapse: collapse; border: #CCC;" border="1">
 	<tr>		
 		<th><s:text name="lbl.building" /></th>

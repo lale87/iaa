@@ -10,6 +10,8 @@ import de.nak.stundenplandb.service.ExamService;
 
 
 /**
+ * Action for a single Exam.
+ * 
  * @author Arne Roever
  *
  */
@@ -18,15 +20,20 @@ public class ExamAction extends MeetingAction {
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = -6938348041955775951L;
 
-	/** The exam. */
+	/** The current exam. */
 	private Exam exam;
 
-	/** The selected studentgroup id. */
+	/** The  student group id selected by the user. */
 	private List<Long> studentGroupIds; 
 	
 	/** The exam service. */
 	private ExamService examService;
 
+	/**
+	 * Saves the exam to the database
+	 * 
+	 * @return the result string.
+	 */
 	public String save(){
 		examService.saveOrUpdateExam(exam.getId(), meetingName,lecturerId,roomIds,studentGroupIds,  numberOfAppointments, startDate, endDate);
 		return SUCCESS;

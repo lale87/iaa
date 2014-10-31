@@ -1,9 +1,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <%@ taglib uri="/struts-tags" prefix="s"%>
 
-<h3>
-	<s:text name="hdl.newLecturer"></s:text>
-</h3>
+<%-- 
+  - Author: Arne Roever
+  - Description: Form for saving new lecturers.
+--%>
+
+<h3><s:text name="hdl.newLecturer"></s:text></h3>
 <s:form>
 	<%-- Form fields for the lecturer's attributes --%>
 	<s:hidden name="lecturer.id" />
@@ -24,7 +27,7 @@
 </s:form>
 
 
-<%-- The table of existing lectures --%>
+<%-- The table of existing lecturers --%>
 <h3>
 	<s:text name="hdl.existingLecturers"></s:text>
 </h3>

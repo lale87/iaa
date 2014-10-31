@@ -1,6 +1,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="/struts-tags" prefix="s" %>
 
+<%-- 
+  - Author: Arne Roever
+  - Description: Form for saving new student groups.
+ --%>
+
 <h3><s:text name="hdl.newStudentGroup"></s:text></h3>
 <s:form>
 	<%-- Form fields for the student group attributes --%>

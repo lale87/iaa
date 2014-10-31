@@ -11,7 +11,7 @@ import de.nak.stundenplandb.service.LecturerService;
 
 
 /**
- * The Class LecturerAction.
+ * Action for a single lecturer or getting all existing lecturers
  * 
  * @author Arne Roever
  */
@@ -27,12 +27,11 @@ public class LecturerAction extends ActionSupport {
 	private LecturerService lecturerService;
 
 	/**
-	 * Save the lecturer to the database.
+	 * Saves the lecturer to the database.
 	 *
 	 * @return the result string
 	 */
 	public String save(){
-		System.out.println("HIer");
 		lecturerService.saveLecturer(lecturer);
 		return SUCCESS;
 	}

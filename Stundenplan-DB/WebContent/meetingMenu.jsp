@@ -1,6 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="/struts-tags" prefix="s" %>
 
+<%-- 
+  - Author: Arne Roever
+  - Description: Form for saving new lectures.
+--%>
 
 <h3><s:text name="hdl.newMeeting"></s:text></h3>
 <s:form>
@@ -13,7 +17,7 @@
 
 <h3><s:text name="hdl.editMeeting"></s:text></h3>
 <s:form>
-	<%-- The meeting table --%>
+	<%-- The table of existing meetings--%>
 	<table style="border-collapse: collapse; border: #CCC;" border="1">
 		<tr>			
 			<th></th>			

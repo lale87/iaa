@@ -12,7 +12,7 @@ import de.nak.stundenplandb.model.Room;
 import de.nak.stundenplandb.model.StudentGroup;
 
 /**
- * Action for showing the timetable form.
+ * Action for showing the timetable list.
  * 
  * @author Arne Roever
  *

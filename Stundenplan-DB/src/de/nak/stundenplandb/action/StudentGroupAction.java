@@ -28,7 +28,7 @@ public class StudentGroupAction extends ActionSupport {
 	private StudentGroupService studentGroupService;
 	
 	/**
-	 * Save student group to database.
+	 * Save student group to the database.
 	 *
 	 * @return the result string
 	 */
@@ -37,8 +37,22 @@ public class StudentGroupAction extends ActionSupport {
 		return SUCCESS;
 	}
 	
+	/**
+	 * Gets all student groups from the database
+	 *
+	 * @return all student groups
+	 */
 	public List<StudentGroup> getAllStudentGroups(){
 		return studentGroupService.loadAllStudentGroups();
+	}
+	
+	/**
+	 * Gets all fields of study.
+	 *
+	 * @return the all fields of study
+	 */
+	public List<EFieldOfStudy> getAllFieldsOfStudy(){
+		return studentGroupService.getAllFieldsOfStudy();
 	}
 	
 	public StudentGroup getStudentGroup() {
@@ -51,15 +65,6 @@ public class StudentGroupAction extends ActionSupport {
 
 	public void setStudentGroupService(StudentGroupService studentGroupService) {
 		this.studentGroupService = studentGroupService;
-	}
-	
-	/**
-	 * Gets all fields of study.
-	 *
-	 * @return the all fields of study
-	 */
-	public List<EFieldOfStudy> getAllFieldsOfStudy(){
-		return studentGroupService.getAllFieldsOfStudy();
 	}
 
 

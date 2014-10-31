@@ -15,7 +15,7 @@ import de.nak.stundenplandb.service.RoomService;
 import de.nak.stundenplandb.service.StudentGroupService;
 
 /**
- * Action for a single meeting.
+ * Abstract Action for a meeting. * 
  *
  * @author Arne Roever
  */
@@ -24,22 +24,22 @@ public abstract class MeetingAction extends ActionSupport {
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 7376786519031302846L;	
 	
-	/** The selected lecturer id. */
+	/**  The lecturer id selected by the user. */
 	protected Long lecturerId;
 	
-	/** The selected room ids. */
+	/**  The room ids selected by the user. */
 	protected List<Long> roomIds;
 
-	/** The start date. */
+	/**  The start date entered by the user. */
 	protected Date startDate;
 	
-	/** The end date. */
+	/** The end date entered by the user. */
 	protected Date endDate;
 	
-	/** The number of appointments. */
+	/**  The number of appointments entered by the user. */
 	protected Integer numberOfAppointments;
 	
-	/** The meeting name. */
+	/**  The meeting name entered by the user. */
 	protected String meetingName;
 
 	/** The lecturer service. */
@@ -54,37 +54,43 @@ public abstract class MeetingAction extends ActionSupport {
 	/** The meeting service. */
 	protected MeetingService meetingService;
 	
+	
+	/**
+	 * Abstract save method.
+	 * Overwritten by subclasses.
+	 *
+	 */
 	public abstract String save();
 	
 	/**
-	 * Gets all lecturers.
+	 * Gets all lecturers in the database
 	 *
-	 * @return the all lecturers
+	 * @return all lecturers
 	 */
 	public List<Lecturer> getAllLecturers(){
 		return lecturerService.loadAllLecturers();
 	}
 	
 	/**
-	 * Gets all rooms.
+	 * Gets all rooms in the database
 	 *
-	 * @return the all rooms
+	 * @return all rooms
 	 */
 	public List<Room> getAllRooms(){
 		return roomService.loadAllRoomsSortedBYBuildungAndNumber();
 	}
 	
 	/**
-	 * Gets all student groups.
+	 * Gets all student groups in the database
 	 *
-	 * @return the student groups
+	 * @return student groups
 	 */
 	public List<StudentGroup> getAllStudentGroups(){
 		return studentGroupService.loadAllStudentGroupsSorted();
 	}
 	
 	/**
-	 * Gets all cohorts.
+	 * Gets all cohorts in the database
 	 *
 	 * @return all cohorts
 	 */
