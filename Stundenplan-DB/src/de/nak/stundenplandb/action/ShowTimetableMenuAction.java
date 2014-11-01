@@ -33,12 +33,6 @@ public class ShowTimetableMenuAction extends ActionSupport {
 	
 	/** The room service. */
 	private RoomService roomService;
-	
-	/** The type chosen by the user for displaying timetable */
-	private String selectedType;
-	
-	/** The id selected by the user. */
-	private Long selectedId;
 
 	@Override
 	public String execute(){
@@ -70,22 +64,6 @@ public class ShowTimetableMenuAction extends ActionSupport {
 	 */
 	public List<Lecturer> getLecturerList() {
 		return lecturerService.loadAllLecturers();
-	}
-	
-	public String getSelectedType() {
-		return selectedType;
-	}
-
-	public void setSelectedType(String selectedType) {
-		this.selectedType = selectedType;
-	}
-
-	public Long getSelectedId() {
-		return selectedId;
-	}
-
-	public void setSelectedId(Long selectedId) {
-		this.selectedId = selectedId;
 	}
 	
 	public void setLecturerService(LecturerService lecturerService) {

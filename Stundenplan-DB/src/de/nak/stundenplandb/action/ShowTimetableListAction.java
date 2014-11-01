@@ -11,7 +11,7 @@ import de.nak.stundenplandb.model.Meeting;
  * 
  * @author Arne Roever
  */
-public class PrintTimetableAction extends ActionSupport {
+public class ShowTimetableListAction extends ActionSupport {
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 6966581960183490333L;
@@ -19,13 +19,28 @@ public class PrintTimetableAction extends ActionSupport {
     /** The selected (lecturer/room/student group) id. */
     private Long selectedId;
     
-    /** The meeting list. */
+    /** The selected type. */
+    private String selectedType;
+
+	/** The meeting list. */
     private List<Meeting> meetingList;
         
     @Override
     public String execute(){
     	return SUCCESS;
     }
+    
+    public String getSelectedType() {
+		return selectedType;
+	}
+
+	public void setSelectedType(String selectedType) {
+		this.selectedType = selectedType;
+	}
+
+	public void setSelectedId(Long selectedId) {
+		this.selectedId = selectedId;
+	}
 
 	public Long getSelectedId() {		
 		return selectedId;

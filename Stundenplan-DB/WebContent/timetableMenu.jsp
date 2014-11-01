@@ -12,6 +12,7 @@
 		name="selectedType" list="{'Dozent','Zenturie','Raum'}" 
 		doubleName="selectedId" doubleList="top == 'Dozent' ? lecturerList : (top == 'Zenturie' ?  studentGroupList : roomList )" 
 		doubleListKey="id" doubleListValue="displayName"/>
- 	
+		
+ 	<s:submit key="btn.showTimetable" action="ShowTimetableList"/>
 	<s:submit key="btn.return" action="ShowMainMenu"/>
 </s:form>

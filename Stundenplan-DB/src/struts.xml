@@ -17,10 +17,6 @@
 			<result type="tiles">masterData</result>
 		</action>
 		
-		<action name="ShowTimetableMenu" class="de.nak.stundenplandb.action.ShowTimetableMenuAction">
-			<result type="tiles">timetableMenu</result>
-		</action>	
-		
 		<action name="ShowLecturerForm" class="de.nak.stundenplandb.action.LecturerAction">
 		    <interceptor-ref name="validation">
 		        <param name="excludeMethods">execute</param>
@@ -115,6 +111,14 @@
 		<action name="SaveSeminar" class="de.nak.stundenplandb.action.SeminarAction" method="save">
 			<result type="redirect">ShowSeminarForm.action</result>
 			<result type="tiles" name="input">seminarForm</result>
+		</action>
+		
+		<action name="ShowTimetableMenu" class="de.nak.stundenplandb.action.ShowTimetableMenuAction">
+			<result type="tiles">timetableMenu</result>
+		</action>	
+		
+		<action name="ShowTimetableList" class="de.nak.stundenplandb.action.ShowTimetableListAction">
+			<result type="tiles">timetableList</result>    					
 		</action>
 		
 		

@@ -30,7 +30,11 @@
 				<td><s:radio name="meetingId" list="#{id:''}" theme="simple"/></td>
 				<td><s:property value="name"/></td>
 				<td><s:property value="lecturer.displayName"/></td>
-				<td><%-- Platzhalter für Rooms Iterator --%></td>
+				<td>
+					<s:iterator value="rooms">
+						<s:property value="displayName"/>						
+					</s:iterator>
+				</td>
 			</tr>
 		</s:iterator>
 	</table>	

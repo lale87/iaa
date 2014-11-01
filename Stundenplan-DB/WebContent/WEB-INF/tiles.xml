@@ -64,5 +64,12 @@
 	<!-- The timetable menu -->
  	<definition name="timetableMenu" extends="mainLayout">
 		<put-attribute name="content" value="/timetableMenu.jsp"/>
+	</definition>	
+	
+	<!-- The timetable list -->
+ 	<definition name="timetableList" extends="mainLayout">
+		<put-attribute name="content" value="/timetableList.jsp"/>
 	</definition>
+	
+	
 </tiles-definitions>
