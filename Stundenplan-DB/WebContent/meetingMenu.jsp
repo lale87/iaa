@@ -22,13 +22,15 @@
 		<tr>			
 			<th></th>			
 			<th><s:text name="lbl.meetingName"/></th>
-			<th><s:text name="lbl.lecturer"/></th>			
+			<th><s:text name="lbl.lecturer"/></th>
+			<th><s:text name="lbl.rooms"/></th>			
 		</tr>
 		<s:iterator value="meetingList">
 			<tr>				
 				<td><s:radio name="meetingId" list="#{id:''}" theme="simple"/></td>
 				<td><s:property value="name"/></td>
 				<td><s:property value="lecturer.displayName"/></td>
+				<td><%-- Platzhalter für Rooms Iterator --%></td>
 			</tr>
 		</s:iterator>
 	</table>	
