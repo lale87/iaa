@@ -94,10 +94,10 @@ public class MeetingServiceImpl implements MeetingService {
 	@Override
 	public List<Meeting> loadAllMeetings() {
 		List<Meeting> allMeetings = new ArrayList<Meeting>();
-		allMeetings.add((Meeting) examDAO.loadAll());
-		allMeetings.add((Meeting) lectureDAO.loadAll());
-		allMeetings.add((Meeting) electiveDAO.loadAll());
-		allMeetings.add((Meeting) seminarDAO.loadAll());
+		allMeetings.addAll(examDAO.loadAll());
+		allMeetings.addAll(lectureDAO.loadAll());
+		allMeetings.addAll(electiveDAO.loadAll());
+		allMeetings.addAll(seminarDAO.loadAll());
 		return allMeetings;
 	}
 

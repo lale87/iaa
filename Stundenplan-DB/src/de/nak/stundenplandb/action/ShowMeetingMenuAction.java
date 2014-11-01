@@ -48,7 +48,8 @@ public class ShowMeetingMenuAction extends ActionSupport {
 	public void setMeetingId(Long meetingId) {
 		this.meetingId = meetingId;
 	}
-	
-	
 
+	public void setMeetingService(MeetingService meetingService) {
+		this.meetingService = meetingService;
+	}
 }

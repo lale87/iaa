@@ -76,7 +76,7 @@ public abstract class Meeting implements DomainObject{
 		this.name = name;
 	}
 	
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany
 	public Set<Room> getRooms() {
 		return rooms;
 	}
