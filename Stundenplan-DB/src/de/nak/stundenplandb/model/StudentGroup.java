@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.NaturalId;
 
@@ -168,5 +169,17 @@ public class StudentGroup implements DomainObject {
 		return true;
 	}
 	
-	
+	/**
+	 * Returns the display name
+	 * @return
+	 */
+	@Transient
+	public String getDisplayName() {
+		// 2-stellig
+		String yearOfAdmission = getCohort().getYearOfAdmission().toString();
+		while (yearOfAdmission.length() < 2) {
+			yearOfAdmission = "0" + yearOfAdmission;
+		}
+		return getFieldOfStudy().getAbreviation() + yearOfAdmission + getGroupIdentifier();
+	}
 }

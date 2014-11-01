@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.NaturalId;
 
@@ -176,5 +177,17 @@ public class Room implements DomainObject{
 		return true;
 	}
 	
-
+	/**
+	 * Returns the display name
+	 * @return
+	 */
+	@Transient
+	public String getDisplayName() {
+		// Führende Nullen hinzufügen
+		String roomNumber = getRoomNumber().toString();
+		while (roomNumber.length() < 3) {
+			roomNumber = "0" + roomNumber;
+		}
+		return getBuilding() + roomNumber;
+	}
 }

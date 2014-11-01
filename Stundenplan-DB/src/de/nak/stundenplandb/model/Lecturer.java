@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.NaturalId;
 
@@ -143,6 +144,15 @@ public class Lecturer implements DomainObject {
 	 */
 	public void setAbbreviation(String abbreviation) {
 		this.abbreviation = abbreviation;
+	}
+	
+	/**
+	 * Returns the display name
+	 * @return
+	 */
+	@Transient
+	public String getDisplayName() {
+		return getLastName() + ", " + getFirstName() + " - " + getAbbreviation();
 	}
 
 }
