@@ -7,6 +7,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.hibernate.Hibernate;
+
 import de.nak.stundenplandb.dao.ElectiveDAO;
 import de.nak.stundenplandb.dao.ExamDAO;
 import de.nak.stundenplandb.dao.LectureDAO;
@@ -51,13 +53,13 @@ public class MeetingServiceImpl implements MeetingService {
 	public List<Meeting> loadMeetingsForStudentGroup(StudentGroup studentGroup,
 			Date start, Date end) {
 		List<Meeting> meetingsForStudentGroup = new ArrayList<Meeting>();
-		meetingsForStudentGroup.add((Meeting) examDAO.loadExamForStudentGroup(
+		meetingsForStudentGroup.addAll(examDAO.loadExamForStudentGroup(
 				studentGroup, start, end));
-		meetingsForStudentGroup.add((Meeting) lectureDAO
-				.loadLecturesForStudentGroup(studentGroup, start, end));
-		meetingsForStudentGroup.add((Meeting) electiveDAO
-				.loadElectivesForStudentGroup(studentGroup.getCohort(), start,
-						end));
+		meetingsForStudentGroup.addAll(lectureDAO.loadLecturesForStudentGroup(
+				studentGroup, start, end));
+		meetingsForStudentGroup.addAll(electiveDAO.loadElectivesForStudentGroup(
+				studentGroup.getCohort(), start, end));
+		initializeMeetings(meetingsForStudentGroup);
 		return meetingsForStudentGroup;
 	}
 
@@ -65,14 +67,15 @@ public class MeetingServiceImpl implements MeetingService {
 	public List<Meeting> loadMeetingsForLecturer(Lecturer lecturer, Date start,
 			Date end) {
 		List<Meeting> meetingsForLecturer = new ArrayList<Meeting>();
-		meetingsForLecturer.add((Meeting) examDAO.loadExamForLecturer(lecturer,
-				start, end));
-		meetingsForLecturer.add((Meeting) lectureDAO.loadLecturesForLecturer(
+		meetingsForLecturer.addAll(examDAO.loadExamForLecturer(
 				lecturer, start, end));
-		meetingsForLecturer.add((Meeting) electiveDAO.loadElectivesForLecturer(
+		meetingsForLecturer.addAll(lectureDAO.loadLecturesForLecturer(
 				lecturer, start, end));
-		meetingsForLecturer.add((Meeting) seminarDAO.loadSeminarsForLecturer(
+		meetingsForLecturer.addAll(electiveDAO.loadElectivesForLecturer(
 				lecturer, start, end));
+		meetingsForLecturer.addAll(seminarDAO.loadSeminarsForLecturer(
+				lecturer, start, end));
+		initializeMeetings(meetingsForLecturer);
 		return meetingsForLecturer;
 
 	}
@@ -80,14 +83,11 @@ public class MeetingServiceImpl implements MeetingService {
 	@Override
 	public List<Meeting> loadMeetingsForRoom(Room room, Date start, Date end) {
 		List<Meeting> meetingsForRoom = new ArrayList<Meeting>();
-		meetingsForRoom.add((Meeting) examDAO
-				.loadExamsForRoom(room, start, end));
-		meetingsForRoom.add((Meeting) lectureDAO.loadLecturesForRoom(room,
-				start, end));
-		meetingsForRoom.add((Meeting) electiveDAO.loadElectivesForRoom(room,
-				start, end));
-		meetingsForRoom.add((Meeting) seminarDAO.loadSeminarsForRoom(room,
-				start, end));
+		meetingsForRoom.addAll(examDAO.loadExamsForRoom(room, start, end));
+		meetingsForRoom.addAll(lectureDAO.loadLecturesForRoom(room, start, end));
+		meetingsForRoom.addAll(electiveDAO.loadElectivesForRoom(room, start, end));
+		meetingsForRoom.addAll(seminarDAO.loadSeminarsForRoom(room, start, end));
+		initializeMeetings(meetingsForRoom);
 		return meetingsForRoom;
 	}
 
@@ -98,7 +98,20 @@ public class MeetingServiceImpl implements MeetingService {
 		allMeetings.addAll(lectureDAO.loadAll());
 		allMeetings.addAll(electiveDAO.loadAll());
 		allMeetings.addAll(seminarDAO.loadAll());
+		initializeMeetings(allMeetings);
 		return allMeetings;
+	}
+	
+	private void initializeMeetings(List<Meeting> meetings) {
+		for (Meeting meeting : meetings) {
+			initializeMeeting(meeting);
+		}
+	}
+	
+	private void initializeMeeting(Meeting meeting) {
+		Hibernate.initialize(meeting.getLecturer());
+		Hibernate.initialize(meeting.getRooms());
+		Hibernate.initialize(meeting.getAppointments());
 	}
 
 	/**
