@@ -15,6 +15,7 @@ import de.nak.stundenplandb.dao.LectureDAO;
 import de.nak.stundenplandb.dao.LecturerDAO;
 import de.nak.stundenplandb.dao.RoomDAO;
 import de.nak.stundenplandb.dao.SeminarDAO;
+import de.nak.stundenplandb.dao.StudentGroupDAO;
 import de.nak.stundenplandb.model.Appointment;
 import de.nak.stundenplandb.model.Lecturer;
 import de.nak.stundenplandb.model.Meeting;
@@ -35,6 +36,7 @@ public class MeetingServiceImpl implements MeetingService {
 	private LectureDAO lectureDAO;
 	private LecturerDAO lecturerDAO;
 	private RoomDAO roomDAO;
+	private StudentGroupDAO studentGroupDAO;
 	
 	@Override
 	public boolean isPossible(Meeting meeting) {
@@ -50,8 +52,9 @@ public class MeetingServiceImpl implements MeetingService {
 	}
 
 	@Override
-	public List<Meeting> loadMeetingsForStudentGroup(StudentGroup studentGroup,
+	public List<Meeting> loadMeetingsForStudentGroup(Long studentGroupId,
 			Date start, Date end) {
+		StudentGroup studentGroup = studentGroupDAO.load(studentGroupId);
 		List<Meeting> meetingsForStudentGroup = new ArrayList<Meeting>();
 		meetingsForStudentGroup.addAll(examDAO.loadExamForStudentGroup(
 				studentGroup, start, end));
@@ -64,8 +67,9 @@ public class MeetingServiceImpl implements MeetingService {
 	}
 
 	@Override
-	public List<Meeting> loadMeetingsForLecturer(Lecturer lecturer, Date start,
+	public List<Meeting> loadMeetingsForLecturer(Long lecturerId, Date start,
 			Date end) {
+		Lecturer lecturer = lecturerDAO.load(lecturerId);
 		List<Meeting> meetingsForLecturer = new ArrayList<Meeting>();
 		meetingsForLecturer.addAll(examDAO.loadExamForLecturer(
 				lecturer, start, end));
@@ -81,7 +85,8 @@ public class MeetingServiceImpl implements MeetingService {
 	}
 
 	@Override
-	public List<Meeting> loadMeetingsForRoom(Room room, Date start, Date end) {
+	public List<Meeting> loadMeetingsForRoom(Long roomId, Date start, Date end) {
+		Room room = roomDAO.load(roomId);
 		List<Meeting> meetingsForRoom = new ArrayList<Meeting>();
 		meetingsForRoom.addAll(examDAO.loadExamsForRoom(room, start, end));
 		meetingsForRoom.addAll(lectureDAO.loadLecturesForRoom(room, start, end));
@@ -195,5 +200,9 @@ public class MeetingServiceImpl implements MeetingService {
 
 	public void setRoomDAO(RoomDAO roomDAO) {
 		this.roomDAO = roomDAO;
+	}
+
+	public void setStudentGroupDAO(StudentGroupDAO studentGroupDAO) {
+		this.studentGroupDAO = studentGroupDAO;
 	}
 }

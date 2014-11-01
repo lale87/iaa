@@ -3,10 +3,7 @@ package de.nak.stundenplandb.service;
 import java.util.Date;
 import java.util.List;
 
-import de.nak.stundenplandb.model.Lecturer;
 import de.nak.stundenplandb.model.Meeting;
-import de.nak.stundenplandb.model.Room;
-import de.nak.stundenplandb.model.StudentGroup;
 
 /**
  * Schnittstelle für den MeetingService
@@ -28,7 +25,7 @@ public interface MeetingService {
 	 * 
 	 * @return a List of Meeting
 	 */
-	List<Meeting> loadMeetingsForStudentGroup(StudentGroup studentGroup,
+	List<Meeting> loadMeetingsForStudentGroup(Long studentGroupId,
 			Date start, Date end);
 
 	/**
@@ -36,7 +33,7 @@ public interface MeetingService {
 	 * 
 	 * @return a List of Meeting
 	 */
-	List<Meeting> loadMeetingsForLecturer(Lecturer lecturer, Date start,
+	List<Meeting> loadMeetingsForLecturer(Long lecturerId, Date start,
 			Date end);
 
 	/**
@@ -44,7 +41,7 @@ public interface MeetingService {
 	 * 
 	 * @return a List of Meeting
 	 */
-	List<Meeting> loadMeetingsForRoom(Room room, Date start, Date end);
+	List<Meeting> loadMeetingsForRoom(Long roomId, Date start, Date end);
 
 	/**
 	 * Loads all existing meetings
