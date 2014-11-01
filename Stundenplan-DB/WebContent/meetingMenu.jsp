@@ -28,7 +28,7 @@
 			<tr>				
 				<td><s:radio name="meetingId" list="#{id:''}" theme="simple"/></td>
 				<td><s:property value="name"/></td>
-				<td><s:property value="lecturer.firstName + ' ' lecturer.lastName"/></td>
+				<td><s:property value="lecturer.displayName"/></td>
 			</tr>
 		</s:iterator>
 	</table>	
