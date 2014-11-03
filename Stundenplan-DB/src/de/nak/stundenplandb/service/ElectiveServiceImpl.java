@@ -62,4 +62,12 @@ public class ElectiveServiceImpl implements ElectiveService {
 	public void setCohortDAO(CohortDAO cohortDAO) {
 		this.cohortDAO = cohortDAO;
 	}
+
+	@Override
+	public boolean checkCollisionsForElective(Long id, String meetingName,
+			Long lecturerId, List<Long> roomIds, Long cohortId,
+			int numberOfAppointments, Date startDate, Date endDate) {
+		// TODO Auto-generated method stub
+		return true;
+	}
 }

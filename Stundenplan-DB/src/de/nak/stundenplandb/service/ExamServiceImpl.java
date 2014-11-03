@@ -68,4 +68,12 @@ public class ExamServiceImpl implements ExamService {
 	public void setStudentGroupDAO(StudentGroupDAO studentGroupDAO) {
 		this.studentGroupDAO = studentGroupDAO;
 	}
+
+	@Override
+	public boolean CheckCollisionsForExam(Long id, String meetingName,
+			Long lecturerId, List<Long> roomIds, List<Long> studentGroupIds,
+			int numberOfAppointments, Date startDate, Date endDate) {
+		// TODO Auto-generated method stub
+		return true;
+	}
 }

@@ -62,4 +62,12 @@ public class LectureServiceImpl implements LectureService {
 	public void setStudentGroupDAO(StudentGroupDAO studentGroupDAO) {
 		this.studentGroupDAO = studentGroupDAO;
 	}
+
+	@Override
+	public boolean CheckCollisionsForLecture(Long id, String meetingName,
+			Long lecturerId, List<Long> roomIds, Long studentGroupId,
+			int numberOfAppointments, Date startDate, Date endDate) {
+		// TODO Auto-generated method stub
+		return true;
+	}
 }

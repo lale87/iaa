@@ -54,4 +54,12 @@ public class SeminarServiceImpl implements SeminarService {
 	public void setSeminarDAO(SeminarDAO seminarDAO) {
 		this.seminarDAO = seminarDAO;
 	}
+
+	@Override
+	public boolean checkCollisionsForSeminar(Long id, String meetingName,
+			Long lecturerId, List<Long> roomIds, int numberOfAppointments,
+			Date startDate, Date endDate) {
+		// TODO Auto-generated method stub
+		return true;
+	}
 }
