@@ -125,6 +125,7 @@ public abstract class Meeting implements DomainObject{
 	 * the number of appointments for this meeting
 	 * @return the number of appointments
 	 */
+	@Transient
 	public int getNumberOfAppointments(){
 		return getAppointments().size();
 	}
