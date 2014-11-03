@@ -39,7 +39,7 @@ public interface LectureService {
 	 * @param startDate Start date/time
 	 * @param endDate End date/time
 	 */
-	boolean CheckCollisionsForLecture(Long id, String meetingName, Long lecturerId,
+	boolean CheckCollisionsForLecture(Long id, Long lecturerId,
 			List<Long> roomIds, Long studentGroupId, int numberOfAppointments,
 			Date startDate, Date endDate);
 

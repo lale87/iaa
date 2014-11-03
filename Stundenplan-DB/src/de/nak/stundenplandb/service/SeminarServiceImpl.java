@@ -56,7 +56,7 @@ public class SeminarServiceImpl implements SeminarService {
 	}
 
 	@Override
-	public boolean checkCollisionsForSeminar(Long id, String meetingName,
+	public boolean checkCollisionsForSeminar(Long id,
 			Long lecturerId, List<Long> roomIds, int numberOfAppointments,
 			Date startDate, Date endDate) {
 		// TODO Auto-generated method stub

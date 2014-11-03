@@ -40,7 +40,7 @@ public interface ExamService {
 	 * @param startDate Start date/time
 	 * @param endDate End date/time
 	 */
-	boolean CheckCollisionsForExam(Long id, String meetingName, Long lecturerId,
+	boolean CheckCollisionsForExam(Long id,  Long lecturerId,
 			List<Long> roomIds, List<Long> studentGroupIds, int numberOfAppointments,
 			Date startDate, Date endDate);
 

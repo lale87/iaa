@@ -64,7 +64,7 @@ public class ElectiveServiceImpl implements ElectiveService {
 	}
 
 	@Override
-	public boolean checkCollisionsForElective(Long id, String meetingName,
+	public boolean checkCollisionsForElective(Long id, 
 			Long lecturerId, List<Long> roomIds, Long cohortId,
 			int numberOfAppointments, Date startDate, Date endDate) {
 		// TODO Auto-generated method stub

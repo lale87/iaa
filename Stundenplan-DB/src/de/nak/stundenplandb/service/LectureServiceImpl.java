@@ -64,7 +64,7 @@ public class LectureServiceImpl implements LectureService {
 	}
 
 	@Override
-	public boolean CheckCollisionsForLecture(Long id, String meetingName,
+	public boolean CheckCollisionsForLecture(Long id, 
 			Long lecturerId, List<Long> roomIds, Long studentGroupId,
 			int numberOfAppointments, Date startDate, Date endDate) {
 		// TODO Auto-generated method stub

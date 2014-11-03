@@ -39,7 +39,7 @@ public interface ElectiveService {
 	 * @param startDate Start date/time
 	 * @param endDate End date/time
 	 */
-	boolean checkCollisionsForElective(Long id, String meetingName, Long lecturerId,
+	boolean checkCollisionsForElective(Long id, Long lecturerId,
 			List<Long> roomIds, Long cohortId, int numberOfAppointments,
 			Date startDate, Date endDate);
 

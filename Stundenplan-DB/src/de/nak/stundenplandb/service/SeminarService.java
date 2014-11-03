@@ -37,7 +37,7 @@ public interface SeminarService {
 	 * @param startDate Start date/time
 	 * @param endDate End date/time
 	 */
-	boolean checkCollisionsForSeminar(Long id, String meetingName, Long lecturerId,
+	boolean checkCollisionsForSeminar(Long id, Long lecturerId,
 			List<Long> roomIds, int numberOfAppointments, Date startDate, Date endDate);
 
 	/**
