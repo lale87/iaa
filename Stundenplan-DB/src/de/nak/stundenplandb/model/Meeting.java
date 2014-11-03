@@ -59,6 +59,10 @@ public abstract class Meeting implements DomainObject{
 	 * The Appointments
 	 */
 	private Set<Appointment> appointments;
+	/**
+	 * The meetingType as a marker for an concrete Subclass
+	 */
+	private EMeetingType meetingType;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -123,5 +127,18 @@ public abstract class Meeting implements DomainObject{
 	 */
 	public int getNumberOfAppointments(){
 		return getAppointments().size();
+	}
+	/**
+	 * @return the meetingType
+	 */
+	@Column(nullable = false)
+	public EMeetingType getMeetingType() {
+		return meetingType;
+	}
+	/**
+	 * @param meetingType the meetingType to set
+	 */
+	public void setMeetingType(EMeetingType meetingType) {
+		this.meetingType = meetingType;
 	}
 }
