@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.List;
 
 import de.nak.stundenplandb.dao.SeminarDAO;
+import de.nak.stundenplandb.model.EMeetingType;
 import de.nak.stundenplandb.model.Seminar;
 
 /**
@@ -32,7 +33,7 @@ public class SeminarServiceImpl implements SeminarService {
 		
 		// set meeting attributes
 		meetingService.fillMeeting(seminar, meetingName, lecturerId, roomIds,
-				numberOfAppointments, startDate, endDate);
+				numberOfAppointments, startDate, endDate, EMeetingType.SEMINAR);
 		
 		// set seminar-specific attributes
 		// nothing to set

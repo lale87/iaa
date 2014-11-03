@@ -3,6 +3,7 @@ package de.nak.stundenplandb.service;
 import java.util.Date;
 import java.util.List;
 
+import de.nak.stundenplandb.model.EMeetingType;
 import de.nak.stundenplandb.model.Meeting;
 
 /**
@@ -83,7 +84,7 @@ public interface MeetingService {
 	 */
 	void fillMeeting(Meeting meeting, String meetingName, Long lecturerId,
 			List<Long> roomIds, int numberOfAppointments, Date startDate,
-			Date endDate);
+			Date endDate, EMeetingType meetingType);
 
 	/**
 	 * Deletes a Meeting by a given ID

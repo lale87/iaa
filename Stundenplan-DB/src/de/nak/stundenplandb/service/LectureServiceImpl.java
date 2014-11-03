@@ -8,6 +8,7 @@ import java.util.List;
 
 import de.nak.stundenplandb.dao.LectureDAO;
 import de.nak.stundenplandb.dao.StudentGroupDAO;
+import de.nak.stundenplandb.model.EMeetingType;
 import de.nak.stundenplandb.model.Lecture;
 import de.nak.stundenplandb.model.StudentGroup;
 
@@ -35,7 +36,7 @@ public class LectureServiceImpl implements LectureService {
 		
 		// set meeting attributes
 		meetingService.fillMeeting(lecture, meetingName, lecturerId, roomIds,
-				numberOfAppointments, startDate, endDate);
+				numberOfAppointments, startDate, endDate, EMeetingType.LECTURE);
 		
 		// set lecturer-specific attributes
 		StudentGroup studentGroup = studentGroupDAO.load(studentGroupId);

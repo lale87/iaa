@@ -9,6 +9,7 @@ import java.util.List;
 import de.nak.stundenplandb.dao.CohortDAO;
 import de.nak.stundenplandb.dao.ElectiveDAO;
 import de.nak.stundenplandb.model.Cohort;
+import de.nak.stundenplandb.model.EMeetingType;
 import de.nak.stundenplandb.model.Elective;
 
 /**
@@ -35,7 +36,7 @@ public class ElectiveServiceImpl implements ElectiveService {
 		
 		// set meeting attributes
 		meetingService.fillMeeting(elective, meetingName, lecturerId, roomIds,
-				numberOfAppointments, startDate, endDate);
+				numberOfAppointments, startDate, endDate, EMeetingType.ELECTIVE);
 		
 		// set elective-specific attributes
 		Cohort cohort = cohortDAO.load(cohortId);

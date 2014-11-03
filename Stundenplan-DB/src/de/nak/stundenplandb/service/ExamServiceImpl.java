@@ -10,6 +10,7 @@ import java.util.Set;
 
 import de.nak.stundenplandb.dao.ExamDAO;
 import de.nak.stundenplandb.dao.StudentGroupDAO;
+import de.nak.stundenplandb.model.EMeetingType;
 import de.nak.stundenplandb.model.Exam;
 import de.nak.stundenplandb.model.StudentGroup;
 
@@ -37,7 +38,7 @@ public class ExamServiceImpl implements ExamService {
 		
 		// set meeting attributes
 		meetingService.fillMeeting(exam, meetingName, lecturerId, roomIds,
-				numberOfAppointments, startDate, endDate);
+				numberOfAppointments, startDate, endDate, EMeetingType.EXAM);
 		
 		// set exam-specific attributes
 		Set<StudentGroup> studentGroups = new HashSet<StudentGroup>();

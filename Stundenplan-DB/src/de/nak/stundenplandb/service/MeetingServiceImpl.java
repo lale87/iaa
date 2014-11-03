@@ -17,6 +17,7 @@ import de.nak.stundenplandb.dao.RoomDAO;
 import de.nak.stundenplandb.dao.SeminarDAO;
 import de.nak.stundenplandb.dao.StudentGroupDAO;
 import de.nak.stundenplandb.model.Appointment;
+import de.nak.stundenplandb.model.EMeetingType;
 import de.nak.stundenplandb.model.Lecturer;
 import de.nak.stundenplandb.model.Meeting;
 import de.nak.stundenplandb.model.Room;
@@ -179,7 +180,7 @@ public class MeetingServiceImpl implements MeetingService {
 	@Override
 	public void fillMeeting(Meeting meeting, String meetingName,
 			Long lecturerId, List<Long> roomIds, int numberOfAppointments,
-			Date startDate, Date endDate) {
+			Date startDate, Date endDate, EMeetingType meetingType) {
 		// get referenced entities
 		Lecturer lecturer = lecturerDAO.load(lecturerId);
 		Set<Room> rooms = new HashSet<Room>();
@@ -193,6 +194,7 @@ public class MeetingServiceImpl implements MeetingService {
 		meeting.setName(meetingName);
 		meeting.setLecturer(lecturer);
 		meeting.setRooms(rooms);
+		meeting.setMeetingType(meetingType);
 		for (Appointment appointment : appointments) {
 			meeting.addAppointmentToMeeting(appointment);
 		}
