@@ -117,4 +117,11 @@ public abstract class Meeting implements DomainObject{
 		}
 		this.getAppointments().add(appointment);
 	}
+	/**
+	 * the number of appointments for this meeting
+	 * @return the number of appointments
+	 */
+	public int getNumberOfAppointments(){
+		return getAppointments().size();
+	}
 }
