@@ -37,7 +37,7 @@ public class MeetingServiceImpl implements MeetingService {
 	private LecturerDAO lecturerDAO;
 	private RoomDAO roomDAO;
 	private StudentGroupDAO studentGroupDAO;
-	
+
 	@Override
 	public boolean isPossible(Meeting meeting) {
 
@@ -60,10 +60,17 @@ public class MeetingServiceImpl implements MeetingService {
 				studentGroup, start, end));
 		meetingsForStudentGroup.addAll(lectureDAO.loadLecturesForStudentGroup(
 				studentGroup, start, end));
-		meetingsForStudentGroup.addAll(electiveDAO.loadElectivesForStudentGroup(
-				studentGroup.getCohort(), start, end));
+		meetingsForStudentGroup.addAll(electiveDAO
+				.loadElectivesForStudentGroup(studentGroup.getCohort(), start,
+						end));
 		initializeMeetings(meetingsForStudentGroup);
 		return meetingsForStudentGroup;
+	}
+
+	@Override
+	public List<Meeting> loadAllMeetingsForStudentGroup(Long studentGroupId) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
@@ -71,17 +78,23 @@ public class MeetingServiceImpl implements MeetingService {
 			Date end) {
 		Lecturer lecturer = lecturerDAO.load(lecturerId);
 		List<Meeting> meetingsForLecturer = new ArrayList<Meeting>();
-		meetingsForLecturer.addAll(examDAO.loadExamForLecturer(
-				lecturer, start, end));
-		meetingsForLecturer.addAll(lectureDAO.loadLecturesForLecturer(
-				lecturer, start, end));
+		meetingsForLecturer.addAll(examDAO.loadExamForLecturer(lecturer, start,
+				end));
+		meetingsForLecturer.addAll(lectureDAO.loadLecturesForLecturer(lecturer,
+				start, end));
 		meetingsForLecturer.addAll(electiveDAO.loadElectivesForLecturer(
 				lecturer, start, end));
-		meetingsForLecturer.addAll(seminarDAO.loadSeminarsForLecturer(
-				lecturer, start, end));
+		meetingsForLecturer.addAll(seminarDAO.loadSeminarsForLecturer(lecturer,
+				start, end));
 		initializeMeetings(meetingsForLecturer);
 		return meetingsForLecturer;
 
+	}
+
+	@Override
+	public List<Meeting> loadAllMeetingsForLecturer(Long lecturerId) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
@@ -89,11 +102,20 @@ public class MeetingServiceImpl implements MeetingService {
 		Room room = roomDAO.load(roomId);
 		List<Meeting> meetingsForRoom = new ArrayList<Meeting>();
 		meetingsForRoom.addAll(examDAO.loadExamsForRoom(room, start, end));
-		meetingsForRoom.addAll(lectureDAO.loadLecturesForRoom(room, start, end));
-		meetingsForRoom.addAll(electiveDAO.loadElectivesForRoom(room, start, end));
-		meetingsForRoom.addAll(seminarDAO.loadSeminarsForRoom(room, start, end));
+		meetingsForRoom
+				.addAll(lectureDAO.loadLecturesForRoom(room, start, end));
+		meetingsForRoom.addAll(electiveDAO.loadElectivesForRoom(room, start,
+				end));
+		meetingsForRoom
+				.addAll(seminarDAO.loadSeminarsForRoom(room, start, end));
 		initializeMeetings(meetingsForRoom);
 		return meetingsForRoom;
+	}
+
+	@Override
+	public List<Meeting> loadAllMeetingsForRoom(Long roomId) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
@@ -106,13 +128,13 @@ public class MeetingServiceImpl implements MeetingService {
 		initializeMeetings(allMeetings);
 		return allMeetings;
 	}
-	
+
 	private void initializeMeetings(List<Meeting> meetings) {
 		for (Meeting meeting : meetings) {
 			initializeMeeting(meeting);
 		}
 	}
-	
+
 	private void initializeMeeting(Meeting meeting) {
 		Hibernate.initialize(meeting.getLecturer());
 		Hibernate.initialize(meeting.getRooms());
@@ -135,17 +157,17 @@ public class MeetingServiceImpl implements MeetingService {
 	protected Set<Appointment> createAppointments(Integer numberOfAppointments,
 			Date begin, Date end) {
 		Set<Appointment> appointmentSet = new HashSet<Appointment>();
-		//
 		for (int i = 0; i < numberOfAppointments; i++) {
+			int daysToAdd = i * 7;
 			Calendar c = Calendar.getInstance();
 			Appointment appointment = new Appointment();
 			// ADD 7 day to the begin-date to match the next appointment
 			c.setTime(begin);
-			c.add(Calendar.DATE, i * 7);
+			c.add(Calendar.DATE, daysToAdd);
 			appointment.setStart(c.getTime());
 			// ADD 7 day to the end-date to match the next appointment
 			c.setTime(end);
-			c.add(Calendar.DATE, i * 7);
+			c.add(Calendar.DATE, daysToAdd);
 			appointment.setEnd(c.getTime());
 			// ADD the appointment to the set
 			appointmentSet.add(appointment);
@@ -153,7 +175,7 @@ public class MeetingServiceImpl implements MeetingService {
 
 		return appointmentSet;
 	}
-	
+
 	@Override
 	public void fillMeeting(Meeting meeting, String meetingName,
 			Long lecturerId, List<Long> roomIds, int numberOfAppointments,
@@ -165,13 +187,13 @@ public class MeetingServiceImpl implements MeetingService {
 			Room room = roomDAO.load(id);
 			rooms.add(room);
 		}
-		Set<Appointment> appointments =
-				this.createAppointments(numberOfAppointments, startDate, endDate);
-		
+		Set<Appointment> appointments = this.createAppointments(
+				numberOfAppointments, startDate, endDate);
+
 		meeting.setName(meetingName);
 		meeting.setLecturer(lecturer);
 		meeting.setRooms(rooms);
-		for (Appointment appointment : appointments) {			
+		for (Appointment appointment : appointments) {
 			meeting.addAppointmentToMeeting(appointment);
 		}
 		// no return due to a given reference!
@@ -195,7 +217,7 @@ public class MeetingServiceImpl implements MeetingService {
 
 	public void setLecturerDAO(LecturerDAO lecturerDAO) {
 		this.lecturerDAO = lecturerDAO;
-		System.out.println("****lecturerDAO="+this.lecturerDAO);
+		System.out.println("****lecturerDAO=" + this.lecturerDAO);
 	}
 
 	public void setRoomDAO(RoomDAO roomDAO) {
@@ -205,4 +227,25 @@ public class MeetingServiceImpl implements MeetingService {
 	public void setStudentGroupDAO(StudentGroupDAO studentGroupDAO) {
 		this.studentGroupDAO = studentGroupDAO;
 	}
+
+	@Override
+	public void deleteExam(Long examId) {
+		this.examDAO.delete(this.examDAO.load(examId));
+	}
+
+	@Override
+	public void deleteSeminar(Long seminarId) {
+		this.seminarDAO.delete(this.seminarDAO.load(seminarId));
+	}
+
+	@Override
+	public void deleteElective(Long electiveId) {
+		this.electiveDAO.delete(this.electiveDAO.load(electiveId));
+	}
+
+	@Override
+	public void deleteLecture(Long lectureId) {
+		this.lectureDAO.delete(this.lectureDAO.load(lectureId));
+	}
+
 }
