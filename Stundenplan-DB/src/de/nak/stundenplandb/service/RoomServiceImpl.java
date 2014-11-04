@@ -80,6 +80,7 @@ public class RoomServiceImpl implements RoomService {
 		for (Appointment appointment : appointments) {
 			Hibernate.initialize(appointment.getMeeting());
 Hibernate.initialize(appointment.getMeeting().getRooms());
+Hibernate.initialize(appointment.getMeeting().getLecturer());
 		}
 		return appointments;
 	}
