@@ -121,6 +121,24 @@
 			<result type="tiles">timetableList</result>    					
 		</action>
 		
+		<action name="DeleteLecture" class="de.nak.stundenplandb.action.ShowMeetingMenuAction" method="deleteLecture">		   
+			<result type="redirect">ShowMeetingMenu.action</result>			
+		</action>
+		
+		<action name="DeleteExam" class="de.nak.stundenplandb.action.ShowMeetingMenuAction" method="deleteExam">		   
+			<result type="redirect">ShowMeetingMenu.action</result>			
+		</action>
+		
+		<action name="DeleteElective" class="de.nak.stundenplandb.action.ShowMeetingMenuAction" method="deleteElective">		   
+			<result type="redirect">ShowMeetingMenu.action</result>			
+		</action>
+		
+		<action name="DeleteSeminar" class="de.nak.stundenplandb.action.ShowMeetingMenuAction" method="deleteSeminar">		   
+			<result type="redirect">ShowMeetingMenu.action</result>			
+		</action>
+		
+		
+		
 		
 		
 

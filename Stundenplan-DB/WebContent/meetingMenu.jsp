@@ -45,8 +45,8 @@
 	</table>	
 	<%-- Buttons for creating or editing lectures --%>
 	<s:submit key="btn.newLecture" action="ShowLectureForm" theme="simple"/>
-	<s:submit key="btn.editLecture" theme="simple"/>
-	<s:submit key="btn.deleteLecture" theme="simple"/>			
+	<s:submit key="btn.editLecture"  theme="simple"/>
+	<s:submit key="btn.deleteLecture" action="DeleteLecture" theme="simple"/>			
 </s:form>
 
 <h3><s:text name="hdl.exam"></s:text></h3>
@@ -87,7 +87,7 @@
 	<%-- Buttons for creating or editing lectures --%>
 	<s:submit key="btn.newExam" action="ShowExamForm" theme="simple"/>
 	<s:submit key="btn.editExam" theme="simple"/>
-	<s:submit key="btn.deleteExam" theme="simple"/>			
+	<s:submit key="btn.deleteExam" action="DeleteExam" theme="simple"/>			
 </s:form>
 
 <h3><s:text name="hdl.elective"></s:text></h3>
@@ -124,7 +124,7 @@
 	<%-- Buttons for creating or editing electives --%>
 	<s:submit key="btn.newElective" action="ShowElectiveForm" theme="simple"/>
 	<s:submit key="btn.editElective" theme="simple"/>
-	<s:submit key="btn.deleteElective" theme="simple"/>			
+	<s:submit key="btn.deleteElective" action="DeleteElective" theme="simple"/>			
 </s:form>
 
 <h3><s:text name="hdl.seminar"></s:text></h3>
@@ -159,7 +159,7 @@
 	<%-- Buttons for creating or editing seminar --%>
 	<s:submit key="btn.newSeminar" action="ShowSeminarForm" theme="simple"/>
 	<s:submit key="btn.editSeminar" theme="simple"/>
-	<s:submit key="btn.deleteSeminar" theme="simple"/>			
+	<s:submit key="btn.deleteSeminar" action="DeleteSeminar" theme="simple"/>			
 </s:form>
 
 <%-- Button for returning to main menu --%>

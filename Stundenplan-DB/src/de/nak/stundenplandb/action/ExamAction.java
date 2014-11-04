@@ -43,16 +43,6 @@ public class ExamAction extends MeetingAction {
 	}	
 	
 	/**
-	 * Deletes the exam from the database
-	 *
-	 * @return the result string
-	 */
-	public String delete(){
-		examService.deleteExam(examId);		
-		return SUCCESS;
-	}
-	
-	/**
 	 * Displays the selected exam in the exam form.
 	 *
 	 * @return the string

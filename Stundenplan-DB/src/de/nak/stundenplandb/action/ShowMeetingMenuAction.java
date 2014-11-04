@@ -49,7 +49,47 @@ public class ShowMeetingMenuAction extends ActionSupport {
 	private ElectiveService electiveService;
 	
 	/** The seminar service. */
-	private SeminarService seminarService;	
+	private SeminarService seminarService;
+	
+	/**
+	 * Deletes the lecture from the database
+	 *
+	 * @return the result string
+	 */
+	public String deleteLecture(){
+		lectureService.deleteLecture(lectureId);
+		return SUCCESS;
+	}	
+	
+	/**
+	 * Deletes the exam from the database
+	 *
+	 * @return the result string
+	 */
+	public String deleteExam(){
+		examService.deleteExam(examId);		
+		return SUCCESS;
+	}
+	
+	/**
+	 * Deletes the elective from the database
+	 *
+	 * @return the result string
+	 */
+	public String deleteElective(){
+		electiveService.deleteElective(electiveId);
+		return SUCCESS;
+	}
+	
+	/**
+	 * Deletes the seminar from the database
+	 *
+	 * @return the result string
+	 */
+	public String deleteSeminar(){
+		seminarService.deleteSeminar(seminarId);	
+		return SUCCESS;
+	}
 	
 	/**
 	 * Gets a list of all lectures

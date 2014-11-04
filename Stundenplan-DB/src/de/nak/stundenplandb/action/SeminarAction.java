@@ -39,16 +39,6 @@ public class SeminarAction extends MeetingAction {
 	}
 	
 	/**
-	 * Deletes the seminar from the database
-	 *
-	 * @return the result string
-	 */
-	public String delete(){
-		seminarService.deleteSeminar(seminarId);	
-		return SUCCESS;
-	}
-	
-	/**
 	 * Displays the selected seminar in the seminar form
 	 *
 	 * @return the string

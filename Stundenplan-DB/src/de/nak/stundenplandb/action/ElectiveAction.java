@@ -39,16 +39,6 @@ public class ElectiveAction extends MeetingAction {
 		return SUCCESS;
 	}
 	
-	/**
-	 * Deletes the elective from the database
-	 *
-	 * @return the result string
-	 */
-	public String delete(){
-		electiveService.deleteElective(electiveId);
-		return SUCCESS;
-	}
-	
 	public String load(){
 		elective = electiveService.loadElective(electiveId);
 		return SUCCESS;
