@@ -1,6 +1,7 @@
 package de.nak.stundenplandb.model;
 
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -14,6 +15,7 @@ import javax.persistence.InheritanceType;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.Transient;
 
 import org.hibernate.annotations.OnDelete;
@@ -58,7 +60,7 @@ public abstract class Meeting implements DomainObject{
 	/**
 	 * The Appointments
 	 */
-	private Set<Appointment> appointments;
+	private List<Appointment> appointments;
 	/**
 	 * The meetingType as a marker for an concrete Subclass
 	 */
@@ -99,10 +101,11 @@ public abstract class Meeting implements DomainObject{
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "meeting")
 	@OnDelete(action = OnDeleteAction.CASCADE)
-	public Set<Appointment> getAppointments() {
+	@OrderBy("start ASC")
+	public List<Appointment> getAppointments() {
 		return appointments;
 	}
-	public void setAppointments(Set<Appointment> appointments) {
+	public void setAppointments(List<Appointment> appointments) {
 		this.appointments = appointments;
 	}
 	
@@ -117,7 +120,7 @@ public abstract class Meeting implements DomainObject{
 	public void addAppointmentToMeeting(Appointment appointment) {
 		appointment.setMeeting(this);
 		if (this.getAppointments() == null) {
-			this.setAppointments(new HashSet<Appointment>());
+			this.setAppointments(new ArrayList<Appointment>());
 		}
 		this.getAppointments().add(appointment);
 	}
