@@ -17,20 +17,18 @@ public class AppointmentDAOImpl extends GenericDAOImpl<Appointment> implements A
 		super(Appointment.class);
 	}
 
-	/* (non-Javadoc)
-	 * @see de.nak.stundenplandb.dao.AppointmentDAO#loadAppointmentsForRoomInTimeperiod(de.nak.stundenplandb.model.Room, java.util.Date, java.util.Date)
-	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Appointment> loadAppointmentsForRoomInTimeperiod(Room room,
 			Date start, Date end) {
 		List<Appointment> appointments = sessionFactory
 				.getCurrentSession().createQuery(
-				"select a from Appointment a "
-				+ "join a.meeting m "
-				+ "join m.rooms r where r = :room "
-				+ "and a.start > :startDate "
-				+ "and a.start < :endDate")
+				"SELECT a FROM Appointment a "
+				+ "JOIN a.meeting m "
+				+ "JOIN m.rooms r WHERE r = :room "
+				+ "AND a.start > :startDate "
+				+ "AND a.end < :endDate "
+				+ "ORDER BY a.start ASC")
 				.setEntity("room", room)
 				.setDate("startDate", start)
 				.setDate("endDate", end)

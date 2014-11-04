@@ -7,6 +7,8 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
+import org.hibernate.Hibernate;
+
 import de.nak.stundenplandb.dao.AppointmentDAO;
 import de.nak.stundenplandb.dao.RoomDAO;
 import de.nak.stundenplandb.model.Appointment;
@@ -72,6 +74,10 @@ public class RoomServiceImpl implements RoomService {
 			Date start, Date end) {
 		List<Appointment> appointments = appointmentDAO
 				.loadAppointmentsForRoomInTimeperiod(room, start, end);
+		// initialize appointments
+		for (Appointment appointment : appointments) {
+			Hibernate.initialize(appointment.getMeeting());
+		}
 		return appointments;
 	}
 	
