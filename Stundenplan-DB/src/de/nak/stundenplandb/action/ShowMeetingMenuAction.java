@@ -7,6 +7,7 @@ import java.util.List;
 
 import com.opensymphony.xwork2.ActionSupport;
 
+import de.nak.stundenplandb.model.Lecture;
 import de.nak.stundenplandb.model.Meeting;
 import de.nak.stundenplandb.service.MeetingService;
 
@@ -34,7 +35,42 @@ public class ShowMeetingMenuAction extends ActionSupport {
 	 */
 	public List<Meeting> getMeetingList() {
 		return meetingService.loadAllMeetings();		
-	}	
+	}
+	
+	/**
+	 * Gets a list of all lectures
+	 *
+	 * @return the lecture list
+	 */
+	public List<Meeting> getLectureList(){
+		// muss noch zu LectureService bzw. Lecture geändert werden
+		return meetingService.loadAllMeetings();
+	}
+	
+	/**
+	 * Gets a list of all exams
+	 *
+	 * @return the exam list
+	 */
+	public List<Meeting> getExamList(){
+		// muss noch zu LectureService bzw. Lecture geändert werden
+		return meetingService.loadAllMeetings();
+	}
+	
+	public List<Meeting> getElectiveList(){
+		// muss noch zu LectureService bzw. Lecture geändert werden
+		return meetingService.loadAllMeetings();
+	}
+	
+	/**
+	 * Gets a list of all seminars
+	 *
+	 * @return the seminar list
+	 */
+	public List<Meeting> getSeminarList(){
+		// muss noch zu LectureService bzw. Lecture geändert werden
+		return meetingService.loadAllMeetings();
+	}
 	
 	@Override
 	public String execute(){

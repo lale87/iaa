@@ -6,28 +6,28 @@
   - Description: Form for saving new lectures.
 --%>
 
-<h3><s:text name="hdl.newMeeting"></s:text></h3>
+<%-- Button for returning to main menu --%>
 <s:form>
-	<%-- Buttons for creating new meetings --%>	
-	<s:submit key="btn.newLecture" action="ShowLectureForm"/>
-	<s:submit key="btn.newExam" action="ShowExamForm"/>
-	<s:submit key="btn.newElective" action="ShowElectiveForm"/>
-	<s:submit key="btn.newSeminar" action="ShowSeminarForm"/>
-</s:form>	
+<s:submit key="btn.return" action="ShowMainMenu" theme="simple"/>	
+</s:form>
 
-<h3><s:text name="hdl.editMeeting"></s:text></h3>
+<h3><s:text name="hdl.lecture"></s:text></h3>
 <s:form>	
-	<%-- The table of existing meetings--%>
+	<%-- The table of existing lectures--%>
 	<table style="border-collapse: collapse; border: #CCC;" border="1">
 		<tr>			
 			<th></th>			
 			<th><s:text name="lbl.meetingName"/></th>
 			<th><s:text name="lbl.lecturer"/></th>
-			<th><s:text name="lbl.rooms"/></th>			
+			<th><s:text name="lbl.studentGroup"/></th>	
+			<th><s:text name="lbl.rooms"/></th>	
+			<th><s:text name="lbl.startDate"/></th>		
+			<th><s:text name="lbl.endDate"/></th>				
+			<th><s:text name="lbl.numberOfAppointments"/></th>		
 		</tr>
-		<s:iterator value="meetingList">
+		<s:iterator value="lectureList">
 			<tr>				
-				<td><s:radio name="meetingId" list="#{id:''}" theme="simple"/></td>
+				<td><s:radio name="lectureId" list="#{id:''}" theme="simple"/></td>
 				<td><s:property value="name"/></td>
 				<td><s:property value="lecturer.displayName"/></td>
 				<td>
@@ -38,10 +38,114 @@
 			</tr>
 		</s:iterator>
 	</table>	
-	<%-- Buttons for changing or editing meetings --%>
-		<s:submit key="btn.editMeeting"/>
-		<s:submit key="btn.deleteMeeting"/>	
-		<s:submit key="btn.return" action="ShowMainMenu"/>	
+	<%-- Buttons for creating or editing lectures --%>
+	<s:submit key="btn.newLecture" action="ShowLectureForm" theme="simple"/>
+	<s:submit key="btn.editLecture" theme="simple"/>
+	<s:submit key="btn.deleteLecture" theme="simple"/>			
 </s:form>
+
+<h3><s:text name="hdl.exam"></s:text></h3>
+<s:form>	
+	<%-- The table of existing exams--%>
+	<table style="border-collapse: collapse; border: #CCC;" border="1">
+		<tr>			
+			<th></th>				
+			<th><s:text name="lbl.meetingName"/></th>
+			<th><s:text name="lbl.lecturer"/></th>
+			<th><s:text name="lbl.studentGroup"/></th>	
+			<th><s:text name="lbl.rooms"/></th>	
+			<th><s:text name="lbl.startDate"/></th>		
+			<th><s:text name="lbl.endDate"/></th>				
+			<th><s:text name="lbl.numberOfAppointments"/></th>			
+		</tr>
+		<s:iterator value="examList">
+			<tr>				
+				<td><s:radio name="examId" list="#{id:''}" theme="simple"/></td>
+				<td><s:property value="name"/></td>
+				<td><s:property value="lecturer.displayName"/></td>
+				<td>
+					<s:iterator value="rooms">
+						<s:property value="displayName"/>						
+					</s:iterator>
+				</td>
+			</tr>
+		</s:iterator>
+	</table>	
+	<%-- Buttons for creating or editing lectures --%>
+	<s:submit key="btn.newExam" action="ShowExamForm" theme="simple"/>
+	<s:submit key="btn.editExam" theme="simple"/>
+	<s:submit key="btn.deleteExam" theme="simple"/>			
+</s:form>
+
+<h3><s:text name="hdl.elective"></s:text></h3>
+<s:form>	
+	<%-- The table of existing electives--%>
+	<table style="border-collapse: collapse; border: #CCC;" border="1">
+		<tr>			
+			<th></th>			
+			<th><s:text name="lbl.meetingName"/></th>
+			<th><s:text name="lbl.lecturer"/></th>
+			<th><s:text name="lbl.cohort"/></th>	
+			<th><s:text name="lbl.rooms"/></th>	
+			<th><s:text name="lbl.startDate"/></th>		
+			<th><s:text name="lbl.endDate"/></th>				
+			<th><s:text name="lbl.numberOfAppointments"/></th>			
+		</tr>
+		<s:iterator value="electiveList">
+			<tr>				
+				<td><s:radio name="electiveId" list="#{id:''}" theme="simple"/></td>
+				<td><s:property value="name"/></td>
+				<td><s:property value="lecturer.displayName"/></td>
+				<td>
+					<s:iterator value="rooms">
+						<s:property value="displayName"/>						
+					</s:iterator>
+				</td>
+			</tr>
+		</s:iterator>
+	</table>	
+	<%-- Buttons for creating or editing electives --%>
+	<s:submit key="btn.newElective" action="ShowElectiveForm" theme="simple"/>
+	<s:submit key="btn.editElective" theme="simple"/>
+	<s:submit key="btn.deleteElective" theme="simple"/>			
+</s:form>
+
+<h3><s:text name="hdl.seminar"></s:text></h3>
+<s:form>	
+	<%-- The table of existing seminars--%>
+	<table style="border-collapse: collapse; border: #CCC;" border="1">
+		<tr>			
+			<th></th>			
+			<th><s:text name="lbl.meetingName"/></th>
+			<th><s:text name="lbl.lecturer"/></th>
+			<th><s:text name="lbl.rooms"/></th>	
+			<th><s:text name="lbl.startDate"/></th>		
+			<th><s:text name="lbl.endDate"/></th>				
+			<th><s:text name="lbl.numberOfAppointments"/></th>				
+		</tr>
+		<s:iterator value="seminarList">
+			<tr>				
+				<td><s:radio name="seminarId" list="#{id:''}" theme="simple"/></td>
+				<td><s:property value="name"/></td>
+				<td><s:property value="lecturer.displayName"/></td>
+				<td>
+					<s:iterator value="rooms">
+						<s:property value="displayName"/>						
+					</s:iterator>
+				</td>
+			</tr>
+		</s:iterator>
+	</table>	
+	<%-- Buttons for creating or editing seminar --%>
+	<s:submit key="btn.newSeminar" action="ShowSeminarForm" theme="simple"/>
+	<s:submit key="btn.editSeminar" theme="simple"/>
+	<s:submit key="btn.deleteSeminar" theme="simple"/>			
+</s:form>
+
+<%-- Button for returning to main menu --%>
+<s:form>
+<s:submit key="btn.return" action="ShowMainMenu" theme="simple"/>	
+</s:form>
+
 
 
