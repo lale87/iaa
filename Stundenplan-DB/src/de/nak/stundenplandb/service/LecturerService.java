@@ -1,7 +1,9 @@
 package de.nak.stundenplandb.service;
 
+import java.util.Date;
 import java.util.List;
 
+import de.nak.stundenplandb.model.Appointment;
 import de.nak.stundenplandb.model.EAcademicTitle;
 import de.nak.stundenplandb.model.Lecturer;
 
@@ -33,4 +35,19 @@ public interface LecturerService {
 	 * @return academicTitle
 	 */
 	List<EAcademicTitle> getAllAcademicTitles();
+	
+	/**
+	 * Returns a List of all Appointments for a given lectureer.
+	 * @param lecturerId Lecturer-Id
+	 * @return List of Appointments
+	 */
+	List<Appointment> getAppointmentsForLecturer(Long lecturerId);
+	/**
+	 * Returns a List of all Appointments for a given lecturer in a specific period of time.
+	 * @param lecturerId Lecturer-Id
+	 * @param start Start of timeperiod
+	 * @param end End of timeperiod
+	 * @return List of Appointments
+	 */
+	List<Appointment> getAppointmentsForLecturerInTimeperiod(Long lecturerId, Date start, Date end);
 }

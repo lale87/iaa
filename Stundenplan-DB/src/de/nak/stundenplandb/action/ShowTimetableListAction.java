@@ -46,7 +46,7 @@ public class ShowTimetableListAction extends ActionSupport {
     public String execute(){
     	switch (selectedType) {
 		case "Dozent":
-			//appointmentList = lecturerService.getAppointmentsForLecturer(selectedId);
+			appointmentList = lecturerService.getAppointmentsForLecturer(selectedId);
 			break;
 		case "Raum"	:
 			appointmentList = roomService.getAppointmentsForRoom(selectedId);
