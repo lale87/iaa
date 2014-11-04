@@ -3,7 +3,8 @@
 
 <%-- 
   - Author: Arne Roever
-  - Description: Form for saving new lectures.
+  - Description: Shows list of existing meetings for every meeting type and
+  - offers buttons for creating, deleting and changing meetings.
 --%>
 
 <%-- Button for returning to main menu --%>
