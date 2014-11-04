@@ -5,7 +5,6 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import org.hibernate.cfg.ExtendsQueueEntry;
 
 import de.nak.stundenplandb.dao.CohortDAO;
 import de.nak.stundenplandb.dao.StudentGroupDAO;

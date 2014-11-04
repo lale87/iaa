@@ -6,6 +6,8 @@ package de.nak.stundenplandb.service;
 import java.util.Date;
 import java.util.List;
 
+import org.hibernate.Hibernate;
+
 import de.nak.stundenplandb.dao.SeminarDAO;
 import de.nak.stundenplandb.model.EMeetingType;
 import de.nak.stundenplandb.model.Seminar;
@@ -66,7 +68,9 @@ public class SeminarServiceImpl implements SeminarService {
 
 	@Override
 	public List<Seminar> loadAllSeminars() {
-		return seminarDAO.loadAll();
+		List<Seminar> allSeminars = seminarDAO.loadAll();
+		initializeSeminar(allSeminars);
+		return allSeminars;
 	}
 
 	@Override
@@ -77,5 +81,18 @@ public class SeminarServiceImpl implements SeminarService {
 	@Override
 	public Seminar loadSeminar(Long id) {
 		return seminarDAO.load(id);
+	}
+
+	// TODO diese Mthoden evtl zusammenfassen bei allen Meeting-Subtypes
+	private void initializeSeminar(List<Seminar> seminars) {
+		for (Seminar seminar : seminars) {
+			initializeSeminar(seminar);
+		}
+	}
+
+	private void initializeSeminar(Seminar seminar) {
+		Hibernate.initialize(seminar.getLecturer());
+		Hibernate.initialize(seminar.getRooms());
+		Hibernate.initialize(seminar.getAppointments());
 	}
 }

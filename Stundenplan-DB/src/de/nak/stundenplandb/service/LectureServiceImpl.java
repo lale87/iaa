@@ -6,6 +6,8 @@ package de.nak.stundenplandb.service;
 import java.util.Date;
 import java.util.List;
 
+import org.hibernate.Hibernate;
+
 import de.nak.stundenplandb.dao.LectureDAO;
 import de.nak.stundenplandb.dao.StudentGroupDAO;
 import de.nak.stundenplandb.model.EMeetingType;
@@ -74,7 +76,9 @@ public class LectureServiceImpl implements LectureService {
 
 	@Override
 	public List<Lecture> loadAllLectures() {
-		return lectureDAO.loadAll();
+		List<Lecture> allLectures = lectureDAO.loadAll();
+		initializeLectures(allLectures);
+		return allLectures;
 	}
 
 	@Override
@@ -85,5 +89,18 @@ public class LectureServiceImpl implements LectureService {
 	@Override
 	public Lecture loadLecture(Long id) {
 		return lectureDAO.load(id);
+	}
+	
+	//TODO diese Mthoden evtl zusammenfassen bei allen Meeting-Subtypes
+	private void initializeLectures(List<Lecture> lectures) {
+		for (Lecture lecture : lectures) {
+			initializeLecture(lecture);
+		}
+	}
+
+	private void initializeLecture(Lecture lecture) {
+		Hibernate.initialize(lecture.getLecturer());
+		Hibernate.initialize(lecture.getRooms());
+		Hibernate.initialize(lecture.getAppointments());
 	}
 }

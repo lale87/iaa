@@ -8,6 +8,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.hibernate.Hibernate;
+
 import de.nak.stundenplandb.dao.ExamDAO;
 import de.nak.stundenplandb.dao.StudentGroupDAO;
 import de.nak.stundenplandb.model.EMeetingType;
@@ -16,6 +18,7 @@ import de.nak.stundenplandb.model.StudentGroup;
 
 /**
  * Implementation of the ExamService
+ * 
  * @author Fabian Kolossa
  *
  */
@@ -23,23 +26,23 @@ public class ExamServiceImpl implements ExamService {
 	private MeetingService meetingService;
 	private ExamDAO examDAO;
 	private StudentGroupDAO studentGroupDAO;
-	
+
 	@Override
-	public void saveOrUpdateExam(Long id, String meetingName,
-			Long lecturerId, List<Long> roomIds, List<Long> studentGroupIds,
+	public void saveOrUpdateExam(Long id, String meetingName, Long lecturerId,
+			List<Long> roomIds, List<Long> studentGroupIds,
 			int numberOfAppointments, Date startDate, Date endDate) {
 		// TODO FK: Fehlerbehandlung (Objekt zu ID nicht gefunden)
-		
+
 		// update? (null if exam not exists yet)
 		Exam exam = examDAO.load(id);
 		if (exam == null) {
 			exam = new Exam();
 		}
-		
+
 		// set meeting attributes
 		meetingService.fillMeeting(exam, meetingName, lecturerId, roomIds,
 				numberOfAppointments, startDate, endDate, EMeetingType.EXAM);
-		
+
 		// set exam-specific attributes
 		Set<StudentGroup> studentGroups = new HashSet<StudentGroup>();
 		for (Long studentGroupId : studentGroupIds) {
@@ -47,7 +50,7 @@ public class ExamServiceImpl implements ExamService {
 			studentGroups.add(studentGroup);
 		}
 		exam.setStudentGroups(studentGroups);
-		
+
 		// save exam
 		examDAO.save(exam);
 	};
@@ -70,8 +73,8 @@ public class ExamServiceImpl implements ExamService {
 	}
 
 	@Override
-	public boolean CheckCollisionsForExam(Long id, 
-			Long lecturerId, List<Long> roomIds, List<Long> studentGroupIds,
+	public boolean CheckCollisionsForExam(Long id, Long lecturerId,
+			List<Long> roomIds, List<Long> studentGroupIds,
 			int numberOfAppointments, Date startDate, Date endDate) {
 		// TODO Auto-generated method stub
 		return true;
@@ -79,7 +82,9 @@ public class ExamServiceImpl implements ExamService {
 
 	@Override
 	public List<Exam> loadAllExams() {
-		return examDAO.loadAll();
+		List<Exam> allExams = examDAO.loadAll();
+		initializeExams(allExams);
+		return allExams;
 	}
 
 	@Override
@@ -90,5 +95,18 @@ public class ExamServiceImpl implements ExamService {
 	@Override
 	public Exam loadExam(Long id) {
 		return examDAO.load(id);
+	}
+
+	// TODO diese Mthoden evtl zusammenfassen bei allen Meeting-Subtypes
+	private void initializeExams(List<Exam> exams) {
+		for (Exam exam : exams) {
+			initializeExam(exam);
+		}
+	}
+
+	private void initializeExam(Exam exam) {
+		Hibernate.initialize(exam.getLecturer());
+		Hibernate.initialize(exam.getRooms());
+		Hibernate.initialize(exam.getAppointments());
 	}
 }
