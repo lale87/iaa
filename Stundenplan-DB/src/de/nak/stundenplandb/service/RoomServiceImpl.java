@@ -7,7 +7,9 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
+import de.nak.stundenplandb.dao.AppointmentDAO;
 import de.nak.stundenplandb.dao.RoomDAO;
+import de.nak.stundenplandb.model.Appointment;
 import de.nak.stundenplandb.model.ERoomType;
 import de.nak.stundenplandb.model.Room;
 
@@ -22,6 +24,10 @@ public class RoomServiceImpl implements RoomService {
 	 * Injected RoomDAO
 	 */
 	private RoomDAO roomDAO;
+	/**
+	 * Injected AppointmentDAO
+	 */
+	private AppointmentDAO appointmentDAO;
 
 	@Override
 	public void saveRoom(Room room) {
@@ -36,6 +42,7 @@ public class RoomServiceImpl implements RoomService {
 	@Override
 	public List<Room> loadAllRoomsSortedBYBuildungAndNumber() {
 		List<Room> rooms = roomDAO.loadAll();
+
 		Comparator<Room> roomComparator = new Comparator<Room>() {
 			
 			@Override
@@ -54,14 +61,18 @@ public class RoomServiceImpl implements RoomService {
 		return rooms;
 	}
 
-	/**
-	 * Inject RoomDAO
-	 * 
-	 * @param roomDAO
-	 */
-	public void setRoomDAO(RoomDAO roomDAO) {
-		this.roomDAO = roomDAO;
-		System.out.println("*******SET_DAO: " + roomDAO.getClass());
+	@Override
+	public List<Appointment> getAppointmentsForRoom(Room room) {
+		return getAppointmentsForRoomInTimeperiod(room,
+				new Date(Long.MIN_VALUE), new Date(Long.MAX_VALUE));
+	}
+	
+	@Override
+	public List<Appointment> getAppointmentsForRoomInTimeperiod(Room room,
+			Date start, Date end) {
+		List<Appointment> appointments = appointmentDAO
+				.loadAppointmentsForRoomInTimeperiod(room, start, end);
+		return appointments;
 	}
 	
 	@Override
@@ -75,4 +86,11 @@ public class RoomServiceImpl implements RoomService {
 		return new ArrayList<Room>();
 	}
 
+	public void setRoomDAO(RoomDAO roomDAO) {
+		this.roomDAO = roomDAO;
+	}
+	
+	public void setAppointmentDAO(AppointmentDAO appointmentDAO) {
+		this.appointmentDAO = appointmentDAO;
+	}
 }

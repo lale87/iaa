@@ -60,6 +60,7 @@
     <!-- Services -->
     <bean id="roomService" class="de.nak.stundenplandb.service.RoomServiceImpl">
         <property name="roomDAO" ref="roomDAO"/>
+        <property name="appointmentDAO" ref="appointmentDAO"/>
     </bean>
     <bean id="lecturerService" class="de.nak.stundenplandb.service.LecturerServiceImpl">
         <property name="lecturerDAO" ref="lecturerDAO"/>
