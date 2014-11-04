@@ -7,9 +7,14 @@ import java.util.List;
 
 import com.opensymphony.xwork2.ActionSupport;
 
+import de.nak.stundenplandb.model.Elective;
+import de.nak.stundenplandb.model.Exam;
 import de.nak.stundenplandb.model.Lecture;
-import de.nak.stundenplandb.model.Meeting;
-import de.nak.stundenplandb.service.MeetingService;
+import de.nak.stundenplandb.model.Seminar;
+import de.nak.stundenplandb.service.ElectiveService;
+import de.nak.stundenplandb.service.ExamService;
+import de.nak.stundenplandb.service.LectureService;
+import de.nak.stundenplandb.service.SeminarService;
 
 /**
  * Action for showing the meeting menu 
@@ -22,29 +27,25 @@ public class ShowMeetingMenuAction extends ActionSupport {
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = -7361090700772154126L;
 	
-	/** The meeting id selected by the user */
-	private Long meetingId;
+	/** The lecture service. */
+	private LectureService lectureService;
+
+	/** The exam service. */
+	private ExamService examService;
 	
-	/** The meeting service. */
-	private MeetingService meetingService;
+	/** The elective service. */
+	private ElectiveService electiveService;
 	
-	/**
-	 * Gets a list of all meetings in the database
-	 *
-	 * @return the meeting list
-	 */
-	public List<Meeting> getMeetingList() {
-		return meetingService.loadAllMeetings();		
-	}
+	/** The seminar service. */
+	private SeminarService seminarService;	
 	
 	/**
 	 * Gets a list of all lectures
 	 *
 	 * @return the lecture list
 	 */
-	public List<Meeting> getLectureList(){
-		// muss noch zu LectureService bzw. Lecture geändert werden
-		return meetingService.loadAllMeetings();
+	public List<Lecture> getLectureList(){
+		return lectureService.loadAllLectures();
 	}
 	
 	/**
@@ -52,14 +53,12 @@ public class ShowMeetingMenuAction extends ActionSupport {
 	 *
 	 * @return the exam list
 	 */
-	public List<Meeting> getExamList(){
-		// muss noch zu LectureService bzw. Lecture geändert werden
-		return meetingService.loadAllMeetings();
+	public List<Exam> getExamList(){
+		return examService.loadAllExams();
 	}
 	
-	public List<Meeting> getElectiveList(){
-		// muss noch zu LectureService bzw. Lecture geändert werden
-		return meetingService.loadAllMeetings();
+	public List<Elective> getElectiveList(){
+		return electiveService.loadAllElectives();
 	}
 	
 	/**
@@ -67,9 +66,8 @@ public class ShowMeetingMenuAction extends ActionSupport {
 	 *
 	 * @return the seminar list
 	 */
-	public List<Meeting> getSeminarList(){
-		// muss noch zu LectureService bzw. Lecture geändert werden
-		return meetingService.loadAllMeetings();
+	public List<Seminar> getSeminarList(){
+		return seminarService.loadAllSeminars();
 	}
 	
 	@Override
@@ -77,15 +75,19 @@ public class ShowMeetingMenuAction extends ActionSupport {
 		return SUCCESS;
 	}
 
-	public Long getMeetingId() {
-		return meetingId;
+	public void setExamService(ExamService examService) {
+		this.examService = examService;
 	}
 
-	public void setMeetingId(Long meetingId) {
-		this.meetingId = meetingId;
+	public void setElectiveService(ElectiveService electiveService) {
+		this.electiveService = electiveService;
 	}
 
-	public void setMeetingService(MeetingService meetingService) {
-		this.meetingService = meetingService;
+	public void setSeminarService(SeminarService seminarService) {
+		this.seminarService = seminarService;
+	}
+	
+	public void setLectureService(LectureService lectureService) {
+		this.lectureService = lectureService;
 	}
 }
