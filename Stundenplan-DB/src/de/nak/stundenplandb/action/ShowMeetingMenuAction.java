@@ -27,6 +27,18 @@ public class ShowMeetingMenuAction extends ActionSupport {
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = -7361090700772154126L;
 	
+	/** The lecture id selected by the user */
+	private Long lectureId;
+	
+	/** The exam id selected by the user. */
+	private Long examId;
+	
+	/** The elective id selected by the user. */
+	private Long electiveId;
+	
+	/** The seminar id selected by the user. */
+	private Long seminarId;
+	
 	/** The lecture service. */
 	private LectureService lectureService;
 
@@ -89,5 +101,37 @@ public class ShowMeetingMenuAction extends ActionSupport {
 	
 	public void setLectureService(LectureService lectureService) {
 		this.lectureService = lectureService;
+	}
+
+	public Long getLectureId() {
+		return lectureId;
+	}
+
+	public void setLectureId(Long lectureId) {
+		this.lectureId = lectureId;
+	}
+
+	public Long getExamId() {
+		return examId;
+	}
+
+	public void setExamId(Long examId) {
+		this.examId = examId;
+	}
+
+	public Long getElectiveId() {
+		return electiveId;
+	}
+
+	public void setElectiveId(Long electiveId) {
+		this.electiveId = electiveId;
+	}
+
+	public Long getSeminarId() {
+		return seminarId;
+	}
+
+	public void setSeminarId(Long seminarId) {
+		this.seminarId = seminarId;
 	}
 }

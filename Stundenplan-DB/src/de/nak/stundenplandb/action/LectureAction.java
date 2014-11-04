@@ -19,6 +19,9 @@ public class LectureAction extends MeetingAction {
 	/** The student group id selected by the user */
 	private Long studentGroupId; 
 	
+	/** The currently selected lecture id. */
+	private Long lectureId;
+	
 	/** The current lecture. */
 	private Lecture lecture;
 	
@@ -34,6 +37,21 @@ public class LectureAction extends MeetingAction {
 		lectureService.saveOrUpdateLecture(lecture.getId(), meetingName, lecturerId,
 				roomIds, studentGroupId, numberOfAppointments, startDate, endDate);
 		
+		return SUCCESS;
+	}
+	
+	/**
+	 * Deletes the lecture from the database
+	 *
+	 * @return the result string
+	 */
+	public String delete(){
+		lectureService.deleteLecture(lectureId);
+		return SUCCESS;
+	}
+	
+	public String load(){
+		lecture = lectureService.loadLecture(lectureId);
 		return SUCCESS;
 	}
 
@@ -55,5 +73,13 @@ public class LectureAction extends MeetingAction {
 	
 	public void setLectureService(LectureService lectureService) {
 		this.lectureService = lectureService;
+	}
+
+	public Long getLectureId() {
+		return lectureId;
+	}
+
+	public void setLectureId(Long lectureId) {
+		this.lectureId = lectureId;
 	}
 }

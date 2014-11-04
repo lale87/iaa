@@ -31,11 +31,15 @@
 				<td><s:radio name="lectureId" list="#{id:''}" theme="simple"/></td>
 				<td><s:property value="name"/></td>
 				<td><s:property value="lecturer.displayName"/></td>
-				<td>
+				<td><s:property value="studentGroup.displayName"/></td>
+								<td>
 					<s:iterator value="rooms">
 						<s:property value="displayName"/>						
 					</s:iterator>
 				</td>
+				<td><s:property value="appointments[0].start"/></td>
+				<td><s:property value="appointments[0].end"/></td>
+				<td><s:property value="numberOfAppointments"/></td>
 			</tr>
 		</s:iterator>
 	</table>	
@@ -65,10 +69,18 @@
 				<td><s:property value="name"/></td>
 				<td><s:property value="lecturer.displayName"/></td>
 				<td>
+					<s:iterator value="studentGroups">
+						<s:property value="displayName"/>						
+					</s:iterator>
+				</td>
+				<td>
 					<s:iterator value="rooms">
 						<s:property value="displayName"/>						
 					</s:iterator>
 				</td>
+				<td><s:property value="appointments[0].start"/></td>
+				<td><s:property value="appointments[0].end"/></td>
+				<td><s:property value="numberOfAppointments"/></td>
 			</tr>
 		</s:iterator>
 	</table>	
@@ -97,11 +109,15 @@
 				<td><s:radio name="electiveId" list="#{id:''}" theme="simple"/></td>
 				<td><s:property value="name"/></td>
 				<td><s:property value="lecturer.displayName"/></td>
+				<td><s:property value="cohort.yearOfAdmission"/></td>
 				<td>
 					<s:iterator value="rooms">
 						<s:property value="displayName"/>						
 					</s:iterator>
 				</td>
+				<td><s:property value="appointments[0].start"/></td>
+				<td><s:property value="appointments[0].end"/></td>
+				<td><s:property value="numberOfAppointments"/></td>
 			</tr>
 		</s:iterator>
 	</table>	
@@ -134,6 +150,9 @@
 						<s:property value="displayName"/>						
 					</s:iterator>
 				</td>
+				<td><s:property value="appointments[0].start"/></td>
+				<td><s:property value="appointments[0].end"/></td>
+				<td><s:property value="numberOfAppointments"/></td>
 			</tr>
 		</s:iterator>
 	</table>	

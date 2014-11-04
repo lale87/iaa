@@ -19,6 +19,9 @@ public class ExamAction extends MeetingAction {
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = -6938348041955775951L;
+	
+	/** The currently selected exam id. */
+	private Long examId;
 
 	/** The current exam. */
 	private Exam exam;
@@ -39,6 +42,26 @@ public class ExamAction extends MeetingAction {
 		return SUCCESS;
 	}	
 	
+	/**
+	 * Deletes the exam from the database
+	 *
+	 * @return the result string
+	 */
+	public String delete(){
+		examService.deleteExam(examId);		
+		return SUCCESS;
+	}
+	
+	/**
+	 * Displays the selected exam in the exam form.
+	 *
+	 * @return the string
+	 */
+	public String load(){
+		exam = examService.loadExam(examId);
+		return SUCCESS;
+	}
+	
 	public Exam getExam() {
 		return exam;
 	}
@@ -57,6 +80,14 @@ public class ExamAction extends MeetingAction {
 	
 	public void setExamService(ExamService examService) {
 		this.examService = examService;
+	}
+
+	public Long getExamId() {
+		return examId;
+	}
+
+	public void setExamId(Long examId) {
+		this.examId = examId;
 	}
 
 	

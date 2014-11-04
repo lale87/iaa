@@ -16,6 +16,9 @@ public class ElectiveAction extends MeetingAction {
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 5802592208250231904L;
 	
+	/** The currently selected elective id. */
+	private Long electiveId;
+	
 	/** The current elective. */
 	private Elective elective;	
 	
@@ -33,6 +36,21 @@ public class ElectiveAction extends MeetingAction {
 	@Override
 	public String save() {
 		electiveService.saveOrUpdateElective(elective.getId(),meetingName,lecturerId,roomIds,cohortId,  numberOfAppointments, startDate, endDate);
+		return SUCCESS;
+	}
+	
+	/**
+	 * Deletes the elective from the database
+	 *
+	 * @return the result string
+	 */
+	public String delete(){
+		electiveService.deleteElective(electiveId);
+		return SUCCESS;
+	}
+	
+	public String load(){
+		elective = electiveService.loadElective(electiveId);
 		return SUCCESS;
 	}
 	
@@ -54,6 +72,14 @@ public class ElectiveAction extends MeetingAction {
 
 	public void setElectiveService(ElectiveService electiveService) {
 		this.electiveService = electiveService;
+	}
+
+	public Long getElectiveId() {
+		return electiveId;
+	}
+
+	public void setElectiveId(Long electiveId) {
+		this.electiveId = electiveId;
 	}
 	
 }
