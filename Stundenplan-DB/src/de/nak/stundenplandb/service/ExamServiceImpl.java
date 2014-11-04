@@ -108,5 +108,6 @@ public class ExamServiceImpl implements ExamService {
 		Hibernate.initialize(exam.getLecturer());
 		Hibernate.initialize(exam.getRooms());
 		Hibernate.initialize(exam.getAppointments());
+		Hibernate.initialize(exam.getStudentGroups());
 	}
 }
