@@ -64,14 +64,16 @@ public class RoomServiceImpl implements RoomService {
 	}
 
 	@Override
-	public List<Appointment> getAppointmentsForRoom(Room room) {
-		return getAppointmentsForRoomInTimeperiod(room,
+	public List<Appointment> getAppointmentsForRoom(Long roomId) {
+		return getAppointmentsForRoomInTimeperiod(roomId,
 				new Date(Long.MIN_VALUE), new Date(Long.MAX_VALUE));
 	}
 	
 	@Override
-	public List<Appointment> getAppointmentsForRoomInTimeperiod(Room room,
+	public List<Appointment> getAppointmentsForRoomInTimeperiod(Long roomId,
 			Date start, Date end) {
+		// TODO FK: Fehlerbehandlung?
+		Room room = roomDAO.load(roomId);
 		List<Appointment> appointments = appointmentDAO
 				.loadAppointmentsForRoomInTimeperiod(room, start, end);
 		// initialize appointments

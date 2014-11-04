@@ -54,16 +54,16 @@ public interface RoomService {
 	
 	/**
 	 * Returns a List of all Appointments for a given room.
-	 * @param room Room
+	 * @param roomId Room-Id
 	 * @return List of Appointments
 	 */
-	List<Appointment> getAppointmentsForRoom(Room room);
+	List<Appointment> getAppointmentsForRoom(Long roomId);
 	/**
 	 * Returns a List of all Appointments for a given room in a specific period of time.
-	 * @param room Room
+	 * @param roomId Room-Id
 	 * @param start Start of timeperiod
 	 * @param end End of timeperiod
 	 * @return List of Appointments
 	 */
-	List<Appointment> getAppointmentsForRoomInTimeperiod(Room room, Date start, Date end);
+	List<Appointment> getAppointmentsForRoomInTimeperiod(Long roomId, Date start, Date end);
 }
