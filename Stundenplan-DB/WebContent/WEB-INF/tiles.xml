@@ -69,6 +69,11 @@
 	<!-- The timetable list -->
  	<definition name="timetableList" extends="mainLayout">
 		<put-attribute name="content" value="/timetableList.jsp"/>
+	</definition>	
+	
+	<!-- The room choice form -->
+ 	<definition name="roomChoiceForm" extends="mainLayout">
+		<put-attribute name="content" value="/roomChoiceForm.jsp"/>
 	</definition>
 	
 	

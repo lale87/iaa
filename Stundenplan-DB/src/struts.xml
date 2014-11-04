@@ -140,6 +140,15 @@
 			<result type="redirect">ShowMeetingMenu.action</result>	
 			<result type="tiles" name="error">meetingMenu</result>					
 		</action>		
+		
+		
+		
+		
+		<action name="RoomForLectureAction" class="de.nak.stundenplandb.action.LectureAction">		   
+			<result type="tiles" >roomChoiceForm</result>	
+			<result type="tiles" name="input">lectureForm</result>				
+		</action>	
+		
 
 		<!-- Action that displays the list of cars. -->
 <!--

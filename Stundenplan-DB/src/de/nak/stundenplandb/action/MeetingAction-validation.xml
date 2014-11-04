@@ -8,12 +8,7 @@
 		<field-validator type="required">
 			<message key="msg.validator.required" />
 		</field-validator>
-	</field>	
-	<field name="roomIds">
-		<field-validator type="required">
-			<message key="msg.validator.required" />
-		</field-validator>
-	</field>
+	</field>		
 	<field name="startDate">
 		<field-validator type="required">
 			<message key="msg.validator.required" />

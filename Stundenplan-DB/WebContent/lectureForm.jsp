@@ -13,6 +13,7 @@
 	<s:hidden name="lecture.id"/>
   	<s:select name="lecturerId" key="lbl.lecturer" list="allLecturers" listKey="id" listValue="displayName" requiredLabel="true"/>	
 	<s:select name="roomIds" key="lbl.rooms" list="allRooms" listKey="id" listValue="displayName" multiple="true" size="5" requiredLabel="true"/> 
+ 	
  	<s:select name="studentGroupId" key="lbl.studentGroup" list="allStudentGroups" listKey="id" listValue="displayName" requiredLabel="true"/>
 	<s:textfield name="meetingName" key="lbl.meetingName" size="40" maxlength="100" requiredLabel="true"/>
 	<s:textfield name="numberOfAppointments" key="lbl.numberOfAppointments" size="3" maxlength="3" requiredLabel="true"/>

@@ -7,8 +7,10 @@ import org.apache.commons.lang3.time.DateUtils;
 
 import com.opensymphony.xwork2.ActionSupport;
 
+import de.nak.stundenplandb.model.Appointment;
 import de.nak.stundenplandb.model.Meeting;
 import de.nak.stundenplandb.service.MeetingService;
+import de.nak.stundenplandb.service.RoomService;
 
 /**
  * Action for printing the timetable.
@@ -27,22 +29,20 @@ public class ShowTimetableListAction extends ActionSupport {
     private String selectedType;
 
 	/** The list of meetings to be displayed in the timetable */
-    private List<Meeting> meetingList;
+    private List<Appointment> appointmentList;
     
-    /** The meeting service. */
-    private MeetingService meetingService;
+    /** The room service. */
+    private RoomService roomService;
 
 	@Override
     public String execute(){
     	switch (selectedType) {
 		case "Dozent":
-			this.meetingList = meetingService.loadMeetingsForLecturer(selectedId, new Date(), DateUtils.addDays(new Date(), 30));			
 			break;
 		case "Raum"	:
-			this.meetingList = meetingService.loadMeetingsForRoom(selectedId,new Date(), DateUtils.addDays(new Date(), 30));
+			appointmentList = roomService.getAppointmentsForRoom(selectedId);
 			break;
 		case "Zenturie":
-			this.meetingList = meetingService.loadMeetingsForStudentGroup(selectedId, new Date(), DateUtils.addDays(new Date(), 30));
 			break;		
 		}    	
     	return SUCCESS;
@@ -64,12 +64,12 @@ public class ShowTimetableListAction extends ActionSupport {
 		return selectedId;
 	}
 
-	public List<Meeting> getMeetingList() {
-		return meetingList;
+	public List<Appointment> getAppointmentList() {
+		return appointmentList;
 	}
 
-	public void setMeetingService(MeetingService meetingService) {
-		this.meetingService = meetingService;
+	public void setRoomService(RoomService roomService) {
+		this.roomService = roomService;
 	}	
 
 }
