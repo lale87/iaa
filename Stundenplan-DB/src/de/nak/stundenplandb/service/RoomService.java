@@ -3,6 +3,7 @@ package de.nak.stundenplandb.service;
 import java.util.Date;
 import java.util.List;
 
+import de.nak.stundenplandb.model.Appointment;
 import de.nak.stundenplandb.model.ERoomType;
 import de.nak.stundenplandb.model.Room;
 
@@ -50,4 +51,19 @@ public interface RoomService {
 	 * @return List of free rooms
 	 */
 	List<Room> findFreeRoomsForTimeperiod(Date startDate, Date endDate);
+	
+	/**
+	 * Returns a List of all Appointments for a given room.
+	 * @param room Room
+	 * @return List of Appointments
+	 */
+	List<Appointment> getAppointmentsForRoom(Room room);
+	/**
+	 * Returns a List of all Appointments for a given room in a specific period of time.
+	 * @param room Room
+	 * @param start Start of timeperiod
+	 * @param end End of timeperiod
+	 * @return List of Appointments
+	 */
+	List<Appointment> getAppointmentsForRoomInTimeperiod(Room room, Date start, Date end);
 }
