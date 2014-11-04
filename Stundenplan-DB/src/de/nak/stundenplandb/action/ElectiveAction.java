@@ -3,6 +3,8 @@
  */
 package de.nak.stundenplandb.action;
 
+import org.apache.struts2.interceptor.validation.SkipValidation;
+
 import de.nak.stundenplandb.model.Elective;
 import de.nak.stundenplandb.service.ElectiveService;
 
@@ -39,6 +41,26 @@ public class ElectiveAction extends MeetingAction {
 		return SUCCESS;
 	}
 	
+	/**
+	 * Deletes the elective from the database
+	 *
+	 * @return the result string
+	 */
+	@SkipValidation
+	public String delete(){
+		if ( electiveId != null) {
+			electiveService.deleteElective(electiveId);
+			return SUCCESS;
+		}
+		return ERROR;
+	}
+	
+	/**
+	 * Displays the elective in the elective form.
+	 *
+	 * @return the result string
+	 */
+	@SkipValidation
 	public String load(){
 		elective = electiveService.loadElective(electiveId);
 		return SUCCESS;

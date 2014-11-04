@@ -3,6 +3,8 @@
  */
 package de.nak.stundenplandb.action;
 
+import org.apache.struts2.interceptor.validation.SkipValidation;
+
 import de.nak.stundenplandb.model.Lecture;
 import de.nak.stundenplandb.service.LectureService;
 
@@ -45,14 +47,22 @@ public class LectureAction extends MeetingAction {
 	 *
 	 * @return the result string
 	 */
+	@SkipValidation
 	public String delete(){
-		lectureService.deleteLecture(lectureId);
-		return SUCCESS;
+		if (lectureId != null) {
+			lectureService.deleteLecture(lectureId);
+			return SUCCESS;
+		}
+		return ERROR;
 	}
 	
+	@SkipValidation
 	public String load(){
-		lecture = lectureService.loadLecture(lectureId);
-		return SUCCESS;
+		if (lectureId != null) {
+			lectureService.loadLecture(lectureId);
+			return SUCCESS;
+		}
+		return ERROR;		
 	}
 
 	public Lecture getLecture() {

@@ -3,6 +3,8 @@
  */
 package de.nak.stundenplandb.action;
 
+import org.apache.struts2.interceptor.validation.SkipValidation;
+
 import de.nak.stundenplandb.model.Seminar;
 import de.nak.stundenplandb.service.SeminarService;
 
@@ -46,6 +48,20 @@ public class SeminarAction extends MeetingAction {
 	public String load(){
 		seminar = seminarService.loadSeminar(seminarId);
 		return SUCCESS;
+	}
+	
+	/**
+	 * Deletes the seminar from the database
+	 *
+	 * @return the result string
+	 */
+	@SkipValidation
+	public String delete(){
+		if (seminarId != null) {
+			seminarService.deleteSeminar(seminarId);	
+			return SUCCESS;
+		}
+		return ERROR;
 	}
 	
 	public Seminar getSeminar() {

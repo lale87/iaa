@@ -5,6 +5,8 @@ package de.nak.stundenplandb.action;
 
 import java.util.List;
 
+import org.apache.struts2.interceptor.validation.SkipValidation;
+
 import de.nak.stundenplandb.model.Exam;
 import de.nak.stundenplandb.service.ExamService;
 
@@ -40,13 +42,28 @@ public class ExamAction extends MeetingAction {
 	public String save(){
 		examService.saveOrUpdateExam(exam.getId(), meetingName,lecturerId,roomIds,studentGroupIds,  numberOfAppointments, startDate, endDate);
 		return SUCCESS;
-	}	
+	}
+	
+	/**
+	 * Deletes the exam from the database
+	 *
+	 * @return the result string
+	 */
+	@SkipValidation
+	public String delete(){
+		if( examId != null){
+			examService.deleteExam(examId);		
+			return SUCCESS;
+		}
+		return ERROR;
+	}
 	
 	/**
 	 * Displays the selected exam in the exam form.
 	 *
 	 * @return the string
 	 */
+	@SkipValidation
 	public String load(){
 		exam = examService.loadExam(examId);
 		return SUCCESS;
