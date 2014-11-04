@@ -62,4 +62,9 @@ public class SeminarServiceImpl implements SeminarService {
 		// TODO Auto-generated method stub
 		return true;
 	}
+
+	@Override
+	public List<Seminar> loadAllSeminars() {
+		return seminarDAO.loadAll();
+	}
 }

@@ -76,4 +76,9 @@ public class ExamServiceImpl implements ExamService {
 		// TODO Auto-generated method stub
 		return true;
 	}
+
+	@Override
+	public List<Exam> loadAllExams() {
+		return examDAO.loadAll();
+	}
 }

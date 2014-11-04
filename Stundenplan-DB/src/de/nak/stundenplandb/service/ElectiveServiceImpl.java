@@ -67,7 +67,12 @@ public class ElectiveServiceImpl implements ElectiveService {
 	public boolean checkCollisionsForElective(Long id, 
 			Long lecturerId, List<Long> roomIds, Long cohortId,
 			int numberOfAppointments, Date startDate, Date endDate) {
-		// TODO Auto-generated method stub
+		// TODO Kollisionsprüfung implementieren
 		return true;
+	}
+
+	@Override
+	public List<Elective> loadAllElectives() {
+		return electiveDAO.loadAll();
 	}
 }

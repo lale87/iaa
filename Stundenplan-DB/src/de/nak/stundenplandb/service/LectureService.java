@@ -44,6 +44,12 @@ public interface LectureService {
 			Date startDate, Date endDate);
 
 	/**
+	 * Loads all existing lectures
+	 * 
+	 * @return a List of Lecture
+	 */
+	List<Lecture> loadAllLectures();
+	/**
 	 * deletes a Lecture.
 	 *
 	 * @param lecture

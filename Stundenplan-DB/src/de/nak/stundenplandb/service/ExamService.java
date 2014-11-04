@@ -45,6 +45,12 @@ public interface ExamService {
 			Date startDate, Date endDate);
 
 	/**
+	 * Loads all existing exams
+	 * 
+	 * @return a List of Exams
+	 */
+	List<Exam> loadAllExams();
+	/**
 	 * deletes an Exam.
 	 *
 	 * @param exam

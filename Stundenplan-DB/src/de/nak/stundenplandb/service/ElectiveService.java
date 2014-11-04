@@ -42,6 +42,13 @@ public interface ElectiveService {
 	boolean checkCollisionsForElective(Long id, Long lecturerId,
 			List<Long> roomIds, Long cohortId, int numberOfAppointments,
 			Date startDate, Date endDate);
+	
+	/**
+	 * Loads all existing electives
+	 * 
+	 * @return a List of Electives
+	 */
+	List<Elective> loadAllElectives();
 
 	/**
 	 * deletes an Elective.

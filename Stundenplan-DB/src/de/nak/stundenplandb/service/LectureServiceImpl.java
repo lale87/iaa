@@ -70,4 +70,9 @@ public class LectureServiceImpl implements LectureService {
 		// TODO Auto-generated method stub
 		return true;
 	}
+
+	@Override
+	public List<Lecture> loadAllLectures() {
+		return lectureDAO.loadAll();
+	}
 }
