@@ -18,7 +18,9 @@
 			<th><s:text name="lbl.endDate"/></th>						
 			<th><s:text name="lbl.meetingName"/></th>
 			<th><s:text name="lbl.lecturer"/></th>
-			<th><s:text name="lbl.rooms"/></th>			
+			<th><s:text name="lbl.rooms"/></th>		
+			<th><s:text name="lbl.studentGroup"/></th>	
+			<th><s:text name="lbl.cohort"/></th>	
 		</tr>
 		<s:iterator value="appointmentList">
 			<tr>				
@@ -32,8 +34,17 @@
 						<s:property value="displayName"/>						
 					</s:iterator>					
 				</td>
+				<td>
+					<s:property value="meeting.studentGroup.displayName"/>
+					<%-- 
+					<s:iterator value="meeting.studentGroups">
+						<s:property value="displayName"/>						
+					</s:iterator>
+					--%>				
+				</td>
+				<td><s:property value="meeting.cohort.yearOfAdmission"/></td>
 			</tr>
 		</s:iterator>
 	</table>
-	<s:submit key="btn.return" action="ShowTimetableMenu" />
+	<s:submit key="btn.return" action="ShowTimetableMenu" theme="simple" />
 </s:form>
