@@ -9,8 +9,10 @@ import com.opensymphony.xwork2.ActionSupport;
 
 import de.nak.stundenplandb.model.Appointment;
 import de.nak.stundenplandb.model.Meeting;
+import de.nak.stundenplandb.service.LecturerService;
 import de.nak.stundenplandb.service.MeetingService;
 import de.nak.stundenplandb.service.RoomService;
+import de.nak.stundenplandb.service.StudentGroupService;
 
 /**
  * Action for printing the timetable.
@@ -30,6 +32,12 @@ public class ShowTimetableListAction extends ActionSupport {
 
 	/** The list of meetings to be displayed in the timetable */
     private List<Appointment> appointmentList;
+    
+    /** The lecturer service. */
+    private LecturerService lecturerService;
+    
+    /** The student group service. */
+    private StudentGroupService studentGroupService;
     
     /** The room service. */
     private RoomService roomService;
@@ -70,6 +78,14 @@ public class ShowTimetableListAction extends ActionSupport {
 
 	public void setRoomService(RoomService roomService) {
 		this.roomService = roomService;
+	}
+
+	public void setLecturerService(LecturerService lecturerService) {
+		this.lecturerService = lecturerService;
+	}
+
+	public void setStudentGroupService(StudentGroupService studentGroupService) {
+		this.studentGroupService = studentGroupService;
 	}	
 
 }

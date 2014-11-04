@@ -36,11 +36,9 @@
 				</td>
 				<td>
 					<s:property value="meeting.studentGroup.displayName"/>
-					<%-- 
 					<s:iterator value="meeting.studentGroups">
 						<s:property value="displayName"/>						
-					</s:iterator>
-					--%>				
+					</s:iterator>									
 				</td>
 				<td><s:property value="meeting.cohort.yearOfAdmission"/></td>
 			</tr>
