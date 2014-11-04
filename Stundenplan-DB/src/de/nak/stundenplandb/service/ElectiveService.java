@@ -57,4 +57,20 @@ public interface ElectiveService {
 	 *            The elective.
 	 */
 	void deleteElective(Elective elective);
+
+	/**
+	 * deletes an Elective by a given ID.
+	 *
+	 * @param elective
+	 *            The elective.
+	 */
+	void deleteElective(Long id);
+
+	/**
+	 * loads an Elective by a given ID.
+	 *
+	 * @param elective
+	 *            The elective.
+	 */
+	Elective loadElective(Long id);
 }

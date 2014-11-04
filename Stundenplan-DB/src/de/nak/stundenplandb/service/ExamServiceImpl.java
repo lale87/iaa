@@ -81,4 +81,14 @@ public class ExamServiceImpl implements ExamService {
 	public List<Exam> loadAllExams() {
 		return examDAO.loadAll();
 	}
+
+	@Override
+	public void deleteExam(Long id) {
+		examDAO.delete(this.loadExam(id));
+	}
+
+	@Override
+	public Exam loadExam(Long id) {
+		return examDAO.load(id);
+	}
 }

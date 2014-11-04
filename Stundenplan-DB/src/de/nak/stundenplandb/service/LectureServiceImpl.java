@@ -14,6 +14,7 @@ import de.nak.stundenplandb.model.StudentGroup;
 
 /**
  * Implementation of the LectureService
+ * 
  * @author Fabian Kolossa
  *
  */
@@ -21,27 +22,27 @@ public class LectureServiceImpl implements LectureService {
 	private MeetingService meetingService;
 	private LectureDAO lectureDAO;
 	private StudentGroupDAO studentGroupDAO;
-	
+
 	@Override
 	public void saveOrUpdateLecture(Long id, String meetingName,
 			Long lecturerId, List<Long> roomIds, Long studentGroupId,
 			int numberOfAppointments, Date startDate, Date endDate) {
 		// TODO FK: Fehlerbehandlung (Objekt zu ID nicht gefunden)
-		
+
 		// update? (null if lecture not exists yet)
 		Lecture lecture = lectureDAO.load(id);
 		if (lecture == null) {
 			lecture = new Lecture();
 		}
-		
+
 		// set meeting attributes
 		meetingService.fillMeeting(lecture, meetingName, lecturerId, roomIds,
 				numberOfAppointments, startDate, endDate, EMeetingType.LECTURE);
-		
+
 		// set lecturer-specific attributes
 		StudentGroup studentGroup = studentGroupDAO.load(studentGroupId);
 		lecture.setStudentGroup(studentGroup);
-		
+
 		// save lecture
 		lectureDAO.save(lecture);
 	};
@@ -64,9 +65,9 @@ public class LectureServiceImpl implements LectureService {
 	}
 
 	@Override
-	public boolean CheckCollisionsForLecture(Long id, 
-			Long lecturerId, List<Long> roomIds, Long studentGroupId,
-			int numberOfAppointments, Date startDate, Date endDate) {
+	public boolean CheckCollisionsForLecture(Long id, Long lecturerId,
+			List<Long> roomIds, Long studentGroupId, int numberOfAppointments,
+			Date startDate, Date endDate) {
 		// TODO Auto-generated method stub
 		return true;
 	}
@@ -74,5 +75,15 @@ public class LectureServiceImpl implements LectureService {
 	@Override
 	public List<Lecture> loadAllLectures() {
 		return lectureDAO.loadAll();
+	}
+
+	@Override
+	public void deleteLecture(Long id) {
+		lectureDAO.delete(this.loadLecture(id));
+	}
+
+	@Override
+	public Lecture loadLecture(Long id) {
+		return lectureDAO.load(id);
 	}
 }

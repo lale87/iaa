@@ -73,4 +73,20 @@ public interface SeminarService {
 	 *            The seminar.
 	 */
 	void deleteSeminar(Seminar seminar);
+
+	/**
+	 * deletes a Seminar by a given ID.
+	 *
+	 * @param Seminar
+	 *            The seminar.
+	 */
+	void deleteSeminar(Long id);
+
+	/**
+	 * loads a Seminar by a given ID.
+	 *
+	 * @param Seminar
+	 *            The seminar.
+	 */
+	Seminar loadSeminar(Long id);
 }

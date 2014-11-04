@@ -12,32 +12,33 @@ import de.nak.stundenplandb.model.Seminar;
 
 /**
  * TODO FK: comment for SeminarServiceImpl
+ * 
  * @author Fabian Kolossa
  *
  */
 public class SeminarServiceImpl implements SeminarService {
 	private MeetingService meetingService;
 	private SeminarDAO seminarDAO;
-	
+
 	@Override
 	public void saveOrUpdateSeminar(Long id, String meetingName,
 			Long lecturerId, List<Long> roomIds, int numberOfAppointments,
 			Date startDate, Date endDate) {
 		// TODO FK: Fehlerbehandlung (Objekt zu ID nicht gefunden)
-		
+
 		// update? (null if seminar not exists yet)
 		Seminar seminar = seminarDAO.load(id);
 		if (seminar == null) {
 			seminar = new Seminar();
 		}
-		
+
 		// set meeting attributes
 		meetingService.fillMeeting(seminar, meetingName, lecturerId, roomIds,
 				numberOfAppointments, startDate, endDate, EMeetingType.SEMINAR);
-		
+
 		// set seminar-specific attributes
 		// nothing to set
-		
+
 		// save seminar
 		seminarDAO.save(seminar);
 	};
@@ -56,15 +57,25 @@ public class SeminarServiceImpl implements SeminarService {
 	}
 
 	@Override
-	public boolean checkCollisionsForSeminar(Long id,
-			Long lecturerId, List<Long> roomIds, int numberOfAppointments,
-			Date startDate, Date endDate) {
-		// TODO Auto-generated method stub
+	public boolean checkCollisionsForSeminar(Long id, Long lecturerId,
+			List<Long> roomIds, int numberOfAppointments, Date startDate,
+			Date endDate) {
+		// TODO Kollisionsprüfung implementieren
 		return true;
 	}
 
 	@Override
 	public List<Seminar> loadAllSeminars() {
 		return seminarDAO.loadAll();
+	}
+
+	@Override
+	public void deleteSeminar(Long id) {
+		seminarDAO.delete(this.loadSeminar(id));
+	}
+
+	@Override
+	public Seminar loadSeminar(Long id) {
+		return seminarDAO.load(id);
 	}
 }

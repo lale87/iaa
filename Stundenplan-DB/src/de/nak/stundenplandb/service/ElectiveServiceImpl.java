@@ -75,4 +75,14 @@ public class ElectiveServiceImpl implements ElectiveService {
 	public List<Elective> loadAllElectives() {
 		return electiveDAO.loadAll();
 	}
+
+	@Override
+	public void deleteElective(Long id) {
+		electiveDAO.delete(this.loadElective(id));
+	}
+
+	@Override
+	public Elective loadElective(Long id) {
+		return electiveDAO.load(id);
+	}
 }
