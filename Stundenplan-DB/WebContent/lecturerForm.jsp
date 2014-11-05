@@ -23,7 +23,7 @@
 
 	<%-- The buttons --%>
 	<s:submit key="btn.save" action="SaveLecturer" />
-	<s:submit key="btn.cancel" action="CancelMasterData" />
+	<s:submit key="btn.cancel" action="CancelNewLecturer" />
 </s:form>
 
 

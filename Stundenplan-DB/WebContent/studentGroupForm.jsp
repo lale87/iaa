@@ -17,7 +17,7 @@
 
 	<%-- The buttons --%>
 	<s:submit key="btn.save" action="SaveStudentGroup"/>
-	<s:submit key="btn.cancel" action="CancelMasterData"/>
+	<s:submit key="btn.cancel" action="CancelNewStudentGroup"/>
 </s:form>
 
 

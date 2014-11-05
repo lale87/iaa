@@ -18,7 +18,7 @@
 
 	<%-- The buttons --%>
 	<s:submit key="btn.save" action="SaveRoom"/>
-	<s:submit key="btn.cancel" action="CancelMasterData"/>
+	<s:submit key="btn.cancel" action="CancelNewRoom"/>
 </s:form>
 
 <%-- Table for displaying existing rooms --%>

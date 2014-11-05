@@ -37,6 +37,15 @@ public class LecturerAction extends ActionSupport {
 	}
 	
 	/**
+	 * Cancel method for avoiding stacktraces
+	 *
+	 * @return the result string
+	 */
+	public String cancel(){
+		return SUCCESS;
+	}
+	
+	/**
 	 * Gets all academic titles.
 	 *
 	 * @return all academic titles

@@ -51,9 +51,17 @@
 		<action name="SaveStudentGroup" class="de.nak.stundenplandb.action.StudentGroupAction" method="save">
 			<result type="redirect">ShowStudentGroupForm.action</result>
 			<result type="tiles" name="input">studentGroupForm</result>
+		</action>		
+		
+		<action name="CancelNewRoom" class="de.nak.stundenplandb.action.RoomAction" method="cancel">
+			<result type="redirect">ShowMasterData.action</result>
 		</action>
 		
-		<action name="CancelMasterData">
+		<action name="CancelNewLecturer" class="de.nak.stundenplandb.action.LecturerAction" method="cancel">
+			<result type="redirect">ShowMasterData.action</result>
+		</action>
+		
+		<action name="CancelNewStudentGroup" class="de.nak.stundenplandb.action.StudentGroupAction" method="cancel">
 			<result type="redirect">ShowMasterData.action</result>
 		</action>
 		

@@ -35,6 +35,15 @@ public class RoomAction extends ActionSupport {
 	}
 	
 	/**
+	 * Cancel method for avoiding stacktraces
+	 *
+	 * @return the result string
+	 */
+	public String cancel(){
+		return SUCCESS;
+	}
+	
+	/**
 	 * Gets the all rooms in the database
 	 *
 	 * @return all rooms
