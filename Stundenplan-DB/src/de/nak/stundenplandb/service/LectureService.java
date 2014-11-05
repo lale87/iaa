@@ -6,7 +6,6 @@ package de.nak.stundenplandb.service;
 import java.util.Date;
 import java.util.List;
 
-import de.nak.stundenplandb.model.ECollisionType;
 import de.nak.stundenplandb.model.Lecture;
 
 /**
