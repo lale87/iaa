@@ -45,7 +45,7 @@
 	</table>	
 	<%-- Buttons for creating or editing lectures --%>
 	<s:submit key="btn.newLecture" action="ShowLectureForm" theme="simple"/>
-	<s:submit key="btn.editLecture"  theme="simple"/>
+	<s:submit key="btn.editLecture" action="EditLecture" theme="simple"/>
 	<s:submit key="btn.deleteLecture" action="DeleteLecture" theme="simple"/>			
 </s:form>
 

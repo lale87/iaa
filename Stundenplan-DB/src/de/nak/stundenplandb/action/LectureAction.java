@@ -36,10 +36,10 @@ public class LectureAction extends MeetingAction {
 	 * @return the result string.
 	 */
 	public String save(){
-		if (lectureService.CheckCollisionsForLecture(lectureId, lectureId, roomIds, studentGroupId, numberOfAppointments, startDate, endDate)) {
-			lectureService.saveOrUpdateLecture(lectureId, meetingName, lecturerId,
+		//if (lectureService.isPossible(lectureId, lectureId, roomIds, studentGroupId, numberOfAppointments, startDate, endDate)) {
+			lectureService.saveOrUpdateLecture(lecture.getId(), meetingName, lecturerId,
 					roomIds, studentGroupId, numberOfAppointments, startDate, endDate);
-		}
+		//}
 				
 		return SUCCESS;
 	}
@@ -61,7 +61,7 @@ public class LectureAction extends MeetingAction {
 	@SkipValidation
 	public String load(){
 		if (lectureId != null) {
-			lectureService.loadLecture(lectureId);
+			lecture = lectureService.loadLecture(lectureId);
 			return SUCCESS;
 		}
 		return ERROR;		

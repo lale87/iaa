@@ -8,21 +8,21 @@
 --%>
 
 <h3><s:text name="hdl.newLecture"></s:text></h3>
-<s:form>
+<s:form>	
 	<%-- Form fields for the lecture's attributes --%>
 	<s:hidden name="lecture.id"/>
-  	<s:select name="lecturerId" key="lbl.lecturer" list="allLecturers" listKey="id" listValue="displayName" requiredLabel="true"/>	
-	<s:select name="roomIds" key="lbl.rooms" list="allRooms" listKey="id" listValue="displayName" multiple="true" size="5" requiredLabel="true"/> 
+  	<s:select name="lecturerId" key="lbl.lecturer" list="allLecturers" listKey="id" listValue="displayName" value="lecture.lecturer.id" requiredLabel="true"/>	
+	<s:select name="roomIds" key="lbl.rooms" list="allRooms" listKey="id" listValue="displayName" value="%{lecture.rooms.{id}}" multiple="true"  size="5" requiredLabel="true"/> 
  	
- 	<s:select name="studentGroupId" key="lbl.studentGroup" list="allStudentGroups" listKey="id" listValue="displayName" requiredLabel="true"/>
-	<s:textfield name="meetingName" key="lbl.meetingName" size="40" maxlength="100" requiredLabel="true"/>
-	<s:textfield name="numberOfAppointments" key="lbl.numberOfAppointments" size="3" maxlength="3" requiredLabel="true"/>
+ 	<s:select name="studentGroupId" key="lbl.studentGroup" list="allStudentGroups" listKey="id" value="lecture.studentGroup.id" listValue="displayName" requiredLabel="true"/>
+	<s:textfield name="meetingName" key="lbl.meetingName" value="%{lecture.name}" size="40" maxlength="100" requiredLabel="true"/>
+	<s:textfield name="numberOfAppointments" key="lbl.numberOfAppointments" value="%{lecture.numberOfAppointments}" size="3" maxlength="3" requiredLabel="true"/>
 	
 	<%-- jquery datepicker for choosing start and end date of lecture --%>
 	<sj:head  />	
-	<sj:datepicker name="startDate" key="lbl.startDate" timepicker="true" timepickerFormat="HH:mm"
+	<sj:datepicker name="startDate" key="lbl.startDate" value="%{lecture.appointments[1].start}" timepicker="true" timepickerFormat="HH:mm"
 	displayFormat="dd.mm.yy" changeMonth="true" changeYear="true" requiredLabel="true"/>
-	<sj:datepicker name="endDate" key="lbl.endDate" timepicker="true" timepickerFormat="HH:mm" 
+	<sj:datepicker name="endDate" key="lbl.endDate" value="%{lecture.appointments[1].end}" timepicker="true" timepickerFormat="HH:mm" 
 	displayFormat="dd.mm.yy" changeMonth="true" changeYear="true" requiredLabel="true"/>
 		
 	<%-- The buttons --%>

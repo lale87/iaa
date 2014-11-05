@@ -139,6 +139,11 @@
 		<action name="DeleteSeminar" class="de.nak.stundenplandb.action.SeminarAction" method="delete">		   
 			<result type="redirect">ShowMeetingMenu.action</result>	
 			<result type="tiles" name="error">meetingMenu</result>					
+		</action>
+		
+		<action name="EditLecture" class="de.nak.stundenplandb.action.LectureAction" method="load">		   
+			<result type="tiles">lectureForm</result>
+			<result type="chain" name="error">ShowMeetingMenu</result>						
 		</action>		
 		
 		
