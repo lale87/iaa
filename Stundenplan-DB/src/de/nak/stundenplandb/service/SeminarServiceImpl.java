@@ -69,7 +69,7 @@ public class SeminarServiceImpl implements SeminarService {
 	@Override
 	public List<Seminar> loadAllSeminars() {
 		List<Seminar> allSeminars = seminarDAO.loadAll();
-		initializeSeminar(allSeminars);
+		initializeSeminars(allSeminars);
 		return allSeminars;
 	}
 
@@ -80,11 +80,13 @@ public class SeminarServiceImpl implements SeminarService {
 
 	@Override
 	public Seminar loadSeminar(Long id) {
-		return seminarDAO.load(id);
+		Seminar seminar = seminarDAO.load(id);
+		initializeSeminar(seminar);
+		return seminar;
 	}
 
 	// TODO diese Mthoden evtl zusammenfassen bei allen Meeting-Subtypes
-	private void initializeSeminar(List<Seminar> seminars) {
+	private void initializeSeminars(List<Seminar> seminars) {
 		for (Seminar seminar : seminars) {
 			initializeSeminar(seminar);
 		}

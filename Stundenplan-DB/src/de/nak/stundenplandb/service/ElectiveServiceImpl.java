@@ -90,10 +90,12 @@ public class ElectiveServiceImpl implements ElectiveService {
 
 	@Override
 	public Elective loadElective(Long id) {
-		return electiveDAO.load(id);
+		Elective elective = electiveDAO.load(id);
+		initializeElective(elective);
+		return elective;
 	}
 
-	//TODO diese Mthoden evtl zusammenfassen bei allen Meeting-Subtypes
+	// TODO diese Mthoden evtl zusammenfassen bei allen Meeting-Subtypes
 	private void initializeElectives(List<Elective> electives) {
 		for (Elective elective : electives) {
 			initializeElective(elective);
