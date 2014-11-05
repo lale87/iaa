@@ -66,4 +66,6 @@ public interface RoomService {
 	 * @return List of Appointments
 	 */
 	List<Appointment> getAppointmentsForRoomInTimeperiod(Long roomId, Date start, Date end);
+	
+	boolean isOccupied(Long id, Date startDate, Date endDate);
 }

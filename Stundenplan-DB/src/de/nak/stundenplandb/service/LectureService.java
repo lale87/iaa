@@ -6,6 +6,7 @@ package de.nak.stundenplandb.service;
 import java.util.Date;
 import java.util.List;
 
+import de.nak.stundenplandb.model.ECollisionType;
 import de.nak.stundenplandb.model.Lecture;
 
 /**
@@ -59,9 +60,18 @@ public interface LectureService {
 	 * @param endDate
 	 *            End date/time
 	 */
+	@Deprecated
 	boolean CheckCollisionsForLecture(Long id, Long lecturerId,
 			List<Long> roomIds, Long studentGroupId, int numberOfAppointments,
 			Date startDate, Date endDate);
+	
+	boolean isPossible(Long id, Long lecturerId,
+			List<Long> roomIds, Long studentGroupId, int numberOfAppointments,
+			Date startDate, Date endDate);
+	
+	
+//	List<ECollisionType> findCollisions(Long lecturerId, List<Long> roomIds, Long studentGroupId, int numberOfAppointments, Date startDate, Date endDate);
+	
 
 	/**
 	 * Loads all existing lectures
