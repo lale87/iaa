@@ -29,7 +29,7 @@ public class RoomDAOImpl extends GenericDAOImpl<Room> implements RoomDAO {
 				+ 	"WHERE ( "
 						// s' >= s && e' <= e
 				+ 		"a.start >= :startDate "
-				+ 		"AND s.end <= :endDate "
+				+ 		"AND a.end <= :endDate "
 				+ 	") OR ( "
 						// s' < s && e' >= s
 				+ 		"a.start < :startDate "
@@ -37,7 +37,7 @@ public class RoomDAOImpl extends GenericDAOImpl<Room> implements RoomDAO {
 				+ 	") OR ( "
 						// s' <= e && e' > e
 				+ 		"a.start <= :endDate "
-				+ 		"AND a.end > e "
+				+ 		"AND a.end > :endDate "
 				+ 	") "
 				+ "ORDER BY r.building, r.roomNumber ASC")
 				.setDate("startDate", start)
@@ -56,7 +56,7 @@ public class RoomDAOImpl extends GenericDAOImpl<Room> implements RoomDAO {
 				+ 	"( "
 						// s' >= s && e' <= e
 				+ 		"a.start >= :startDate "
-				+ 		"AND s.end <= :endDate "
+				+ 		"AND a.end <= :endDate "
 				+ 	") OR ( "
 						// s' < s && e' >= s
 				+ 		"a.start < :startDate "
@@ -64,7 +64,7 @@ public class RoomDAOImpl extends GenericDAOImpl<Room> implements RoomDAO {
 				+ 	") OR ( "
 						// s' <= e && e' > e
 				+ 		"a.start <= :endDate "
-				+ 		"AND a.end > e "
+				+ 		"AND a.end > :endDate "
 				+ 	") "
 				+ ")")
 				.setEntity("room", room)
@@ -76,13 +76,12 @@ public class RoomDAOImpl extends GenericDAOImpl<Room> implements RoomDAO {
 
 	@Override
 	public boolean isOccupied(Long id, Date startDate, Date endDate) {
-		return !(sessionFactory.getCurrentSession().createQuery("SELECT a FROM Appointment a "
-				+ "SELECT a FROM Appointment a JOIN a.meeting m JOIN m.rooms r WHERE r.id = :id "
+		return !(sessionFactory.getCurrentSession().createQuery("SELECT a FROM Appointment a JOIN a.meeting m JOIN m.rooms r WHERE r.id = :id "
 				+ "AND ( "
 				+ 	"( "
 						// Läuft in den Termin
 				+ 		"a.start >= :startDate "
-				+ 		"AND s.end >= :startDate "
+				+ 		"AND a.end >= :startDate "
 				+ 	") OR ( "
 						// s' < s && e' >= s
 				+ 		"a.end <=  :endDate "
