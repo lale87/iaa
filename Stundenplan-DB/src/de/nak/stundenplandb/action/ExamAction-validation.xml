@@ -5,8 +5,9 @@
 
 <validators>	
 	<field name="studentGroupIds">
-		<field-validator type="required">
-			<message key="msg.validator.required" />
-		</field-validator>
+		<field-validator type="fieldexpression">
+    		<param name="expression"><![CDATA[studentGroupIds.size() > 0]]></param>
+    		<message key="msg.validator.required"/>
+  		</field-validator>
 	</field>	
 </validators>

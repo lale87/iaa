@@ -8,6 +8,12 @@
 		<field-validator type="required">
 			<message key="msg.validator.required" />
 		</field-validator>
+	</field>
+	<field name="roomIds">		
+		<field-validator type="fieldexpression">
+    		<param name="expression"><![CDATA[roomIds.size() > 0]]></param>
+    		<message key="msg.validator.required"/>
+  		</field-validator>
 	</field>		
 	<field name="startDate">
 		<field-validator type="required">
@@ -18,6 +24,10 @@
 			<param name="max">31.12.2099</param>
 			<message key="msg.validator.dateRange" />
 		</field-validator>
+		<field-validator type="fieldexpression">
+    		<param name="expression"><![CDATA[startDate < endDate]]></param>
+    		<message key="msg.validator.inconsistentDates"/>
+  		</field-validator>
 	</field>
 	<field name="endDate">
 		<field-validator type="required">

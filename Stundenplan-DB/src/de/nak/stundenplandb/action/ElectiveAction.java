@@ -3,6 +3,10 @@
  */
 package de.nak.stundenplandb.action;
 
+import java.util.List;
+
+import org.apache.commons.beanutils.BeanToPropertyValueTransformer;
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.struts2.interceptor.validation.SkipValidation;
 
 import de.nak.stundenplandb.model.Elective;
@@ -60,10 +64,24 @@ public class ElectiveAction extends MeetingAction {
 	 *
 	 * @return the result string
 	 */
+	@SuppressWarnings("unchecked")
 	@SkipValidation
 	public String load(){
-		elective = electiveService.loadElective(electiveId);
-		return SUCCESS;
+		if ( electiveId != null) {
+			elective = electiveService.loadElective(electiveId);
+			
+			meetingName = elective.getName();
+			lecturerId = elective.getLecturer().getId();	
+			roomIds = (List<Long>) CollectionUtils.collect(elective.getRooms(), 
+                    new BeanToPropertyValueTransformer("id"));					
+			cohortId = elective.getCohort().getId();
+			numberOfAppointments = elective.getNumberOfAppointments();
+			startDate = elective.getAppointments().get(0).getStart();
+			endDate = elective.getAppointments().get(0).getEnd();			
+			
+			return SUCCESS;
+		}
+		return ERROR;
 	}
 	
 	public Elective getElective() {

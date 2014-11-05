@@ -13,29 +13,29 @@
 <s:form>
 	<s:hidden name="elective.id" />
 	<s:select name="lecturerId" key="lbl.lecturer" list="allLecturers"
-		listKey="id" listValue="displayName" value="elective.lecturer.id"
+		listKey="id" listValue="displayName" value="lecturerId"
 		requiredLabel="true" />
 	<s:select name="roomIds" key="lbl.rooms" list="allRooms" listKey="id"
-		listValue="displayName" value="%{elective.rooms.{id}}" multiple="true"
+		listValue="displayName" value="roomIds" multiple="true"
 		size="5" requiredLabel="true" />
 	<s:select name="cohortId" key="lbl.cohort" list="allCohorts"
-		listKey="id" listValue="yearOfAdmission" value="elective.cohort.id"
+		listKey="id" listValue="yearOfAdmission" value="cohortId"
 		requiredLabel="true" />
 	<s:textfield name="meetingName" key="lbl.meetingName"
-		value="%{elective.name}" size="40" maxlength="100"
+		value="%{meetingName}" size="40" maxlength="100"
 		requiredLabel="true" />
 	<s:textfield name="numberOfAppointments" key="lbl.numberOfAppointments"
-		value="%{elective.numberOfAppointments}" size="3" maxlength="3"
+		value="%{numberOfAppointments}" size="3" maxlength="3"
 		requiredLabel="true" />
 
 	<%-- Jquery datepicker for choosing start- and end date of elective --%>
 	<sj:head />
 	<sj:datepicker name="startDate" key="lbl.startDate"
-		value="%{elective.appointments[0].start}" timepicker="true"
+		value="%{startDate}" timepicker="true"
 		timepickerFormat="HH:mm" displayFormat="dd.mm.yy" changeMonth="true"
 		changeYear="true" requiredLabel="true" />
 	<sj:datepicker name="endDate" key="lbl.endDate"
-		value="%{elective.appointments[0].end}" timepicker="true"
+		value="%{endDate}" timepicker="true"
 		timepickerFormat="HH:mm" displayFormat="dd.mm.yy" changeMonth="true"
 		changeYear="true" requiredLabel="true" />
 

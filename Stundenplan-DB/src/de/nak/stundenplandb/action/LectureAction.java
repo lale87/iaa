@@ -3,6 +3,11 @@
  */
 package de.nak.stundenplandb.action;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.commons.beanutils.BeanToPropertyValueTransformer;
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.struts2.interceptor.validation.SkipValidation;
 
 import de.nak.stundenplandb.model.Lecture;
@@ -58,10 +63,20 @@ public class LectureAction extends MeetingAction {
 		return ERROR;
 	}
 	
+	@SuppressWarnings("unchecked")
 	@SkipValidation
 	public String load(){
 		if (lectureId != null) {
 			lecture = lectureService.loadLecture(lectureId);
+			
+			meetingName = lecture.getName();
+			lecturerId = lecture.getLecturer().getId();	
+			roomIds = (List<Long>) CollectionUtils.collect(lecture.getRooms(), 
+                    new BeanToPropertyValueTransformer("id"));
+			studentGroupId = lecture.getStudentGroup().getId();
+			numberOfAppointments = lecture.getNumberOfAppointments();
+			startDate = lecture.getAppointments().get(0).getStart();
+			endDate = lecture.getAppointments().get(0).getEnd();
 			return SUCCESS;
 		}
 		return ERROR;		

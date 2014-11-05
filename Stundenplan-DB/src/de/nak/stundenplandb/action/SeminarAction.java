@@ -3,6 +3,10 @@
  */
 package de.nak.stundenplandb.action;
 
+import java.util.List;
+
+import org.apache.commons.beanutils.BeanToPropertyValueTransformer;
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.struts2.interceptor.validation.SkipValidation;
 
 import de.nak.stundenplandb.model.Seminar;
@@ -45,10 +49,23 @@ public class SeminarAction extends MeetingAction {
 	 *
 	 * @return the string
 	 */
+	@SuppressWarnings("unchecked")
 	@SkipValidation
 	public String load(){
-		seminar = seminarService.loadSeminar(seminarId);
-		return SUCCESS;
+		if ( seminarId != null) {
+			seminar = seminarService.loadSeminar(seminarId);
+			
+			meetingName = seminar.getName();
+			lecturerId = seminar.getLecturer().getId();	
+			roomIds = (List<Long>) CollectionUtils.collect(seminar.getRooms(), 
+                    new BeanToPropertyValueTransformer("id"));					
+			numberOfAppointments = seminar.getNumberOfAppointments();
+			startDate = seminar.getAppointments().get(0).getStart();
+			endDate = seminar.getAppointments().get(0).getEnd();			
+			
+			return SUCCESS;
+		}
+		return ERROR;
 	}
 	
 	/**

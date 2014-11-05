@@ -5,6 +5,8 @@ package de.nak.stundenplandb.action;
 
 import java.util.List;
 
+import org.apache.commons.beanutils.BeanToPropertyValueTransformer;
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.struts2.interceptor.validation.SkipValidation;
 
 import de.nak.stundenplandb.model.Exam;
@@ -63,10 +65,25 @@ public class ExamAction extends MeetingAction {
 	 *
 	 * @return the string
 	 */
+	@SuppressWarnings("unchecked")
 	@SkipValidation
 	public String load(){
-		exam = examService.loadExam(examId);
-		return SUCCESS;
+		if( examId != null){
+			exam = examService.loadExam(examId);	
+			
+			meetingName = exam.getName();
+			lecturerId = exam.getLecturer().getId();	
+			roomIds = (List<Long>) CollectionUtils.collect(exam.getRooms(), 
+                    new BeanToPropertyValueTransformer("id"));
+			studentGroupIds = (List<Long>) CollectionUtils.collect(exam.getStudentGroups(), 
+                    new BeanToPropertyValueTransformer("id"));			
+			numberOfAppointments = exam.getNumberOfAppointments();
+			startDate = exam.getAppointments().get(0).getStart();
+			endDate = exam.getAppointments().get(0).getEnd();
+			
+			return SUCCESS;
+		}
+		return ERROR;
 	}
 	
 	public Exam getExam() {
