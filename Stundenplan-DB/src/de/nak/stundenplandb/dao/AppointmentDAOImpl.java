@@ -28,8 +28,21 @@ public class AppointmentDAOImpl extends GenericDAOImpl<Appointment> implements A
 				"SELECT a FROM Appointment a "
 				+ "JOIN a.meeting m "
 				+ "JOIN m.rooms r WHERE r = :room "
-				+ "AND a.start > :startDate "
-				+ "AND a.end < :endDate "
+				+ "AND ( "
+				+ 	"( "
+						// s' >= s && e' <= e
+				+ 		"a.start >= :startDate "
+				+ 		"AND s.end <= :endDate "
+				+ 	") OR ( "
+						// s' < s && e' >= s
+				+ 		"a.start < :startDate "
+				+ 		"AND a.end >= :startDate "
+				+ 	") OR ( "
+						// s' <= e && e' > e
+				+ 		"a.start <= :endDate "
+				+ 		"AND a.end > e "
+				+ 	") "
+				+ ") "
 				+ "ORDER BY a.start ASC")
 				.setEntity("room", room)
 				.setDate("startDate", start)
@@ -47,8 +60,21 @@ public class AppointmentDAOImpl extends GenericDAOImpl<Appointment> implements A
 				"SELECT a FROM Appointment a "
 				+ "JOIN a.meeting m "
 				+ "JOIN m.lecturer l WHERE l = :lecturer "
-				+ "AND a.start > :startDate "
-				+ "AND a.end < :endDate "
+				+ "AND ( "
+				+ 	"( "
+						// s' >= s && e' <= e
+				+ 		"a.start >= :startDate "
+				+ 		"AND s.end <= :endDate "
+				+ 	") OR ( "
+						// s' < s && e' >= s
+				+ 		"a.start < :startDate "
+				+ 		"AND a.end >= :startDate "
+				+ 	") OR ( "
+						// s' <= e && e' > e
+				+ 		"a.start <= :endDate "
+				+ 		"AND a.end > e "
+				+ 	") "
+				+ ") "
 				+ "ORDER BY a.start ASC")
 				.setEntity("lecturer", lecturer)
 				.setDate("startDate", start)
@@ -65,16 +91,32 @@ public class AppointmentDAOImpl extends GenericDAOImpl<Appointment> implements A
 				.getCurrentSession().createQuery(
 				"SELECT a FROM Appointment a "
 				+ "JOIN a.meeting m WHERE m IN "
+					// lectures
 				+ 	"(SELECT l FROM Lecture l "
 				+ 	"JOIN l.studentGroup s WHERE s = :studentGroup) "
 				+ "OR m IN "
+					// exams
 				+ 	"(SELECT e FROM Exam e "
 				+ 	"JOIN e.studentGroups s WHERE s = :studentGroup) "
 				+ "OR m IN "
+					// electives
 				+ 	"(SELECT e FROM Elective e "
 				+ 	"JOIN e.cohort c WHERE c = :cohort) "
-				+ "AND a.start > :startDate "
-				+ "AND a.end < :endDate "
+				+ "AND ( "
+				+ 	"( "
+						// s' >= s && e' <= e
+				+ 		"a.start >= :startDate "
+				+ 		"AND s.end <= :endDate "
+				+ 	") OR ( "
+						// s' < s && e' >= s
+				+ 		"a.start < :startDate "
+				+ 		"AND a.end >= :startDate "
+				+ 	") OR ( "
+						// s' <= e && e' > e
+				+ 		"a.start <= :endDate "
+				+ 		"AND a.end > e "
+				+ 	") "
+				+ ") "
 				+ "ORDER BY a.start ASC")
 				.setEntity("studentGroup", studentGroup)
 				.setEntity("cohort", studentGroup.getCohort())

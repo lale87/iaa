@@ -1,7 +1,7 @@
 package de.nak.stundenplandb.service;
 
-import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
@@ -92,8 +92,36 @@ public class RoomServiceImpl implements RoomService {
 	
 	@Override
 	public List<Room> findFreeRoomsForTimeperiod(Date startDate, Date endDate) {
-		// TODO FK: Suche freier Räume implementieren
-		return new ArrayList<Room>();
+		List<Room> freeRooms = 
+				roomDAO.getFreeRoomsForTimeperiod(startDate, endDate);
+		// check changing times
+		for (Room room : freeRooms) {
+			int changingTime = room.getChangingTime();
+			// check min. changing time
+			if (changingTime < room.getRoomType().getMinBreak()) {
+				changingTime = room.getRoomType().getMinBreak();
+			}
+
+			// calculate new start/end
+			Calendar cal = Calendar.getInstance();
+			
+			Date startDateWithChangingTime;
+			cal.setTime(startDate);
+			cal.add(Calendar.MINUTE, -changingTime);
+			startDateWithChangingTime = cal.getTime();
+			
+			Date endDateWithChangingTime;
+			cal.setTime(endDate);
+			cal.add(Calendar.MINUTE, changingTime);
+			endDateWithChangingTime = cal.getTime();
+			
+			// check room again with changing time
+			if (!roomDAO.isFreeForTimeperiod(
+					room, startDateWithChangingTime, endDateWithChangingTime)) {
+				freeRooms.remove(room);
+			}
+		}
+		return freeRooms;
 	}
 
 	public void setRoomDAO(RoomDAO roomDAO) {
