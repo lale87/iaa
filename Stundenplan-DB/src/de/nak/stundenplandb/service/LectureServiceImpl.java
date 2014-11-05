@@ -66,7 +66,7 @@ public class LectureServiceImpl implements LectureService {
 	public void setStudentGroupDAO(StudentGroupDAO studentGroupDAO) {
 		this.studentGroupDAO = studentGroupDAO;
 	}
-	
+
 	public void setRoomService(RoomService roomService) {
 		this.roomService = roomService;
 	}
@@ -75,8 +75,8 @@ public class LectureServiceImpl implements LectureService {
 	public boolean CheckCollisionsForLecture(Long id, Long lecturerId,
 			List<Long> roomIds, Long studentGroupId, int numberOfAppointments,
 			Date startDate, Date endDate) {
-		// TODO Auto-generated method stub
-		return true;
+		return isPossible(id, lecturerId, roomIds, studentGroupId,
+				numberOfAppointments, startDate, endDate);
 	}
 
 	@Override
@@ -93,10 +93,12 @@ public class LectureServiceImpl implements LectureService {
 
 	@Override
 	public Lecture loadLecture(Long id) {
-		return lectureDAO.load(id);
+		Lecture lecture = lectureDAO.load(id);
+		initializeLecture(lecture);
+		return lecture;
 	}
-	
-	//TODO diese Mthoden evtl zusammenfassen bei allen Meeting-Subtypes
+
+	// TODO diese Mthoden evtl zusammenfassen bei allen Meeting-Subtypes
 	private void initializeLectures(List<Lecture> lectures) {
 		for (Lecture lecture : lectures) {
 			initializeLecture(lecture);
@@ -113,12 +115,13 @@ public class LectureServiceImpl implements LectureService {
 	public boolean isPossible(Long id, Long lecturerId, List<Long> roomIds,
 			Long studentGroupId, int numberOfAppointments, Date startDate,
 			Date endDate) {
-		
-		//Check for RoomCollisions
+
+		// Check for RoomCollisions
 		for (Long roomId : roomIds) {
-			if(this.roomService.isOccupied(roomId, startDate, endDate)){
+			if (this.roomService.isOccupied(roomId, startDate, endDate)) {
 				return false;
-			};
+			}
+			;
 		}
 		return true;
 	}

@@ -94,7 +94,9 @@ public class ExamServiceImpl implements ExamService {
 
 	@Override
 	public Exam loadExam(Long id) {
-		return examDAO.load(id);
+		Exam exam = examDAO.load(id);
+		initializeExam(exam);
+		return exam;
 	}
 
 	// TODO diese Mthoden evtl zusammenfassen bei allen Meeting-Subtypes
