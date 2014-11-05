@@ -1,7 +1,7 @@
 package de.nak.stundenplandb.model;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 
 /**
  * Elective Entity
@@ -20,7 +20,7 @@ public class Elective extends Meeting {
 	 */
 	private Cohort cohort;
 
-	@Column(nullable = false)
+	@ManyToOne(optional = false)
 	public Cohort getCohort() {
 		return cohort;
 	}

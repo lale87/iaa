@@ -1,6 +1,5 @@
 package de.nak.stundenplandb.dao;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -62,21 +61,26 @@ public class AppointmentDAOImpl extends GenericDAOImpl<Appointment> implements A
 	@Override
 	public List<Appointment> loadAppointmentsForStudentGroupInTimeperiod(
 			StudentGroup studentGroup, Date start, Date end) {
-		List<Appointment> appointments = new ArrayList<Appointment>();
-		// Lecture
-		appointments.addAll(sessionFactory
+		List<Appointment> appointments = sessionFactory
 				.getCurrentSession().createQuery(
 				"SELECT a FROM Appointment a "
-				+ "JOIN a.meeting m "
-				+ "JOIN m."
-				+ "JOIN m.lecturer l WHERE l = :studentGroup "
+				+ "JOIN a.meeting m WHERE m IN "
+				+ "(SELECT l FROM Lecture l "
+				+ "JOIN l.studentGroup s WHERE s = :studentGroup) "
+				+ "OR m IN "
+				+ "(SELECT e FROM Exam e "
+				+ "JOIN e.studentGroups s WHERE s = :studentGroup) "
+				+ "OR m IN "
+				+ "(SELECT e FROM Elective e "
+				+ "JOIN e.cohort c WHERE c = :cohort) "
 				+ "AND a.start > :startDate "
 				+ "AND a.end < :endDate "
 				+ "ORDER BY a.start ASC")
 				.setEntity("studentGroup", studentGroup)
+				.setEntity("cohort", studentGroup.getCohort())
 				.setDate("startDate", start)
 				.setDate("endDate", end)
-				.list());
+				.list();
 		return appointments;
 	}
 

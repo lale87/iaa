@@ -3,13 +3,21 @@ package de.nak.stundenplandb.service;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 
+import org.hibernate.Hibernate;
 
+import de.nak.stundenplandb.dao.AppointmentDAO;
 import de.nak.stundenplandb.dao.CohortDAO;
 import de.nak.stundenplandb.dao.StudentGroupDAO;
+import de.nak.stundenplandb.model.Appointment;
 import de.nak.stundenplandb.model.Cohort;
 import de.nak.stundenplandb.model.EFieldOfStudy;
+import de.nak.stundenplandb.model.EMeetingType;
+import de.nak.stundenplandb.model.Elective;
+import de.nak.stundenplandb.model.Exam;
+import de.nak.stundenplandb.model.Lecture;
 import de.nak.stundenplandb.model.StudentGroup;
 
 /**
@@ -28,6 +36,10 @@ public class StudentGroupServiceImpl implements StudentGroupService {
 	 * Injected DAO
 	 */
 	private CohortDAO cohortDAO;
+	/**
+	 * Injected DAO
+	 */
+	private AppointmentDAO appointmentDAO;
 
 	/**
 	 * Comparator for a Cohort
@@ -120,6 +132,47 @@ public class StudentGroupServiceImpl implements StudentGroupService {
 		return Arrays.asList(EFieldOfStudy.values());
 	}
 
+	@Override
+	public List<Appointment> getAppointmentsForStudentGroup(Long studentGroupId) {
+		return getAppointmentsForStudentGroupInTimeperiod(studentGroupId,
+				new Date(Long.MIN_VALUE), new Date(Long.MAX_VALUE));
+	}
+	
+	@Override
+	public List<Appointment> getAppointmentsForStudentGroupInTimeperiod(
+			Long studentGroupId, Date start, Date end) {
+		// TODO FK: Fehlerbehandlung?
+		StudentGroup studentGroup = studentGroupDAO.load(studentGroupId);
+		List<Appointment> appointments = appointmentDAO
+				.loadAppointmentsForStudentGroupInTimeperiod(
+						studentGroup, start, end);
+		// initialize appointments
+		for (Appointment appointment : appointments) {
+			Hibernate.initialize(appointment.getMeeting());
+			Hibernate.initialize(appointment.getMeeting().getRooms());
+			Hibernate.initialize(appointment.getMeeting().getLecturer());
+			// initialize lectures
+			if (EMeetingType.LECTURE.equals(
+					appointment.getMeeting().getMeetingType())) {
+				Hibernate.initialize(
+						((Lecture)appointment.getMeeting()).getStudentGroup());
+			}
+			// initialize exams
+			if (EMeetingType.EXAM.equals(
+					appointment.getMeeting().getMeetingType())) {
+				Hibernate.initialize(
+						((Exam)appointment.getMeeting()).getStudentGroups());
+			}
+			// initialize electives
+			if (EMeetingType.ELECTIVE.equals(
+					appointment.getMeeting().getMeetingType())) {
+				Hibernate.initialize(
+						((Elective)appointment.getMeeting()).getCohort());
+			}
+		}
+		return appointments;
+	}
+
 	/**
 	 * Injects the studentGroupDAO
 	 * 
@@ -138,4 +191,7 @@ public class StudentGroupServiceImpl implements StudentGroupService {
 		this.cohortDAO = cohortDAO;
 	}
 
+	public void setAppointmentDAO(AppointmentDAO appointmentDAO) {
+		this.appointmentDAO = appointmentDAO;
+	}
 }

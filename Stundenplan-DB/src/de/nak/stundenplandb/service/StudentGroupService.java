@@ -1,7 +1,9 @@
 package de.nak.stundenplandb.service;
 
+import java.util.Date;
 import java.util.List;
 
+import de.nak.stundenplandb.model.Appointment;
 import de.nak.stundenplandb.model.Cohort;
 import de.nak.stundenplandb.model.EFieldOfStudy;
 import de.nak.stundenplandb.model.StudentGroup;
@@ -56,4 +58,19 @@ public interface StudentGroupService {
 	 * @return a list which is empty if no studentGroup was found.
 	 */
 	List<StudentGroup> loadAllStudentGroupsSorted();
+	
+	/**
+	 * Returns a List of all Appointments for a given student group.
+	 * @param studentGroupId Student group-Id
+	 * @return List of Appointments
+	 */
+	List<Appointment> getAppointmentsForStudentGroup(Long studentGroupId);
+	/**
+	 * Returns a List of all Appointments for a given student group in a specific period of time.
+	 * @param studentGroupId Student group-Id
+	 * @param start Start of timeperiod
+	 * @param end End of timeperiod
+	 * @return List of Appointments
+	 */
+	List<Appointment> getAppointmentsForStudentGroupInTimeperiod(Long studentGroupId, Date start, Date end);
 }

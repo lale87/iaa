@@ -1,16 +1,11 @@
 package de.nak.stundenplandb.action;
 
-import java.util.Date;
 import java.util.List;
-
-import org.apache.commons.lang3.time.DateUtils;
 
 import com.opensymphony.xwork2.ActionSupport;
 
 import de.nak.stundenplandb.model.Appointment;
-import de.nak.stundenplandb.model.Meeting;
 import de.nak.stundenplandb.service.LecturerService;
-import de.nak.stundenplandb.service.MeetingService;
 import de.nak.stundenplandb.service.RoomService;
 import de.nak.stundenplandb.service.StudentGroupService;
 
@@ -52,7 +47,7 @@ public class ShowTimetableListAction extends ActionSupport {
 			appointmentList = roomService.getAppointmentsForRoom(selectedId);
 			break;
 		case "Zenturie":
-			//appointmentList = studentGroupService.getAppointmentsForStudentGroup(selectedId);
+			appointmentList = studentGroupService.getAppointmentsForStudentGroup(selectedId);
 			break;		
 		}    	
     	return SUCCESS;

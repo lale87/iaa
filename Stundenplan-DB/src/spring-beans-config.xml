@@ -69,6 +69,7 @@
     <bean id="studentGroupService" class="de.nak.stundenplandb.service.StudentGroupServiceImpl">
         <property name="studentGroupDAO" ref="studentGroupDAO"/>
         <property name="cohortDAO" ref="cohortDAO"/>
+        <property name="appointmentDAO" ref="appointmentDAO"/>
     </bean>
     <bean id="meetingService" class="de.nak.stundenplandb.service.MeetingServiceImpl">
         <property name="examDAO" ref="examDAO"/>
