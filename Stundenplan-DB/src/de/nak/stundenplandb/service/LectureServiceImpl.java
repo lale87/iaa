@@ -24,6 +24,7 @@ public class LectureServiceImpl implements LectureService {
 	private MeetingService meetingService;
 	private LectureDAO lectureDAO;
 	private StudentGroupDAO studentGroupDAO;
+	private RoomService roomService;
 
 	@Override
 	public void saveOrUpdateLecture(Long id, String meetingName,
@@ -65,6 +66,10 @@ public class LectureServiceImpl implements LectureService {
 	public void setStudentGroupDAO(StudentGroupDAO studentGroupDAO) {
 		this.studentGroupDAO = studentGroupDAO;
 	}
+	
+	public void setRoomService(RoomService roomService) {
+		this.roomService = roomService;
+	}
 
 	@Override
 	public boolean CheckCollisionsForLecture(Long id, Long lecturerId,
@@ -102,5 +107,19 @@ public class LectureServiceImpl implements LectureService {
 		Hibernate.initialize(lecture.getLecturer());
 		Hibernate.initialize(lecture.getRooms());
 		Hibernate.initialize(lecture.getAppointments());
+	}
+
+	@Override
+	public boolean isPossible(Long id, Long lecturerId, List<Long> roomIds,
+			Long studentGroupId, int numberOfAppointments, Date startDate,
+			Date endDate) {
+		
+		//Check for RoomCollisions
+		for (Long roomId : roomIds) {
+			if(this.roomService.isOccupied(roomId, startDate, endDate)){
+				return false;
+			};
+		}
+		return true;
 	}
 }

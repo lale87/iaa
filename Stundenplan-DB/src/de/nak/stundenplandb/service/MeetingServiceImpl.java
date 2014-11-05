@@ -38,9 +38,11 @@ public class MeetingServiceImpl implements MeetingService {
 	private LecturerDAO lecturerDAO;
 	private RoomDAO roomDAO;
 	private StudentGroupDAO studentGroupDAO;
+	private RoomServiceImpl roomServiceImpl;
 
 	@Override
 	public boolean isPossible(Meeting meeting) {
+		//Check for RoomCollisions
 
 		// TODO hier wird es kompliziert! Wechselzeiten werden schwierig zu
 		// ermitteln
@@ -219,7 +221,6 @@ public class MeetingServiceImpl implements MeetingService {
 
 	public void setLecturerDAO(LecturerDAO lecturerDAO) {
 		this.lecturerDAO = lecturerDAO;
-		System.out.println("****lecturerDAO=" + this.lecturerDAO);
 	}
 
 	public void setRoomDAO(RoomDAO roomDAO) {
@@ -248,6 +249,10 @@ public class MeetingServiceImpl implements MeetingService {
 	@Override
 	public void deleteLecture(Long lectureId) {
 		this.lectureDAO.delete(this.lectureDAO.load(lectureId));
+	}
+	
+	public void setRoomServiceImpl(RoomServiceImpl roomServiceImpl){
+		this.roomServiceImpl = roomServiceImpl;
 	}
 
 }

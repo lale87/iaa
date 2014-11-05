@@ -40,21 +40,22 @@ public class RoomServiceImpl implements RoomService {
 	public List<Room> loadAllRooms() {
 		return roomDAO.loadAll();
 	}
-	
+
 	@Override
 	public List<Room> loadAllRoomsSortedBYBuildungAndNumber() {
 		List<Room> rooms = roomDAO.loadAll();
 
 		Comparator<Room> roomComparator = new Comparator<Room>() {
-			
+
 			@Override
 			public int compare(Room o1, Room o2) {
-				//First comparing the buildung
-				int buildingCompare = o1.getBuilding().compareTo(o2.getBuilding());
-				//If building is the same, the roomNumber is relevant
-				if(buildingCompare == 0){
+				// First comparing the buildung
+				int buildingCompare = o1.getBuilding().compareTo(
+						o2.getBuilding());
+				// If building is the same, the roomNumber is relevant
+				if (buildingCompare == 0) {
 					return o1.getRoomNumber().compareTo(o2.getRoomNumber());
-				}else{
+				} else {
 					return buildingCompare;
 				}
 			}
@@ -65,10 +66,10 @@ public class RoomServiceImpl implements RoomService {
 
 	@Override
 	public List<Appointment> getAppointmentsForRoom(Long roomId) {
-		return getAppointmentsForRoomInTimeperiod(roomId,
-				new Date(Long.MIN_VALUE), new Date(Long.MAX_VALUE));
+		return getAppointmentsForRoomInTimeperiod(roomId, new Date(
+				Long.MIN_VALUE), new Date(Long.MAX_VALUE));
 	}
-	
+
 	@Override
 	public List<Appointment> getAppointmentsForRoomInTimeperiod(Long roomId,
 			Date start, Date end) {
@@ -84,19 +85,22 @@ public class RoomServiceImpl implements RoomService {
 		}
 		return appointments;
 	}
-	
+
 	@Override
 	public List<ERoomType> getAllRoomTypes() {
 		return Arrays.asList(ERoomType.values());
 	}
-	
+
 	@Override
 	public List<Room> findFreeRoomsForTimeperiod(Date startDate, Date endDate) {
-		List<Room> freeRooms = 
-				roomDAO.getFreeRoomsForTimeperiod(startDate, endDate);
+		List<Room> freeRooms = roomDAO.getFreeRoomsForTimeperiod(startDate,
+				endDate);
 		// check changing times
 		for (Room room : freeRooms) {
 			int changingTime = room.getChangingTime();
+
+			// TODO sollte hier nicht lieber die tatsächliche Zeit anstatt der
+			// MinBreak geholt werden?
 			// check min. changing time
 			if (changingTime < room.getRoomType().getMinBreak()) {
 				changingTime = room.getRoomType().getMinBreak();
@@ -104,20 +108,20 @@ public class RoomServiceImpl implements RoomService {
 
 			// calculate new start/end
 			Calendar cal = Calendar.getInstance();
-			
+
 			Date startDateWithChangingTime;
 			cal.setTime(startDate);
 			cal.add(Calendar.MINUTE, -changingTime);
 			startDateWithChangingTime = cal.getTime();
-			
+
 			Date endDateWithChangingTime;
 			cal.setTime(endDate);
 			cal.add(Calendar.MINUTE, changingTime);
 			endDateWithChangingTime = cal.getTime();
-			
+
 			// check room again with changing time
-			if (!roomDAO.isFreeForTimeperiod(
-					room, startDateWithChangingTime, endDateWithChangingTime)) {
+			if (!roomDAO.isFreeForTimeperiod(room, startDateWithChangingTime,
+					endDateWithChangingTime)) {
 				freeRooms.remove(room);
 			}
 		}
@@ -127,8 +131,28 @@ public class RoomServiceImpl implements RoomService {
 	public void setRoomDAO(RoomDAO roomDAO) {
 		this.roomDAO = roomDAO;
 	}
-	
+
 	public void setAppointmentDAO(AppointmentDAO appointmentDAO) {
 		this.appointmentDAO = appointmentDAO;
 	}
+
+	@Override
+	public boolean isOccupied(Long id, Date startDate, Date endDate) {
+		Integer changingTime = roomDAO.load(id).getChangingTime();
+		// Calculate new time with changingTime
+		Calendar cal = Calendar.getInstance();
+
+		Date startDateWithChangingTime;
+		cal.setTime(startDate);
+		cal.add(Calendar.MINUTE, -changingTime);
+		startDateWithChangingTime = cal.getTime();
+
+		Date endDateWithChangingTime;
+		cal.setTime(endDate);
+		cal.add(Calendar.MINUTE, changingTime);
+		endDateWithChangingTime = cal.getTime();
+		return roomDAO.isOccupied(id, startDateWithChangingTime,
+				endDateWithChangingTime);
+	}
+
 }
