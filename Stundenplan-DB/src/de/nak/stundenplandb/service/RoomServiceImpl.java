@@ -99,8 +99,6 @@ public class RoomServiceImpl implements RoomService {
 		for (Room room : freeRooms) {
 			int changingTime = room.getChangingTime();
 
-			// TODO sollte hier nicht lieber die tatsächliche Zeit anstatt der
-			// MinBreak geholt werden?
 			// check min. changing time
 			if (changingTime < room.getRoomType().getMinBreak()) {
 				changingTime = room.getRoomType().getMinBreak();
