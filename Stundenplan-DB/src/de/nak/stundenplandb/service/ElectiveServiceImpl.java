@@ -15,7 +15,7 @@ import de.nak.stundenplandb.model.EMeetingType;
 import de.nak.stundenplandb.model.Elective;
 
 /**
- * TODO FK: comment for ElectiveServiceImpl
+ * Implementation of the ElectiveService
  * 
  * @author Fabian Kolossa
  *

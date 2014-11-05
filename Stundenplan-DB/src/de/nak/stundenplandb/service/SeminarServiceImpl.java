@@ -13,7 +13,7 @@ import de.nak.stundenplandb.model.EMeetingType;
 import de.nak.stundenplandb.model.Seminar;
 
 /**
- * TODO FK: comment for SeminarServiceImpl
+ * Implementation of the SeminarService
  * 
  * @author Fabian Kolossa
  *

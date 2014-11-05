@@ -72,15 +72,14 @@ public interface MeetingService {
 	List<Meeting> loadAllMeetings();
 
 	/**
-	 * TODO FK: comment
-	 * 
-	 * @param meeting
-	 * @param meetingName
-	 * @param lecturerId
-	 * @param roomIds
-	 * @param numberOfAppointments
-	 * @param startDate
-	 * @param endDate
+	 * Sets all meeting specific attributes.
+	 * @param meeting Specific meeting instance (lecture, exam, elective or seminar)
+	 * @param meetingName Title of the meeting
+	 * @param lecturerId Lecturer-Id
+	 * @param roomIds Room-Ids
+	 * @param numberOfAppointments Number of Appointments (iterations)
+	 * @param startDate Start date
+	 * @param endDate End date
 	 */
 	void fillMeeting(Meeting meeting, String meetingName, Long lecturerId,
 			List<Long> roomIds, int numberOfAppointments, Date startDate,
