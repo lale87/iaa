@@ -12,7 +12,11 @@ import org.hibernate.Hibernate;
 import de.nak.stundenplandb.dao.AppointmentDAO;
 import de.nak.stundenplandb.dao.RoomDAO;
 import de.nak.stundenplandb.model.Appointment;
+import de.nak.stundenplandb.model.EMeetingType;
 import de.nak.stundenplandb.model.ERoomType;
+import de.nak.stundenplandb.model.Elective;
+import de.nak.stundenplandb.model.Exam;
+import de.nak.stundenplandb.model.Lecture;
 import de.nak.stundenplandb.model.Room;
 
 /**
@@ -82,6 +86,24 @@ public class RoomServiceImpl implements RoomService {
 			Hibernate.initialize(appointment.getMeeting());
 			Hibernate.initialize(appointment.getMeeting().getRooms());
 			Hibernate.initialize(appointment.getMeeting().getLecturer());
+			// initialize lectures
+			if (EMeetingType.LECTURE.equals(
+					appointment.getMeeting().getMeetingType())) {
+				Hibernate.initialize(
+						((Lecture)appointment.getMeeting()).getStudentGroup());
+			}
+			// initialize exams
+			if (EMeetingType.EXAM.equals(
+					appointment.getMeeting().getMeetingType())) {
+				Hibernate.initialize(
+						((Exam)appointment.getMeeting()).getStudentGroups());
+			}
+			// initialize electives
+			if (EMeetingType.ELECTIVE.equals(
+					appointment.getMeeting().getMeetingType())) {
+				Hibernate.initialize(
+						((Elective)appointment.getMeeting()).getCohort());
+			}
 		}
 		return appointments;
 	}

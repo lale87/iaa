@@ -78,6 +78,7 @@
         <property name="lectureDAO" ref="lectureDAO"/>
         <property name="lecturerDAO" ref="lecturerDAO"/>
         <property name="roomDAO" ref="roomDAO"/>
+        <property name="appointmentDAO" ref="appointmentDAO"/>
     </bean>
     <bean id="lectureService" class="de.nak.stundenplandb.service.LectureServiceImpl">
         <property name="meetingService" ref="meetingService"/>

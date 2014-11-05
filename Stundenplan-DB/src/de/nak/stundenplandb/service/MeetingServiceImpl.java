@@ -9,6 +9,7 @@ import java.util.Set;
 
 import org.hibernate.Hibernate;
 
+import de.nak.stundenplandb.dao.AppointmentDAO;
 import de.nak.stundenplandb.dao.ElectiveDAO;
 import de.nak.stundenplandb.dao.ExamDAO;
 import de.nak.stundenplandb.dao.LectureDAO;
@@ -38,6 +39,7 @@ public class MeetingServiceImpl implements MeetingService {
 	private LecturerDAO lecturerDAO;
 	private RoomDAO roomDAO;
 	private StudentGroupDAO studentGroupDAO;
+	private AppointmentDAO appointmentDAO;
 	private RoomServiceImpl roomServiceImpl;
 
 	@Override
@@ -190,6 +192,13 @@ public class MeetingServiceImpl implements MeetingService {
 			Room room = roomDAO.load(id);
 			rooms.add(room);
 		}
+		// remove existing appointments first
+		List<Appointment> existingAppointments = meeting.getAppointments();
+		for (Appointment appointment : existingAppointments) {
+			appointmentDAO.delete(appointment);
+		}
+		meeting.setAppointments(new ArrayList<Appointment>());
+		
 		Set<Appointment> appointments = this.createAppointments(
 				numberOfAppointments, startDate, endDate);
 
@@ -253,6 +262,10 @@ public class MeetingServiceImpl implements MeetingService {
 	
 	public void setRoomServiceImpl(RoomServiceImpl roomServiceImpl){
 		this.roomServiceImpl = roomServiceImpl;
+	}
+
+	public void setAppointmentDAO(AppointmentDAO appointmentDAO) {
+		this.appointmentDAO = appointmentDAO;
 	}
 
 }
