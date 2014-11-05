@@ -45,6 +45,7 @@ public class SeminarAction extends MeetingAction {
 	 *
 	 * @return the string
 	 */
+	@SkipValidation
 	public String load(){
 		seminar = seminarService.loadSeminar(seminarId);
 		return SUCCESS;

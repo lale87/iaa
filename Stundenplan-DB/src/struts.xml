@@ -144,6 +144,21 @@
 		<action name="EditLecture" class="de.nak.stundenplandb.action.LectureAction" method="load">		   
 			<result type="tiles">lectureForm</result>
 			<result type="chain" name="error">ShowMeetingMenu</result>						
+		</action>
+		
+		<action name="EditExam" class="de.nak.stundenplandb.action.ExamAction" method="load">		   
+			<result type="tiles">examForm</result>
+			<result type="chain" name="error">ShowMeetingMenu</result>						
+		</action>
+		
+		<action name="EditElective" class="de.nak.stundenplandb.action.ElectiveAction" method="load">		   
+			<result type="tiles">electiveForm</result>
+			<result type="chain" name="error">ShowMeetingMenu</result>						
+		</action>
+		
+		<action name="EditSeminar" class="de.nak.stundenplandb.action.SeminarAction" method="load">		   
+			<result type="tiles">seminarForm</result>
+			<result type="chain" name="error">ShowMeetingMenu</result>						
 		</action>		
 		
 		
