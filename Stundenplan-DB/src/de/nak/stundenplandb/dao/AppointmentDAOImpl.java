@@ -32,7 +32,7 @@ public class AppointmentDAOImpl extends GenericDAOImpl<Appointment> implements A
 				+ 	"( "
 						// s' >= s && e' <= e
 				+ 		"a.start >= :startDate "
-				+ 		"AND s.end <= :endDate "
+				+ 		"AND a.end <= :endDate "
 				+ 	") OR ( "
 						// s' < s && e' >= s
 				+ 		"a.start < :startDate "
@@ -40,7 +40,7 @@ public class AppointmentDAOImpl extends GenericDAOImpl<Appointment> implements A
 				+ 	") OR ( "
 						// s' <= e && e' > e
 				+ 		"a.start <= :endDate "
-				+ 		"AND a.end > e "
+				+ 		"AND a.end > :endDate "
 				+ 	") "
 				+ ") "
 				+ "ORDER BY a.start ASC")
@@ -64,7 +64,7 @@ public class AppointmentDAOImpl extends GenericDAOImpl<Appointment> implements A
 				+ 	"( "
 						// s' >= s && e' <= e
 				+ 		"a.start >= :startDate "
-				+ 		"AND s.end <= :endDate "
+				+ 		"AND a.end <= :endDate "
 				+ 	") OR ( "
 						// s' < s && e' >= s
 				+ 		"a.start < :startDate "
@@ -72,7 +72,7 @@ public class AppointmentDAOImpl extends GenericDAOImpl<Appointment> implements A
 				+ 	") OR ( "
 						// s' <= e && e' > e
 				+ 		"a.start <= :endDate "
-				+ 		"AND a.end > e "
+				+ 		"AND a.end > :endDate "
 				+ 	") "
 				+ ") "
 				+ "ORDER BY a.start ASC")
@@ -106,7 +106,7 @@ public class AppointmentDAOImpl extends GenericDAOImpl<Appointment> implements A
 				+ 	"( "
 						// s' >= s && e' <= e
 				+ 		"a.start >= :startDate "
-				+ 		"AND s.end <= :endDate "
+				+ 		"AND a.end <= :endDate "
 				+ 	") OR ( "
 						// s' < s && e' >= s
 				+ 		"a.start < :startDate "
@@ -114,7 +114,7 @@ public class AppointmentDAOImpl extends GenericDAOImpl<Appointment> implements A
 				+ 	") OR ( "
 						// s' <= e && e' > e
 				+ 		"a.start <= :endDate "
-				+ 		"AND a.end > e "
+				+ 		"AND a.end > :endDate "
 				+ 	") "
 				+ ") "
 				+ "ORDER BY a.start ASC")
