@@ -29,8 +29,7 @@
 			<param name="maxLength">5</param>	
 			<message key="msg.validator.stringMaxLength"/>
 		</field-validator>
-	</field> 
-	
+	</field> 	
 	<field name="minBreak">
 		<field-validator type="required">
 			<message key="msg.validator.required"/>

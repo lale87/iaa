@@ -3,7 +3,6 @@
  */
 package de.nak.stundenplandb.action;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.beanutils.BeanToPropertyValueTransformer;
@@ -34,18 +33,50 @@ public class LectureAction extends MeetingAction {
 	
 	/** The lecture service. */
 	private LectureService lectureService;
+	
+	/** Shows whether user has tried to save a lecture that collides with others.
+	 	The user can decide to save anyway or go back and change the attributes */
+	private boolean isCollided = false;
 
 	/**
-	 * Saves or updates the lecture to/in the database
+	 * Saves or updates the lecture to the database when there is no
+	 * collision. 
 	 * 
 	 * @return the result string.
 	 */
-	public String save(){
-		//if (lectureService.isPossible(lectureId, lectureId, roomIds, studentGroupId, numberOfAppointments, startDate, endDate)) {
-			lectureService.saveOrUpdateLecture(lecture.getId(), meetingName, lecturerId,
-					roomIds, studentGroupId, numberOfAppointments, startDate, endDate);
-		//}
+	public String checkAndSave(){		
+		// Anstelle von false kommt die isPossible() Methode zum Kollisionscheck
+		if (false) {			
+			save();
+			return SUCCESS;
+		}
 				
+		isCollided = true;
+		
+		addActionError("Es ist zu einer Kollision gekommen. Wollen Sie trotzdem speichern?"); 
+		
+		return "collision";		
+	}
+	
+	/**
+	 * Saves the lecture to the database without checking for collisions.
+	 *
+	 * @return the result string
+	 */
+	public String save(){
+		lectureService.saveOrUpdateLecture(lecture.getId(), meetingName, lecturerId,
+				roomIds, studentGroupId, numberOfAppointments, startDate, endDate);
+		return SUCCESS;
+	}
+	
+	/**
+	 * Cancels collision mode, so lectures are checked for collisions
+	 * before being saved to the database.
+	 *
+	 * @return the result string
+	 */
+	public String cancelCollision(){
+		isCollided = false;
 		return SUCCESS;
 	}
 	
@@ -108,5 +139,13 @@ public class LectureAction extends MeetingAction {
 
 	public void setLectureId(Long lectureId) {
 		this.lectureId = lectureId;
+	}
+
+	public boolean isCollided() {
+		return isCollided;
+	}
+
+	public void setCollided(boolean isCollided) {
+		this.isCollided = isCollided;
 	}
 }

@@ -39,7 +39,7 @@
 		<!-- Action that saves the lecturer  -->
 		<action name="SaveLecturer" class="de.nak.stundenplandb.action.LecturerAction" method="save">
 			<result type="redirect">ShowLecturerForm.action</result>
-			<result type="tiles" name="input">lecturerForm</result>
+			<result type="tiles" name="input">lecturerForm</result>			
 		</action>	
 		
 		<!-- Action that cancels the lecturer form -->
@@ -114,11 +114,25 @@
 			<result type="tiles">lectureForm</result>			
 		</action>
 				
-		<!-- Action that saves the lecture -->
-		<action name="SaveLecture" class="de.nak.stundenplandb.action.LectureAction" method="save">
+		<!-- Action that checks for collisions and saves the lecture -->
+		<action name="SaveLecture" class="de.nak.stundenplandb.action.LectureAction" method="checkAndSave">
 			<result type="redirect">ShowLectureForm.action</result>
-			<result type="tiles" name="input">lectureForm</result>
-		</action>			
+			<result type="tiles" name="collision">lectureForm</result>
+			<result type="tiles" name="input">lectureForm</result>			
+		</action>	
+		
+		<!-- Action that saves a lecture even when there are collisions-->
+		<action name="SaveLectureWithCollision" class="de.nak.stundenplandb.action.LectureAction" method="save">
+			<result type="redirect">ShowLectureForm.action</result>			
+			<result type="tiles" name="input">lectureForm</result>			
+		</action>		
+		
+		<!-- Action that cancels the collision mode so lectures are once again checked
+			 for collisions with other meetings.-->
+		<action name="CancelLectureCollision" class="de.nak.stundenplandb.action.LectureAction" method="cancelCollision">
+			<result type="tiles">lectureForm</result>						
+		</action>
+		
 		
 		<!-- Action that deletes the selected lecture  -->
 		<action name="DeleteLecture" class="de.nak.stundenplandb.action.LectureAction" method="delete">			      

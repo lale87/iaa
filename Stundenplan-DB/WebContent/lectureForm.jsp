@@ -8,8 +8,9 @@
 --%>
 
 <h3>
-	<s:text name="hdl.newLecture"></s:text>
+	<s:text name="hdl.newLecture"></s:text>	
 </h3>
+<s:actionerror/>
 <s:form>
 	<%-- Form fields for the lecture's attributes --%>
 	<s:hidden name="lecture.id" />
@@ -41,6 +42,14 @@
 		changeYear="true" requiredLabel="true" />
 
 	<%-- The buttons --%>
-	<s:submit key="btn.save" action="SaveLecture" />
-	<s:submit key="btn.cancel" action="CancelNewMeeting" />
+	<s:if test="collided">
+		<s:submit key="btn.saveCollision" action="SaveLectureWithCollision" />
+		<s:submit key="btn.cancel" action="CancelLectureCollision" />
+	</s:if>
+	<s:else>
+		<s:submit key="btn.save" action="SaveLecture" />
+		<s:submit key="btn.cancel" action="CancelNewMeeting" />
+	</s:else>
+	
+	
 </s:form>
