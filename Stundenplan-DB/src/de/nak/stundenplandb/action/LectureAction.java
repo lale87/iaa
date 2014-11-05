@@ -36,9 +36,11 @@ public class LectureAction extends MeetingAction {
 	 * @return the result string.
 	 */
 	public String save(){
-		lectureService.saveOrUpdateLecture(lecture.getId(), meetingName, lecturerId,
-				roomIds, studentGroupId, numberOfAppointments, startDate, endDate);
-		
+		if (lectureService.CheckCollisionsForLecture(lectureId, lectureId, roomIds, studentGroupId, numberOfAppointments, startDate, endDate)) {
+			lectureService.saveOrUpdateLecture(lectureId, meetingName, lecturerId,
+					roomIds, studentGroupId, numberOfAppointments, startDate, endDate);
+		}
+				
 		return SUCCESS;
 	}
 	
