@@ -4,6 +4,12 @@
 		"-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
 		"http://struts.apache.org/dtds/struts-2.1.dtd">
 
+<!-- 
+  - Author: Arne Roever
+  - Description: All struts actions used in stundenplan-db.  
+-->
+
+
 <struts>
 	<package name="default" extends="tiles-default">
 		
@@ -13,10 +19,16 @@
 			<result type="tiles">mainMenu</result>
 		</action>
 		
+				
+		<!-- Master data related actions -->
+		
+		<!-- Actions that displays the menu for choosing which master data to create-->
 		<action name="ShowMasterData">
 			<result type="tiles">masterData</result>
 		</action>
 		
+		
+		<!--  Lecturer related actions -->
 		<action name="ShowLecturerForm" class="de.nak.stundenplandb.action.LecturerAction">
 		    <interceptor-ref name="validation">
 		        <param name="excludeMethods">execute</param>
@@ -24,6 +36,20 @@
 			<result type="tiles">lecturerForm</result>
 		</action>
 		
+		<!-- Action that saves the lecturer  -->
+		<action name="SaveLecturer" class="de.nak.stundenplandb.action.LecturerAction" method="save">
+			<result type="redirect">ShowLecturerForm.action</result>
+			<result type="tiles" name="input">lecturerForm</result>
+		</action>	
+		
+		<!-- Action that cancels the lecturer form -->
+		<action name="CancelNewLecturer" class="de.nak.stundenplandb.action.LecturerAction" method="cancel">
+			<result type="redirect">ShowMasterData.action</result>
+		</action>
+		
+		<!-- Room related actions -->
+		
+		<!--  Action that displays the room form -->
 		<action name="ShowRoomForm" class="de.nak.stundenplandb.action.RoomAction">
 		    <interceptor-ref name="validation">
 		        <param name="excludeMethods">execute</param>
@@ -31,6 +57,21 @@
 			<result type="tiles">roomForm</result>
 		</action>
 		
+		<!-- Action that saves the room  -->
+		<action name="SaveRoom" class="de.nak.stundenplandb.action.RoomAction" method="save">
+			<result type="redirect">ShowRoomForm.action</result>
+			<result type="tiles" name="input">roomForm</result>
+		</action>
+		
+		<!-- Action that cancels the room form-->
+		<action name="CancelNewRoom" class="de.nak.stundenplandb.action.RoomAction" method="cancel">
+			<result type="redirect">ShowMasterData.action</result>
+		</action>
+		
+		
+		<!-- StudentGroup related actions -->
+		
+		<!-- Action that displays the studentgroup form-->
 		<action name="ShowStudentGroupForm" class="de.nak.stundenplandb.action.StudentGroupAction">
 		    <interceptor-ref name="validation">
 		        <param name="excludeMethods">execute</param>
@@ -38,53 +79,64 @@
 			<result type="tiles">studentGroupForm</result>
 		</action>
 		
-		<action name="SaveRoom" class="de.nak.stundenplandb.action.RoomAction" method="save">
-			<result type="redirect">ShowRoomForm.action</result>
-			<result type="tiles" name="input">roomForm</result>
-		</action>		
-		
-		<action name="SaveLecturer" class="de.nak.stundenplandb.action.LecturerAction" method="save">
-			<result type="redirect">ShowLecturerForm.action</result>
-			<result type="tiles" name="input">lecturerForm</result>
-		</action>		
-		
+		<!-- Action that saves the student group-->
 		<action name="SaveStudentGroup" class="de.nak.stundenplandb.action.StudentGroupAction" method="save">
 			<result type="redirect">ShowStudentGroupForm.action</result>
 			<result type="tiles" name="input">studentGroupForm</result>
-		</action>		
-		
-		<action name="CancelNewRoom" class="de.nak.stundenplandb.action.RoomAction" method="cancel">
-			<result type="redirect">ShowMasterData.action</result>
-		</action>
-		
-		<action name="CancelNewLecturer" class="de.nak.stundenplandb.action.LecturerAction" method="cancel">
-			<result type="redirect">ShowMasterData.action</result>
-		</action>
-		
+		</action>	
+				
+		<!-- Action that cancels the studentgroup form -->
 		<action name="CancelNewStudentGroup" class="de.nak.stundenplandb.action.StudentGroupAction" method="cancel">
 			<result type="redirect">ShowMasterData.action</result>
 		</action>
+			
 		
+			
+		<!-- Meeting related actions -->
+		
+		<!-- Action that shows the meeting menu and meeting lists -->
 		<action name="ShowMeetingMenu" class="de.nak.stundenplandb.action.ShowMeetingMenuAction">
 			<result type="tiles">meetingMenu</result>
-		</action>		
+		</action>
 		
+		<!-- Action that cancels any meeting form -->
+		<action name="CancelNewMeeting">
+			<result type="redirect">ShowMeetingMenu.action</result>
+		</action>
+		
+		<!-- Lecture related actions -->
+		
+		<!-- Action that displays the lecture form -->
 		<action name="ShowLectureForm" class="de.nak.stundenplandb.action.LectureAction">
 		    <interceptor-ref name="validation">
 		        <param name="excludeMethods">execute</param>
 		    </interceptor-ref>
 			<result type="tiles">lectureForm</result>			
 		</action>
-		
+				
+		<!-- Action that saves the lecture -->
 		<action name="SaveLecture" class="de.nak.stundenplandb.action.LectureAction" method="save">
 			<result type="redirect">ShowLectureForm.action</result>
 			<result type="tiles" name="input">lectureForm</result>
 		</action>			
 		
-		<action name="CancelNewMeeting">
-			<result type="redirect">ShowMeetingMenu.action</result>
+		<!-- Action that deletes the selected lecture  -->
+		<action name="DeleteLecture" class="de.nak.stundenplandb.action.LectureAction" method="delete">			      
+			<result type="redirect">ShowMeetingMenu.action</result>		
+			<result type="tiles" name="error">meetingMenu</result>			
+		</action>	
+		
+		<!-- Action that opens the lecture form for editing -->
+		<action name="EditLecture" class="de.nak.stundenplandb.action.LectureAction" method="load">		   
+			<result type="tiles">lectureForm</result>
+			<result type="chain" name="error">ShowMeetingMenu</result>						
 		</action>
 		
+		
+		
+		<!-- Exam related actions  -->		
+		
+		<!-- Action that displays the exam form -->
 		<action name="ShowExamForm" class="de.nak.stundenplandb.action.ExamAction">
 		    <interceptor-ref name="validation">
 		        <param name="excludeMethods">execute</param>
@@ -92,11 +144,29 @@
 			<result type="tiles">examForm</result>
 		</action>
 		
+		<!-- Action that saves the exam -->
 		<action name="SaveExam" class="de.nak.stundenplandb.action.ExamAction" method="save">
 			<result type="redirect">ShowExamForm.action</result>
 			<result type="tiles" name="input">examForm</result>
 		</action>
 		
+		<!-- Action that deletes the selected exam -->
+		<action name="DeleteExam" class="de.nak.stundenplandb.action.ExamAction" method="delete">		   
+			<result type="redirect">ShowMeetingMenu.action</result>		
+			<result type="tiles" name="error">meetingMenu</result>	
+		</action>
+		
+		<!-- Action that opens the exam form for editing -->
+		<action name="EditExam" class="de.nak.stundenplandb.action.ExamAction" method="load">		   
+			<result type="tiles">examForm</result>
+			<result type="chain" name="error">ShowMeetingMenu</result>						
+		</action>
+		
+		
+		
+		<!-- Elective related actions -->
+		
+		<!-- Action that displays the elective form -->
 		<action name="ShowElectiveForm" class="de.nak.stundenplandb.action.ElectiveAction">
 		    <interceptor-ref name="validation">
 		        <param name="excludeMethods">execute</param>
@@ -104,11 +174,29 @@
 			<result type="tiles">electiveForm</result>
 		</action>
 		
+		<!-- Action that saves the elective -->
 		<action name="SaveElective" class="de.nak.stundenplandb.action.ElectiveAction" method="save">
 			<result type="redirect">ShowElectiveForm.action</result>
 			<result type="tiles" name="input">electiveForm</result>
 		</action>
 		
+		<!-- Action that deletes the selected elective -->
+		<action name="DeleteElective" class="de.nak.stundenplandb.action.ElectiveAction" method="delete">		   
+			<result type="redirect">ShowMeetingMenu.action</result>	
+			<result type="tiles" name="error">meetingMenu</result>			
+		</action>
+		
+		<!-- Action that opens the elective form for editing -->
+		<action name="EditElective" class="de.nak.stundenplandb.action.ElectiveAction" method="load">		   
+			<result type="tiles">electiveForm</result>
+			<result type="chain" name="error">ShowMeetingMenu</result>						
+		</action>
+		
+		
+		
+		<!-- Seminar related actions -->
+		
+		<!-- Action that shows the seminar form-->
 		<action name="ShowSeminarForm" class="de.nak.stundenplandb.action.SeminarAction">
 		    <interceptor-ref name="validation">
 		        <param name="excludeMethods">execute</param>
@@ -116,54 +204,19 @@
 			<result type="tiles">seminarForm</result>
 		</action>
 		
+		<!-- Action that saves the seminar -->
 		<action name="SaveSeminar" class="de.nak.stundenplandb.action.SeminarAction" method="save">
 			<result type="redirect">ShowSeminarForm.action</result>
 			<result type="tiles" name="input">seminarForm</result>
 		</action>
 		
-		<action name="ShowTimetableMenu" class="de.nak.stundenplandb.action.ShowTimetableMenuAction">
-			<result type="tiles">timetableMenu</result>
-		</action>	
-		
-		<action name="ShowTimetableList" class="de.nak.stundenplandb.action.ShowTimetableListAction">
-			<result type="tiles">timetableList</result>    					
-		</action>		
-		
-		<action name="DeleteLecture" class="de.nak.stundenplandb.action.LectureAction" method="delete">			      
-			<result type="redirect">ShowMeetingMenu.action</result>		
-			<result type="tiles" name="error">meetingMenu</result>			
-		</action>		
-		
-		<action name="DeleteExam" class="de.nak.stundenplandb.action.ExamAction" method="delete">		   
-			<result type="redirect">ShowMeetingMenu.action</result>		
-			<result type="tiles" name="error">meetingMenu</result>	
-		</action>
-		
-		<action name="DeleteElective" class="de.nak.stundenplandb.action.ElectiveAction" method="delete">		   
-			<result type="redirect">ShowMeetingMenu.action</result>	
-			<result type="tiles" name="error">meetingMenu</result>			
-		</action>
-		
+		<!-- Action that deletes the selected seminar -->
 		<action name="DeleteSeminar" class="de.nak.stundenplandb.action.SeminarAction" method="delete">		   
 			<result type="redirect">ShowMeetingMenu.action</result>	
 			<result type="tiles" name="error">meetingMenu</result>					
 		</action>
 		
-		<action name="EditLecture" class="de.nak.stundenplandb.action.LectureAction" method="load">		   
-			<result type="tiles">lectureForm</result>
-			<result type="chain" name="error">ShowMeetingMenu</result>						
-		</action>
-		
-		<action name="EditExam" class="de.nak.stundenplandb.action.ExamAction" method="load">		   
-			<result type="tiles">examForm</result>
-			<result type="chain" name="error">ShowMeetingMenu</result>						
-		</action>
-		
-		<action name="EditElective" class="de.nak.stundenplandb.action.ElectiveAction" method="load">		   
-			<result type="tiles">electiveForm</result>
-			<result type="chain" name="error">ShowMeetingMenu</result>						
-		</action>
-		
+		<!-- Action that opens the seminar form for editing -->
 		<action name="EditSeminar" class="de.nak.stundenplandb.action.SeminarAction" method="load">		   
 			<result type="tiles">seminarForm</result>
 			<result type="chain" name="error">ShowMeetingMenu</result>						
@@ -171,7 +224,38 @@
 		
 		
 		
+		<!-- Timetable related Actions-->
 		
+		<!-- Actions that shows the menu to choose which timetable to display  -->
+		<action name="ShowTimetableMenu" class="de.nak.stundenplandb.action.ShowTimetableMenuAction">
+			<result type="tiles">timetableMenu</result>
+		</action>	
+		
+		<!-- Action that displays the selected entities timetable  -->
+		<action name="ShowTimetableList" class="de.nak.stundenplandb.action.ShowTimetableListAction">
+			<result type="tiles">timetableList</result>    					
+		</action>	
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<!--  -->
 		<action name="RoomForLectureAction" class="de.nak.stundenplandb.action.LectureAction">		   
 			<result type="tiles" >roomChoiceForm</result>	
 			<result type="tiles" name="input">lectureForm</result>				
