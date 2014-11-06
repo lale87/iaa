@@ -194,10 +194,12 @@ public class MeetingServiceImpl implements MeetingService {
 		}
 		// remove existing appointments first
 		List<Appointment> existingAppointments = meeting.getAppointments();
-		for (Appointment appointment : existingAppointments) {
-			appointmentDAO.delete(appointment);
+		if (existingAppointments != null) {
+			for (Appointment appointment : existingAppointments) {
+				appointmentDAO.delete(appointment);
+			}
+			meeting.setAppointments(new ArrayList<Appointment>());
 		}
-		meeting.setAppointments(new ArrayList<Appointment>());
 		
 		Set<Appointment> appointments = this.createAppointments(
 				numberOfAppointments, startDate, endDate);
