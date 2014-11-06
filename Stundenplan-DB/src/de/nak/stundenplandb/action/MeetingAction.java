@@ -171,32 +171,16 @@ public abstract class MeetingAction extends ActionSupport {
 		this.meetingName = meetingName;
 	}
 
-	public LecturerService getLecturerService() {
-		return lecturerService;
-	}
-
 	public void setLecturerService(LecturerService lecturerService) {
 		this.lecturerService = lecturerService;
-	}
-
-	public RoomService getRoomService() {
-		return roomService;
 	}
 
 	public void setRoomService(RoomService roomService) {
 		this.roomService = roomService;
 	}
 
-	public StudentGroupService getStudentGroupService() {
-		return studentGroupService;
-	}
-
 	public void setStudentGroupService(StudentGroupService studentGroupService) {
 		this.studentGroupService = studentGroupService;
-	}
-
-	public MeetingService getMeetingService() {
-		return meetingService;
 	}
 
 	public void setMeetingService(MeetingService meetingService) {

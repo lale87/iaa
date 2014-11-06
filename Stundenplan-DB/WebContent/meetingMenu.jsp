@@ -37,8 +37,8 @@
 						<s:property value="displayName"/>						
 					</s:iterator>
 				</td>
-				<td><s:property value="appointments[0].start"/></td>
-				<td><s:property value="appointments[0].end"/></td>
+				<td><s:property value="getText('format.date', {appointments[0].start})"/></td>
+				<td><s:property value="getText('format.date', {appointments[0].end})"/></td>
 				<td><s:property value="numberOfAppointments"/></td>
 			</tr>
 		</s:iterator>
@@ -78,8 +78,8 @@
 						<s:property value="displayName"/>						
 					</s:iterator>
 				</td>
-				<td><s:property value="appointments[0].start"/></td>
-				<td><s:property value="appointments[0].end"/></td>
+				<td><s:property value="getText('format.date', {appointments[0].start})"/></td>
+				<td><s:property value="getText('format.date', {appointments[0].end})"/></td>
 				<td><s:property value="numberOfAppointments"/></td>
 			</tr>
 		</s:iterator>
@@ -115,8 +115,8 @@
 						<s:property value="displayName"/>						
 					</s:iterator>
 				</td>
-				<td><s:property value="appointments[0].start"/></td>
-				<td><s:property value="appointments[0].end"/></td>
+				<td><s:property value="getText('format.date', {appointments[0].start})"/></td>
+				<td><s:property value="getText('format.date', {appointments[0].end})"/></td>
 				<td><s:property value="numberOfAppointments"/></td>
 			</tr>
 		</s:iterator>
@@ -150,8 +150,8 @@
 						<s:property value="displayName"/>						
 					</s:iterator>
 				</td>
-				<td><s:property value="appointments[0].start"/></td>
-				<td><s:property value="appointments[0].end"/></td>
+				<td><s:property value="getText('format.date', {appointments[0].start})"/></td>
+				<td><s:property value="getText('format.date', {appointments[0].end})"/></td>
 				<td><s:property value="numberOfAppointments"/></td>
 			</tr>
 		</s:iterator>

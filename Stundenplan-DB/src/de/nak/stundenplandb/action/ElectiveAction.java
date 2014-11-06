@@ -50,7 +50,7 @@ public class ElectiveAction extends MeetingAction {
 		isCollided = true;		
 		addActionError(getText("msg.error.collision"));
 		
-		return "collision";		
+		return INPUT;	
 	}
 
 	/**

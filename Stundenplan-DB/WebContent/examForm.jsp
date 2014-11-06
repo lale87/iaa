@@ -48,6 +48,6 @@
 	</s:if>
 	<s:else>
 		<s:submit key="btn.save" action="SaveExam" />
-		<s:submit key="btn.cancel" action="CancelNewMeeting" />
+		<s:submit key="btn.return" action="CancelNewMeeting" />
 	</s:else>
 </s:form>

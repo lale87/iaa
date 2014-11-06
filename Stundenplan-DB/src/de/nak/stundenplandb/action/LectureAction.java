@@ -48,9 +48,8 @@ public class LectureAction extends MeetingAction {
 		}
 				
 		isCollided = true;		
-		addActionError(getText("msg.error.collision"));
-		
-		return "collision";		
+		addActionError(getText("msg.error.collision"));		
+		return INPUT;
 	}
 	
 	/**

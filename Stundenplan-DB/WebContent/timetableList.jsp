@@ -25,8 +25,8 @@
 		<s:iterator value="appointmentList">
 			<tr>				
 				<td><s:property value="meeting.meetingType"/></td>
-				<td><s:property value="start"/></td>
-				<td><s:property value="end"/></td>
+				<td><s:property value="getText('format.date', {start})"/></td>
+				<td><s:property value="getText('format.date', {end})"/></td>
 				<td><s:property value="meeting.name"/></td>
 				<td><s:property value="meeting.lecturer.displayName"/></td>
 				<td>

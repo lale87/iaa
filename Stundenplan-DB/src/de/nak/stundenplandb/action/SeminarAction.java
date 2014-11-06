@@ -46,9 +46,8 @@ public class SeminarAction extends MeetingAction {
 		}
 				
 		isCollided = true;		
-		addActionError(getText("msg.error.collision"));
-		
-		return "collision";		
+		addActionError(getText("msg.error.collision"));		
+		return INPUT;	
 	}
 	
 	@Override

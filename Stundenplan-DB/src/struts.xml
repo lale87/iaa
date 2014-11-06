@@ -119,8 +119,7 @@
 				
 		<!-- Action that checks for collisions and saves the lecture -->
 		<action name="SaveLecture" class="de.nak.stundenplandb.action.LectureAction" method="checkAndSave">
-			<result type="redirect">ShowLectureForm.action</result>
-			<result type="tiles" name="collision">lectureForm</result>
+			<result type="redirect">ShowLectureForm.action</result>			
 			<result type="tiles" name="input">lectureForm</result>			
 		</action>	
 		
@@ -162,8 +161,7 @@
 		
 		<!-- Action that saves the exam -->
 		<action name="SaveExam" class="de.nak.stundenplandb.action.ExamAction" method="checkAndSave">
-			<result type="redirect">ShowExamForm.action</result>
-			<result type="tiles" name="collision">examForm</result>
+			<result type="redirect">ShowExamForm.action</result>			
 			<result type="tiles" name="input">examForm</result>
 		</action>
 		
@@ -205,8 +203,7 @@
 		
 		<!-- Action that saves the elective -->
 		<action name="SaveElective" class="de.nak.stundenplandb.action.ElectiveAction" method="checkAndSave">
-			<result type="redirect">ShowElectiveForm.action</result>
-			<result type="tiles" name="collision">electiveForm</result>
+			<result type="redirect">ShowElectiveForm.action</result>			
 			<result type="tiles" name="input">electiveForm</result>
 		</action>
 		
@@ -248,8 +245,7 @@
 		
 		<!-- Action that saves the seminar -->
 		<action name="SaveSeminar" class="de.nak.stundenplandb.action.SeminarAction" method="checkAndSave">
-			<result type="redirect">ShowSeminarForm.action</result>
-			<result type="tiles" name="collision">seminarForm</result>
+			<result type="redirect">ShowSeminarForm.action</result>			
 			<result type="tiles" name="input">seminarForm</result>
 		</action>
 		
