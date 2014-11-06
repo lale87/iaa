@@ -33,11 +33,11 @@
 	<sj:datepicker name="startDate" key="lbl.startDate"
 		value="%{startDate}" timepicker="true"
 		timepickerFormat="HH:mm" displayFormat="dd.mm.yy" changeMonth="true"
-		changeYear="true" requiredLabel="true" />
+		changeYear="true" requiredLabel="true" showOn="button"/>
 	<sj:datepicker name="endDate" key="lbl.endDate"
 		value="%{endDate}" timepicker="true"
 		timepickerFormat="HH:mm" displayFormat="dd.mm.yy" changeMonth="true"
-		changeYear="true" requiredLabel="true" />
+		changeYear="true" requiredLabel="true" showOn="button"/>
 
 	<%-- The buttons --%>
 	<s:submit key="btn.save" action="SaveElective" />

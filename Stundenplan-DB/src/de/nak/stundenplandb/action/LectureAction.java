@@ -51,9 +51,8 @@ public class LectureAction extends MeetingAction {
 			return SUCCESS;
 		}
 				
-		isCollided = true;
-		
-		addActionError("Es ist zu einer Kollision gekommen. Wollen Sie trotzdem speichern?"); 
+		isCollided = true;		
+		addActionError(getText("msg.error.collision"));
 		
 		return "collision";		
 	}
