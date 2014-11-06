@@ -116,6 +116,11 @@
 		    </interceptor-ref>
 			<result type="tiles">lectureForm</result>			
 		</action>
+		
+		<!-- Action that reloads page so available rooms are shown -->
+		<action name="ShowAvailableRoomsForLecture" class="de.nak.stundenplandb.action.LectureAction" method="showAvailableRooms">
+			<result type="tiles">lectureForm</result>			
+		</action>		
 				
 		<!-- Action that checks for collisions and saves the lecture -->
 		<action name="SaveLecture" class="de.nak.stundenplandb.action.LectureAction" method="checkAndSave">
