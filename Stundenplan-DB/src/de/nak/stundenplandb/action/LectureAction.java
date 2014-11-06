@@ -100,27 +100,6 @@ public class LectureAction extends MeetingAction {
 		}
 		return ERROR;		
 	}
-	
-	/**
-	 * Displays available rooms.	 
-	 *
-	 * @return the result string
-	 */
-	@SkipValidation
-	public String showAvailableRooms(){
-		if (startDate == null) {
-			addFieldError("startDate", getText("msg.validator.required"));
-		}
-		if (endDate == null) {
-			addFieldError("endDate", getText("msg.validator.required"));
-		}
-		if (startDate != null && endDate != null){
-			if (startDate.after(endDate)){
-				addFieldError("startDate", getText("msg.validator.inconsistentDate"));
-			}
-		}		
-		return SUCCESS;
-	}
 
 	public Lecture getLecture() {
 		return lecture;

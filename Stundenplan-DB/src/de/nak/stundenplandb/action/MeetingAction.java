@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.struts2.interceptor.validation.SkipValidation;
+
 import com.opensymphony.xwork2.ActionSupport;
 
 import de.nak.stundenplandb.model.Cohort;
@@ -59,6 +61,28 @@ public abstract class MeetingAction extends ActionSupport {
 	 	The user can decide to save anyway or go back and change the attributes */
 	protected boolean isCollided = false;
 	
+	/**
+	 * Displays available rooms.
+	 * Only used for checking for invalid dates because
+	 * getAllRooms() is used 
+	 *
+	 * @return the result string
+	 */
+	@SkipValidation
+	public String showAvailableRooms(){
+		if (startDate == null) {
+			addFieldError("startDate", getText("msg.validator.required"));
+		}
+		if (endDate == null) {
+			addFieldError("endDate", getText("msg.validator.required"));
+		}
+		if (startDate != null && endDate != null){
+			if (startDate.after(endDate)){
+				addFieldError("startDate", getText("msg.validator.inconsistentDate"));
+			}
+		}		
+		return SUCCESS;
+	}	
 	
 	/**
 	 * Abstract save method.
