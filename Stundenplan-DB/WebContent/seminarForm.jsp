@@ -10,6 +10,7 @@
 <h3>
 	<s:text name="hdl.newSeminar"></s:text>
 </h3>
+<s:actionerror key="msg.error.collision"/>
 <s:form>
 	<%-- Form fields for the seminar's attributes --%>
 	<s:hidden name="seminar.id" />
@@ -37,6 +38,12 @@
 		changeYear="true" requiredLabel="true" showOn="button"/>
 
 	<%-- The buttons --%>
-	<s:submit key="btn.save" action="SaveSeminar" />
-	<s:submit key="btn.cancel" action="CancelNewMeeting" />
+	<s:if test="collided">
+		<s:submit key="btn.saveCollision" action="SaveSeminarWithCollision" />
+		<s:submit key="btn.cancel" action="CancelSeminarCollision" />
+	</s:if>
+	<s:else>
+		<s:submit key="btn.save" action="SaveSeminar" />
+		<s:submit key="btn.cancel" action="CancelNewMeeting" />
+	</s:else>
 </s:form>

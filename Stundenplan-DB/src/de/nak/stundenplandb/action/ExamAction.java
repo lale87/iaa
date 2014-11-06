@@ -35,6 +35,25 @@ public class ExamAction extends MeetingAction {
 	
 	/** The exam service. */
 	private ExamService examService;
+	
+	/**
+	 * Saves or updates the exam to the database when there is no
+	 * collision. 
+	 * 
+	 * @return the result string.
+	 */
+	public String checkAndSave(){		
+		// Anstelle von false kommt die isPossible() Methode zum Kollisionscheck
+		if (false) {			
+			save();
+			return SUCCESS;
+		}
+				
+		isCollided = true;		
+		addActionError(getText("msg.error.collision"));
+		
+		return "collision";		
+	}
 
 	/**
 	 * Saves the exam to the database

@@ -33,10 +33,6 @@ public class LectureAction extends MeetingAction {
 	
 	/** The lecture service. */
 	private LectureService lectureService;
-	
-	/** Shows whether user has tried to save a lecture that collides with others.
-	 	The user can decide to save anyway or go back and change the attributes */
-	private boolean isCollided = false;
 
 	/**
 	 * Saves or updates the lecture to the database when there is no
@@ -69,17 +65,6 @@ public class LectureAction extends MeetingAction {
 	}
 	
 	/**
-	 * Cancels collision mode, so lectures are checked for collisions
-	 * before being saved to the database.
-	 *
-	 * @return the result string
-	 */
-	public String cancelCollision(){
-		isCollided = false;
-		return SUCCESS;
-	}
-	
-	/**
 	 * Deletes the lecture from the database
 	 *
 	 * @return the result string
@@ -93,6 +78,11 @@ public class LectureAction extends MeetingAction {
 		return ERROR;
 	}
 	
+	/**
+	 * Displays the selected lecture in the lecture form.
+	 *
+	 * @return the string
+	 */
 	@SuppressWarnings("unchecked")
 	@SkipValidation
 	public String load(){
@@ -138,13 +128,5 @@ public class LectureAction extends MeetingAction {
 
 	public void setLectureId(Long lectureId) {
 		this.lectureId = lectureId;
-	}
-
-	public boolean isCollided() {
-		return isCollided;
-	}
-
-	public void setCollided(boolean isCollided) {
-		this.isCollided = isCollided;
 	}
 }

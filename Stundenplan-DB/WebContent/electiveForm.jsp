@@ -10,6 +10,7 @@
 <h3>
 	<s:text name="hdl.newElective"></s:text>
 </h3>
+<s:actionerror key="msg.error.collision"/>
 <s:form>
 	<s:hidden name="elective.id" />
 	<s:select name="lecturerId" key="lbl.lecturer" list="allLecturers"
@@ -40,6 +41,12 @@
 		changeYear="true" requiredLabel="true" showOn="button"/>
 
 	<%-- The buttons --%>
-	<s:submit key="btn.save" action="SaveElective" />
-	<s:submit key="btn.cancel" action="CancelNewMeeting" />
+	<s:if test="collided">
+		<s:submit key="btn.saveCollision" action="SaveElectiveWithCollision" />
+		<s:submit key="btn.cancel" action="CancelElectiveCollision" />
+	</s:if>
+	<s:else>
+		<s:submit key="btn.save" action="SaveElective" />
+		<s:submit key="btn.cancel" action="CancelNewMeeting" />
+	</s:else>
 </s:form>

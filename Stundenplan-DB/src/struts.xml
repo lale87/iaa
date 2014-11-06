@@ -104,6 +104,9 @@
 			<result type="redirect">ShowMeetingMenu.action</result>
 		</action>
 		
+		
+		
+		
 		<!-- Lecture related actions -->
 		
 		<!-- Action that displays the lecture form -->
@@ -131,8 +134,7 @@
 			 for collisions with other meetings.-->
 		<action name="CancelLectureCollision" class="de.nak.stundenplandb.action.LectureAction" method="cancelCollision">
 			<result type="tiles">lectureForm</result>						
-		</action>
-		
+		</action>		
 		
 		<!-- Action that deletes the selected lecture  -->
 		<action name="DeleteLecture" class="de.nak.stundenplandb.action.LectureAction" method="delete">			      
@@ -159,9 +161,22 @@
 		</action>
 		
 		<!-- Action that saves the exam -->
-		<action name="SaveExam" class="de.nak.stundenplandb.action.ExamAction" method="save">
+		<action name="SaveExam" class="de.nak.stundenplandb.action.ExamAction" method="checkAndSave">
 			<result type="redirect">ShowExamForm.action</result>
+			<result type="tiles" name="collision">examForm</result>
 			<result type="tiles" name="input">examForm</result>
+		</action>
+		
+		<!-- Action that saves a lecture even when there are collisions-->
+		<action name="SaveExamWithCollision" class="de.nak.stundenplandb.action.ExamAction" method="save">
+			<result type="redirect">ShowExamForm.action</result>			
+			<result type="tiles" name="input">examForm</result>			
+		</action>		
+		
+		<!-- Action that cancels the collision mode so lectures are once again checked
+			 for collisions with other meetings.-->
+		<action name="CancelExamCollision" class="de.nak.stundenplandb.action.ExamAction" method="cancelCollision">
+			<result type="tiles">examForm</result>						
 		</action>
 		
 		<!-- Action that deletes the selected exam -->
@@ -189,9 +204,22 @@
 		</action>
 		
 		<!-- Action that saves the elective -->
-		<action name="SaveElective" class="de.nak.stundenplandb.action.ElectiveAction" method="save">
+		<action name="SaveElective" class="de.nak.stundenplandb.action.ElectiveAction" method="checkAndSave">
 			<result type="redirect">ShowElectiveForm.action</result>
+			<result type="tiles" name="collision">electiveForm</result>
 			<result type="tiles" name="input">electiveForm</result>
+		</action>
+		
+		<!-- Action that saves an elective even when there are collisions-->
+		<action name="SaveElectiveWithCollision" class="de.nak.stundenplandb.action.ElectiveAction" method="save">
+			<result type="redirect">ShowElectiveForm.action</result>			
+			<result type="tiles" name="input">electiveForm</result>			
+		</action>		
+		
+		<!-- Action that cancels the collision mode so electives are once again checked
+			 for collisions with other meetings.-->
+		<action name="CancelElectiveCollision" class="de.nak.stundenplandb.action.ElectiveAction" method="cancelCollision">
+			<result type="tiles">electiveForm</result>						
 		</action>
 		
 		<!-- Action that deletes the selected elective -->
@@ -219,9 +247,22 @@
 		</action>
 		
 		<!-- Action that saves the seminar -->
-		<action name="SaveSeminar" class="de.nak.stundenplandb.action.SeminarAction" method="save">
+		<action name="SaveSeminar" class="de.nak.stundenplandb.action.SeminarAction" method="checkAndSave">
 			<result type="redirect">ShowSeminarForm.action</result>
+			<result type="tiles" name="collision">seminarForm</result>
 			<result type="tiles" name="input">seminarForm</result>
+		</action>
+		
+		<!-- Action that saves an seminar even when there are collisions-->
+		<action name="SaveSeminarWithCollision" class="de.nak.stundenplandb.action.SeminarAction" method="save">
+			<result type="redirect">ShowSeminarForm.action</result>			
+			<result type="tiles" name="input">seminarForm</result>			
+		</action>		
+		
+		<!-- Action that cancels the collision mode so seminars are once again checked
+			 for collisions with other meetings.-->
+		<action name="CancelSeminarCollision" class="de.nak.stundenplandb.action.SeminarAction" method="cancelCollision">
+			<result type="tiles">seminarForm</result>						
 		</action>
 		
 		<!-- Action that deletes the selected seminar -->

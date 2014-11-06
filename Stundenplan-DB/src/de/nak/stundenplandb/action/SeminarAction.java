@@ -31,6 +31,25 @@ public class SeminarAction extends MeetingAction {
 	
 	/** The seminar service. */
 	private SeminarService seminarService;
+
+	/**
+	 * Saves or updates the seminar to the database when there is no
+	 * collision or otherwise displays an error message.
+	 * 
+	 * @return the result string.
+	 */
+	public String checkAndSave(){		
+		// Anstelle von false kommt die isPossible() Methode zum Kollisionscheck
+		if (false) {			
+			save();
+			return SUCCESS;
+		}
+				
+		isCollided = true;		
+		addActionError(getText("msg.error.collision"));
+		
+		return "collision";		
+	}
 	
 	@Override
 	/**

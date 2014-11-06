@@ -54,13 +54,38 @@ public abstract class MeetingAction extends ActionSupport {
 	/** The meeting service. */
 	protected MeetingService meetingService;
 	
+	/** Shows whether user has tried to save a meeting that collides with others.
+	 	The user can decide to save anyway or go back and change the attributes */
+	protected boolean isCollided = false;
+	
 	
 	/**
 	 * Abstract save method.
-	 * Overwritten by subclasses.
-	 *
+	 * Overwritten by subclasses.	 
+	 * 
+	 * @return the result string
 	 */
 	public abstract String save();
+	
+	/**
+	 * Abstract method that checks for collision before 
+	 * saving the meeting.
+	 * Overwritten by subclasses.
+	 *
+	 * @return the result string
+	 */
+	public abstract String checkAndSave();
+	
+	/**
+	 * Cancels collision mode, so meetings are again checked for collisions
+	 * before being saved to the database.
+	 *
+	 * @return the result string
+	 */
+	public String cancelCollision(){
+		isCollided = false;
+		return SUCCESS;
+	}
 	
 	/**
 	 * Gets all lecturers in the database
@@ -176,5 +201,13 @@ public abstract class MeetingAction extends ActionSupport {
 
 	public void setMeetingService(MeetingService meetingService) {
 		this.meetingService = meetingService;
+	}
+
+	public boolean isCollided() {
+		return isCollided;
+	}
+
+	public void setCollided(boolean isCollided) {
+		this.isCollided = isCollided;
 	}
 }

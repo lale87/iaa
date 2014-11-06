@@ -35,6 +35,25 @@ public class ElectiveAction extends MeetingAction {
 	private ElectiveService electiveService;
 
 	/**
+	 * Saves or updates the elective to the database when there is no
+	 * collision or otherwise displays error message.
+	 * 
+	 * @return the result string.
+	 */
+	public String checkAndSave(){		
+		// Anstelle von false kommt die isPossible() Methode zum Kollisionscheck
+		if (false) {			
+			save();
+			return SUCCESS;
+		}
+				
+		isCollided = true;		
+		addActionError(getText("msg.error.collision"));
+		
+		return "collision";		
+	}
+
+	/**
 	 * Saves the elective to the database
 	 *  
 	 *  @return the result string.
