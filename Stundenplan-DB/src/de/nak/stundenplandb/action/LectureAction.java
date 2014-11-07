@@ -9,6 +9,7 @@ import org.apache.commons.beanutils.BeanToPropertyValueTransformer;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.struts2.interceptor.validation.SkipValidation;
 
+import de.nak.stundenplandb.model.ECollisionType;
 import de.nak.stundenplandb.model.Lecture;
 import de.nak.stundenplandb.service.LectureService;
 
@@ -35,20 +36,21 @@ public class LectureAction extends MeetingAction {
 	private LectureService lectureService;
 
 	/**
-	 * Saves or updates the lecture to the database when there is no
-	 * collision. 
+	 * Saves or updates the lecture to the database when no collisions
+	 * are found or otherwise displays an error message.
 	 * 
 	 * @return the result string.
 	 */
 	public String checkAndSave(){		
-		// Anstelle von false kommt die isPossible() Methode zum Kollisionscheck
-		if (false) {			
-			save();
+		collisionList = lectureService.getCollisions(lectureId, lecturerId, roomIds, studentGroupId, numberOfAppointments, startDate, endDate);
+		
+		if (collisionList.isEmpty()) {			
+			save();	
 			return SUCCESS;
 		}
-				
-		isCollided = true;		
-		addActionError(getText("msg.error.collision"));		
+		
+		isCollided = true;			
+		showCollisionErrors(collisionList);		
 		return INPUT;
 	}
 	

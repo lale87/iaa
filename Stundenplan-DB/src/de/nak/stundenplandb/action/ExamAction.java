@@ -38,19 +38,20 @@ public class ExamAction extends MeetingAction {
 	
 	/**
 	 * Saves or updates the exam to the database when there is no
-	 * collision. 
+	 * collision or otherwise displays an error message.
 	 * 
 	 * @return the result string.
 	 */
 	public String checkAndSave(){		
-		// Anstelle von false kommt die isPossible() Methode zum Kollisionscheck
-		if (false) {			
-			save();
+		collisionList = examService.getCollisions(examId, lecturerId, roomIds, studentGroupIds, numberOfAppointments, startDate, endDate);
+				
+		if (collisionList.isEmpty()) {			
+			save();		
 			return SUCCESS;
 		}
 				
 		isCollided = true;		
-		addActionError(getText("msg.error.collision"));		
+		showCollisionErrors(collisionList);		
 		return INPUT;	
 	}
 
