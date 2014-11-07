@@ -77,7 +77,11 @@ public class LectureServiceImpl implements LectureService {
 		this.roomService = roomService;
 	}
 
-	//TODO löschen
+	public void setLectureService(LecturerService lectureService) {
+		this.lecturerService = lectureService;
+	}
+
+	// TODO löschen
 	@Override
 	@Deprecated
 	public boolean CheckCollisionsForLecture(Long id, Long lecturerId,
@@ -132,11 +136,11 @@ public class LectureServiceImpl implements LectureService {
 			}
 		}
 		// Check for LecturerCollisions
-		if(lecturerService.isBusy(lecturerId, startDate, endDate)){
+		if (lecturerService.isBusy(lecturerId, startDate, endDate)) {
 			collisionsSet.add(ECollisionType.LECTURER_BUSY);
 		}
 		// Check for StudentGroupCollisions
-		if(studentGroupService.isBusy(studentGroupId, startDate, endDate)){
+		if (studentGroupService.isBusy(studentGroupId, startDate, endDate)) {
 			collisionsSet.add(ECollisionType.STUDENTGROUP_BUSY);
 		}
 
