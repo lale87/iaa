@@ -77,8 +77,8 @@ public class LectureServiceImpl implements LectureService {
 		this.roomService = roomService;
 	}
 
-	public void setLectureService(LecturerService lectureService) {
-		this.lecturerService = lectureService;
+	public void setLecturerService(LecturerService lecturerService) {
+		this.lecturerService = lecturerService;
 	}
 
 	// TODO löschen
