@@ -29,6 +29,8 @@ public class LectureServiceImpl implements LectureService {
 	private LectureDAO lectureDAO;
 	private StudentGroupDAO studentGroupDAO;
 	private RoomService roomService;
+	private StudentGroupService studentGroupService;
+	private LecturerService lecturerService;
 
 	@Override
 	public void saveOrUpdateLecture(Long id, String meetingName,
@@ -128,6 +130,14 @@ public class LectureServiceImpl implements LectureService {
 			if (this.roomService.isOccupied(roomId, startDate, endDate)) {
 				collisionsSet.add(ECollisionType.ROOM_OCCUPIED);
 			}
+		}
+		// Check for LecturerCollisions
+		if(lecturerService.isBusy(lecturerId, startDate, endDate)){
+			collisionsSet.add(ECollisionType.LECTURER_BUSY);
+		}
+		// Check for StudentGroupCollisions
+		if(studentGroupService.isBusy(studentGroupId, startDate, endDate)){
+			collisionsSet.add(ECollisionType.STUDENTGROUP_BUSY);
 		}
 
 		// Returns a List with all found collisions

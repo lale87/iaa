@@ -137,37 +137,37 @@ public class StudentGroupServiceImpl implements StudentGroupService {
 		return getAppointmentsForStudentGroupInTimeperiod(studentGroupId,
 				new Date(Long.MIN_VALUE), new Date(Long.MAX_VALUE));
 	}
-	
+
 	@Override
 	public List<Appointment> getAppointmentsForStudentGroupInTimeperiod(
 			Long studentGroupId, Date start, Date end) {
 		// TODO FK: Fehlerbehandlung?
 		StudentGroup studentGroup = studentGroupDAO.load(studentGroupId);
 		List<Appointment> appointments = appointmentDAO
-				.loadAppointmentsForStudentGroupInTimeperiod(
-						studentGroup, start, end);
+				.loadAppointmentsForStudentGroupInTimeperiod(studentGroup,
+						start, end);
 		// initialize appointments
 		for (Appointment appointment : appointments) {
 			Hibernate.initialize(appointment.getMeeting());
 			Hibernate.initialize(appointment.getMeeting().getRooms());
 			Hibernate.initialize(appointment.getMeeting().getLecturer());
 			// initialize lectures
-			if (EMeetingType.LECTURE.equals(
-					appointment.getMeeting().getMeetingType())) {
-				Hibernate.initialize(
-						((Lecture)appointment.getMeeting()).getStudentGroup());
+			if (EMeetingType.LECTURE.equals(appointment.getMeeting()
+					.getMeetingType())) {
+				Hibernate.initialize(((Lecture) appointment.getMeeting())
+						.getStudentGroup());
 			}
 			// initialize exams
-			if (EMeetingType.EXAM.equals(
-					appointment.getMeeting().getMeetingType())) {
-				Hibernate.initialize(
-						((Exam)appointment.getMeeting()).getStudentGroups());
+			if (EMeetingType.EXAM.equals(appointment.getMeeting()
+					.getMeetingType())) {
+				Hibernate.initialize(((Exam) appointment.getMeeting())
+						.getStudentGroups());
 			}
 			// initialize electives
-			if (EMeetingType.ELECTIVE.equals(
-					appointment.getMeeting().getMeetingType())) {
-				Hibernate.initialize(
-						((Elective)appointment.getMeeting()).getCohort());
+			if (EMeetingType.ELECTIVE.equals(appointment.getMeeting()
+					.getMeetingType())) {
+				Hibernate.initialize(((Elective) appointment.getMeeting())
+						.getCohort());
 			}
 		}
 		return appointments;
@@ -194,4 +194,17 @@ public class StudentGroupServiceImpl implements StudentGroupService {
 	public void setAppointmentDAO(AppointmentDAO appointmentDAO) {
 		this.appointmentDAO = appointmentDAO;
 	}
+
+	@Override
+	public boolean isBusy(Long studentGroupId, Date start, Date end) {
+		// TODO Kollisionsprüfung einbauen
+		return false;
+	}
+
+	@Override
+	public List<StudentGroup> loadStudentGroupsByCohortId(Long cohortId) {
+		// TODO StudentGroups für eine Cohort suchen
+		return null;
+	}
+
 }

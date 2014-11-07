@@ -17,6 +17,7 @@ import de.nak.stundenplandb.model.Cohort;
 import de.nak.stundenplandb.model.ECollisionType;
 import de.nak.stundenplandb.model.EMeetingType;
 import de.nak.stundenplandb.model.Elective;
+import de.nak.stundenplandb.model.StudentGroup;
 
 /**
  * Implementation of the ElectiveService
@@ -29,6 +30,8 @@ public class ElectiveServiceImpl implements ElectiveService {
 	private ElectiveDAO electiveDAO;
 	private CohortDAO cohortDAO;
 	private RoomService roomService;
+	private StudentGroupService studentGroupService;
+	private LecturerService lecturerService;
 
 	@Override
 	public void saveOrUpdateElective(Long id, String meetingName,
@@ -97,6 +100,24 @@ public class ElectiveServiceImpl implements ElectiveService {
 		this.roomService = roomService;
 	}
 
+	/**
+	 * Inject the StudentGroupService
+	 * 
+	 * @param studentGroupService
+	 */
+	public void setStudentGroupService(StudentGroupService studentGroupService) {
+		this.studentGroupService = studentGroupService;
+	}
+
+	/**
+	 * Inject the LecturerService
+	 * 
+	 * @param lecturerService
+	 */
+	public void setLecturerService(LecturerService lecturerService) {
+		this.lecturerService = lecturerService;
+	}
+
 	@Override
 	public boolean checkCollisionsForElective(Long id, Long lecturerId,
 			List<Long> roomIds, Long cohortId, int numberOfAppointments,
@@ -143,11 +164,23 @@ public class ElectiveServiceImpl implements ElectiveService {
 			Date startDate, Date endDate) {
 		// The set with all found collionsTypes
 		Set<ECollisionType> collisionsSet = new HashSet<ECollisionType>();
-		// TODO Kollisionsprüfung einbauen
 		// Check for RoomCollisions
 		for (Long roomId : roomIds) {
 			if (this.roomService.isOccupied(roomId, startDate, endDate)) {
 				collisionsSet.add(ECollisionType.ROOM_OCCUPIED);
+			}
+		}
+		// Check for LecturerCollisions
+		if (lecturerService.isBusy(lecturerId, startDate, endDate)) {
+			collisionsSet.add(ECollisionType.LECTURER_BUSY);
+		}
+		// Check for StudentGroupCollisions
+		List<StudentGroup> studentGroups = studentGroupService
+				.loadStudentGroupsByCohortId(cohortId);
+		for (StudentGroup studentGroup : studentGroups) {
+			if (studentGroupService.isBusy(studentGroup.getId(), startDate,
+					endDate)) {
+				collisionsSet.add(ECollisionType.STUDENTGROUP_BUSY);
 			}
 		}
 		// returns a List of all found collsionTypes

@@ -26,6 +26,7 @@ public class SeminarServiceImpl implements SeminarService {
 	private MeetingService meetingService;
 	private SeminarDAO seminarDAO;
 	private RoomService roomService;
+	private LecturerService lecturerService;
 
 	@Override
 	public void saveOrUpdateSeminar(Long id, String meetingName,
@@ -72,6 +73,7 @@ public class SeminarServiceImpl implements SeminarService {
 	public void setSeminarDAO(SeminarDAO seminarDAO) {
 		this.seminarDAO = seminarDAO;
 	}
+
 	/**
 	 * Inject the RoomService
 	 * 
@@ -81,12 +83,21 @@ public class SeminarServiceImpl implements SeminarService {
 		this.roomService = roomService;
 	}
 
+	/**
+	 * Inject the LecturerService
+	 * 
+	 * @param lecturerService
+	 */
+	public void setLecturerService(LecturerService lecturerService) {
+		this.lecturerService = lecturerService;
+	}
+
 	@Override
 	@Deprecated
 	public boolean checkCollisionsForSeminar(Long id, Long lecturerId,
 			List<Long> roomIds, int numberOfAppointments, Date startDate,
 			Date endDate) {
-		// TODO Kollisionsprüfung implementieren
+		// TODO löschen
 		return true;
 	}
 
@@ -128,14 +139,17 @@ public class SeminarServiceImpl implements SeminarService {
 			Date endDate) {
 		// The set with all found collionsTypes
 		Set<ECollisionType> collisionsSet = new HashSet<ECollisionType>();
-		// TODO Kollisionsprüfung einbauen
 		// Check for RoomCollisions
 		for (Long roomId : roomIds) {
 			if (this.roomService.isOccupied(roomId, startDate, endDate)) {
 				collisionsSet.add(ECollisionType.ROOM_OCCUPIED);
 			}
 		}
-		
+		// Check for LecturerCollisions
+		if (lecturerService.isBusy(lecturerId, startDate, endDate)) {
+			collisionsSet.add(ECollisionType.LECTURER_BUSY);
+		}
+
 		// returns a List of all found collsionTypes
 		return new ArrayList<ECollisionType>(collisionsSet);
 	}

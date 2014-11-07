@@ -29,6 +29,8 @@ public class ExamServiceImpl implements ExamService {
 	private ExamDAO examDAO;
 	private StudentGroupDAO studentGroupDAO;
 	private RoomService roomService;
+	private StudentGroupService studentGroupService;
+	private LecturerService lecturerService;
 
 	@Override
 	public void saveOrUpdateExam(Long id, String meetingName, Long lecturerId,
@@ -98,6 +100,24 @@ public class ExamServiceImpl implements ExamService {
 	public void setRoomService(RoomService roomService) {
 		this.roomService = roomService;
 	}
+	
+	/**
+	 * Inject the StudentGroupService
+	 * 
+	 * @param studentGroupService
+	 */
+	public void setStudentGroupService(StudentGroupService studentGroupService) {
+		this.studentGroupService = studentGroupService;
+	}
+
+	/**
+	 * Inject the LecturerService
+	 * 
+	 * @param lecturerService
+	 */
+	public void setLecturerService(LecturerService lecturerService) {
+		this.lecturerService = lecturerService;
+	}
 
 	@Override
 	public boolean CheckCollisionsForExam(Long id, Long lecturerId,
@@ -146,11 +166,21 @@ public class ExamServiceImpl implements ExamService {
 			int numberOfAppointments, Date startDate, Date endDate) {
 		// The set with all found collionsTypes
 		Set<ECollisionType> collisionsSet = new HashSet<ECollisionType>();
-		// TODO Kollisionsprüfung einbauen
 		// Check for RoomCollisions
 		for (Long roomId : roomIds) {
 			if (this.roomService.isOccupied(roomId, startDate, endDate)) {
 				collisionsSet.add(ECollisionType.ROOM_OCCUPIED);
+			}
+		}
+		// Check for LecturerCollisions
+		if (lecturerService.isBusy(lecturerId, startDate, endDate)) {
+			collisionsSet.add(ECollisionType.LECTURER_BUSY);
+		}
+
+		// Check for StudentGroupCollisions
+		for (Long studentGroupId : studentGroupIds) {
+			if (studentGroupService.isBusy(studentGroupId, startDate, endDate)) {
+				collisionsSet.add(ECollisionType.STUDENTGROUP_BUSY);
 			}
 		}
 		// returns a List of all found collsionTypes

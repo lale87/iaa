@@ -31,6 +31,13 @@ public interface StudentGroupService {
 	List<StudentGroup> loadAllStudentGroups();
 
 	/**
+	 * Loads a list of all studentGroups.
+	 *
+	 * @return a list which is empty if no studentGroup was found.
+	 */
+	List<StudentGroup> loadStudentGroupsByCohortId(Long cohortId);
+
+	/**
 	 * Loads a list of all cohorts.
 	 *
 	 * @return a list which is empty if no cohort was found.
@@ -58,19 +65,41 @@ public interface StudentGroupService {
 	 * @return a list which is empty if no studentGroup was found.
 	 */
 	List<StudentGroup> loadAllStudentGroupsSorted();
-	
+
 	/**
 	 * Returns a List of all Appointments for a given student group.
-	 * @param studentGroupId Student group-Id
+	 * 
+	 * @param studentGroupId
+	 *            Student group-Id
 	 * @return List of Appointments
 	 */
 	List<Appointment> getAppointmentsForStudentGroup(Long studentGroupId);
+
 	/**
-	 * Returns a List of all Appointments for a given student group in a specific period of time.
-	 * @param studentGroupId Student group-Id
-	 * @param start Start of timeperiod
-	 * @param end End of timeperiod
+	 * Returns a List of all Appointments for a given student group in a
+	 * specific period of time.
+	 * 
+	 * @param studentGroupId
+	 *            Student group-Id
+	 * @param start
+	 *            Start of timeperiod
+	 * @param end
+	 *            End of timeperiod
 	 * @return List of Appointments
 	 */
-	List<Appointment> getAppointmentsForStudentGroupInTimeperiod(Long studentGroupId, Date start, Date end);
+	List<Appointment> getAppointmentsForStudentGroupInTimeperiod(
+			Long studentGroupId, Date start, Date end);
+
+	/**
+	 * Returns true if the StudentGroup is busy withing the given time period.
+	 * 
+	 * @param studentGroupId
+	 *            Student group-Id
+	 * @param start
+	 *            Start of timeperiod
+	 * @param end
+	 *            End of timeperiod
+	 * @return List of Appointments
+	 */
+	boolean isBusy(Long studentGroupId, Date start, Date end);
 }

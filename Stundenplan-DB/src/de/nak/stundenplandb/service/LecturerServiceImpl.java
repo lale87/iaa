@@ -94,4 +94,12 @@ public class LecturerServiceImpl implements LecturerService {
 	public void setAppointmentDAO(AppointmentDAO appointmentDAO) {
 		this.appointmentDAO = appointmentDAO;
 	}
+
+	@Override
+	public boolean isBusy(Long lecturerId, Date start, Date end) {
+		// TODO Kollisionsprüfung implementieren
+		return false;
+	}
+	
+
 }
