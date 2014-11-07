@@ -24,17 +24,26 @@ public class StudentGroupDAOImpl extends GenericDAOImpl<StudentGroup> implements
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<StudentGroup> loadStudentGroupsByCohortId(Long cohortId) {
+		List<StudentGroup> test =(List<StudentGroup>) sessionFactory
+		.getCurrentSession()
+		.createQuery(
+				"from StudentGroup as studentGroup where studentGroup.cohort = :id")
+		.setLong("id", cohortId).list();
+		
+		for (StudentGroup studentGroup : test) {
+			System.out.println(studentGroup.getDisplayName());
+		}
 		return (List<StudentGroup>) sessionFactory
 				.getCurrentSession()
 				.createQuery(
-						"from StudentGroup as studentGroup where StudentGroup.cohort = :id")
+						"from StudentGroup as studentGroup where studentGroup.cohort = :id")
 				.setLong("id", cohortId).list();
 	}
 
 	@Override
 	public boolean isBusy(Long studentGroupId, Date start, Date end) {
 		// TODO Hier muss geprüft werden, ob eine StudentGroup beschäftigt ist
-		return false;
+		return true;
 	}
 
 }

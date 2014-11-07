@@ -218,8 +218,7 @@ public class StudentGroupServiceImpl implements StudentGroupService {
 
 	@Override
 	public List<StudentGroup> loadStudentGroupsByCohortId(Long cohortId) {
-		// TODO StudentGroups für eine Cohort suchen
-		return null;
+		return studentGroupDAO.loadStudentGroupsByCohortId(cohortId);
 	}
 
 }

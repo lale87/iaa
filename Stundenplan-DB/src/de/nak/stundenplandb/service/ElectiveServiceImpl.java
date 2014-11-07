@@ -180,7 +180,8 @@ public class ElectiveServiceImpl implements ElectiveService {
 		for (StudentGroup studentGroup : studentGroups) {
 			if (studentGroupService.isBusy(studentGroup.getId(), startDate,
 					endDate)) {
-				collisionsSet.add(ECollisionType.STUDENTGROUP_BUSY);
+				// TODO Studentgroup oder Cohort als Kollisionstyp?
+				collisionsSet.add(ECollisionType.COHORT_BUSY);
 			}
 		}
 		// returns a List of all found collsionTypes
