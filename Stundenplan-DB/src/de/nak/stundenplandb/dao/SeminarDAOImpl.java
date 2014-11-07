@@ -21,7 +21,9 @@ public class SeminarDAOImpl extends GenericDAOImpl<Seminar> implements
 		super(Seminar.class);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
+	@Deprecated
 	public List<Meeting> loadSeminarsForLecturer(Lecturer lecturer, Date start,
 			Date end) {
 		// TODO DATE
@@ -33,14 +35,16 @@ public class SeminarDAOImpl extends GenericDAOImpl<Seminar> implements
 
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
+	@Deprecated
 	public List<Meeting> loadSeminarsForRoom(Room room, Date start, Date end) {
 		// TODO DATE
-				return sessionFactory
-						.getCurrentSession()
-						.createQuery(
-								"from SEMINAR as seminar where seminar.room = :room")
-						.setEntity("room", room).list();
+		return sessionFactory
+				.getCurrentSession()
+				.createQuery(
+						"from SEMINAR as seminar where seminar.room = :room")
+				.setEntity("room", room).list();
 	}
 
 }

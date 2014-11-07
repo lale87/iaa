@@ -21,6 +21,7 @@ public interface ExamDAO extends GenericDAO<Exam> {
 	 * 
 	 * @return a List of Meeting
 	 */
+	@Deprecated
 	List<Exam> loadExamForStudentGroup(StudentGroup studentGroup,
 			Date start, Date end);
 
@@ -29,6 +30,7 @@ public interface ExamDAO extends GenericDAO<Exam> {
 	 * 
 	 * @return a List of Meeting
 	 */
+	@Deprecated
 	List<Exam> loadExamForLecturer(Lecturer lecturer, Date start,
 			Date end);
 
@@ -37,5 +39,6 @@ public interface ExamDAO extends GenericDAO<Exam> {
 	 * 
 	 * @return a List of Meeting
 	 */
+	@Deprecated
 	List<Meeting> loadExamsForRoom(Room room, Date start, Date end);
 }

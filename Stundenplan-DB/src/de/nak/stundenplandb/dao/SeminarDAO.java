@@ -21,6 +21,7 @@ public interface SeminarDAO extends GenericDAO<Seminar> {
 	 * 
 	 * @return a List of Seminar
 	 */
+	@Deprecated
 	List<Meeting> loadSeminarsForLecturer(Lecturer lecturer, Date start,
 			Date end);
 
@@ -29,5 +30,6 @@ public interface SeminarDAO extends GenericDAO<Seminar> {
 	 * 
 	 * @return a List of Seminar
 	 */
+	@Deprecated
 	List<Meeting> loadSeminarsForRoom(Room room, Date start, Date end);
 }

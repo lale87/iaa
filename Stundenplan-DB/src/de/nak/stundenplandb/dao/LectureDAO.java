@@ -20,6 +20,7 @@ public interface LectureDAO extends GenericDAO<Lecture> {
 	 * 
 	 * @return a List of Lectures
 	 */
+	@Deprecated
 	List<Lecture> loadLecturesForStudentGroup(StudentGroup studentGroup,
 			Date start, Date end);
 
@@ -28,6 +29,7 @@ public interface LectureDAO extends GenericDAO<Lecture> {
 	 * 
 	 * @return a List of Lectures
 	 */
+	@Deprecated
 	List<Lecture> loadLecturesForLecturer(Lecturer lecturer, Date start,
 			Date end);
 
@@ -36,4 +38,5 @@ public interface LectureDAO extends GenericDAO<Lecture> {
 	 * 
 	 * @return a List of Lectures
 	 */
+	@Deprecated
 	List<Lecture> loadLecturesForRoom(Room room, Date start, Date end);}

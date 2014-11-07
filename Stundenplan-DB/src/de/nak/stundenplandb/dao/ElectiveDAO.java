@@ -8,7 +8,6 @@ import de.nak.stundenplandb.model.Elective;
 import de.nak.stundenplandb.model.Lecturer;
 import de.nak.stundenplandb.model.Meeting;
 import de.nak.stundenplandb.model.Room;
-import de.nak.stundenplandb.model.StudentGroup;
 
 /**
  * Schnittstelle für das Elective-DAO
@@ -22,6 +21,7 @@ public interface ElectiveDAO extends GenericDAO<Elective> {
 	 * 
 	 * @return a List of Electives
 	 */
+	@Deprecated
 	List<Elective> loadElectivesForStudentGroup(Cohort cohort,
 			Date start, Date end);
 
@@ -30,6 +30,7 @@ public interface ElectiveDAO extends GenericDAO<Elective> {
 	 * 
 	 * @return a List of Electives
 	 */
+	@Deprecated
 	List<Elective> loadElectivesForLecturer(Lecturer lecturer, Date start,
 			Date end);
 
@@ -38,5 +39,6 @@ public interface ElectiveDAO extends GenericDAO<Elective> {
 	 * 
 	 * @return a List of Meeting
 	 */
+	@Deprecated
 	List<Meeting> loadElectivesForRoom(Room room, Date start, Date end);
 	}

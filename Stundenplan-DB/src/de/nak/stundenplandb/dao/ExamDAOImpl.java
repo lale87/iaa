@@ -21,7 +21,9 @@ public class ExamDAOImpl extends GenericDAOImpl<Exam> implements ExamDAO {
 		super(Exam.class);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
+	@Deprecated
 	public List<Exam> loadExamForStudentGroup(StudentGroup studentGroup,
 			Date start, Date end) {
 		// TODO DATE
@@ -32,7 +34,9 @@ public class ExamDAOImpl extends GenericDAOImpl<Exam> implements ExamDAO {
 				.setEntity("studentGroup", studentGroup).list();
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
+	@Deprecated
 	public List<Exam> loadExamForLecturer(Lecturer lecturer, Date start,
 			Date end) {
 		// TODO DATE
@@ -43,7 +47,9 @@ public class ExamDAOImpl extends GenericDAOImpl<Exam> implements ExamDAO {
 				.setEntity("lecturer", lecturer).list();
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
+	@Deprecated
 	public List<Meeting> loadExamsForRoom(Room room, Date start, Date end) {
 		// TODO DATE
 		return sessionFactory.getCurrentSession()
