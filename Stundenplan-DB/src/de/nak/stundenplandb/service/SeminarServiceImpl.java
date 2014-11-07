@@ -25,6 +25,7 @@ import de.nak.stundenplandb.model.Seminar;
 public class SeminarServiceImpl implements SeminarService {
 	private MeetingService meetingService;
 	private SeminarDAO seminarDAO;
+	private RoomService roomService;
 
 	@Override
 	public void saveOrUpdateSeminar(Long id, String meetingName,
@@ -54,15 +55,34 @@ public class SeminarServiceImpl implements SeminarService {
 		seminarDAO.delete(seminar);
 	}
 
+	/**
+	 * Inject the MeetingService
+	 * 
+	 * @param meetingService
+	 */
 	public void setMeetingService(MeetingService meetingService) {
 		this.meetingService = meetingService;
 	}
 
+	/**
+	 * Inject the SeminarDAO
+	 * 
+	 * @param seminarDAO
+	 */
 	public void setSeminarDAO(SeminarDAO seminarDAO) {
 		this.seminarDAO = seminarDAO;
 	}
+	/**
+	 * Inject the RoomService
+	 * 
+	 * @param roomService
+	 */
+	public void setRoomService(RoomService roomService) {
+		this.roomService = roomService;
+	}
 
 	@Override
+	@Deprecated
 	public boolean checkCollisionsForSeminar(Long id, Long lecturerId,
 			List<Long> roomIds, int numberOfAppointments, Date startDate,
 			Date endDate) {
@@ -108,7 +128,14 @@ public class SeminarServiceImpl implements SeminarService {
 			Date endDate) {
 		// The set with all found collionsTypes
 		Set<ECollisionType> collisionsSet = new HashSet<ECollisionType>();
-		//TODO Kollisionsprüfung einbauen
+		// TODO Kollisionsprüfung einbauen
+		// Check for RoomCollisions
+		for (Long roomId : roomIds) {
+			if (this.roomService.isOccupied(roomId, startDate, endDate)) {
+				collisionsSet.add(ECollisionType.ROOM_OCCUPIED);
+			}
+		}
+		
 		// returns a List of all found collsionTypes
 		return new ArrayList<ECollisionType>(collisionsSet);
 	}

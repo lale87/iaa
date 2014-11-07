@@ -28,6 +28,7 @@ public class ExamServiceImpl implements ExamService {
 	private MeetingService meetingService;
 	private ExamDAO examDAO;
 	private StudentGroupDAO studentGroupDAO;
+	private RoomService roomService;
 
 	@Override
 	public void saveOrUpdateExam(Long id, String meetingName, Long lecturerId,
@@ -62,16 +63,40 @@ public class ExamServiceImpl implements ExamService {
 		examDAO.delete(exam);
 	}
 
+	/**
+	 * Inject the MeetingService
+	 * 
+	 * @param meetingService
+	 */
 	public void setMeetingService(MeetingService meetingService) {
 		this.meetingService = meetingService;
 	}
 
+	/**
+	 * Inject the ExamDAO
+	 * 
+	 * @param examDAO
+	 */
 	public void setExamDAO(ExamDAO examDAO) {
 		this.examDAO = examDAO;
 	}
 
+	/**
+	 * Inject the StudentGroupDAO
+	 * 
+	 * @param studentGroupDAO
+	 */
 	public void setStudentGroupDAO(StudentGroupDAO studentGroupDAO) {
 		this.studentGroupDAO = studentGroupDAO;
+	}
+
+	/**
+	 * Inject the RoomService
+	 * 
+	 * @param roomService
+	 */
+	public void setRoomService(RoomService roomService) {
+		this.roomService = roomService;
 	}
 
 	@Override
@@ -122,6 +147,12 @@ public class ExamServiceImpl implements ExamService {
 		// The set with all found collionsTypes
 		Set<ECollisionType> collisionsSet = new HashSet<ECollisionType>();
 		// TODO Kollisionsprüfung einbauen
+		// Check for RoomCollisions
+		for (Long roomId : roomIds) {
+			if (this.roomService.isOccupied(roomId, startDate, endDate)) {
+				collisionsSet.add(ECollisionType.ROOM_OCCUPIED);
+			}
+		}
 		// returns a List of all found collsionTypes
 		return new ArrayList<ECollisionType>(collisionsSet);
 	}

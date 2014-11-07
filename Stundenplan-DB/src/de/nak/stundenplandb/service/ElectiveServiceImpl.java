@@ -28,6 +28,7 @@ public class ElectiveServiceImpl implements ElectiveService {
 	private MeetingService meetingService;
 	private ElectiveDAO electiveDAO;
 	private CohortDAO cohortDAO;
+	private RoomService roomService;
 
 	@Override
 	public void saveOrUpdateElective(Long id, String meetingName,
@@ -60,16 +61,40 @@ public class ElectiveServiceImpl implements ElectiveService {
 		electiveDAO.delete(elective);
 	}
 
+	/**
+	 * Inject the MeetingService
+	 * 
+	 * @param meetingService
+	 */
 	public void setMeetingService(MeetingService meetingService) {
 		this.meetingService = meetingService;
 	}
 
+	/**
+	 * Inject the ElectiveDAO
+	 * 
+	 * @param electiveDAO
+	 */
 	public void setElectiveDAO(ElectiveDAO electiveDAO) {
 		this.electiveDAO = electiveDAO;
 	}
 
+	/**
+	 * Inject the CohortDAO
+	 * 
+	 * @param cohortDAO
+	 */
 	public void setCohortDAO(CohortDAO cohortDAO) {
 		this.cohortDAO = cohortDAO;
+	}
+
+	/**
+	 * Inject the RoomService
+	 * 
+	 * @param roomService
+	 */
+	public void setRoomService(RoomService roomService) {
+		this.roomService = roomService;
 	}
 
 	@Override
@@ -119,6 +144,12 @@ public class ElectiveServiceImpl implements ElectiveService {
 		// The set with all found collionsTypes
 		Set<ECollisionType> collisionsSet = new HashSet<ECollisionType>();
 		// TODO Kollisionsprüfung einbauen
+		// Check for RoomCollisions
+		for (Long roomId : roomIds) {
+			if (this.roomService.isOccupied(roomId, startDate, endDate)) {
+				collisionsSet.add(ECollisionType.ROOM_OCCUPIED);
+			}
+		}
 		// returns a List of all found collsionTypes
 		return new ArrayList<ECollisionType>(collisionsSet);
 	}
