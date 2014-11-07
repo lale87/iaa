@@ -1,6 +1,7 @@
 package de.nak.stundenplandb.service;
 
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
@@ -197,7 +198,20 @@ public class StudentGroupServiceImpl implements StudentGroupService {
 
 	@Override
 	public boolean isBusy(Long studentGroupId, Date start, Date end) {
-		// TODO Kollisionsprüfung einbauen
+		Integer minBreak = studentGroupDAO.load(studentGroupId).getMinBreak();
+		// Calculate new time with changingTime
+		Calendar cal = Calendar.getInstance();
+
+		Date startDateWithBreakTime;
+		cal.setTime(start);
+		cal.add(Calendar.MINUTE, -minBreak);
+		startDateWithBreakTime = cal.getTime();
+
+		Date endDateWithBreakTime;
+		cal.setTime(end);
+		cal.add(Calendar.MINUTE, minBreak);
+		endDateWithBreakTime = cal.getTime();
+		// TODO DAO anbinden
 		return false;
 	}
 

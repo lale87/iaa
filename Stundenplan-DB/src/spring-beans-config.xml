@@ -1,106 +1,114 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:tx="http://www.springframework.org/schema/tx"
-       xmlns:aop="http://www.springframework.org/schema/aop"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
                            http://www.springframework.org/schema/beans/spring-beans.xsd 
                            http://www.springframework.org/schema/tx 
                            http://www.springframework.org/schema/tx/spring-tx-2.5.xsd 
                            http://www.springframework.org/schema/aop 
                            http://www.springframework.org/schema/aop/spring-aop-2.0.xsd">
 
-    <!-- The transaction manager -->
-    <bean id="txManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
-        <property name="sessionFactory" ref="sessionFactory"/>
-    </bean>
+	<!-- The transaction manager -->
+	<bean id="txManager"
+		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
 
-    <!-- The advice -->
-    <tx:advice id="txAdvice" transaction-manager="txManager">
-        <tx:attributes>
-            <tx:method name="*" propagation="REQUIRED"/>
-        </tx:attributes>
-    </tx:advice>
+	<!-- The advice -->
+	<tx:advice id="txAdvice" transaction-manager="txManager">
+		<tx:attributes>
+			<tx:method name="*" propagation="REQUIRED" />
+		</tx:attributes>
+	</tx:advice>
 
-    <!-- The pointcut definition -->
-    <aop:config>
-        <aop:pointcut id="serviceMethods" expression="execution(* de.nak.stundenplandb.service.*.*(..))"/>
-        <aop:advisor advice-ref="txAdvice" pointcut-ref="serviceMethods"/>
-    </aop:config>
+	<!-- The pointcut definition -->
+	<aop:config>
+		<aop:pointcut id="serviceMethods"
+			expression="execution(* de.nak.stundenplandb.service.*.*(..))" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="serviceMethods" />
+	</aop:config>
 
-    <!-- DAOs -->
-    <bean id="appointmentDAO" class="de.nak.stundenplandb.dao.AppointmentDAOImpl">
-        <property name="sessionFactory" ref="sessionFactory"/>
-    </bean>
-    <bean id="cohortDAO" class="de.nak.stundenplandb.dao.CohortDAOImpl">
-        <property name="sessionFactory" ref="sessionFactory"/>
-    </bean>
-    <bean id="electiveDAO" class="de.nak.stundenplandb.dao.ElectiveDAOImpl">
-        <property name="sessionFactory" ref="sessionFactory"/>
-    </bean>
-    <bean id="examDAO" class="de.nak.stundenplandb.dao.ExamDAOImpl">
-        <property name="sessionFactory" ref="sessionFactory"/>
-    </bean>
-    <bean id="lectureDAO" class="de.nak.stundenplandb.dao.LectureDAOImpl">
-        <property name="sessionFactory" ref="sessionFactory"/>
-    </bean>
-    <bean id="lecturerDAO" class="de.nak.stundenplandb.dao.LecturerDAOImpl">
-        <property name="sessionFactory" ref="sessionFactory"/>
-    </bean>
-    <bean id="roomDAO" class="de.nak.stundenplandb.dao.RoomDAOImpl">
-        <property name="sessionFactory" ref="sessionFactory"/>
-    </bean>
-    <bean id="seminarDAO" class="de.nak.stundenplandb.dao.SeminarDAOImpl">
-        <property name="sessionFactory" ref="sessionFactory"/>
-    </bean>
-    <bean id="studentGroupDAO" class="de.nak.stundenplandb.dao.StudentGroupDAOImpl">
-        <property name="sessionFactory" ref="sessionFactory"/>
-    </bean>
-    
-    <!-- Services -->
-    <bean id="roomService" class="de.nak.stundenplandb.service.RoomServiceImpl">
-        <property name="roomDAO" ref="roomDAO"/>
-        <property name="appointmentDAO" ref="appointmentDAO"/>
-    </bean>
-    <bean id="lecturerService" class="de.nak.stundenplandb.service.LecturerServiceImpl">
-        <property name="lecturerDAO" ref="lecturerDAO"/>
-        <property name="appointmentDAO" ref="appointmentDAO"/>
-    </bean>
-    <bean id="studentGroupService" class="de.nak.stundenplandb.service.StudentGroupServiceImpl">
-        <property name="studentGroupDAO" ref="studentGroupDAO"/>
-        <property name="cohortDAO" ref="cohortDAO"/>
-        <property name="appointmentDAO" ref="appointmentDAO"/>
-    </bean>
-    <bean id="meetingService" class="de.nak.stundenplandb.service.MeetingServiceImpl">
-        <property name="examDAO" ref="examDAO"/>
-        <property name="seminarDAO" ref="seminarDAO"/>
-        <property name="electiveDAO" ref="electiveDAO"/>
-        <property name="lectureDAO" ref="lectureDAO"/>
-        <property name="lecturerDAO" ref="lecturerDAO"/>
-        <property name="roomDAO" ref="roomDAO"/>
-        <property name="appointmentDAO" ref="appointmentDAO"/>
-    </bean>
-    <bean id="lectureService" class="de.nak.stundenplandb.service.LectureServiceImpl">
-        <property name="meetingService" ref="meetingService"/>
-        <property name="lectureDAO" ref="lectureDAO"/>
-        <property name="studentGroupDAO" ref="studentGroupDAO"/>
-        <property name="roomService" ref="roomService"/>
-    </bean>
-    <bean id="examService" class="de.nak.stundenplandb.service.ExamServiceImpl">
-        <property name="meetingService" ref="meetingService"/>
-        <property name="examDAO" ref="examDAO"/>
-        <property name="studentGroupDAO" ref="studentGroupDAO"/>
-        <property name="roomService" ref="roomService"/>
-    </bean>
-    <bean id="seminarService" class="de.nak.stundenplandb.service.SeminarServiceImpl">
-        <property name="meetingService" ref="meetingService"/>
-        <property name="seminarDAO" ref="seminarDAO"/>
-        <property name="roomService" ref="roomService"/>
-    </bean>
-    <bean id="electiveService" class="de.nak.stundenplandb.service.ElectiveServiceImpl">
-        <property name="meetingService" ref="meetingService"/>
-        <property name="electiveDAO" ref="electiveDAO"/>
-        <property name="cohortDAO" ref="cohortDAO"/>    
-        <property name="roomService" ref="roomService"/>
-    </bean>
+	<!-- DAOs -->
+	<bean id="appointmentDAO" class="de.nak.stundenplandb.dao.AppointmentDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="cohortDAO" class="de.nak.stundenplandb.dao.CohortDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="electiveDAO" class="de.nak.stundenplandb.dao.ElectiveDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="examDAO" class="de.nak.stundenplandb.dao.ExamDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="lectureDAO" class="de.nak.stundenplandb.dao.LectureDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="lecturerDAO" class="de.nak.stundenplandb.dao.LecturerDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="roomDAO" class="de.nak.stundenplandb.dao.RoomDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="seminarDAO" class="de.nak.stundenplandb.dao.SeminarDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="studentGroupDAO" class="de.nak.stundenplandb.dao.StudentGroupDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<!-- Services -->
+	<bean id="roomService" class="de.nak.stundenplandb.service.RoomServiceImpl">
+		<property name="roomDAO" ref="roomDAO" />
+		<property name="appointmentDAO" ref="appointmentDAO" />
+	</bean>
+	<bean id="lecturerService" class="de.nak.stundenplandb.service.LecturerServiceImpl">
+		<property name="lecturerDAO" ref="lecturerDAO" />
+		<property name="appointmentDAO" ref="appointmentDAO" />
+	</bean>
+	<bean id="studentGroupService" class="de.nak.stundenplandb.service.StudentGroupServiceImpl">
+		<property name="studentGroupDAO" ref="studentGroupDAO" />
+		<property name="cohortDAO" ref="cohortDAO" />
+		<property name="appointmentDAO" ref="appointmentDAO" />
+	</bean>
+	<bean id="meetingService" class="de.nak.stundenplandb.service.MeetingServiceImpl">
+		<property name="examDAO" ref="examDAO" />
+		<property name="seminarDAO" ref="seminarDAO" />
+		<property name="electiveDAO" ref="electiveDAO" />
+		<property name="lectureDAO" ref="lectureDAO" />
+		<property name="lecturerDAO" ref="lecturerDAO" />
+		<property name="roomDAO" ref="roomDAO" />
+		<property name="appointmentDAO" ref="appointmentDAO" />
+	</bean>
+	<bean id="lectureService" class="de.nak.stundenplandb.service.LectureServiceImpl">
+		<property name="meetingService" ref="meetingService" />
+		<property name="lectureDAO" ref="lectureDAO" />
+		<property name="studentGroupDAO" ref="studentGroupDAO" />
+		<property name="roomService" ref="roomService" />
+		<property name="lecturerService" ref="lecturerService" />
+		<property name="studentGroupService" ref="studentGroupService" />
+	</bean>
+	<bean id="examService" class="de.nak.stundenplandb.service.ExamServiceImpl">
+		<property name="meetingService" ref="meetingService" />
+		<property name="examDAO" ref="examDAO" />
+		<property name="studentGroupDAO" ref="studentGroupDAO" />
+		<property name="roomService" ref="roomService" />
+		<property name="lecturerService" ref="lecturerService" />
+		<property name="studentGroupService" ref="studentGroupService" />
+	</bean>
+	<bean id="seminarService" class="de.nak.stundenplandb.service.SeminarServiceImpl">
+		<property name="meetingService" ref="meetingService" />
+		<property name="seminarDAO" ref="seminarDAO" />
+		<property name="roomService" ref="roomService" />
+		<property name="lecturerService" ref="lecturerService" />
+	</bean>
+	<bean id="electiveService" class="de.nak.stundenplandb.service.ElectiveServiceImpl">
+		<property name="meetingService" ref="meetingService" />
+		<property name="electiveDAO" ref="electiveDAO" />
+		<property name="cohortDAO" ref="cohortDAO" />
+		<property name="roomService" ref="roomService" />
+		<property name="lecturerService" ref="lecturerService" />
+		<property name="studentGroupService" ref="studentGroupService" />
+	</bean>
 </beans>
