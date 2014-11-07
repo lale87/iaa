@@ -1,5 +1,6 @@
 package de.nak.stundenplandb.dao;
 
+import java.util.Date;
 import java.util.List;
 
 import de.nak.stundenplandb.model.StudentGroup;
@@ -18,4 +19,14 @@ public interface StudentGroupDAO extends GenericDAO<StudentGroup> {
 	 * @return
 	 */
 	List<StudentGroup> loadStudentGroupsByCohortId(Long cohortId);
+
+	/**
+	 * Chekcs if the the studentGroup is busy during the given time period
+	 * 
+	 * @param studentGroupId
+	 * @param start
+	 * @param end
+	 * @return
+	 */
+	boolean isBusy(Long studentGroupId, Date start, Date end);
 }
