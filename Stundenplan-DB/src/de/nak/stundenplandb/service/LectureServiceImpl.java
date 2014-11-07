@@ -117,7 +117,7 @@ public class LectureServiceImpl implements LectureService {
 	}
 
 	@Override
-	public List<ECollisionType> isPossible(Long id, Long lecturerId,
+	public List<ECollisionType> getCollisions(Long id, Long lecturerId,
 			List<Long> roomIds, Long studentGroupId, int numberOfAppointments,
 			Date startDate, Date endDate) {
 		// Set with all found collisions

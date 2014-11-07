@@ -65,7 +65,7 @@ public interface LectureService {
 			List<Long> roomIds, Long studentGroupId, int numberOfAppointments,
 			Date startDate, Date endDate);
 	
-	List<ECollisionType> isPossible(Long id, Long lecturerId,
+	List<ECollisionType> getCollisions(Long id, Long lecturerId,
 			List<Long> roomIds, Long studentGroupId, int numberOfAppointments,
 			Date startDate, Date endDate);
 	
