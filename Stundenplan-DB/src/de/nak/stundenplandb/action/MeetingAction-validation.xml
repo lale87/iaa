@@ -21,7 +21,7 @@
 		</field-validator>
 		<field-validator type="date">
 			<param name="min">01.01.2014</param>
-			<param name="max">31.12.2099</param>
+			<param name="max">31.12.2999</param>
 			<message key="msg.validator.dateRange" />
 		</field-validator>
 		<field-validator type="fieldexpression">
@@ -52,6 +52,10 @@
 	<field name="meetingName">
 		<field-validator type="requiredstring">
 			<message key="msg.validator.required" />
-		</field-validator>
+		</field-validator>		
+		<field-validator type="regex">
+            <param name="regexExpression"><![CDATA[[a-zA-ZäöüßÄÖÜ0-9 ]+]]></param>   
+            <message key="msg.validator.onlyLetters"/>
+        </field-validator>
 	</field>	
 </validators>

@@ -9,9 +9,8 @@
 			<message key="msg.validator.required" />
 		</field-validator>
 		<field-validator type="int">
-			<param name="min">0</param>
-			<param name="max">999</param>
-			<message key="msg.validator.intRange" />
+			<param name="min">15</param>			
+			<message key="msg.validator.minBreak" />
 		</field-validator>
 	</field>
 	<field name="seats">
@@ -19,8 +18,8 @@
 			<message key="msg.validator.required" />
 		</field-validator>
 		<field-validator type="int">
-			<param name="min">0</param>
-			<message key="msg.validator.intRange" />
+			<param name="min">1</param>
+			<message key="msg.validator.minSeats" />
 		</field-validator>
 	</field>
 	<field name="roomNumber">
@@ -29,7 +28,7 @@
 		</field-validator>
 		<field-validator type="int">
 			<param name="min">0</param>
-			<message key="msg.validator.intRange" />
+			<message key="msg.validator.minNumber"/>
 		</field-validator>
 	</field>
 	<field name="roomType">
@@ -44,6 +43,10 @@
 		<field-validator type="stringlength">
 			<param name="maxLength">1</param>
 			<message key="msg.validator.stringMaxLength" />
-		</field-validator>
+		</field-validator>		
+		<field-validator type="regex">
+            <param name="regexExpression"><![CDATA[[A-Z]]]></param>   
+            <message key="msg.validator.onlyUppercase"/>
+        </field-validator>
 	</field>
 </validators>

@@ -9,9 +9,8 @@
 			<message key="msg.validator.required"/>
 		</field-validator>
 		<field-validator type="int">
-			<param name="min">0</param>	
-			<param name="max">999</param>			
-			<message key="msg.validator.intRange"/>
+			<param name="min">15</param>						
+			<message key="msg.validator.minBreak"/>
 		</field-validator>
 	</field>
 	<field name="studentCount">
@@ -20,7 +19,7 @@
 		</field-validator>
 		<field-validator type="int">
 			<param name="min">0</param>				
-			<message key="msg.validator.intRange"/>
+			<message key="msg.validator.minStudentCount"/>
 		</field-validator>
 	</field>
 	<field name="fieldOfStudy">
@@ -36,14 +35,18 @@
 			<param name="maxLength">1</param>	
 			<message key="msg.validator.stringMaxLength"/>
 		</field-validator>
+		<field-validator type="regex">
+            <param name="regexExpression"><![CDATA[[a-z]]]></param>   
+            <message key="msg.validator.onlyLowerCase"/>         
+        </field-validator>
 	</field>
 	<field name="cohort.yearOfAdmission">
 		<field-validator type="required">
 			<message key="msg.validator.required"/>
 		</field-validator>
 		<field-validator type="int">
-			<param name="min">1990</param>	
-			<param name="max">2099</param>			
+			<param name="min">2000</param>	
+			<param name="max">2999</param>			
 			<message key="msg.validator.intRange"/>
 		</field-validator>
 	</field>

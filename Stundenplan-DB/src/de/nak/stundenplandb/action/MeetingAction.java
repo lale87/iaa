@@ -1,6 +1,5 @@
 package de.nak.stundenplandb.action;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -127,9 +126,8 @@ public abstract class MeetingAction extends ActionSupport {
 	 * @return all rooms
 	 */
 	public List<Room> getAllRooms(){
-		//return roomService.loadAllRoomsSortedBYBuildungAndNumber();
 		if(startDate == null || endDate == null){
-			return new ArrayList<Room>();
+			return roomService.loadAllRoomsSortedBYBuildungAndNumber();
 		}
 		return roomService.findFreeRoomsForTimeperiod(startDate, endDate);
 	}
