@@ -15,7 +15,7 @@
 <h3><s:text name="hdl.lecture"></s:text></h3>
 <s:form>	
 	<%-- The table of existing lectures--%>
-	<table style="border-collapse: collapse; border: #CCC;" border="1">
+	<table class="strutsTable">
 		<tr>			
 			<th></th>			
 			<th><s:text name="lbl.meetingName"/></th>
@@ -52,7 +52,7 @@
 <h3><s:text name="hdl.exam"></s:text></h3>
 <s:form>	
 	<%-- The table of existing exams--%>
-	<table style="border-collapse: collapse; border: #CCC;" border="1">
+	<table class="strutsTable">
 		<tr>			
 			<th></th>				
 			<th><s:text name="lbl.meetingName"/></th>
@@ -93,7 +93,7 @@
 <h3><s:text name="hdl.elective"></s:text></h3>
 <s:form>	
 	<%-- The table of existing electives--%>
-	<table style="border-collapse: collapse; border: #CCC;" border="1">
+	<table class="strutsTable">
 		<tr>			
 			<th></th>			
 			<th><s:text name="lbl.meetingName"/></th>
@@ -130,7 +130,7 @@
 <h3><s:text name="hdl.seminar"></s:text></h3>
 <s:form>	
 	<%-- The table of existing seminars--%>
-	<table style="border-collapse: collapse; border: #CCC;" border="1">
+	<table class="strutsTable">
 		<tr>			
 			<th></th>			
 			<th><s:text name="lbl.meetingName"/></th>

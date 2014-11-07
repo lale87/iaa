@@ -11,7 +11,7 @@
 </h3>
 <s:form>	
 	<%-- The timetable for selected id and type--%>
-	<table style="border-collapse: collapse; border: #CCC;" border="1">
+	<table class="strutsTable">
 		<tr>	
 			<th></th>		
 			<th><s:text name="lbl.startDate"/></th>

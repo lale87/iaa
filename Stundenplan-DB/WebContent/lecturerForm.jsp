@@ -7,7 +7,7 @@
 --%>
 
 <h3><s:text name="hdl.newLecturer"></s:text></h3>
-<s:form>
+<s:form cssClass="strutsTable">
 	<%-- Form fields for the lecturer's attributes --%>
 	<s:hidden name="lecturer.id" />
 	<s:select name="lecturer.title" key="lbl.academicTitle"
@@ -31,7 +31,7 @@
 <h3>
 	<s:text name="hdl.existingLecturers"></s:text>
 </h3>
-<table style="border-collapse: collapse; border: #CCC;" border="1">
+<table class="strutsTable">
 	<tr>		
 		<th><s:text name="lbl.academicTitle" /></th>
 		<th><s:text name="lbl.firstName" /></th>

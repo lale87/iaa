@@ -11,7 +11,7 @@
 	<s:text name="hdl.newLecture"></s:text>	
 </h3>
 <s:actionerror/>
-<s:form>
+<s:form cssClass="strutsTable">
 	<%-- Form fields for the lecture's attributes --%>
 	<s:hidden name="lecture.id" />
 	<s:select name="lecturerId" key="lbl.lecturer" list="allLecturers"
@@ -36,14 +36,14 @@
 		value="%{endDate}" timepicker="true"
 		timepickerFormat="HH:mm" displayFormat="dd.mm.yy" changeMonth="true"
 		changeYear="true" requiredLabel="true" showOn="button" />
-		
+	
+	<%-- Dropdown select for available rooms, can be updated using button  --%>
 	<s:select name="roomIds" key="lbl.rooms" list="allRooms" listKey="id"
 		listValue="displayName" value="roomIds" multiple="true"
 		size="5" requiredLabel="true" />
-	<s:submit key="btn.showAvailableRooms" action="ShowAvailableRoomsForLecture"/>
-	
+	<s:submit key="btn.showAvailableRooms" action="ShowAvailableRoomsForLecture"/>	
 
-	<%-- The buttons --%>
+	<%-- The buttons - normal and for collision mode--%>
 	<s:if test="!isCollided()">		
 		<s:submit key="btn.save" action="SaveLecture" />
 		<s:submit key="btn.return" action="CancelNewMeeting" />

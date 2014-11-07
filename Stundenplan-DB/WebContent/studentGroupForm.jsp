@@ -7,7 +7,7 @@
  --%>
 
 <h3><s:text name="hdl.newStudentGroup"></s:text></h3>
-<s:form>
+<s:form cssClass="strutsTable">
 	<%-- Form fields for the student group attributes --%>
 	<s:select name="studentGroup.fieldOfStudy" key="lbl.fieldOfStudy" list="allFieldsOfStudy" listValue="longTitle" requiredLabel="true"/>
 	<s:textfield name="studentGroup.cohort.yearOfAdmission" key="lbl.yearOfAdmission" size="4" maxlength="4" requiredLabel="true"/>
@@ -25,7 +25,7 @@
 <h3>
 	<s:text name="hdl.existingStudentGroups"></s:text>
 </h3>
-<table style="border-collapse: collapse; border: #CCC;" border="1">
+<table class="strutsTable">
 	<tr>		
 		<th><s:text name="lbl.fieldOfStudy" /></th>
 		<th><s:text name="lbl.yearOfAdmission" /></th>

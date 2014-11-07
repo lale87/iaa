@@ -7,7 +7,7 @@
 --%>
 
 <h3><s:text name="hdl.newRoom"></s:text></h3>
-<s:form>
+<s:form cssClass="strutsTable">
 	<%-- Form fields for the room attributes --%>
 	<s:hidden name="room.id"/>
 	<s:textfield name="room.building" key="lbl.building" size="1" maxlength="1" requiredLabel="true"/>
@@ -23,7 +23,7 @@
 
 <%-- Table for displaying existing rooms --%>
 <h3><s:text name="hdl.existingRooms"></s:text></h3>
-<table style="border-collapse: collapse; border: #CCC;" border="1">
+<table class="strutsTable">
 	<tr>		
 		<th><s:text name="lbl.building" /></th>
 		<th><s:text name="lbl.roomNumber" /></th>
