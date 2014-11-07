@@ -84,19 +84,23 @@
         <property name="meetingService" ref="meetingService"/>
         <property name="lectureDAO" ref="lectureDAO"/>
         <property name="studentGroupDAO" ref="studentGroupDAO"/>
+        <property name="roomService" ref="roomService"/>
     </bean>
     <bean id="examService" class="de.nak.stundenplandb.service.ExamServiceImpl">
         <property name="meetingService" ref="meetingService"/>
         <property name="examDAO" ref="examDAO"/>
         <property name="studentGroupDAO" ref="studentGroupDAO"/>
+        <property name="roomService" ref="roomService"/>
     </bean>
     <bean id="seminarService" class="de.nak.stundenplandb.service.SeminarServiceImpl">
         <property name="meetingService" ref="meetingService"/>
         <property name="seminarDAO" ref="seminarDAO"/>
+        <property name="roomService" ref="roomService"/>
     </bean>
     <bean id="electiveService" class="de.nak.stundenplandb.service.ElectiveServiceImpl">
         <property name="meetingService" ref="meetingService"/>
         <property name="electiveDAO" ref="electiveDAO"/>
         <property name="cohortDAO" ref="cohortDAO"/>    
+        <property name="roomService" ref="roomService"/>
     </bean>
 </beans>
