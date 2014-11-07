@@ -47,16 +47,16 @@ public class LecturerServiceImpl implements LecturerService {
 	public List<EAcademicTitle> getAllAcademicTitles() {
 		return Arrays.asList(EAcademicTitle.values());
 	}
-	
+
 	@Override
 	public List<Appointment> getAppointmentsForLecturer(Long lecturerId) {
-		return getAppointmentsForLecturerInTimeperiod(lecturerId,
-				new Date(Long.MIN_VALUE), new Date(Long.MAX_VALUE));
+		return getAppointmentsForLecturerInTimeperiod(lecturerId, new Date(
+				Long.MIN_VALUE), new Date(Long.MAX_VALUE));
 	}
-	
+
 	@Override
-	public List<Appointment> getAppointmentsForLecturerInTimeperiod(Long lecturerId,
-			Date start, Date end) {
+	public List<Appointment> getAppointmentsForLecturerInTimeperiod(
+			Long lecturerId, Date start, Date end) {
 		// TODO FK: Fehlerbehandlung?
 		Lecturer lecturer = lecturerDAO.load(lecturerId);
 		List<Appointment> appointments = appointmentDAO
@@ -67,27 +67,27 @@ public class LecturerServiceImpl implements LecturerService {
 			Hibernate.initialize(appointment.getMeeting().getRooms());
 			Hibernate.initialize(appointment.getMeeting().getLecturer());
 			// initialize lectures
-			if (EMeetingType.LECTURE.equals(
-					appointment.getMeeting().getMeetingType())) {
-				Hibernate.initialize(
-						((Lecture)appointment.getMeeting()).getStudentGroup());
+			if (EMeetingType.LECTURE.equals(appointment.getMeeting()
+					.getMeetingType())) {
+				Hibernate.initialize(((Lecture) appointment.getMeeting())
+						.getStudentGroup());
 			}
 			// initialize exams
-			if (EMeetingType.EXAM.equals(
-					appointment.getMeeting().getMeetingType())) {
-				Hibernate.initialize(
-						((Exam)appointment.getMeeting()).getStudentGroups());
+			if (EMeetingType.EXAM.equals(appointment.getMeeting()
+					.getMeetingType())) {
+				Hibernate.initialize(((Exam) appointment.getMeeting())
+						.getStudentGroups());
 			}
 			// initialize electives
-			if (EMeetingType.ELECTIVE.equals(
-					appointment.getMeeting().getMeetingType())) {
-				Hibernate.initialize(
-						((Elective)appointment.getMeeting()).getCohort());
+			if (EMeetingType.ELECTIVE.equals(appointment.getMeeting()
+					.getMeetingType())) {
+				Hibernate.initialize(((Elective) appointment.getMeeting())
+						.getCohort());
 			}
 		}
 		return appointments;
 	}
-	
+
 	public void setLecturerDAO(LecturerDAO lecturerDAO) {
 		this.lecturerDAO = lecturerDAO;
 	}
@@ -99,7 +99,7 @@ public class LecturerServiceImpl implements LecturerService {
 	@Override
 	public boolean isBusy(Long lecturerId, Date start, Date end) {
 		Integer minBreak = lecturerDAO.load(lecturerId).getMinBreak();
-		// Calculate new time with changingTime
+		// Calculate new time with minBreak
 		Calendar cal = Calendar.getInstance();
 
 		Date startDateWithBreakTime;
@@ -111,9 +111,10 @@ public class LecturerServiceImpl implements LecturerService {
 		cal.setTime(end);
 		cal.add(Calendar.MINUTE, minBreak);
 		endDateWithBreakTime = cal.getTime();
-		//TODO DAO anbinden
-		return false;
+
+		// Ask the DAO
+		return lecturerDAO.isBusy(lecturerId, startDateWithBreakTime,
+				endDateWithBreakTime);
 	}
-	
 
 }

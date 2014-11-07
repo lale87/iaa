@@ -211,8 +211,9 @@ public class StudentGroupServiceImpl implements StudentGroupService {
 		cal.setTime(end);
 		cal.add(Calendar.MINUTE, minBreak);
 		endDateWithBreakTime = cal.getTime();
-		// TODO DAO anbinden
-		return false;
+		// Ask the DAO
+		return studentGroupDAO.isBusy(studentGroupId, startDateWithBreakTime,
+				endDateWithBreakTime);
 	}
 
 	@Override
