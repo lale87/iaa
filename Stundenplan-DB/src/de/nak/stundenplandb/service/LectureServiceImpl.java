@@ -77,6 +77,10 @@ public class LectureServiceImpl implements LectureService {
 		this.roomService = roomService;
 	}
 
+	public void setStudentGroupService(StudentGroupService studentGroupService) {
+		this.studentGroupService = studentGroupService;
+	}
+
 	public void setLecturerService(LecturerService lecturerService) {
 		this.lecturerService = lecturerService;
 	}
