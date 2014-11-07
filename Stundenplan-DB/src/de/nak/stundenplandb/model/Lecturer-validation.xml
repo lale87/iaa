@@ -12,13 +12,21 @@
 	<field name="firstName">
 		<field-validator type="requiredstring">
 			<message key="msg.validator.required"/>
-		</field-validator>
+		</field-validator>		
+		<field-validator type="regex">
+            <param name="regexExpression"><![CDATA[[a-zA-ZäöüßÄÖÜ ]+]]></param>   
+            <message key="msg.validator.onlyLetters"/>
+        </field-validator>	
 	</field>
 	
 	<field name="lastName">
 		<field-validator type="requiredstring">
 			<message key="msg.validator.required"/>
-		</field-validator>
+		</field-validator>		
+		<field-validator type="regex">
+            <param name="regexExpression"><![CDATA[[a-zA-ZäöüßÄÖÜ ]+]]></param>   
+            <message key="msg.validator.onlyLetters"/>
+        </field-validator>
 	</field>
 	 
 	<field name="abbreviation">
@@ -28,16 +36,19 @@
 		<field-validator type="stringlength">
 			<param name="maxLength">5</param>	
 			<message key="msg.validator.stringMaxLength"/>
-		</field-validator>
+		</field-validator>		
+		<field-validator type="regex">
+            <param name="regexExpression"><![CDATA[[a-zA-ZäöüßÄÖÜ ]+]]></param>   
+            <message key="msg.validator.onlyLetters"/>
+        </field-validator>
 	</field> 	
 	<field name="minBreak">
 		<field-validator type="required">
 			<message key="msg.validator.required"/>
 		</field-validator>
 		<field-validator type="int">
-			<param name="min">0</param>	
-			<param name="max">999</param>			
-			<message key="msg.validator.intRange"/>
+			<param name="min">15</param>							
+			<message key="msg.validator.minBreak"/>
 		</field-validator>
 	</field>
 </validators>
