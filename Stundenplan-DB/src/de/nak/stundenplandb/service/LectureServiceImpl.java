@@ -3,13 +3,17 @@
  */
 package de.nak.stundenplandb.service;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.hibernate.Hibernate;
 
 import de.nak.stundenplandb.dao.LectureDAO;
 import de.nak.stundenplandb.dao.StudentGroupDAO;
+import de.nak.stundenplandb.model.ECollisionType;
 import de.nak.stundenplandb.model.EMeetingType;
 import de.nak.stundenplandb.model.Lecture;
 import de.nak.stundenplandb.model.StudentGroup;
@@ -71,12 +75,13 @@ public class LectureServiceImpl implements LectureService {
 		this.roomService = roomService;
 	}
 
+	//TODO löschen
 	@Override
+	@Deprecated
 	public boolean CheckCollisionsForLecture(Long id, Long lecturerId,
 			List<Long> roomIds, Long studentGroupId, int numberOfAppointments,
 			Date startDate, Date endDate) {
-		return isPossible(id, lecturerId, roomIds, studentGroupId,
-				numberOfAppointments, startDate, endDate);
+		return false;
 	}
 
 	@Override
@@ -112,17 +117,20 @@ public class LectureServiceImpl implements LectureService {
 	}
 
 	@Override
-	public boolean isPossible(Long id, Long lecturerId, List<Long> roomIds,
-			Long studentGroupId, int numberOfAppointments, Date startDate,
-			Date endDate) {
+	public List<ECollisionType> isPossible(Long id, Long lecturerId,
+			List<Long> roomIds, Long studentGroupId, int numberOfAppointments,
+			Date startDate, Date endDate) {
+		// Set with all found collisions
+		Set<ECollisionType> collisionsSet = new HashSet<ECollisionType>();
 
 		// Check for RoomCollisions
 		for (Long roomId : roomIds) {
 			if (this.roomService.isOccupied(roomId, startDate, endDate)) {
-				return false;
+				collisionsSet.add(ECollisionType.ROOM_OCCUPIED);
 			}
-			;
 		}
-		return true;
+
+		// Returns a List with all found collisions
+		return new ArrayList<ECollisionType>(collisionsSet);
 	}
 }

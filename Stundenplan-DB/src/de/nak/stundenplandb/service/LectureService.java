@@ -6,6 +6,7 @@ package de.nak.stundenplandb.service;
 import java.util.Date;
 import java.util.List;
 
+import de.nak.stundenplandb.model.ECollisionType;
 import de.nak.stundenplandb.model.Lecture;
 
 /**
@@ -64,7 +65,7 @@ public interface LectureService {
 			List<Long> roomIds, Long studentGroupId, int numberOfAppointments,
 			Date startDate, Date endDate);
 	
-	boolean isPossible(Long id, Long lecturerId,
+	List<ECollisionType> isPossible(Long id, Long lecturerId,
 			List<Long> roomIds, Long studentGroupId, int numberOfAppointments,
 			Date startDate, Date endDate);
 	
