@@ -43,7 +43,7 @@ public class ExamAction extends MeetingAction {
 	 * @return the result string.
 	 */
 	public String checkAndSave(){		
-		collisionList = examService.getCollisions(examId, lecturerId, roomIds, studentGroupIds, numberOfAppointments, startDate, endDate);
+		collisionList = examService.getCollisions(exam.getId(), lecturerId, roomIds, studentGroupIds, numberOfAppointments, startDate, endDate);
 				
 		if (collisionList.isEmpty()) {			
 			save();		

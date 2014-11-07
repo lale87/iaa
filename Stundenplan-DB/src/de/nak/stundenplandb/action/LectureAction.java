@@ -9,7 +9,6 @@ import org.apache.commons.beanutils.BeanToPropertyValueTransformer;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.struts2.interceptor.validation.SkipValidation;
 
-import de.nak.stundenplandb.model.ECollisionType;
 import de.nak.stundenplandb.model.Lecture;
 import de.nak.stundenplandb.service.LectureService;
 
@@ -42,7 +41,7 @@ public class LectureAction extends MeetingAction {
 	 * @return the result string.
 	 */
 	public String checkAndSave(){		
-		collisionList = lectureService.getCollisions(lectureId, lecturerId, roomIds, studentGroupId, numberOfAppointments, startDate, endDate);
+		collisionList = lectureService.getCollisions(lecture.getId(), lecturerId, roomIds, studentGroupId, numberOfAppointments, startDate, endDate);
 		
 		if (collisionList.isEmpty()) {			
 			save();	

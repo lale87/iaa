@@ -39,7 +39,7 @@ public class SeminarAction extends MeetingAction {
 	 * @return the result string.
 	 */
 	public String checkAndSave(){		
-		collisionList = seminarService.getCollisions(seminarId, lecturerId, roomIds, numberOfAppointments, startDate, endDate);
+		collisionList = seminarService.getCollisions(seminar.getId(), lecturerId, roomIds, numberOfAppointments, startDate, endDate);
 		if (collisionList.isEmpty()) {			
 			save();		
 			return SUCCESS;

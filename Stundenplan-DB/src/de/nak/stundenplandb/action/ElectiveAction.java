@@ -41,7 +41,7 @@ public class ElectiveAction extends MeetingAction {
 	 * @return the result string.
 	 */
 	public String checkAndSave(){		
-		collisionList = electiveService.getCollisions(electiveId, lecturerId, roomIds, cohortId, numberOfAppointments, startDate, endDate);
+		collisionList = electiveService.getCollisions(elective.getId(), lecturerId, roomIds, cohortId, numberOfAppointments, startDate, endDate);
 		
 		if (collisionList.isEmpty()) {			
 			save();		
