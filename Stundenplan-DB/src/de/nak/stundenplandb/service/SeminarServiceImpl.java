@@ -3,12 +3,16 @@
  */
 package de.nak.stundenplandb.service;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.hibernate.Hibernate;
 
 import de.nak.stundenplandb.dao.SeminarDAO;
+import de.nak.stundenplandb.model.ECollisionType;
 import de.nak.stundenplandb.model.EMeetingType;
 import de.nak.stundenplandb.model.Seminar;
 
@@ -96,5 +100,16 @@ public class SeminarServiceImpl implements SeminarService {
 		Hibernate.initialize(seminar.getLecturer());
 		Hibernate.initialize(seminar.getRooms());
 		Hibernate.initialize(seminar.getAppointments());
+	}
+
+	@Override
+	public List<ECollisionType> getCollisions(Long id, Long lecturerId,
+			List<Long> roomIds, int numberOfAppointments, Date startDate,
+			Date endDate) {
+		// The set with all found collionsTypes
+		Set<ECollisionType> collisionsSet = new HashSet<ECollisionType>();
+		//TODO Kollisionsprüfung einbauen
+		// returns a List of all found collsionTypes
+		return new ArrayList<ECollisionType>(collisionsSet);
 	}
 }

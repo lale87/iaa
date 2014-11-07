@@ -6,6 +6,7 @@ package de.nak.stundenplandb.service;
 import java.util.Date;
 import java.util.List;
 
+import de.nak.stundenplandb.model.ECollisionType;
 import de.nak.stundenplandb.model.Seminar;
 
 /**
@@ -55,7 +56,30 @@ public interface SeminarService {
 	 * @param endDate
 	 *            End date/time
 	 */
+	@Deprecated
 	boolean checkCollisionsForSeminar(Long id, Long lecturerId,
+			List<Long> roomIds, int numberOfAppointments, Date startDate,
+			Date endDate);
+
+	/**
+	 * Collision check for a Seminar. Returns a list of found CollisionTypes
+	 * 
+	 * @param id
+	 *            Set <code>null</code> in order to create a new seminar
+	 * @param meetingName
+	 *            Name of the seminar
+	 * @param lecturerId
+	 *            Id of the lecturer
+	 * @param roomIds
+	 *            List of room ids
+	 * @param numberOfAppointments
+	 *            Number of weekly recurring appointments
+	 * @param startDate
+	 *            Start date/time
+	 * @param endDate
+	 *            End date/time
+	 */
+	List<ECollisionType> getCollisions(Long id, Long lecturerId,
 			List<Long> roomIds, int numberOfAppointments, Date startDate,
 			Date endDate);
 

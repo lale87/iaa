@@ -3,6 +3,7 @@
  */
 package de.nak.stundenplandb.service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -12,6 +13,7 @@ import org.hibernate.Hibernate;
 
 import de.nak.stundenplandb.dao.ExamDAO;
 import de.nak.stundenplandb.dao.StudentGroupDAO;
+import de.nak.stundenplandb.model.ECollisionType;
 import de.nak.stundenplandb.model.EMeetingType;
 import de.nak.stundenplandb.model.Exam;
 import de.nak.stundenplandb.model.StudentGroup;
@@ -111,5 +113,16 @@ public class ExamServiceImpl implements ExamService {
 		Hibernate.initialize(exam.getRooms());
 		Hibernate.initialize(exam.getAppointments());
 		Hibernate.initialize(exam.getStudentGroups());
+	}
+
+	@Override
+	public List<ECollisionType> getCollisions(Long id, Long lecturerId,
+			List<Long> roomIds, List<Long> studentGroupIds,
+			int numberOfAppointments, Date startDate, Date endDate) {
+		// The set with all found collionsTypes
+		Set<ECollisionType> collisionsSet = new HashSet<ECollisionType>();
+		// TODO Kollisionsprüfung einbauen
+		// returns a List of all found collsionTypes
+		return new ArrayList<ECollisionType>(collisionsSet);
 	}
 }
