@@ -19,6 +19,7 @@ public interface MeetingService {
 	 * @param meeting
 	 * @return isPossible
 	 */
+	@Deprecated
 	boolean isPossible(Meeting meeting);
 
 	/**
@@ -34,6 +35,7 @@ public interface MeetingService {
 	 * 
 	 * @return a List of Meeting
 	 */
+	@Deprecated
 	List<Meeting> loadAllMeetingsForStudentGroup(Long studentGroupId);
 
 	/**
@@ -41,6 +43,7 @@ public interface MeetingService {
 	 * 
 	 * @return a List of Meeting
 	 */
+	@Deprecated
 	List<Meeting> loadMeetingsForLecturer(Long lecturerId, Date start, Date end);
 
 	/**
@@ -48,6 +51,7 @@ public interface MeetingService {
 	 * 
 	 * @return a List of Meeting
 	 */
+	@Deprecated
 	List<Meeting> loadAllMeetingsForLecturer(Long lecturerId);
 
 	/**
@@ -55,6 +59,7 @@ public interface MeetingService {
 	 * 
 	 * @return a List of Meeting
 	 */
+	@Deprecated
 	List<Meeting> loadMeetingsForRoom(Long roomId, Date start, Date end);
 
 	/**
@@ -62,6 +67,7 @@ public interface MeetingService {
 	 * 
 	 * @return a List of Meeting
 	 */
+	@Deprecated
 	List<Meeting> loadAllMeetingsForRoom(Long roomId);
 
 	/**
@@ -69,6 +75,7 @@ public interface MeetingService {
 	 * 
 	 * @return a List of Meetings
 	 */
+	@Deprecated
 	List<Meeting> loadAllMeetings();
 
 	/**

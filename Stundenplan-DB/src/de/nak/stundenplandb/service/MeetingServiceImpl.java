@@ -40,7 +40,6 @@ public class MeetingServiceImpl implements MeetingService {
 	private RoomDAO roomDAO;
 	private StudentGroupDAO studentGroupDAO;
 	private AppointmentDAO appointmentDAO;
-	private RoomServiceImpl roomServiceImpl;
 
 	@Override
 	public boolean isPossible(Meeting meeting) {
@@ -57,6 +56,7 @@ public class MeetingServiceImpl implements MeetingService {
 	}
 
 	@Override
+	@Deprecated
 	public List<Meeting> loadMeetingsForStudentGroup(Long studentGroupId,
 			Date start, Date end) {
 		StudentGroup studentGroup = studentGroupDAO.load(studentGroupId);
@@ -73,12 +73,14 @@ public class MeetingServiceImpl implements MeetingService {
 	}
 
 	@Override
+	@Deprecated
 	public List<Meeting> loadAllMeetingsForStudentGroup(Long studentGroupId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
+	@Deprecated
 	public List<Meeting> loadMeetingsForLecturer(Long lecturerId, Date start,
 			Date end) {
 		Lecturer lecturer = lecturerDAO.load(lecturerId);
@@ -97,12 +99,14 @@ public class MeetingServiceImpl implements MeetingService {
 	}
 
 	@Override
+	@Deprecated
 	public List<Meeting> loadAllMeetingsForLecturer(Long lecturerId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
+	@Deprecated
 	public List<Meeting> loadMeetingsForRoom(Long roomId, Date start, Date end) {
 		Room room = roomDAO.load(roomId);
 		List<Meeting> meetingsForRoom = new ArrayList<Meeting>();
@@ -118,6 +122,7 @@ public class MeetingServiceImpl implements MeetingService {
 	}
 
 	@Override
+	@Deprecated
 	public List<Meeting> loadAllMeetingsForRoom(Long roomId) {
 		// TODO Auto-generated method stub
 		return null;
@@ -260,10 +265,6 @@ public class MeetingServiceImpl implements MeetingService {
 	@Override
 	public void deleteLecture(Long lectureId) {
 		this.lectureDAO.delete(this.lectureDAO.load(lectureId));
-	}
-	
-	public void setRoomServiceImpl(RoomServiceImpl roomServiceImpl){
-		this.roomServiceImpl = roomServiceImpl;
 	}
 
 	public void setAppointmentDAO(AppointmentDAO appointmentDAO) {
