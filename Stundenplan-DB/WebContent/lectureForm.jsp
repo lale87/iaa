@@ -10,7 +10,7 @@
 <h3>
 	<s:text name="hdl.newLecture"></s:text>	
 </h3>
-<s:actionerror key="msg.error.collision"/>
+<s:actionerror/>
 <s:form>
 	<%-- Form fields for the lecture's attributes --%>
 	<s:hidden name="lecture.id" />

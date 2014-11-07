@@ -8,6 +8,7 @@ import org.apache.struts2.interceptor.validation.SkipValidation;
 import com.opensymphony.xwork2.ActionSupport;
 
 import de.nak.stundenplandb.model.Cohort;
+import de.nak.stundenplandb.model.ECollisionType;
 import de.nak.stundenplandb.model.Lecturer;
 import de.nak.stundenplandb.model.Room;
 import de.nak.stundenplandb.model.StudentGroup;
@@ -60,6 +61,9 @@ public abstract class MeetingAction extends ActionSupport {
 	 	The user can decide to save anyway or go back and change the attributes */
 	protected boolean isCollided = false;
 	
+	/** The list of all collisions detected when trying to save. */
+	protected List<ECollisionType> collisionList;
+	
 	/**
 	 * Displays available rooms.
 	 * Only used for checking for invalid dates because
@@ -84,8 +88,7 @@ public abstract class MeetingAction extends ActionSupport {
 	}	
 	
 	/**
-	 * Abstract save method.
-	 * Overwritten by subclasses.	 
+	 * Abstract save method that saves the meeting. 	 
 	 * 
 	 * @return the result string
 	 */
@@ -93,12 +96,34 @@ public abstract class MeetingAction extends ActionSupport {
 	
 	/**
 	 * Abstract method that checks for collision before 
-	 * saving the meeting.
-	 * Overwritten by subclasses.
+	 * saving the meeting.	 
 	 *
 	 * @return the result string
 	 */
 	public abstract String checkAndSave();
+	
+	/**
+	 * If collisions are found this method displays
+	 * the collision reasons in the meeting forms.
+	 *
+	 * @param list of collisiontypes
+	 */
+	public void showCollisionErrors(List<ECollisionType> collisionList){
+		
+		addActionError(getText("msg.error.collision"));		
+		if(collisionList.contains(ECollisionType.ROOM_OCCUPIED)){
+			addActionError(getText("msg.error.roomOccupied"));
+		}
+		if(collisionList.contains(ECollisionType.LECTURER_BUSY)){
+			addActionError(getText("msg.error.lecturerBusy"));
+		}
+		if(collisionList.contains(ECollisionType.STUDENTGROUP_BUSY)){
+			addActionError(getText("msg.error.studentGroupBusy"));	
+		}
+		if (collisionList.contains(ECollisionType.COHORT_BUSY)) {
+			addActionError(getText("msg.error.studentGroupBusy"));	
+		}			
+	}
 	
 	/**
 	 * Cancels collision mode, so meetings are again checked for collisions
@@ -126,10 +151,10 @@ public abstract class MeetingAction extends ActionSupport {
 	 * @return all rooms
 	 */
 	public List<Room> getAllRooms(){
-		if(startDate == null || endDate == null){
+		//if(startDate == null || endDate == null){
 			return roomService.loadAllRoomsSortedBYBuildungAndNumber();
-		}
-		return roomService.findFreeRoomsForTimeperiod(startDate, endDate);
+//		}
+//		return roomService.findFreeRoomsForTimeperiod(startDate, endDate);
 	}
 	
 	/**
@@ -220,5 +245,13 @@ public abstract class MeetingAction extends ActionSupport {
 
 	public void setCollided(boolean isCollided) {
 		this.isCollided = isCollided;
+	}
+
+	public List<ECollisionType> getCollisionList() {
+		return collisionList;
+	}
+
+	public void setCollisionList(List<ECollisionType> collisionList) {
+		this.collisionList = collisionList;
 	}
 }

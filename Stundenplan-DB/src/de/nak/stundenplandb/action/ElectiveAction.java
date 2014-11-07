@@ -41,15 +41,15 @@ public class ElectiveAction extends MeetingAction {
 	 * @return the result string.
 	 */
 	public String checkAndSave(){		
-		// Anstelle von false kommt die isPossible() Methode zum Kollisionscheck
-		if (false) {			
-			save();
+		collisionList = electiveService.getCollisions(electiveId, lecturerId, roomIds, cohortId, numberOfAppointments, startDate, endDate);
+		
+		if (collisionList.isEmpty()) {			
+			save();		
 			return SUCCESS;
 		}
 				
 		isCollided = true;		
-		addActionError(getText("msg.error.collision"));
-		
+		showCollisionErrors(collisionList);			
 		return INPUT;	
 	}
 

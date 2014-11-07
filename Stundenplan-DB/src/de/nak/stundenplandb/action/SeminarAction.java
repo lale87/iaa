@@ -39,14 +39,14 @@ public class SeminarAction extends MeetingAction {
 	 * @return the result string.
 	 */
 	public String checkAndSave(){		
-		// Anstelle von false kommt die isPossible() Methode zum Kollisionscheck
-		if (false) {			
-			save();
+		collisionList = seminarService.getCollisions(seminarId, lecturerId, roomIds, numberOfAppointments, startDate, endDate);
+		if (collisionList.isEmpty()) {			
+			save();		
 			return SUCCESS;
 		}
 				
 		isCollided = true;		
-		addActionError(getText("msg.error.collision"));		
+		showCollisionErrors(collisionList);		
 		return INPUT;	
 	}
 	
