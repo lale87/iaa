@@ -119,10 +119,10 @@ public class ElectiveServiceImpl implements ElectiveService {
 	}
 
 	@Override
+	@Deprecated
 	public boolean checkCollisionsForElective(Long id, Long lecturerId,
 			List<Long> roomIds, Long cohortId, int numberOfAppointments,
 			Date startDate, Date endDate) {
-		// TODO Kollisionsprüfung implementieren
 		return true;
 	}
 

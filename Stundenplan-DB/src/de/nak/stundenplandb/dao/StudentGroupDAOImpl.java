@@ -20,19 +20,9 @@ public class StudentGroupDAOImpl extends GenericDAOImpl<StudentGroup> implements
 		super(StudentGroup.class);
 	}
 
-	// TODO noch nicht getestet
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<StudentGroup> loadStudentGroupsByCohortId(Long cohortId) {
-		List<StudentGroup> test =(List<StudentGroup>) sessionFactory
-		.getCurrentSession()
-		.createQuery(
-				"from StudentGroup as studentGroup where studentGroup.cohort = :id")
-		.setLong("id", cohortId).list();
-		
-		for (StudentGroup studentGroup : test) {
-			System.out.println(studentGroup.getDisplayName());
-		}
 		return (List<StudentGroup>) sessionFactory
 				.getCurrentSession()
 				.createQuery(

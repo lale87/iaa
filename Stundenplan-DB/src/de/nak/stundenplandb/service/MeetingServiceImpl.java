@@ -42,16 +42,8 @@ public class MeetingServiceImpl implements MeetingService {
 	private AppointmentDAO appointmentDAO;
 
 	@Override
+	@Deprecated
 	public boolean isPossible(Meeting meeting) {
-		//Check for RoomCollisions
-
-		// TODO hier wird es kompliziert! Wechselzeiten werden schwierig zu
-		// ermitteln
-		// List conflicts
-		// List meetings := Get * from Meeting between start AND end
-		// if meetings > 0
-		// if meetings contain lecturer -> conflicts.add(lecturer)
-		// if meetings contain
 		return true;
 	}
 
