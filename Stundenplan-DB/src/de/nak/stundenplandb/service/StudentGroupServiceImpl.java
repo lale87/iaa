@@ -140,9 +140,32 @@ public class StudentGroupServiceImpl implements StudentGroupService {
 	}
 
 	@Override
+	public List<Appointment> getAppointmentsForStudentGroupInWeek(
+			Long studentGroupId, int week, int year) {
+		Date start, end;
+		Calendar cal = Calendar.getInstance();
+		cal.clear();
+		cal.set(Calendar.WEEK_OF_YEAR, week);
+		cal.set(Calendar.YEAR, year);
+		start = cal.getTime();
+		// check if the following week is in the next year
+		cal.clear();
+		cal.set(year, 11, 31);
+		if (week == cal.get(Calendar.WEEK_OF_YEAR)) {
+			week = 0;
+			year++;
+		}
+		cal.clear();
+		cal.set(Calendar.WEEK_OF_YEAR, week + 1);
+		cal.set(Calendar.YEAR, year);
+		end = cal.getTime();
+		return getAppointmentsForStudentGroupInTimeperiod(
+				studentGroupId, start, end);
+	}
+	
+	@Override
 	public List<Appointment> getAppointmentsForStudentGroupInTimeperiod(
 			Long studentGroupId, Date start, Date end) {
-		// TODO FK: Fehlerbehandlung?
 		StudentGroup studentGroup = studentGroupDAO.load(studentGroupId);
 		List<Appointment> appointments = appointmentDAO
 				.loadAppointmentsForStudentGroupInTimeperiod(studentGroup,

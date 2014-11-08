@@ -37,14 +37,26 @@ public interface LecturerService {
 	List<EAcademicTitle> getAllAcademicTitles();
 
 	/**
-	 * Returns a List of all Appointments for a given lectureer.
+	 * Returns a List of all Appointments for a given lecturer.
 	 * 
 	 * @param lecturerId
 	 *            Lecturer-Id
 	 * @return List of Appointments
 	 */
 	List<Appointment> getAppointmentsForLecturer(Long lecturerId);
-
+	/**
+	 * Returns a List of all Appointments for a given lecturer in a specific
+	 * week of a year.
+	 * @param lecturerId
+	 * 			Lecturer-Id
+	 * @param week
+	 * 			Week of year
+	 * @param year
+	 * 			Year
+	 * @return List of Appointments
+	 */
+	List<Appointment> getAppointmentsForLecturerInWeek(Long lecturerId, 
+			int week, int year);
 	/**
 	 * Returns a List of all Appointments for a given lecturer in a specific
 	 * period of time.

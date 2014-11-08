@@ -151,10 +151,10 @@ public abstract class MeetingAction extends ActionSupport {
 	 * @return all rooms
 	 */
 	public List<Room> getAllRooms(){
-		//if(startDate == null || endDate == null){
+		if(startDate == null || endDate == null){
 			return roomService.loadAllRoomsSortedBYBuildungAndNumber();
-//		}
-//		return roomService.findFreeRoomsForTimeperiod(startDate, endDate);
+		}
+		return roomService.findFreeRoomsForTimeperiod(startDate, endDate);
 	}
 	
 	/**
