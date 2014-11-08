@@ -105,6 +105,7 @@ public class RoomDAOImpl extends GenericDAOImpl<Room> implements RoomDAO {
 	}
 
 	@Override
+	@Deprecated
 	public boolean isOccupied(Long id, Date startDate, Date endDate) {
 		return !(sessionFactory.getCurrentSession().createQuery("SELECT a FROM Appointment a JOIN a.meeting m JOIN m.rooms r WHERE r.id = :id "
 				+ "AND ( "

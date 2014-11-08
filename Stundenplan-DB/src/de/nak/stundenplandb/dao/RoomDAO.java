@@ -44,5 +44,6 @@ public interface RoomDAO extends GenericDAO<Room> {
 	 * @param endDate
 	 * @return
 	 */
+	@Deprecated
 	boolean isOccupied(Long id, Date startDate, Date endDate);
 }

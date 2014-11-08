@@ -1,10 +1,8 @@
 package de.nak.stundenplandb.dao;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import de.nak.stundenplandb.model.Cohort;
 import de.nak.stundenplandb.model.StudentGroup;
 
 /**
@@ -31,6 +29,7 @@ public class StudentGroupDAOImpl extends GenericDAOImpl<StudentGroup> implements
 	}
 
 	@Override
+	@Deprecated
 	public boolean isBusy(Long studentGroupId, Date start, Date end) {
 		// TODO Hier muss geprüft werden, ob eine StudentGroup beschäftigt ist
 		return true;

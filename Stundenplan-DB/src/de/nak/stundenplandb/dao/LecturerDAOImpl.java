@@ -21,6 +21,7 @@ public class LecturerDAOImpl extends GenericDAOImpl<Lecturer> implements
 	}
 
 	@Override
+	@Deprecated
 	public boolean isBusy(Long id, Date start, Date end) {
 		// TODO Hier muss die Query hin, um zu prüfen, ob ein Dozent beschäftigt
 		// ist

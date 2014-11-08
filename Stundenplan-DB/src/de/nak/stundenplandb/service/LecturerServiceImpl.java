@@ -98,7 +98,8 @@ public class LecturerServiceImpl implements LecturerService {
 
 	@Override
 	public boolean isBusy(Long lecturerId, Date start, Date end) {
-		Integer minBreak = lecturerDAO.load(lecturerId).getMinBreak();
+		Lecturer lecturer = lecturerDAO.load(lecturerId);
+		Integer minBreak = lecturer.getMinBreak();
 		// Calculate new time with minBreak
 		Calendar cal = Calendar.getInstance();
 
@@ -112,9 +113,14 @@ public class LecturerServiceImpl implements LecturerService {
 		cal.add(Calendar.MINUTE, minBreak);
 		endDateWithBreakTime = cal.getTime();
 
+		// When there is no Appointment for this Lecturer within the given period,
+		// he is NOT busy
+		return !appointmentDAO.loadAppointmentsForLecturerInTimeperiod(
+				lecturer, startDateWithBreakTime, endDateWithBreakTime)
+				.isEmpty();
 		// Ask the DAO
-		return lecturerDAO.isBusy(lecturerId, startDateWithBreakTime,
-				endDateWithBreakTime);
+		// return lecturerDAO.isBusy(lecturerId, startDateWithBreakTime,
+		// endDateWithBreakTime);
 	}
 
 }

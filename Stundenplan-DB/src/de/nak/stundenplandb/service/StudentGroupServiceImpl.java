@@ -198,7 +198,8 @@ public class StudentGroupServiceImpl implements StudentGroupService {
 
 	@Override
 	public boolean isBusy(Long studentGroupId, Date start, Date end) {
-		Integer minBreak = studentGroupDAO.load(studentGroupId).getMinBreak();
+		StudentGroup studentGroup = studentGroupDAO.load(studentGroupId);
+		Integer minBreak = studentGroup.getMinBreak();
 		// Calculate new time with changingTime
 		Calendar cal = Calendar.getInstance();
 
@@ -211,9 +212,15 @@ public class StudentGroupServiceImpl implements StudentGroupService {
 		cal.setTime(end);
 		cal.add(Calendar.MINUTE, minBreak);
 		endDateWithBreakTime = cal.getTime();
+		// When there is no Appointment for this StudentGroup within the given
+		// period,
+		// it is NOT busy
+		return !appointmentDAO.loadAppointmentsForStudentGroupInTimeperiod(
+				studentGroup, startDateWithBreakTime, endDateWithBreakTime)
+				.isEmpty();
 		// Ask the DAO
-		return studentGroupDAO.isBusy(studentGroupId, startDateWithBreakTime,
-				endDateWithBreakTime);
+		// return studentGroupDAO.isBusy(studentGroupId, startDateWithBreakTime,
+		// endDateWithBreakTime);
 	}
 
 	@Override

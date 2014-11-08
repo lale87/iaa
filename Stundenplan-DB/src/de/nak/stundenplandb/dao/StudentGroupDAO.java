@@ -28,5 +28,6 @@ public interface StudentGroupDAO extends GenericDAO<StudentGroup> {
 	 * @param end
 	 * @return
 	 */
+	@Deprecated
 	boolean isBusy(Long studentGroupId, Date start, Date end);
 }

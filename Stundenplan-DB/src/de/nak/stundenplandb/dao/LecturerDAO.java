@@ -22,5 +22,6 @@ public interface LecturerDAO extends GenericDAO<Lecturer> {
 	 * @param end
 	 * @return
 	 */
+	@Deprecated
 	boolean isBusy(Long id, Date start, Date end);
 }

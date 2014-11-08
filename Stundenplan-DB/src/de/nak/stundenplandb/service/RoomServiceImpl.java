@@ -87,22 +87,22 @@ public class RoomServiceImpl implements RoomService {
 			Hibernate.initialize(appointment.getMeeting().getRooms());
 			Hibernate.initialize(appointment.getMeeting().getLecturer());
 			// initialize lectures
-			if (EMeetingType.LECTURE.equals(
-					appointment.getMeeting().getMeetingType())) {
-				Hibernate.initialize(
-						((Lecture)appointment.getMeeting()).getStudentGroup());
+			if (EMeetingType.LECTURE.equals(appointment.getMeeting()
+					.getMeetingType())) {
+				Hibernate.initialize(((Lecture) appointment.getMeeting())
+						.getStudentGroup());
 			}
 			// initialize exams
-			if (EMeetingType.EXAM.equals(
-					appointment.getMeeting().getMeetingType())) {
-				Hibernate.initialize(
-						((Exam)appointment.getMeeting()).getStudentGroups());
+			if (EMeetingType.EXAM.equals(appointment.getMeeting()
+					.getMeetingType())) {
+				Hibernate.initialize(((Exam) appointment.getMeeting())
+						.getStudentGroups());
 			}
 			// initialize electives
-			if (EMeetingType.ELECTIVE.equals(
-					appointment.getMeeting().getMeetingType())) {
-				Hibernate.initialize(
-						((Elective)appointment.getMeeting()).getCohort());
+			if (EMeetingType.ELECTIVE.equals(appointment.getMeeting()
+					.getMeetingType())) {
+				Hibernate.initialize(((Elective) appointment.getMeeting())
+						.getCohort());
 			}
 		}
 		return appointments;
@@ -115,8 +115,8 @@ public class RoomServiceImpl implements RoomService {
 
 	@Override
 	public List<Room> findFreeRoomsForTimeperiod(Date startDate, Date endDate) {
-//		List<Room> freeRooms = roomDAO.getFreeRoomsForTimeperiod(startDate,
-//				endDate);
+		// List<Room> freeRooms = roomDAO.getFreeRoomsForTimeperiod(startDate,
+		// endDate);
 		List<Room> freeRooms = roomDAO.loadAll();
 		// check changing times
 		for (Room room : freeRooms) {
@@ -141,12 +141,12 @@ public class RoomServiceImpl implements RoomService {
 			endDateWithChangingTime = cal.getTime();
 
 			// check room again with changing time
-//			if (!roomDAO.isFreeForTimeperiod(room, startDateWithChangingTime,
-//					endDateWithChangingTime)) {
-//				freeRooms.remove(room);
-//			}
-			if (!appointmentDAO.loadAppointmentsForRoomInTimeperiod(
-					room, startDateWithChangingTime, endDateWithChangingTime)
+			// if (!roomDAO.isFreeForTimeperiod(room, startDateWithChangingTime,
+			// endDateWithChangingTime)) {
+			// freeRooms.remove(room);
+			// }
+			if (!appointmentDAO.loadAppointmentsForRoomInTimeperiod(room,
+					startDateWithChangingTime, endDateWithChangingTime)
 					.isEmpty()) {
 				freeRooms.remove(room);
 			}
@@ -164,7 +164,8 @@ public class RoomServiceImpl implements RoomService {
 
 	@Override
 	public boolean isOccupied(Long id, Date startDate, Date endDate) {
-		Integer changingTime = roomDAO.load(id).getChangingTime();
+		Room room = roomDAO.load(id);
+		Integer changingTime = room.getChangingTime();
 		// Calculate new time with changingTime
 		Calendar cal = Calendar.getInstance();
 
@@ -177,8 +178,12 @@ public class RoomServiceImpl implements RoomService {
 		cal.setTime(endDate);
 		cal.add(Calendar.MINUTE, changingTime);
 		endDateWithChangingTime = cal.getTime();
-		return roomDAO.isOccupied(id, startDateWithChangingTime,
-				endDateWithChangingTime);
+		// When there is no Appointment in this room within the given period,
+		// it is not occupied
+		return !appointmentDAO.loadAppointmentsForRoomInTimeperiod(room,
+				startDateWithChangingTime, endDateWithChangingTime).isEmpty();
+		// return roomDAO.isOccupied(id, startDateWithChangingTime,
+		// endDateWithChangingTime);
 	}
 
 }
