@@ -15,13 +15,13 @@
 	<s:hidden name="elective.id" />
 	<s:select name="lecturerId" key="lbl.lecturer" list="allLecturers"
 		listKey="id" listValue="displayName" value="lecturerId"
-		requiredLabel="true" />	
-	<s:textfield name="meetingName" key="lbl.meetingName"
-		value="%{meetingName}" size="40" maxlength="100"
-		requiredLabel="true" />		
+		requiredLabel="true" />			
 	<s:select name="cohortId" key="lbl.cohort" list="allCohorts"
 		listKey="id" listValue="yearOfAdmission" value="cohortId"
 		requiredLabel="true" />	
+	<s:textfield name="meetingName" key="lbl.meetingName"
+		value="%{meetingName}" size="40" maxlength="100"
+		requiredLabel="true" />
 	<s:textfield name="numberOfAppointments" key="lbl.numberOfAppointments"
 		value="%{numberOfAppointments}" size="3" maxlength="3"
 		requiredLabel="true" />

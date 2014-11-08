@@ -16,13 +16,13 @@
 	<s:hidden name="exam.id" />
 	<s:select name="lecturerId" key="lbl.lecturer" list="allLecturers"
 		listKey="id" listValue="displayName" value="lecturerId"
-		requiredLabel="true" />
-	<s:textfield name="meetingName" key="lbl.meetingName"
-		value="%{meetingName}" size="40" maxlength="100" requiredLabel="true" />	
+		requiredLabel="true" />	
 	<s:select name="studentGroupIds" key="lbl.studentGroup"
 		list="allStudentGroups" listKey="id" listValue="displayName"
 		value="studentGroupIds" multiple="true"
 		requiredLabel="true" />	
+	<s:textfield name="meetingName" key="lbl.meetingName"
+		value="%{meetingName}" size="40" maxlength="100" requiredLabel="true" />
 	<s:textfield name="numberOfAppointments" key="lbl.numberOfAppointments"
 		value="%{numberOfAppointments}" size="3" maxlength="3"
 		requiredLabel="true" />	
