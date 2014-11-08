@@ -43,6 +43,7 @@
 			</tr>
 		</s:iterator>
 	</table>	
+	<br />
 	<%-- Buttons for creating or editing lectures --%>
 	<s:submit key="btn.newLecture" action="ShowLectureForm" theme="simple"/>
 	<s:submit key="btn.editLecture" action="EditLecture" theme="simple"/>
@@ -84,6 +85,7 @@
 			</tr>
 		</s:iterator>
 	</table>	
+	<br />
 	<%-- Buttons for creating or editing lectures --%>
 	<s:submit key="btn.newExam" action="ShowExamForm" theme="simple"/>
 	<s:submit key="btn.editExam" action="EditExam" theme="simple"/>
@@ -121,6 +123,7 @@
 			</tr>
 		</s:iterator>
 	</table>	
+	<br />
 	<%-- Buttons for creating or editing electives --%>
 	<s:submit key="btn.newElective" action="ShowElectiveForm" theme="simple"/>
 	<s:submit key="btn.editElective" action="EditElective" theme="simple"/>
@@ -156,6 +159,7 @@
 			</tr>
 		</s:iterator>
 	</table>	
+	<br />
 	<%-- Buttons for creating or editing seminar --%>
 	<s:submit key="btn.newSeminar" action="ShowSeminarForm" theme="simple"/>
 	<s:submit key="btn.editSeminar" action="EditSeminar" theme="simple"/>
