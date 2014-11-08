@@ -298,13 +298,17 @@
 		<!-- Timetable related Actions-->
 		
 		<!-- Actions that shows the menu to choose which timetable to display  -->
-		<action name="ShowTimetableMenu" class="de.nak.stundenplandb.action.ShowTimetableMenuAction">
-			<result type="tiles">timetableMenu</result>
+		<action name="ShowTimetableMenu" class="de.nak.stundenplandb.action.ShowTimetableListAction">
+		    <interceptor-ref name="validation">
+		        <param name="excludeMethods">execute</param>
+		    </interceptor-ref>
+			<result type="tiles">timetableMenu</result>			
 		</action>	
 		
 		<!-- Action that displays the selected entities timetable  -->
-		<action name="ShowTimetableList" class="de.nak.stundenplandb.action.ShowTimetableListAction">
-			<result type="tiles">timetableList</result>    					
+		<action name="ShowTimetableList" class="de.nak.stundenplandb.action.ShowTimetableListAction" method="showTimetable">
+			<result type="tiles">timetableList</result>   
+			<result type="tiles" name="input">timetableMenu</result> 					
 		</action>	
 		
 		

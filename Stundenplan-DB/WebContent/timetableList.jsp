@@ -7,7 +7,7 @@
 --%>
 
 <h3>
-	<s:text name="hdl.timetableList"></s:text>
+	<s:text name="hdl.timetableList" />
 </h3>
 <s:form>
 	<%-- Displays result timetable if appointments have been found --%>

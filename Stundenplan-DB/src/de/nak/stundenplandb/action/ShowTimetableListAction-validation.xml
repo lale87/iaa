@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE validators PUBLIC "-//Apache Struts//XWork Validator 1.0.2//EN"
+		"http://struts.apache.org/dtds/xwork-validator-1.0.2.dtd">
+
+<validators>
+	<field name="year">
+		<field-validator type="required">
+			<message key="msg.validator.required"/>
+		</field-validator>
+		<field-validator type="int">
+			<param name="min">2000</param>	
+			<param name="max">2999</param>			
+			<message key="msg.validator.intRange"/>
+		</field-validator>
+	</field>	
+	<field name="calendarWeek">
+		<field-validator type="required">
+			<message key="msg.validator.required"/>
+		</field-validator>
+		<field-validator type="int">
+			<param name="min">1</param>	
+			<param name="max">53</param>			
+			<message key="msg.validator.intRange"/>
+		</field-validator>
+	</field>
+	<field name="selectedId">
+		<field-validator type="required">
+			<message key="msg.validator.required"/>
+		</field-validator>
+	</field>		
+</validators>
