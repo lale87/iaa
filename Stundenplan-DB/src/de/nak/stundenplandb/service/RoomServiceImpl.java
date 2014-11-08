@@ -75,9 +75,31 @@ public class RoomServiceImpl implements RoomService {
 	}
 
 	@Override
+	public List<Appointment> getAppointmentsForRoomInWeek(Long roomId, 
+			int week, int year) {
+		Date start, end;
+		Calendar cal = Calendar.getInstance();
+		cal.clear();
+		cal.set(Calendar.WEEK_OF_YEAR, week);
+		cal.set(Calendar.YEAR, year);
+		start = cal.getTime();
+		// check if the following week is in the next year
+		cal.clear();
+		cal.set(year, 11, 31);
+		if (week == cal.get(Calendar.WEEK_OF_YEAR)) {
+			week = 0;
+			year++;
+		}
+		cal.clear();
+		cal.set(Calendar.WEEK_OF_YEAR, week + 1);
+		cal.set(Calendar.YEAR, year);
+		end = cal.getTime();
+		return getAppointmentsForRoomInTimeperiod(roomId, start, end);
+	}
+	
+	@Override
 	public List<Appointment> getAppointmentsForRoomInTimeperiod(Long roomId,
 			Date start, Date end) {
-		// TODO FK: Fehlerbehandlung?
 		Room room = roomDAO.load(roomId);
 		List<Appointment> appointments = appointmentDAO
 				.loadAppointmentsForRoomInTimeperiod(room, start, end);

@@ -74,7 +74,19 @@ public interface StudentGroupService {
 	 * @return List of Appointments
 	 */
 	List<Appointment> getAppointmentsForStudentGroup(Long studentGroupId);
-
+	/**
+	 * Returns a List of all Appointments for a given student group in a
+	 * specific week of a year.
+	 * @param studentGroupId
+	 * 			Student group-Id
+	 * @param week
+	 * 			Week of year
+	 * @param year
+	 * 			Year
+	 * @return List of Appointments
+	 */
+	List<Appointment> getAppointmentsForStudentGroupInWeek(Long studentGroupId,
+			int week, int year);
 	/**
 	 * Returns a List of all Appointments for a given student group in a
 	 * specific period of time.
@@ -89,7 +101,6 @@ public interface StudentGroupService {
 	 */
 	List<Appointment> getAppointmentsForStudentGroupInTimeperiod(
 			Long studentGroupId, Date start, Date end);
-
 	/**
 	 * Returns true if the StudentGroup is busy withing the given time period.
 	 * 
