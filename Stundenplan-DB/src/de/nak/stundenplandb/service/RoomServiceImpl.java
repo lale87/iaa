@@ -115,8 +115,9 @@ public class RoomServiceImpl implements RoomService {
 
 	@Override
 	public List<Room> findFreeRoomsForTimeperiod(Date startDate, Date endDate) {
-		List<Room> freeRooms = roomDAO.getFreeRoomsForTimeperiod(startDate,
-				endDate);
+//		List<Room> freeRooms = roomDAO.getFreeRoomsForTimeperiod(startDate,
+//				endDate);
+		List<Room> freeRooms = roomDAO.loadAll();
 		// check changing times
 		for (Room room : freeRooms) {
 			int changingTime = room.getChangingTime();
@@ -140,8 +141,13 @@ public class RoomServiceImpl implements RoomService {
 			endDateWithChangingTime = cal.getTime();
 
 			// check room again with changing time
-			if (!roomDAO.isFreeForTimeperiod(room, startDateWithChangingTime,
-					endDateWithChangingTime)) {
+//			if (!roomDAO.isFreeForTimeperiod(room, startDateWithChangingTime,
+//					endDateWithChangingTime)) {
+//				freeRooms.remove(room);
+//			}
+			if (!appointmentDAO.loadAppointmentsForRoomInTimeperiod(
+					room, startDateWithChangingTime, endDateWithChangingTime)
+					.isEmpty()) {
 				freeRooms.remove(room);
 			}
 		}

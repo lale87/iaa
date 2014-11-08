@@ -20,26 +20,56 @@ public class RoomDAOImpl extends GenericDAOImpl<Room> implements RoomDAO {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Room> getFreeRoomsForTimeperiod(Date start, Date end) {
+		List<Room> r = sessionFactory
+				.getCurrentSession().createQuery(
+						"SELECT mr FROM Meeting m "
+					+ 	"JOIN m.rooms mr "
+					+ 	"JOIN m.appointments a ")
+//					+ 	"WHERE "
+//					+ 	"( "
+//					+ 		"( "
+//								// s' >= s && e' <= e
+//					+ 			"a.start >= :startDate "
+//					+ 			"AND a.end <= :endDate "
+//					+ 		") OR ( "
+//								// s' < s && e' >= s
+//					+ 			"a.start < :startDate "
+//					+ 			"AND a.end >= :startDate "
+//					+ 		") OR ( "
+//								// s' <= e && e' > e
+//					+ 			"a.start <= :endDate "
+//					+ 			"AND a.end > :endDate "
+//					+ 		") "
+//					+ 	")")
+//				.setDate("startDate", start)
+//				.setDate("endDate", end)
+				.list();
 		List<Room> rooms = sessionFactory
 				.getCurrentSession().createQuery(
 				"SELECT r FROM Room r "
 				+ "WHERE r NOT IN "
-				+ 	"(SELECT m.rooms FROM Meeting m "
+				+ "( "
+				+ 	"SELECT mr FROM Meeting m "
+				+ 	"JOIN m.rooms mr "
 				+ 	"JOIN m.appointments a "
-				+ 	"WHERE ( "
-						// s' >= s && e' <= e
-				+ 		"a.start >= :startDate "
-				+ 		"AND a.end <= :endDate "
-				+ 	") OR ( "
-						// s' < s && e' >= s
-				+ 		"a.start < :startDate "
-				+ 		"AND a.end >= :startDate "
-				+ 	") OR ( "
-						// s' <= e && e' > e
-				+ 		"a.start <= :endDate "
-				+ 		"AND a.end > :endDate "
+				+ 	"WHERE "
+				+ 	"( "
+				+ 		"( "
+							// s' >= s && e' <= e
+				+ 			"a.start >= :startDate "
+				+ 			"AND a.end <= :endDate "
+				+ 		") OR ( "
+							// s' < s && e' >= s
+				+ 			"a.start < :startDate "
+				+ 			"AND a.end >= :startDate "
+				+ 		") OR ( "
+							// s' <= e && e' > e
+				+ 			"a.start <= :endDate "
+				+ 			"AND a.end > :endDate "
+				+ 		") "
 				+ 	") "
-				+ "ORDER BY r.building, r.roomNumber ASC")
+				+ ") "
+				+ "ORDER BY r.building ASC, r.roomNumber ASC")
 				.setDate("startDate", start)
 				.setDate("endDate", end)
 				.list();
