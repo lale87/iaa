@@ -71,7 +71,7 @@
 		
 		<!-- StudentGroup related actions -->
 		
-		<!-- Action that displays the studentgroup form-->
+		<!-- Action that displays the student group form-->
 		<action name="ShowStudentGroupForm" class="de.nak.stundenplandb.action.StudentGroupAction">
 		    <interceptor-ref name="validation">
 		        <param name="excludeMethods">execute</param>
@@ -164,6 +164,11 @@
 			<result type="tiles">examForm</result>
 		</action>
 		
+		<!-- Action that reloads page so available rooms are shown -->
+		<action name="ShowAvailableRoomsForExam" class="de.nak.stundenplandb.action.ExamAction" method="showAvailableRooms">
+			<result type="tiles">examForm</result>			
+		</action>
+		
 		<!-- Action that saves the exam -->
 		<action name="SaveExam" class="de.nak.stundenplandb.action.ExamAction" method="checkAndSave">
 			<result type="redirect">ShowExamForm.action</result>			
@@ -206,6 +211,11 @@
 			<result type="tiles">electiveForm</result>
 		</action>
 		
+		<!-- Action that reloads page so available rooms are shown -->
+		<action name="ShowAvailableRoomsForElective" class="de.nak.stundenplandb.action.ElectiveAction" method="showAvailableRooms">
+			<result type="tiles">electiveForm</result>			
+		</action>
+		
 		<!-- Action that saves the elective -->
 		<action name="SaveElective" class="de.nak.stundenplandb.action.ElectiveAction" method="checkAndSave">
 			<result type="redirect">ShowElectiveForm.action</result>			
@@ -246,6 +256,11 @@
 		        <param name="excludeMethods">execute</param>
 		    </interceptor-ref>
 			<result type="tiles">seminarForm</result>
+		</action>
+		
+		<!-- Action that reloads page so available rooms are shown -->
+		<action name="ShowAvailableRoomsForSeminar" class="de.nak.stundenplandb.action.SeminarAction" method="showAvailableRooms">
+			<result type="tiles">seminarForm</result>			
 		</action>
 		
 		<!-- Action that saves the seminar -->
