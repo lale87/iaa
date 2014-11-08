@@ -81,7 +81,7 @@ public abstract class MeetingAction extends ActionSupport {
 		}
 		if (startDate != null && endDate != null){
 			if (startDate.after(endDate)){
-				addFieldError("startDate", getText("msg.validator.inconsistentDate"));
+				addFieldError("startDate", getText("msg.validator.inconsistentDates"));
 			}
 		}		
 		return SUCCESS;
