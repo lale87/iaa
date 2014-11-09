@@ -111,13 +111,22 @@ public class SeminarServiceImpl implements SeminarService {
 		return seminar;
 	}
 
-	// TODO diese Mthoden evtl zusammenfassen bei allen Meeting-Subtypes
+	/**
+	 * Initialzies a list of Seminars
+	 * 
+	 * @param seminars
+	 */
 	private void initializeSeminars(List<Seminar> seminars) {
 		for (Seminar seminar : seminars) {
 			initializeSeminar(seminar);
 		}
 	}
 
+	/**
+	 * Initializes a saminar
+	 * 
+	 * @param seminar
+	 */
 	private void initializeSeminar(Seminar seminar) {
 		Hibernate.initialize(seminar.getLecturer());
 		Hibernate.initialize(seminar.getRooms());
@@ -134,12 +143,12 @@ public class SeminarServiceImpl implements SeminarService {
 		// generate appointments
 		Set<Appointment> appointments = meetingService.createAppointments(
 				numberOfAppointments, startDate, endDate);
-		
+
 		for (Appointment appointment : appointments) {
 			// set start and end date
 			Date start = appointment.getStart();
 			Date end = appointment.getEnd();
-			
+
 			// Check for RoomCollisions
 			for (Long roomId : roomIds) {
 				if (this.roomService.isOccupied(roomId, start, end)) {
