@@ -202,12 +202,13 @@ public class StudentGroup implements DomainObject {
 	 */
 	@Transient
 	public String getDisplayName() {
-		// 2-stellig
+		// last 2 digits
 		String yearOfAdmission = getCohort().getYearOfAdmission().toString();
 		while (yearOfAdmission.length() < 2) {
 			yearOfAdmission = "0" + yearOfAdmission;
 		}
-		return getFieldOfStudy().getAbreviation() + yearOfAdmission
+		return getFieldOfStudy().getAbreviation()
+				+ yearOfAdmission.substring(yearOfAdmission.length()-2)
 				+ getGroupIdentifier();
 	}
 }
