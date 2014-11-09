@@ -1,4 +1,0 @@
-08-26 19:33:16 jdbc[3]: exception
-org.h2.jdbc.JdbcSQLException: Tabelle "ROOM" nicht gefunden
-Table "ROOM" not found; SQL statement:
-SELECT * FROM Room [42102-176]

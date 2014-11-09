@@ -1,1 +1,0 @@
-java -cp lib/h2/h2-1.3.176.jar org.h2.tools.Console
