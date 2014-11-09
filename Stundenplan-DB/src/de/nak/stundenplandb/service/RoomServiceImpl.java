@@ -1,5 +1,6 @@
 package de.nak.stundenplandb.service;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collections;
@@ -102,7 +103,8 @@ public class RoomServiceImpl implements RoomService {
 			Date start, Date end) {
 		Room room = roomDAO.load(roomId);
 		List<Appointment> appointments = appointmentDAO
-				.loadAppointmentsForRoomInTimeperiod(room, start, end);
+				.loadAppointmentsForRoom(room);
+		appointments = filterAppointmentsForTimeperiod(appointments, start, end);
 		// initialize appointments
 		for (Appointment appointment : appointments) {
 			Hibernate.initialize(appointment.getMeeting());
@@ -139,9 +141,10 @@ public class RoomServiceImpl implements RoomService {
 	public List<Room> findFreeRoomsForTimeperiod(Date startDate, Date endDate) {
 		// List<Room> freeRooms = roomDAO.getFreeRoomsForTimeperiod(startDate,
 		// endDate);
-		List<Room> freeRooms = roomDAO.loadAll();
+		List<Room> rooms = roomDAO.loadAll();
+		List<Room> freeRooms = new ArrayList<Room>();
 		// check changing times
-		for (Room room : freeRooms) {
+		for (Room room : rooms) {
 			int changingTime = room.getChangingTime();
 
 			// check min. changing time
@@ -162,19 +165,91 @@ public class RoomServiceImpl implements RoomService {
 			cal.add(Calendar.MINUTE, changingTime);
 			endDateWithChangingTime = cal.getTime();
 
-			// check room again with changing time
-			// if (!roomDAO.isFreeForTimeperiod(room, startDateWithChangingTime,
-			// endDateWithChangingTime)) {
-			// freeRooms.remove(room);
-			// }
-			if (!appointmentDAO.loadAppointmentsForRoomInTimeperiod(room,
+			List<Appointment> appointments = appointmentDAO
+					.loadAppointmentsForRoom(room);
+//			boolean isOccupied = false;
+//			for (Appointment a : appointments) {
+//				// create date/time objects
+//				Calendar as = Calendar.getInstance();
+//				Calendar ae = Calendar.getInstance();
+//				Calendar s = Calendar.getInstance();
+//				Calendar e = Calendar.getInstance();
+//				as.setTime(a.getStart());
+//				ae.setTime(a.getEnd());
+//				s.setTime(startDateWithChangingTime);
+//				e.setTime(endDateWithChangingTime);
+//				
+//				// s' >= s && e' <= e
+//				if ((as.after(s) || as.equals(s))
+//						&& (ae.before(e) || ae.equals(e))) {
+//					isOccupied = true;
+//					break;
+//				// s' < s && e' >= s
+//				} else if (as.before(s) && (ae.after(s) || ae.equals(s))) {
+//					isOccupied = true;
+//					break;
+//				// s' <= e && e' > e
+//				} else if ((as.before(e) || as.equals(e)) && ae.after(e)) {
+//					isOccupied = true;
+//					break;
+//				}
+//			}
+			
+			if (filterAppointmentsForTimeperiod(appointments,
 					startDateWithChangingTime, endDateWithChangingTime)
 					.isEmpty()) {
-				freeRooms.remove(room);
+				freeRooms.add(room);
 			}
 		}
 		return freeRooms;
 	}
+	
+	/**
+	 * Filters a list of appointments for a specific timeperiod.
+	 * @param appointments
+	 * 			List of appointments
+	 * @param start
+	 * 			Start date
+	 * @param end
+	 * 			End date
+	 * @return List of Appointments in the given  timeperiod
+	 */
+	private List<Appointment> filterAppointmentsForTimeperiod(
+			List<Appointment> appointments, Date start, Date end) {
+		List<Appointment> appointmentsInTimeperiod =
+				new ArrayList<Appointment>();
+		
+		// iterate appointments
+		for (Appointment a : appointments) {
+			// create date/time objects
+			Calendar as = Calendar.getInstance();
+			Calendar ae = Calendar.getInstance();
+			Calendar s = Calendar.getInstance();
+			Calendar e = Calendar.getInstance();
+			as.setTime(a.getStart());
+			ae.setTime(a.getEnd());
+			s.setTime(start);
+			e.setTime(end);
+			
+			// s' >= s && e' <= e
+			if ((as.after(s) || as.equals(s))
+					&& (ae.before(e) || ae.equals(e))) {
+				appointmentsInTimeperiod.add(a);
+				continue;
+			// s' < s && e' >= s
+			} else if (as.before(s) && (ae.after(s) || ae.equals(s))) {
+				appointmentsInTimeperiod.add(a);
+				continue;
+			// s' <= e && e' > e
+			} else if ((as.before(e) || as.equals(e)) && ae.after(e)) {
+				appointmentsInTimeperiod.add(a);
+				continue;
+			}
+		}
+		
+		return appointmentsInTimeperiod;
+	}
+	
 
 	public void setRoomDAO(RoomDAO roomDAO) {
 		this.roomDAO = roomDAO;
@@ -202,8 +277,11 @@ public class RoomServiceImpl implements RoomService {
 		endDateWithChangingTime = cal.getTime();
 		// When there is no Appointment in this room within the given period,
 		// it is not occupied
-		return !appointmentDAO.loadAppointmentsForRoomInTimeperiod(room,
-				startDateWithChangingTime, endDateWithChangingTime).isEmpty();
+		List<Appointment> appointments = appointmentDAO
+				.loadAppointmentsForRoom(room);
+		return !filterAppointmentsForTimeperiod(appointments,
+				startDateWithChangingTime, endDateWithChangingTime)
+				.isEmpty();
 		// return roomDAO.isOccupied(id, startDateWithChangingTime,
 		// endDateWithChangingTime);
 	}

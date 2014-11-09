@@ -36,7 +36,6 @@ public class LectureServiceImpl implements LectureService {
 	public void saveOrUpdateLecture(Long id, String meetingName,
 			Long lecturerId, List<Long> roomIds, Long studentGroupId,
 			int numberOfAppointments, Date startDate, Date endDate) {
-		// TODO FK: Fehlerbehandlung (Objekt zu ID nicht gefunden)
 
 		// update? (null if lecture not exists yet)
 		Lecture lecture = lectureDAO.load(id);

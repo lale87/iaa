@@ -36,7 +36,6 @@ public class ExamServiceImpl implements ExamService {
 	public void saveOrUpdateExam(Long id, String meetingName, Long lecturerId,
 			List<Long> roomIds, List<Long> studentGroupIds,
 			int numberOfAppointments, Date startDate, Date endDate) {
-		// TODO FK: Fehlerbehandlung (Objekt zu ID nicht gefunden)
 
 		// update? (null if exam not exists yet)
 		Exam exam = examDAO.load(id);

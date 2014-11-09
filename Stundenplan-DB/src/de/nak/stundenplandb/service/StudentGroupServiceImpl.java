@@ -1,5 +1,6 @@
 package de.nak.stundenplandb.service;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collections;
@@ -168,8 +169,8 @@ public class StudentGroupServiceImpl implements StudentGroupService {
 			Long studentGroupId, Date start, Date end) {
 		StudentGroup studentGroup = studentGroupDAO.load(studentGroupId);
 		List<Appointment> appointments = appointmentDAO
-				.loadAppointmentsForStudentGroupInTimeperiod(studentGroup,
-						start, end);
+				.loadAppointmentsForStudentGroup(studentGroup);
+		appointments = filterAppointmentsForTimeperiod(appointments, start, end);
 		// initialize appointments
 		for (Appointment appointment : appointments) {
 			Hibernate.initialize(appointment.getMeeting());
@@ -238,8 +239,10 @@ public class StudentGroupServiceImpl implements StudentGroupService {
 		// When there is no Appointment for this StudentGroup within the given
 		// period,
 		// it is NOT busy
-		return !appointmentDAO.loadAppointmentsForStudentGroupInTimeperiod(
-				studentGroup, startDateWithBreakTime, endDateWithBreakTime)
+		List<Appointment> appointments = appointmentDAO
+				.loadAppointmentsForStudentGroup(studentGroup);
+		return !filterAppointmentsForTimeperiod(appointments,
+				startDateWithBreakTime, endDateWithBreakTime)
 				.isEmpty();
 		// Ask the DAO
 		// return studentGroupDAO.isBusy(studentGroupId, startDateWithBreakTime,
@@ -249,6 +252,52 @@ public class StudentGroupServiceImpl implements StudentGroupService {
 	@Override
 	public List<StudentGroup> loadStudentGroupsByCohortId(Long cohortId) {
 		return studentGroupDAO.loadStudentGroupsByCohortId(cohortId);
+	}
+	
+	/**
+	 * Filters a list of appointments for a specific timeperiod.
+	 * @param appointments
+	 * 			List of appointments
+	 * @param start
+	 * 			Start date
+	 * @param end
+	 * 			End date
+	 * @return List of Appointments in the given  timeperiod
+	 */
+	private List<Appointment> filterAppointmentsForTimeperiod(
+			List<Appointment> appointments, Date start, Date end) {
+		List<Appointment> appointmentsInTimeperiod =
+				new ArrayList<Appointment>();
+		
+		// iterate appointments
+		for (Appointment a : appointments) {
+			// create date/time objects
+			Calendar as = Calendar.getInstance();
+			Calendar ae = Calendar.getInstance();
+			Calendar s = Calendar.getInstance();
+			Calendar e = Calendar.getInstance();
+			as.setTime(a.getStart());
+			ae.setTime(a.getEnd());
+			s.setTime(start);
+			e.setTime(end);
+			
+			// s' >= s && e' <= e
+			if ((as.after(s) || as.equals(s))
+					&& (ae.before(e) || ae.equals(e))) {
+				appointmentsInTimeperiod.add(a);
+				continue;
+			// s' < s && e' >= s
+			} else if (as.before(s) && (ae.after(s) || ae.equals(s))) {
+				appointmentsInTimeperiod.add(a);
+				continue;
+			// s' <= e && e' > e
+			} else if ((as.before(e) || as.equals(e)) && ae.after(e)) {
+				appointmentsInTimeperiod.add(a);
+				continue;
+			}
+		}
+		
+		return appointmentsInTimeperiod;
 	}
 
 }

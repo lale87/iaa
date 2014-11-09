@@ -37,7 +37,6 @@ public class ElectiveServiceImpl implements ElectiveService {
 	public void saveOrUpdateElective(Long id, String meetingName,
 			Long lecturerId, List<Long> roomIds, Long cohortId,
 			int numberOfAppointments, Date startDate, Date endDate) {
-		// TODO FK: Fehlerbehandlung (Objekt zu ID nicht gefunden)
 
 		// update? (null if elective not exists yet)
 		Elective elective = electiveDAO.load(id);

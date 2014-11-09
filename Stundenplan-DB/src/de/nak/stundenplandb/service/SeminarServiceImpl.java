@@ -32,7 +32,6 @@ public class SeminarServiceImpl implements SeminarService {
 	public void saveOrUpdateSeminar(Long id, String meetingName,
 			Long lecturerId, List<Long> roomIds, int numberOfAppointments,
 			Date startDate, Date endDate) {
-		// TODO FK: Fehlerbehandlung (Objekt zu ID nicht gefunden)
 
 		// update? (null if seminar not exists yet)
 		Seminar seminar = seminarDAO.load(id);
