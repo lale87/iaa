@@ -11,14 +11,14 @@ import de.nak.stundenplandb.model.Room;
  *
  */
 public interface RoomDAO extends GenericDAO<Room> {
-	/**
-	 * Returns true if the Room if occupied
-	 * 
-	 * @param id
-	 * @param startDate
-	 * @param endDate
-	 * @return
-	 */
-	@Deprecated
-	boolean isOccupied(Long id, Date startDate, Date endDate);
+//	/**
+//	 * Returns true if the Room if occupied
+//	 * 
+//	 * @param id
+//	 * @param startDate
+//	 * @param endDate
+//	 * @return
+//	 */
+//	@Deprecated
+//	boolean isOccupied(Long id, Date startDate, Date endDate);
 }

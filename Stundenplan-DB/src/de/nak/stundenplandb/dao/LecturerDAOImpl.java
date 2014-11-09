@@ -20,11 +20,11 @@ public class LecturerDAOImpl extends GenericDAOImpl<Lecturer> implements
 		super(Lecturer.class);
 	}
 
-	@Override
-	@Deprecated
-	public boolean isBusy(Long id, Date start, Date end) {
-		// TODO Hier muss die Query hin, um zu prüfen, ob ein Dozent beschäftigt
-		// ist
-		return true;
-	}
+//	@Override
+//	@Deprecated
+//	public boolean isBusy(Long id, Date start, Date end) {
+//		// TODO Hier muss die Query hin, um zu prüfen, ob ein Dozent beschäftigt
+//		// ist
+//		return true;
+//	}
 }

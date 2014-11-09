@@ -15,28 +15,29 @@ import de.nak.stundenplandb.model.StudentGroup;
  *
  */
 public interface LectureDAO extends GenericDAO<Lecture> {
-	/**
-	 * Loads all Lectures for a StudentGroup within the given period
-	 * 
-	 * @return a List of Lectures
-	 */
-	@Deprecated
-	List<Lecture> loadLecturesForStudentGroup(StudentGroup studentGroup,
-			Date start, Date end);
-
-	/**
-	 * Loads all Lectures for a Lecturer within the given period
-	 * 
-	 * @return a List of Lectures
-	 */
-	@Deprecated
-	List<Lecture> loadLecturesForLecturer(Lecturer lecturer, Date start,
-			Date end);
-
-	/**
-	 * Loads all Lectures in a Room within the given period
-	 * 
-	 * @return a List of Lectures
-	 */
-	@Deprecated
-	List<Lecture> loadLecturesForRoom(Room room, Date start, Date end);}
+//	/**
+//	 * Loads all Lectures for a StudentGroup within the given period
+//	 * 
+//	 * @return a List of Lectures
+//	 */
+//	@Deprecated
+//	List<Lecture> loadLecturesForStudentGroup(StudentGroup studentGroup,
+//			Date start, Date end);
+//
+//	/**
+//	 * Loads all Lectures for a Lecturer within the given period
+//	 * 
+//	 * @return a List of Lectures
+//	 */
+//	@Deprecated
+//	List<Lecture> loadLecturesForLecturer(Lecturer lecturer, Date start,
+//			Date end);
+//
+//	/**
+//	 * Loads all Lectures in a Room within the given period
+//	 * 
+//	 * @return a List of Lectures
+//	 */
+//	@Deprecated
+//	List<Lecture> loadLecturesForRoom(Room room, Date start, Date end);
+	}

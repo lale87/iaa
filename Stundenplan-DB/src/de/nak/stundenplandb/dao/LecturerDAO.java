@@ -14,14 +14,14 @@ import de.nak.stundenplandb.model.Lecturer;
  *
  */
 public interface LecturerDAO extends GenericDAO<Lecturer> {
-	/**
-	 * Checks if the Lecturer is busy during the given time period
-	 * 
-	 * @param id
-	 * @param start
-	 * @param end
-	 * @return
-	 */
-	@Deprecated
-	boolean isBusy(Long id, Date start, Date end);
+//	/**
+//	 * Checks if the Lecturer is busy during the given time period
+//	 * 
+//	 * @param id
+//	 * @param start
+//	 * @param end
+//	 * @return
+//	 */
+//	@Deprecated
+//	boolean isBusy(Long id, Date start, Date end);
 }

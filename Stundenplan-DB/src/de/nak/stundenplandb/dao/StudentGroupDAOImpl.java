@@ -28,11 +28,11 @@ public class StudentGroupDAOImpl extends GenericDAOImpl<StudentGroup> implements
 				.setLong("id", cohortId).list();
 	}
 
-	@Override
-	@Deprecated
-	public boolean isBusy(Long studentGroupId, Date start, Date end) {
-		// TODO Hier muss geprüft werden, ob eine StudentGroup beschäftigt ist
-		return true;
-	}
+//	@Override
+//	@Deprecated
+//	public boolean isBusy(Long studentGroupId, Date start, Date end) {
+//		// TODO Hier muss geprüft werden, ob eine StudentGroup beschäftigt ist
+//		return true;
+//	}
 
 }

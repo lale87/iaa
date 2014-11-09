@@ -16,29 +16,29 @@ import de.nak.stundenplandb.model.StudentGroup;
  *
  */
 public interface ExamDAO extends GenericDAO<Exam> {
-	/**
-	 * Loads all Meetings for a StudentGroup within the given period
-	 * 
-	 * @return a List of Meeting
-	 */
-	@Deprecated
-	List<Exam> loadExamForStudentGroup(StudentGroup studentGroup,
-			Date start, Date end);
-
-	/**
-	 * Loads all Meetings for a Lecturer within the given period
-	 * 
-	 * @return a List of Meeting
-	 */
-	@Deprecated
-	List<Exam> loadExamForLecturer(Lecturer lecturer, Date start,
-			Date end);
-
-	/**
-	 * Loads all Meetings in a Room within the given period
-	 * 
-	 * @return a List of Meeting
-	 */
-	@Deprecated
-	List<Meeting> loadExamsForRoom(Room room, Date start, Date end);
+//	/**
+//	 * Loads all Meetings for a StudentGroup within the given period
+//	 * 
+//	 * @return a List of Meeting
+//	 */
+//	@Deprecated
+//	List<Exam> loadExamForStudentGroup(StudentGroup studentGroup,
+//			Date start, Date end);
+//
+//	/**
+//	 * Loads all Meetings for a Lecturer within the given period
+//	 * 
+//	 * @return a List of Meeting
+//	 */
+//	@Deprecated
+//	List<Exam> loadExamForLecturer(Lecturer lecturer, Date start,
+//			Date end);
+//
+//	/**
+//	 * Loads all Meetings in a Room within the given period
+//	 * 
+//	 * @return a List of Meeting
+//	 */
+//	@Deprecated
+//	List<Meeting> loadExamsForRoom(Room room, Date start, Date end);
 }

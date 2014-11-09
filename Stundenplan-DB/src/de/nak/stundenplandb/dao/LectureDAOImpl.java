@@ -21,43 +21,43 @@ public class LectureDAOImpl extends GenericDAOImpl<Lecture> implements
 		super(Lecture.class);
 	}
 
-	@SuppressWarnings("unchecked")
-	@Override
-	@Deprecated
-	public List<Lecture> loadLecturesForStudentGroup(StudentGroup studentGroup,
-			Date start, Date end) {
-		// TODO DATE
-		return sessionFactory
-				.getCurrentSession()
-				.createQuery(
-						"from LECTURE as lecture where lecture.studentGroup = :studentGroup")
-				.setEntity("studentGroup", studentGroup).list();
-	}
-
-	@SuppressWarnings("unchecked")
-	@Override
-	@Deprecated
-	public List<Lecture> loadLecturesForLecturer(Lecturer lecturer, Date start,
-			Date end) {
-		// TODO DATE
-				return sessionFactory
-						.getCurrentSession()
-						.createQuery(
-								"from LECTURE as lecture where lecture.lecturer = :lecturer")
-						.setEntity("lecturer", lecturer).list();
-	}
-
-	@SuppressWarnings("unchecked")
-	@Override
-	@Deprecated
-	public List<Lecture> loadLecturesForRoom(Room room, Date start, Date end) {
-		// TODO DATE
-		return sessionFactory
-				.getCurrentSession()
-				.createQuery(
-						"from LECTURE as lecture where lecture.room = :room")
-				.setEntity("room", room).list();
-
-	}
+//	@SuppressWarnings("unchecked")
+//	@Override
+//	@Deprecated
+//	public List<Lecture> loadLecturesForStudentGroup(StudentGroup studentGroup,
+//			Date start, Date end) {
+//		// TODO DATE
+//		return sessionFactory
+//				.getCurrentSession()
+//				.createQuery(
+//						"from LECTURE as lecture where lecture.studentGroup = :studentGroup")
+//				.setEntity("studentGroup", studentGroup).list();
+//	}
+//
+//	@SuppressWarnings("unchecked")
+//	@Override
+//	@Deprecated
+//	public List<Lecture> loadLecturesForLecturer(Lecturer lecturer, Date start,
+//			Date end) {
+//		// TODO DATE
+//				return sessionFactory
+//						.getCurrentSession()
+//						.createQuery(
+//								"from LECTURE as lecture where lecture.lecturer = :lecturer")
+//						.setEntity("lecturer", lecturer).list();
+//	}
+//
+//	@SuppressWarnings("unchecked")
+//	@Override
+//	@Deprecated
+//	public List<Lecture> loadLecturesForRoom(Room room, Date start, Date end) {
+//		// TODO DATE
+//		return sessionFactory
+//				.getCurrentSession()
+//				.createQuery(
+//						"from LECTURE as lecture where lecture.room = :room")
+//				.setEntity("room", room).list();
+//
+//	}
 
 }

@@ -16,20 +16,20 @@ import de.nak.stundenplandb.model.Seminar;
  */
 public interface SeminarDAO extends GenericDAO<Seminar> {
 
-	/**
-	 * Loads all Seminars for a Lecturer within the given period
-	 * 
-	 * @return a List of Seminar
-	 */
-	@Deprecated
-	List<Meeting> loadSeminarsForLecturer(Lecturer lecturer, Date start,
-			Date end);
-
-	/**
-	 * Loads all Seminars in a Room within the given period
-	 * 
-	 * @return a List of Seminar
-	 */
-	@Deprecated
-	List<Meeting> loadSeminarsForRoom(Room room, Date start, Date end);
+//	/**
+//	 * Loads all Seminars for a Lecturer within the given period
+//	 * 
+//	 * @return a List of Seminar
+//	 */
+//	@Deprecated
+//	List<Meeting> loadSeminarsForLecturer(Lecturer lecturer, Date start,
+//			Date end);
+//
+//	/**
+//	 * Loads all Seminars in a Room within the given period
+//	 * 
+//	 * @return a List of Seminar
+//	 */
+//	@Deprecated
+//	List<Meeting> loadSeminarsForRoom(Room room, Date start, Date end);
 }

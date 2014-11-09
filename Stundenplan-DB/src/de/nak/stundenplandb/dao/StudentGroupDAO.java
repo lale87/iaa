@@ -20,14 +20,14 @@ public interface StudentGroupDAO extends GenericDAO<StudentGroup> {
 	 */
 	List<StudentGroup> loadStudentGroupsByCohortId(Long cohortId);
 
-	/**
-	 * Chekcs if the the studentGroup is busy during the given time period
-	 * 
-	 * @param studentGroupId
-	 * @param start
-	 * @param end
-	 * @return
-	 */
-	@Deprecated
-	boolean isBusy(Long studentGroupId, Date start, Date end);
+//	/**
+//	 * Chekcs if the the studentGroup is busy during the given time period
+//	 * 
+//	 * @param studentGroupId
+//	 * @param start
+//	 * @param end
+//	 * @return
+//	 */
+//	@Deprecated
+//	boolean isBusy(Long studentGroupId, Date start, Date end);
 }
