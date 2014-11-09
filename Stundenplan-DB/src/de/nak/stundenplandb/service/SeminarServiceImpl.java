@@ -91,15 +91,6 @@ public class SeminarServiceImpl implements SeminarService {
 		this.lecturerService = lecturerService;
 	}
 
-//	@Override
-//	@Deprecated
-//	public boolean checkCollisionsForSeminar(Long id, Long lecturerId,
-//			List<Long> roomIds, int numberOfAppointments, Date startDate,
-//			Date endDate) {
-//		// TODO löschen
-//		return true;
-//	}
-
 	@Override
 	public List<Seminar> loadAllSeminars() {
 		List<Seminar> allSeminars = seminarDAO.loadAll();

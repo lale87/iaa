@@ -60,38 +60,59 @@ public class LectureServiceImpl implements LectureService {
 		lectureDAO.delete(lecture);
 	}
 
+	/**
+	 * Injects the MeetingService
+	 * 
+	 * @param meetingService
+	 */
 	public void setMeetingService(MeetingService meetingService) {
 		this.meetingService = meetingService;
 	}
 
+	/**
+	 * Injects the lectureDAO
+	 * 
+	 * @param lectureDAO
+	 */
 	public void setLectureDAO(LectureDAO lectureDAO) {
 		this.lectureDAO = lectureDAO;
 	}
 
+	/**
+	 * Injects the studentGroupDAO
+	 * 
+	 * @param studentGroupDAO
+	 */
 	public void setStudentGroupDAO(StudentGroupDAO studentGroupDAO) {
 		this.studentGroupDAO = studentGroupDAO;
 	}
 
+	/**
+	 * Injects the roomServiceDAO
+	 * 
+	 * @param roomService
+	 */
 	public void setRoomService(RoomService roomService) {
 		this.roomService = roomService;
 	}
 
+	/**
+	 * Injects the studentGroupService
+	 * 
+	 * @param studentGroupService
+	 */
 	public void setStudentGroupService(StudentGroupService studentGroupService) {
 		this.studentGroupService = studentGroupService;
 	}
 
+	/**
+	 * Injects the lectureService
+	 * 
+	 * @param lecturerService
+	 */
 	public void setLecturerService(LecturerService lecturerService) {
 		this.lecturerService = lecturerService;
 	}
-
-//	// TODO löschen
-//	@Override
-//	@Deprecated
-//	public boolean CheckCollisionsForLecture(Long id, Long lecturerId,
-//			List<Long> roomIds, Long studentGroupId, int numberOfAppointments,
-//			Date startDate, Date endDate) {
-//		return false;
-//	}
 
 	@Override
 	public List<Lecture> loadAllLectures() {
@@ -112,13 +133,22 @@ public class LectureServiceImpl implements LectureService {
 		return lecture;
 	}
 
-	// TODO diese Mthoden evtl zusammenfassen bei allen Meeting-Subtypes
+	/**
+	 * Initializes a lift of Lectures
+	 * 
+	 * @param lectures
+	 */
 	private void initializeLectures(List<Lecture> lectures) {
 		for (Lecture lecture : lectures) {
 			initializeLecture(lecture);
 		}
 	}
 
+	/**
+	 * Initiliazies a Lecture
+	 * 
+	 * @param lecture
+	 */
 	private void initializeLecture(Lecture lecture) {
 		Hibernate.initialize(lecture.getLecturer());
 		Hibernate.initialize(lecture.getRooms());

@@ -117,14 +117,6 @@ public class StudentGroupServiceImpl implements StudentGroupService {
 	@Override
 	public List<Cohort> loadAllCohortsSortedByYearOfAdmission() {
 		List<Cohort> cohortList = cohortDAO.loadAll();
-		// Orders the list of cohorts by the year of admission
-		// Comparator<Cohort> cohortComparator = new Comparator<Cohort>() {
-		//
-		// @Override
-		// public int compare(Cohort o1, Cohort o2) {
-		// return o1.getYearOfAdmission().compareTo(o2.getYearOfAdmission());
-		// }
-		// };
 		Collections.sort(cohortList, cohortComparator);
 		return cohortList;
 	}
@@ -216,6 +208,10 @@ public class StudentGroupServiceImpl implements StudentGroupService {
 		this.cohortDAO = cohortDAO;
 	}
 
+	/**Injects the appointmentDAO
+	 * 
+	 * @param appointmentDAO
+	 */
 	public void setAppointmentDAO(AppointmentDAO appointmentDAO) {
 		this.appointmentDAO = appointmentDAO;
 	}

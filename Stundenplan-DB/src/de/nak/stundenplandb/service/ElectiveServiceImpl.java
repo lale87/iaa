@@ -117,14 +117,6 @@ public class ElectiveServiceImpl implements ElectiveService {
 		this.lecturerService = lecturerService;
 	}
 
-//	@Override
-//	@Deprecated
-//	public boolean checkCollisionsForElective(Long id, Long lecturerId,
-//			List<Long> roomIds, Long cohortId, int numberOfAppointments,
-//			Date startDate, Date endDate) {
-//		return true;
-//	}
-
 	@Override
 	public List<Elective> loadAllElectives() {
 		List<Elective> allElectives = electiveDAO.loadAll();
@@ -144,13 +136,22 @@ public class ElectiveServiceImpl implements ElectiveService {
 		return elective;
 	}
 
-	// TODO diese Mthoden evtl zusammenfassen bei allen Meeting-Subtypes
+	/**
+	 * Initialzes a list of Electives
+	 * 
+	 * @param electives
+	 */
 	private void initializeElectives(List<Elective> electives) {
 		for (Elective elective : electives) {
 			initializeElective(elective);
 		}
 	}
 
+	/**
+	 * Initialzes an Elective
+	 * 
+	 * @param elective
+	 */
 	private void initializeElective(Elective elective) {
 		Hibernate.initialize(elective.getLecturer());
 		Hibernate.initialize(elective.getRooms());
@@ -179,7 +180,6 @@ public class ElectiveServiceImpl implements ElectiveService {
 		for (StudentGroup studentGroup : studentGroups) {
 			if (studentGroupService.isBusy(studentGroup.getId(), startDate,
 					endDate)) {
-				// TODO Studentgroup oder Cohort als Kollisionstyp?
 				collisionsSet.add(ECollisionType.COHORT_BUSY);
 			}
 		}

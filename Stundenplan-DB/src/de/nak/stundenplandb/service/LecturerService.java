@@ -8,7 +8,7 @@ import de.nak.stundenplandb.model.EAcademicTitle;
 import de.nak.stundenplandb.model.Lecturer;
 
 /**
- * Schnittstelle für den LecturerService
+ * Interface for the LecturerService
  * 
  * @author Lars Lembke
  *
@@ -44,19 +44,22 @@ public interface LecturerService {
 	 * @return List of Appointments
 	 */
 	List<Appointment> getAppointmentsForLecturer(Long lecturerId);
+
 	/**
 	 * Returns a List of all Appointments for a given lecturer in a specific
 	 * week of a year.
+	 * 
 	 * @param lecturerId
-	 * 			Lecturer-Id
+	 *            Lecturer-Id
 	 * @param week
-	 * 			Week of year
+	 *            Week of year
 	 * @param year
-	 * 			Year
+	 *            Year
 	 * @return List of Appointments
 	 */
-	List<Appointment> getAppointmentsForLecturerInWeek(Long lecturerId, 
+	List<Appointment> getAppointmentsForLecturerInWeek(Long lecturerId,
 			int week, int year);
+
 	/**
 	 * Returns a List of all Appointments for a given lecturer in a specific
 	 * period of time.
@@ -72,5 +75,13 @@ public interface LecturerService {
 	List<Appointment> getAppointmentsForLecturerInTimeperiod(Long lecturerId,
 			Date start, Date end);
 
+	/**
+	 * True if the lecturer has another appointment within the given time period
+	 * 
+	 * @param lecturerId
+	 * @param start
+	 * @param end
+	 * @return
+	 */
 	public boolean isBusy(Long lecturerId, Date start, Date end);
 }

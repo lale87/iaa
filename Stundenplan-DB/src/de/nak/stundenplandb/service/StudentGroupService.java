@@ -9,7 +9,7 @@ import de.nak.stundenplandb.model.EFieldOfStudy;
 import de.nak.stundenplandb.model.StudentGroup;
 
 /**
- * Schnittstelle für den StudentGroupService
+ * Interface for the StudentGroupService
  * 
  * @author Lars Lembke
  *
@@ -74,19 +74,22 @@ public interface StudentGroupService {
 	 * @return List of Appointments
 	 */
 	List<Appointment> getAppointmentsForStudentGroup(Long studentGroupId);
+
 	/**
 	 * Returns a List of all Appointments for a given student group in a
 	 * specific week of a year.
+	 * 
 	 * @param studentGroupId
-	 * 			Student group-Id
+	 *            Student group-Id
 	 * @param week
-	 * 			Week of year
+	 *            Week of year
 	 * @param year
-	 * 			Year
+	 *            Year
 	 * @return List of Appointments
 	 */
 	List<Appointment> getAppointmentsForStudentGroupInWeek(Long studentGroupId,
 			int week, int year);
+
 	/**
 	 * Returns a List of all Appointments for a given student group in a
 	 * specific period of time.
@@ -101,6 +104,7 @@ public interface StudentGroupService {
 	 */
 	List<Appointment> getAppointmentsForStudentGroupInTimeperiod(
 			Long studentGroupId, Date start, Date end);
+
 	/**
 	 * Returns true if the StudentGroup is busy withing the given time period.
 	 * 

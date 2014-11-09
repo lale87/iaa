@@ -8,7 +8,7 @@ import de.nak.stundenplandb.model.ERoomType;
 import de.nak.stundenplandb.model.Room;
 
 /**
- * Schnittstelle für den RoomService
+ * Interface for the RoomService
  * 
  * @author Lars Lembke
  *
@@ -21,7 +21,7 @@ public interface RoomService {
 	 *            The room.
 	 */
 	void saveRoom(Room room);
-	
+
 	/**
 	 * Loads a list of all room.
 	 *
@@ -43,37 +43,63 @@ public interface RoomService {
 	 * @return roomType
 	 */
 	List<Room> loadAllRoomsSortedBYBuildungAndNumber();
-	
+
 	/**
 	 * Search for unused rooms in a specific period of time.
-	 * @param startDate Start of timeperiod
-	 * @param endDate End of timeperiod
+	 * 
+	 * @param startDate
+	 *            Start of timeperiod
+	 * @param endDate
+	 *            End of timeperiod
 	 * @return List of free rooms
 	 */
 	List<Room> findFreeRoomsForTimeperiod(Date startDate, Date endDate);
-	
+
 	/**
 	 * Returns a List of all Appointments for a given room.
-	 * @param roomId Room-Id
+	 * 
+	 * @param roomId
+	 *            Room-Id
 	 * @return List of Appointments
 	 */
 	List<Appointment> getAppointmentsForRoom(Long roomId);
+
 	/**
 	 * Returns a List of all Appointments for a given room.
-	 * @param roomId Room-Id
-	 * @param week Week of year
-	 * @param year Year
+	 * 
+	 * @param roomId
+	 *            Room-Id
+	 * @param week
+	 *            Week of year
+	 * @param year
+	 *            Year
 	 * @return List of Appointments
 	 */
-	List<Appointment> getAppointmentsForRoomInWeek(Long roomId, int week, int year);
+	List<Appointment> getAppointmentsForRoomInWeek(Long roomId, int week,
+			int year);
+
 	/**
-	 * Returns a List of all Appointments for a given room in a specific period of time.
-	 * @param roomId Room-Id
-	 * @param start Start of timeperiod
-	 * @param end End of timeperiod
+	 * Returns a List of all Appointments for a given room in a specific period
+	 * of time.
+	 * 
+	 * @param roomId
+	 *            Room-Id
+	 * @param start
+	 *            Start of timeperiod
+	 * @param end
+	 *            End of timeperiod
 	 * @return List of Appointments
 	 */
-	List<Appointment> getAppointmentsForRoomInTimeperiod(Long roomId, Date start, Date end);
-	
+	List<Appointment> getAppointmentsForRoomInTimeperiod(Long roomId,
+			Date start, Date end);
+
+	/**
+	 * True if the given Room is occupied at within the given time period
+	 * 
+	 * @param id
+	 * @param startDate
+	 * @param endDate
+	 * @return
+	 */
 	boolean isOccupied(Long id, Date startDate, Date endDate);
 }

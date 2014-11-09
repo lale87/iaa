@@ -56,7 +56,7 @@ public class LecturerServiceImpl implements LecturerService {
 	}
 
 	@Override
-	public List<Appointment> getAppointmentsForLecturerInWeek(Long lecturerId, 
+	public List<Appointment> getAppointmentsForLecturerInWeek(Long lecturerId,
 			int week, int year) {
 		Date start, end;
 		Calendar cal = Calendar.getInstance();
@@ -77,7 +77,7 @@ public class LecturerServiceImpl implements LecturerService {
 		end = cal.getTime();
 		return getAppointmentsForLecturerInTimeperiod(lecturerId, start, end);
 	}
-	
+
 	@Override
 	public List<Appointment> getAppointmentsForLecturerInTimeperiod(
 			Long lecturerId, Date start, Date end) {
@@ -112,10 +112,20 @@ public class LecturerServiceImpl implements LecturerService {
 		return appointments;
 	}
 
+	/**
+	 * Injects the lecturerDAO
+	 * 
+	 * @param lecturerDAO
+	 */
 	public void setLecturerDAO(LecturerDAO lecturerDAO) {
 		this.lecturerDAO = lecturerDAO;
 	}
 
+	/**
+	 * Injects te appointmentDAO
+	 * 
+	 * @param appointmentDAO
+	 */
 	public void setAppointmentDAO(AppointmentDAO appointmentDAO) {
 		this.appointmentDAO = appointmentDAO;
 	}
@@ -137,33 +147,33 @@ public class LecturerServiceImpl implements LecturerService {
 		cal.add(Calendar.MINUTE, minBreak);
 		endDateWithBreakTime = cal.getTime();
 
-		// When there is no Appointment for this Lecturer within the given period,
+		// When there is no Appointment for this Lecturer within the given
+		// period,
 		// he is NOT busy
 		List<Appointment> appointments = appointmentDAO
 				.loadAppointmentsForLecturer(lecturer);
 		return !filterAppointmentsForTimeperiod(appointments,
-				startDateWithBreakTime, endDateWithBreakTime)
-				.isEmpty();
+				startDateWithBreakTime, endDateWithBreakTime).isEmpty();
 		// Ask the DAO
 		// return lecturerDAO.isBusy(lecturerId, startDateWithBreakTime,
 		// endDateWithBreakTime);
 	}
-	
+
 	/**
 	 * Filters a list of appointments for a specific timeperiod.
+	 * 
 	 * @param appointments
-	 * 			List of appointments
+	 *            List of appointments
 	 * @param start
-	 * 			Start date
+	 *            Start date
 	 * @param end
-	 * 			End date
-	 * @return List of Appointments in the given  timeperiod
+	 *            End date
+	 * @return List of Appointments in the given timeperiod
 	 */
 	private List<Appointment> filterAppointmentsForTimeperiod(
 			List<Appointment> appointments, Date start, Date end) {
-		List<Appointment> appointmentsInTimeperiod =
-				new ArrayList<Appointment>();
-		
+		List<Appointment> appointmentsInTimeperiod = new ArrayList<Appointment>();
+
 		// iterate appointments
 		for (Appointment a : appointments) {
 			// create date/time objects
@@ -175,23 +185,22 @@ public class LecturerServiceImpl implements LecturerService {
 			ae.setTime(a.getEnd());
 			s.setTime(start);
 			e.setTime(end);
-			
+
 			// s' >= s && e' <= e
-			if ((as.after(s) || as.equals(s))
-					&& (ae.before(e) || ae.equals(e))) {
+			if ((as.after(s) || as.equals(s)) && (ae.before(e) || ae.equals(e))) {
 				appointmentsInTimeperiod.add(a);
 				continue;
-			// s' < s && e' >= s
+				// s' < s && e' >= s
 			} else if (as.before(s) && (ae.after(s) || ae.equals(s))) {
 				appointmentsInTimeperiod.add(a);
 				continue;
-			// s' <= e && e' > e
+				// s' <= e && e' > e
 			} else if ((as.before(e) || as.equals(e)) && ae.after(e)) {
 				appointmentsInTimeperiod.add(a);
 				continue;
 			}
 		}
-		
+
 		return appointmentsInTimeperiod;
 	}
 

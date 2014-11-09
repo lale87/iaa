@@ -99,7 +99,7 @@ public class ExamServiceImpl implements ExamService {
 	public void setRoomService(RoomService roomService) {
 		this.roomService = roomService;
 	}
-	
+
 	/**
 	 * Inject the StudentGroupService
 	 * 
@@ -117,14 +117,6 @@ public class ExamServiceImpl implements ExamService {
 	public void setLecturerService(LecturerService lecturerService) {
 		this.lecturerService = lecturerService;
 	}
-
-//	@Override
-//	public boolean CheckCollisionsForExam(Long id, Long lecturerId,
-//			List<Long> roomIds, List<Long> studentGroupIds,
-//			int numberOfAppointments, Date startDate, Date endDate) {
-//		// TODO Auto-generated method stub
-//		return true;
-//	}
 
 	@Override
 	public List<Exam> loadAllExams() {
@@ -145,13 +137,22 @@ public class ExamServiceImpl implements ExamService {
 		return exam;
 	}
 
-	// TODO diese Mthoden evtl zusammenfassen bei allen Meeting-Subtypes
+	/**
+	 * Initializes a list of Exams
+	 * 
+	 * @param exams
+	 */
 	private void initializeExams(List<Exam> exams) {
 		for (Exam exam : exams) {
 			initializeExam(exam);
 		}
 	}
 
+	/**
+	 * Initializes an Exam
+	 * 
+	 * @param exam
+	 */
 	private void initializeExam(Exam exam) {
 		Hibernate.initialize(exam.getLecturer());
 		Hibernate.initialize(exam.getRooms());

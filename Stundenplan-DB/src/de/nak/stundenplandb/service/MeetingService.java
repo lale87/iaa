@@ -7,79 +7,13 @@ import de.nak.stundenplandb.model.EMeetingType;
 import de.nak.stundenplandb.model.Meeting;
 
 /**
- * Schnittstelle für den MeetingService
+ * Interface for the MeetingService
  * 
  * @author Lars Lembke
  *
  */
 public interface MeetingService {
-	// /**
-	// * checks for conflicts
-	// *
-	// * @param meeting
-	// * @return isPossible
-	// */
-	// @Deprecated
-	// boolean isPossible(Meeting meeting);
 
-	// /**
-	// * Loads all Meetings for a StudentGroup within the given period
-	// *
-	// * @return a List of Meeting
-	// */
-	// @Deprecated
-	// List<Meeting> loadMeetingsForStudentGroup(Long studentGroupId, Date
-	// start,
-	// Date end);
-
-	// /**
-	// * Loads all Meetings for a StudentGroup
-	// *
-	// * @return a List of Meeting
-	// */
-	// @Deprecated
-	// List<Meeting> loadAllMeetingsForStudentGroup(Long studentGroupId);
-
-	// /**
-	// * Loads all Meetings for a Lecturer within the given period
-	// *
-	// * @return a List of Meeting
-	// */
-	// @Deprecated
-	// List<Meeting> loadMeetingsForLecturer(Long lecturerId, Date start, Date
-	// end);
-
-	// /**
-	// * Loads all Meetings for a Lecturer
-	// *
-	// * @return a List of Meeting
-	// */
-	// @Deprecated
-	// List<Meeting> loadAllMeetingsForLecturer(Long lecturerId);
-
-	// /**
-	// * Loads all Meetings in a Room within the given period
-	// *
-	// * @return a List of Meeting
-	// */
-	// @Deprecated
-	// List<Meeting> loadMeetingsForRoom(Long roomId, Date start, Date end);
-	//
-	// /**
-	// * Loads all Meetings in a Room
-	// *
-	// * @return a List of Meeting
-	// */
-	// @Deprecated
-	// List<Meeting> loadAllMeetingsForRoom(Long roomId);
-
-	// /**
-	// * Loads all existing meetings
-	// *
-	// * @return a List of Meetings
-	// */
-	// @Deprecated
-	// List<Meeting> loadAllMeetings();
 
 	/**
 	 * Sets all meeting specific attributes.

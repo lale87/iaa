@@ -7,8 +7,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import org.hibernate.Hibernate;
-
 import de.nak.stundenplandb.dao.AppointmentDAO;
 import de.nak.stundenplandb.dao.ElectiveDAO;
 import de.nak.stundenplandb.dao.ExamDAO;
@@ -16,13 +14,11 @@ import de.nak.stundenplandb.dao.LectureDAO;
 import de.nak.stundenplandb.dao.LecturerDAO;
 import de.nak.stundenplandb.dao.RoomDAO;
 import de.nak.stundenplandb.dao.SeminarDAO;
-import de.nak.stundenplandb.dao.StudentGroupDAO;
 import de.nak.stundenplandb.model.Appointment;
 import de.nak.stundenplandb.model.EMeetingType;
 import de.nak.stundenplandb.model.Lecturer;
 import de.nak.stundenplandb.model.Meeting;
 import de.nak.stundenplandb.model.Room;
-import de.nak.stundenplandb.model.StudentGroup;
 
 /**
  * Implementation for the MeetingService
@@ -38,110 +34,7 @@ public class MeetingServiceImpl implements MeetingService {
 	private LectureDAO lectureDAO;
 	private LecturerDAO lecturerDAO;
 	private RoomDAO roomDAO;
-	private StudentGroupDAO studentGroupDAO;
 	private AppointmentDAO appointmentDAO;
-
-//	@Override
-//	@Deprecated
-//	public boolean isPossible(Meeting meeting) {
-//		return true;
-//	}
-
-//	@Override
-//	@Deprecated
-//	public List<Meeting> loadMeetingsForStudentGroup(Long studentGroupId,
-//			Date start, Date end) {
-//		StudentGroup studentGroup = studentGroupDAO.load(studentGroupId);
-//		List<Meeting> meetingsForStudentGroup = new ArrayList<Meeting>();
-//		meetingsForStudentGroup.addAll(examDAO.loadExamForStudentGroup(
-//				studentGroup, start, end));
-//		meetingsForStudentGroup.addAll(lectureDAO.loadLecturesForStudentGroup(
-//				studentGroup, start, end));
-//		meetingsForStudentGroup.addAll(electiveDAO
-//				.loadElectivesForStudentGroup(studentGroup.getCohort(), start,
-//						end));
-//		initializeMeetings(meetingsForStudentGroup);
-//		return meetingsForStudentGroup;
-//	}
-
-//	@Override
-//	@Deprecated
-//	public List<Meeting> loadAllMeetingsForStudentGroup(Long studentGroupId) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-//
-//	@Override
-//	@Deprecated
-//	public List<Meeting> loadMeetingsForLecturer(Long lecturerId, Date start,
-//			Date end) {
-//		Lecturer lecturer = lecturerDAO.load(lecturerId);
-//		List<Meeting> meetingsForLecturer = new ArrayList<Meeting>();
-//		meetingsForLecturer.addAll(examDAO.loadExamForLecturer(lecturer, start,
-//				end));
-//		meetingsForLecturer.addAll(lectureDAO.loadLecturesForLecturer(lecturer,
-//				start, end));
-//		meetingsForLecturer.addAll(electiveDAO.loadElectivesForLecturer(
-//				lecturer, start, end));
-//		meetingsForLecturer.addAll(seminarDAO.loadSeminarsForLecturer(lecturer,
-//				start, end));
-//		initializeMeetings(meetingsForLecturer);
-//		return meetingsForLecturer;
-//
-//	}
-//
-//	@Override
-//	@Deprecated
-//	public List<Meeting> loadAllMeetingsForLecturer(Long lecturerId) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-//
-//	@Override
-//	@Deprecated
-//	public List<Meeting> loadMeetingsForRoom(Long roomId, Date start, Date end) {
-//		Room room = roomDAO.load(roomId);
-//		List<Meeting> meetingsForRoom = new ArrayList<Meeting>();
-//		meetingsForRoom.addAll(examDAO.loadExamsForRoom(room, start, end));
-//		meetingsForRoom
-//				.addAll(lectureDAO.loadLecturesForRoom(room, start, end));
-//		meetingsForRoom.addAll(electiveDAO.loadElectivesForRoom(room, start,
-//				end));
-//		meetingsForRoom
-//				.addAll(seminarDAO.loadSeminarsForRoom(room, start, end));
-//		initializeMeetings(meetingsForRoom);
-//		return meetingsForRoom;
-//	}
-
-//	@Override
-//	@Deprecated
-//	public List<Meeting> loadAllMeetingsForRoom(Long roomId) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-
-//	@Override
-//	public List<Meeting> loadAllMeetings() {
-//		List<Meeting> allMeetings = new ArrayList<Meeting>();
-//		allMeetings.addAll(examDAO.loadAll());
-//		allMeetings.addAll(lectureDAO.loadAll());
-//		allMeetings.addAll(electiveDAO.loadAll());
-//		allMeetings.addAll(seminarDAO.loadAll());
-//		initializeMeetings(allMeetings);
-//		return allMeetings;
-//	}
-
-//	private void initializeMeetings(List<Meeting> meetings) {
-//		for (Meeting meeting : meetings) {
-//			initializeMeeting(meeting);
-//		}
-//	}
-
-//	private void initializeMeeting(Meeting meeting) {
-//		Hibernate.initialize(meeting.getLecturer());
-//		Hibernate.initialize(meeting.getRooms());
-//		Hibernate.initialize(meeting.getAppointments());
-//	}
 
 	/**
 	 * creates a Set of Appointments starting with the first date. For each
@@ -233,10 +126,6 @@ public class MeetingServiceImpl implements MeetingService {
 
 	public void setRoomDAO(RoomDAO roomDAO) {
 		this.roomDAO = roomDAO;
-	}
-
-	public void setStudentGroupDAO(StudentGroupDAO studentGroupDAO) {
-		this.studentGroupDAO = studentGroupDAO;
 	}
 
 	@Override

@@ -38,29 +38,6 @@ public interface SeminarService {
 			List<Long> roomIds, int numberOfAppointments, Date startDate,
 			Date endDate);
 
-//	/**
-//	 * Collision check for a Seminar
-//	 * 
-//	 * @param id
-//	 *            Set <code>null</code> in order to create a new seminar
-//	 * @param meetingName
-//	 *            Name of the seminar
-//	 * @param lecturerId
-//	 *            Id of the lecturer
-//	 * @param roomIds
-//	 *            List of room ids
-//	 * @param numberOfAppointments
-//	 *            Number of weekly recurring appointments
-//	 * @param startDate
-//	 *            Start date/time
-//	 * @param endDate
-//	 *            End date/time
-//	 */
-//	@Deprecated
-//	boolean checkCollisionsForSeminar(Long id, Long lecturerId,
-//			List<Long> roomIds, int numberOfAppointments, Date startDate,
-//			Date endDate);
-
 	/**
 	 * Collision check for a Seminar. Returns a list of found CollisionTypes
 	 * 

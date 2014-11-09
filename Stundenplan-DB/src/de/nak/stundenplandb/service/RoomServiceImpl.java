@@ -21,7 +21,7 @@ import de.nak.stundenplandb.model.Lecture;
 import de.nak.stundenplandb.model.Room;
 
 /**
- * Implementation des RoomService
+ * Implementation for the RoomService
  * 
  * @author Lars Lembke
  *
@@ -76,7 +76,7 @@ public class RoomServiceImpl implements RoomService {
 	}
 
 	@Override
-	public List<Appointment> getAppointmentsForRoomInWeek(Long roomId, 
+	public List<Appointment> getAppointmentsForRoomInWeek(Long roomId,
 			int week, int year) {
 		Date start, end;
 		Calendar cal = Calendar.getInstance();
@@ -97,7 +97,7 @@ public class RoomServiceImpl implements RoomService {
 		end = cal.getTime();
 		return getAppointmentsForRoomInTimeperiod(roomId, start, end);
 	}
-	
+
 	@Override
 	public List<Appointment> getAppointmentsForRoomInTimeperiod(Long roomId,
 			Date start, Date end) {
@@ -167,34 +167,35 @@ public class RoomServiceImpl implements RoomService {
 
 			List<Appointment> appointments = appointmentDAO
 					.loadAppointmentsForRoom(room);
-//			boolean isOccupied = false;
-//			for (Appointment a : appointments) {
-//				// create date/time objects
-//				Calendar as = Calendar.getInstance();
-//				Calendar ae = Calendar.getInstance();
-//				Calendar s = Calendar.getInstance();
-//				Calendar e = Calendar.getInstance();
-//				as.setTime(a.getStart());
-//				ae.setTime(a.getEnd());
-//				s.setTime(startDateWithChangingTime);
-//				e.setTime(endDateWithChangingTime);
-//				
-//				// s' >= s && e' <= e
-//				if ((as.after(s) || as.equals(s))
-//						&& (ae.before(e) || ae.equals(e))) {
-//					isOccupied = true;
-//					break;
-//				// s' < s && e' >= s
-//				} else if (as.before(s) && (ae.after(s) || ae.equals(s))) {
-//					isOccupied = true;
-//					break;
-//				// s' <= e && e' > e
-//				} else if ((as.before(e) || as.equals(e)) && ae.after(e)) {
-//					isOccupied = true;
-//					break;
-//				}
-//			}
-			
+			// TODO kann das weg?
+			// boolean isOccupied = false;
+			// for (Appointment a : appointments) {
+			// // create date/time objects
+			// Calendar as = Calendar.getInstance();
+			// Calendar ae = Calendar.getInstance();
+			// Calendar s = Calendar.getInstance();
+			// Calendar e = Calendar.getInstance();
+			// as.setTime(a.getStart());
+			// ae.setTime(a.getEnd());
+			// s.setTime(startDateWithChangingTime);
+			// e.setTime(endDateWithChangingTime);
+			//
+			// // s' >= s && e' <= e
+			// if ((as.after(s) || as.equals(s))
+			// && (ae.before(e) || ae.equals(e))) {
+			// isOccupied = true;
+			// break;
+			// // s' < s && e' >= s
+			// } else if (as.before(s) && (ae.after(s) || ae.equals(s))) {
+			// isOccupied = true;
+			// break;
+			// // s' <= e && e' > e
+			// } else if ((as.before(e) || as.equals(e)) && ae.after(e)) {
+			// isOccupied = true;
+			// break;
+			// }
+			// }
+
 			if (filterAppointmentsForTimeperiod(appointments,
 					startDateWithChangingTime, endDateWithChangingTime)
 					.isEmpty()) {
@@ -203,22 +204,22 @@ public class RoomServiceImpl implements RoomService {
 		}
 		return freeRooms;
 	}
-	
+
 	/**
 	 * Filters a list of appointments for a specific timeperiod.
+	 * 
 	 * @param appointments
-	 * 			List of appointments
+	 *            List of appointments
 	 * @param start
-	 * 			Start date
+	 *            Start date
 	 * @param end
-	 * 			End date
-	 * @return List of Appointments in the given  timeperiod
+	 *            End date
+	 * @return List of Appointments in the given timeperiod
 	 */
 	private List<Appointment> filterAppointmentsForTimeperiod(
 			List<Appointment> appointments, Date start, Date end) {
-		List<Appointment> appointmentsInTimeperiod =
-				new ArrayList<Appointment>();
-		
+		List<Appointment> appointmentsInTimeperiod = new ArrayList<Appointment>();
+
 		// iterate appointments
 		for (Appointment a : appointments) {
 			// create date/time objects
@@ -230,31 +231,39 @@ public class RoomServiceImpl implements RoomService {
 			ae.setTime(a.getEnd());
 			s.setTime(start);
 			e.setTime(end);
-			
+
 			// s' >= s && e' <= e
-			if ((as.after(s) || as.equals(s))
-					&& (ae.before(e) || ae.equals(e))) {
+			if ((as.after(s) || as.equals(s)) && (ae.before(e) || ae.equals(e))) {
 				appointmentsInTimeperiod.add(a);
 				continue;
-			// s' < s && e' >= s
+				// s' < s && e' >= s
 			} else if (as.before(s) && (ae.after(s) || ae.equals(s))) {
 				appointmentsInTimeperiod.add(a);
 				continue;
-			// s' <= e && e' > e
+				// s' <= e && e' > e
 			} else if ((as.before(e) || as.equals(e)) && ae.after(e)) {
 				appointmentsInTimeperiod.add(a);
 				continue;
 			}
 		}
-		
+
 		return appointmentsInTimeperiod;
 	}
-	
 
+	/**
+	 * Injects the roomDAO
+	 * 
+	 * @param roomDAO
+	 */
 	public void setRoomDAO(RoomDAO roomDAO) {
 		this.roomDAO = roomDAO;
 	}
 
+	/**
+	 * Injects the appointmentDAO
+	 * 
+	 * @param appointmentDAO
+	 */
 	public void setAppointmentDAO(AppointmentDAO appointmentDAO) {
 		this.appointmentDAO = appointmentDAO;
 	}
@@ -280,8 +289,7 @@ public class RoomServiceImpl implements RoomService {
 		List<Appointment> appointments = appointmentDAO
 				.loadAppointmentsForRoom(room);
 		return !filterAppointmentsForTimeperiod(appointments,
-				startDateWithChangingTime, endDateWithChangingTime)
-				.isEmpty();
+				startDateWithChangingTime, endDateWithChangingTime).isEmpty();
 		// return roomDAO.isOccupied(id, startDateWithChangingTime,
 		// endDateWithChangingTime);
 	}
