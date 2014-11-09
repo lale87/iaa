@@ -1,12 +1,11 @@
 package de.nak.stundenplandb.dao;
 
-import java.util.Date;
 import java.util.List;
 
 import de.nak.stundenplandb.model.StudentGroup;
 
 /**
- * Schnittstelle für das StudentGroup-DAO
+ * Interface for the StudentGroupDAO
  * 
  * @author Lars Lembke
  *
@@ -19,15 +18,4 @@ public interface StudentGroupDAO extends GenericDAO<StudentGroup> {
 	 * @return
 	 */
 	List<StudentGroup> loadStudentGroupsByCohortId(Long cohortId);
-
-//	/**
-//	 * Chekcs if the the studentGroup is busy during the given time period
-//	 * 
-//	 * @param studentGroupId
-//	 * @param start
-//	 * @param end
-//	 * @return
-//	 */
-//	@Deprecated
-//	boolean isBusy(Long studentGroupId, Date start, Date end);
 }

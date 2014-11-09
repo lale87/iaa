@@ -5,7 +5,7 @@ import java.util.List;
 import de.nak.stundenplandb.model.Cohort;
 
 /**
- * Implementtation des Cohort-DAO
+ * Implementation of the CohortDAO
  * 
  * @author Lars Lembke
  *

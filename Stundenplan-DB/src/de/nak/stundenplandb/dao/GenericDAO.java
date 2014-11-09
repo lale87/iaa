@@ -5,35 +5,44 @@ import java.util.List;
 import de.nak.stundenplandb.model.DomainObject;
 
 /**
- * Allgemeines Interface zum Zugriff auf DB-Entities.
+ * Generic Interface for accessing DB-Entities.
+ * 
  * @author Fabian Kolossa
  *
- * @param <T> Typ der Objekte in der Datenbank
+ * @param <T>
+ *            Object type in the database
  */
 public interface GenericDAO<T extends DomainObject> {
-	
+
 	/**
-	 * Lädt ein Objekt anhand der zugehörigen ID aus der Datenbank.
-	 * @param id ID des Objektes
-	 * @return Objekt aus der Datenbank oder null
+	 * Loads an object from thr database by it's ID
+	 * 
+	 * @param id
+	 *            The object's ID
+	 * @return Object from database or NULL
 	 */
 	T load(Long id);
-	
+
 	/**
-	 * Lädt alle Objekte eines Typs aus der Datenbank.
-	 * @return Liste mit allen Objekten
+	 * Loads all objects of a specific object type from the database
+	 * 
+	 * @return list with all objects
 	 */
 	List<T> loadAll();
-	
+
 	/**
-	 * Persistiert oder aktualisiert ein Objekt in der Datenbank.
-	 * @param obj Neues oder aktualisiertes Objekt
+	 * Saves or updates an object in the database
+	 * 
+	 * @param obj
+	 *            new or updated object
 	 */
 	void save(T obj);
-	
+
 	/**
-	 * Löscht ein Objekt aus der Datenbank.
-	 * @param obj Zu löschendes Objekt
+	 * deletes an object from the database
+	 * 
+	 * @param obj
+	 *            the object to delete
 	 */
 	void delete(T obj);
 }

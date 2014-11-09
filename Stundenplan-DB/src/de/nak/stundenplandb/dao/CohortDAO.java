@@ -5,7 +5,7 @@ import java.util.List;
 import de.nak.stundenplandb.model.Cohort;
 
 /**
- * Schnittstelle für das Cohort-DAO
+ * Interface for the CohortDAO
  * 
  * @author Lars Lembke
  *

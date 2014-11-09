@@ -1,12 +1,11 @@
 package de.nak.stundenplandb.dao;
 
-import java.util.Date;
 import java.util.List;
 
 import de.nak.stundenplandb.model.StudentGroup;
 
 /**
- * Implementation des StudentGroup-DAO
+ * Implementation of the StudentGroupDAO
  * 
  * @author Lars Lembke
  *
@@ -27,12 +26,5 @@ public class StudentGroupDAOImpl extends GenericDAOImpl<StudentGroup> implements
 						"from StudentGroup as studentGroup where studentGroup.cohort = :id")
 				.setLong("id", cohortId).list();
 	}
-
-//	@Override
-//	@Deprecated
-//	public boolean isBusy(Long studentGroupId, Date start, Date end) {
-//		// TODO Hier muss geprüft werden, ob eine StudentGroup beschäftigt ist
-//		return true;
-//	}
 
 }
