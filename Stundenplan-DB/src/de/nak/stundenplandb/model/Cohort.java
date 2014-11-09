@@ -38,13 +38,16 @@ public class Cohort implements DomainObject {
 	public Long getId() {
 		return id;
 	}
+
 	/**
-	 * @param id the id to set
+	 * @param id
+	 *            the id to set
 	 */
-	
+
 	public void setId(Long id) {
 		this.id = id;
 	}
+
 	/**
 	 * @return the yearOfAdmission
 	 */
@@ -53,13 +56,18 @@ public class Cohort implements DomainObject {
 	public Integer getYearOfAdmission() {
 		return yearOfAdmission;
 	}
+
 	/**
-	 * @param yearOfAdmission the yearOfAdmission to set
+	 * @param yearOfAdmission
+	 *            the yearOfAdmission to set
 	 */
 	public void setYearOfAdmission(Integer yearOfAdmission) {
 		this.yearOfAdmission = yearOfAdmission;
 	}
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
@@ -70,7 +78,10 @@ public class Cohort implements DomainObject {
 				+ ((yearOfAdmission == null) ? 0 : yearOfAdmission.hashCode());
 		return result;
 	}
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
@@ -89,5 +100,5 @@ public class Cohort implements DomainObject {
 			return false;
 		return true;
 	}
-	
+
 }

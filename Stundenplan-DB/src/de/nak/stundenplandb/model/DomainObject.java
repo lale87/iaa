@@ -3,7 +3,8 @@ package de.nak.stundenplandb.model;
 import java.io.Serializable;
 
 /**
- * Marker-Interface für persitierbare Klassen.
+ * Marker-Interface for persistable Classes.
+ * 
  * @author Fabian Kolossa
  *
  */

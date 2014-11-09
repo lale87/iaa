@@ -1,6 +1,5 @@
 package de.nak.stundenplandb.model;
 
-
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -40,43 +39,49 @@ public class Appointment implements DomainObject {
 	 * The meeting
 	 */
 	private Meeting meeting;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	public Long getId() {
 		return id;
 	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
-	
+
 	@Column(nullable = false)
 	@Type(type = "timestamp")
 	public Date getStart() {
 		return start;
 	}
+
 	public void setStart(Date start) {
 		this.start = start;
 	}
-	
+
 	@Column(nullable = false)
 	@Type(type = "timestamp")
 	public Date getEnd() {
 		return end;
 	}
+
 	public void setEnd(Date end) {
 		this.end = end;
 	}
-	
+
 	@ManyToOne(optional = false)
 	public Meeting getMeeting() {
 		return meeting;
 	}
+
 	public void setMeeting(Meeting meeting) {
 		this.meeting = meeting;
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
@@ -87,7 +92,10 @@ public class Appointment implements DomainObject {
 		result = prime * result + ((start == null) ? 0 : start.hashCode());
 		return result;
 	}
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
@@ -111,5 +119,5 @@ public class Appointment implements DomainObject {
 			return false;
 		return true;
 	}
-	
+
 }

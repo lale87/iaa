@@ -22,7 +22,7 @@ public class Exam extends Meeting {
 
 	@Transient
 	private Integer minBreak = 30;
-	
+
 	/**
 	 * Zenturien
 	 */
@@ -33,6 +33,7 @@ public class Exam extends Meeting {
 	public Set<StudentGroup> getStudentGroups() {
 		return studentGroups;
 	}
+
 	public void setStudentGroups(Set<StudentGroup> studentGroups) {
 		this.studentGroups = studentGroups;
 	}

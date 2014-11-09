@@ -1,5 +1,12 @@
 package de.nak.stundenplandb.model;
 
+/**
+ * An Enumeration of all different kinds of roomtypes. Each Roomtype has a
+ * specific minimun-changingtime
+ * 
+ * @author Lars Lembke
+ *
+ */
 public enum ERoomType {
 	COMPUTER_LAB(15), CLASSROOM(0);
 	/**

@@ -24,8 +24,9 @@ public class Lecture extends Meeting {
 	public StudentGroup getStudentGroup() {
 		return studentGroup;
 	}
+
 	public void setStudentGroup(StudentGroup studentGroup) {
 		this.studentGroup = studentGroup;
 	}
-	
+
 }

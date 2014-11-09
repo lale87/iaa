@@ -26,7 +26,7 @@ public class Lecturer implements DomainObject {
 	 */
 	private Long id;
 	/**
-	 * The lecturer's academic title 
+	 * The lecturer's academic title
 	 */
 	private EAcademicTitle academicTitle;
 	/**
@@ -145,14 +145,16 @@ public class Lecturer implements DomainObject {
 	public void setAbbreviation(String abbreviation) {
 		this.abbreviation = abbreviation;
 	}
-	
+
 	/**
 	 * Returns the display name
+	 * 
 	 * @return
 	 */
 	@Transient
 	public String getDisplayName() {
-		return getLastName() + ", " + getFirstName() + " - " + getAbbreviation();
+		return getLastName() + ", " + getFirstName() + " - "
+				+ getAbbreviation();
 	}
 
 }

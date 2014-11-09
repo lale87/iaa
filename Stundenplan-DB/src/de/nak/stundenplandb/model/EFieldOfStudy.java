@@ -2,6 +2,7 @@ package de.nak.stundenplandb.model;
 
 /**
  * This Enum represents the actual fields of Study at NAK
+ * 
  * @author Lars Lembke
  *
  */
@@ -22,6 +23,7 @@ public enum EFieldOfStudy {
 		this.longTitle = bezeichnung;
 		this.abbreviation = kuerzel;
 	}
+
 	/**
 	 * @return the longTitle
 	 */

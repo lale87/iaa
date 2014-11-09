@@ -24,8 +24,9 @@ public class Elective extends Meeting {
 	public Cohort getCohort() {
 		return cohort;
 	}
+
 	public void setCohort(Cohort cohort) {
 		this.cohort = cohort;
 	}
-	
+
 }

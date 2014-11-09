@@ -10,7 +10,7 @@ import javax.persistence.Transient;
 import org.hibernate.annotations.NaturalId;
 
 @Entity
-public class Room implements DomainObject{
+public class Room implements DomainObject {
 	/**
 	 * Serial UID
 	 */
@@ -138,7 +138,9 @@ public class Room implements DomainObject{
 		this.roomType = roomType;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
@@ -152,7 +154,9 @@ public class Room implements DomainObject{
 		return result;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
@@ -176,9 +180,10 @@ public class Room implements DomainObject{
 			return false;
 		return true;
 	}
-	
+
 	/**
 	 * Returns the display name
+	 * 
 	 * @return
 	 */
 	@Transient

@@ -13,6 +13,7 @@ import org.hibernate.annotations.NaturalId;
 
 /**
  * Entity of a StudentGroup (Called "Zenturie" at NAK)
+ * 
  * @author Lars Lembke
  *
  */
@@ -43,9 +44,11 @@ public class StudentGroup implements DomainObject {
 	 */
 	private Cohort cohort;
 	/**
-	 * The letter to differentiate two student groups within the same Cohort and FieldOfStudy
+	 * The letter to differentiate two student groups within the same Cohort and
+	 * FieldOfStudy
 	 */
 	private String groupIdentifier;
+
 	/**
 	 * @return the id
 	 */
@@ -54,12 +57,15 @@ public class StudentGroup implements DomainObject {
 	public Long getId() {
 		return id;
 	}
+
 	/**
-	 * @param id the id to set
+	 * @param id
+	 *            the id to set
 	 */
 	public void setId(Long id) {
 		this.id = id;
 	}
+
 	/**
 	 * @return the minBreak
 	 */
@@ -67,12 +73,15 @@ public class StudentGroup implements DomainObject {
 	public Integer getMinBreak() {
 		return minBreak;
 	}
+
 	/**
-	 * @param minBreak the minBreak to set
+	 * @param minBreak
+	 *            the minBreak to set
 	 */
 	public void setMinBreak(Integer minBreak) {
 		this.minBreak = minBreak;
 	}
+
 	/**
 	 * @return the studentCount
 	 */
@@ -80,12 +89,15 @@ public class StudentGroup implements DomainObject {
 	public Integer getStudentCount() {
 		return studentCount;
 	}
+
 	/**
-	 * @param studentCount the studentCount to set
+	 * @param studentCount
+	 *            the studentCount to set
 	 */
 	public void setStudentCount(Integer studentCount) {
 		this.studentCount = studentCount;
 	}
+
 	/**
 	 * @return the fieldOfStudy
 	 */
@@ -94,12 +106,15 @@ public class StudentGroup implements DomainObject {
 	public EFieldOfStudy getFieldOfStudy() {
 		return fieldOfStudy;
 	}
+
 	/**
-	 * @param fieldOfStudy the fieldOfStudy to set
+	 * @param fieldOfStudy
+	 *            the fieldOfStudy to set
 	 */
 	public void setFieldOfStudy(EFieldOfStudy fieldOfStudy) {
 		this.fieldOfStudy = fieldOfStudy;
 	}
+
 	/**
 	 * @return the cohort
 	 */
@@ -108,12 +123,15 @@ public class StudentGroup implements DomainObject {
 	public Cohort getCohort() {
 		return cohort;
 	}
+
 	/**
-	 * @param cohort the cohort to set
+	 * @param cohort
+	 *            the cohort to set
 	 */
 	public void setCohort(Cohort cohort) {
 		this.cohort = cohort;
 	}
+
 	/**
 	 * @return the groupIdentifier
 	 */
@@ -122,13 +140,18 @@ public class StudentGroup implements DomainObject {
 	public String getGroupIdentifier() {
 		return groupIdentifier;
 	}
+
 	/**
-	 * @param groupIdentifier the groupIdentifier to set
+	 * @param groupIdentifier
+	 *            the groupIdentifier to set
 	 */
 	public void setGroupIdentifier(String groupIdentifier) {
 		this.groupIdentifier = groupIdentifier;
 	}
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
@@ -142,7 +165,10 @@ public class StudentGroup implements DomainObject {
 				+ ((groupIdentifier == null) ? 0 : groupIdentifier.hashCode());
 		return result;
 	}
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
@@ -168,9 +194,10 @@ public class StudentGroup implements DomainObject {
 			return false;
 		return true;
 	}
-	
+
 	/**
 	 * Returns the display name
+	 * 
 	 * @return
 	 */
 	@Transient
@@ -180,6 +207,7 @@ public class StudentGroup implements DomainObject {
 		while (yearOfAdmission.length() < 2) {
 			yearOfAdmission = "0" + yearOfAdmission;
 		}
-		return getFieldOfStudy().getAbreviation() + yearOfAdmission + getGroupIdentifier();
+		return getFieldOfStudy().getAbreviation() + yearOfAdmission
+				+ getGroupIdentifier();
 	}
 }
