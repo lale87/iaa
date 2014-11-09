@@ -18,7 +18,7 @@ import de.nak.stundenplandb.service.RoomService;
 import de.nak.stundenplandb.service.StudentGroupService;
 
 /**
- * Abstract Action for a meeting. * 
+ * Abstract Action for a single meeting. * 
  *
  * @author Arne Roever
  */
@@ -66,8 +66,7 @@ public abstract class MeetingAction extends ActionSupport {
 	
 	/**
 	 * Displays available rooms.
-	 * Only used for checking for invalid dates because
-	 * getAllRooms() is used 
+	 * Only used for checking for invalid dates.	 * 
 	 *
 	 * @return the result string
 	 */

@@ -9,7 +9,7 @@ import de.nak.stundenplandb.model.Room;
 import de.nak.stundenplandb.service.RoomService;
 
 /**
- * Action for a single Room.
+ * Action for a single Room or getting all rooms. * 
  * 
  * @author Arne Roever
  */

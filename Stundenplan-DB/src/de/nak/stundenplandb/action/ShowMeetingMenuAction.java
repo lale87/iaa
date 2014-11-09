@@ -18,7 +18,7 @@ import de.nak.stundenplandb.service.SeminarService;
 
 /**
  * Action for showing the meeting menu 
- * and a list of all existing meetings.
+ * with lists of all existing meetings.
  * 
  * @author Arne Roever
  */
@@ -69,6 +69,11 @@ public class ShowMeetingMenuAction extends ActionSupport {
 		return examService.loadAllExams();
 	}
 	
+	/**
+	 * Gets a list of all electives
+	 *
+	 * @return the elective list
+	 */
 	public List<Elective> getElectiveList(){
 		return electiveService.loadAllElectives();
 	}
@@ -80,11 +85,6 @@ public class ShowMeetingMenuAction extends ActionSupport {
 	 */
 	public List<Seminar> getSeminarList(){
 		return seminarService.loadAllSeminars();
-	}
-	
-	@Override
-	public String execute(){
-		return SUCCESS;
 	}
 
 	public void setExamService(ExamService examService) {

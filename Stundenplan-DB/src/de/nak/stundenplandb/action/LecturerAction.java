@@ -8,8 +8,6 @@ import de.nak.stundenplandb.model.EAcademicTitle;
 import de.nak.stundenplandb.model.Lecturer;
 import de.nak.stundenplandb.service.LecturerService;
 
-
-
 /**
  * Action for a single lecturer or getting all existing lecturers
  * 

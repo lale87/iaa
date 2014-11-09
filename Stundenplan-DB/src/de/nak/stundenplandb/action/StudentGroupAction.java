@@ -12,7 +12,8 @@ import de.nak.stundenplandb.model.StudentGroup;
 import de.nak.stundenplandb.service.StudentGroupService;
 
 /**
- * Action for a single StudentGroup.
+ * Action for a single StudentGroup
+ * or getting all student groups.
  *
  * @author Arne Roever
  */

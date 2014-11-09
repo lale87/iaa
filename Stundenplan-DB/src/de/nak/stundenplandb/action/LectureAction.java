@@ -81,7 +81,7 @@ public class LectureAction extends MeetingAction {
 	/**
 	 * Displays the selected lecture in the lecture form.
 	 *
-	 * @return the string
+	 * @return the result string
 	 */
 	@SuppressWarnings("unchecked")
 	@SkipValidation

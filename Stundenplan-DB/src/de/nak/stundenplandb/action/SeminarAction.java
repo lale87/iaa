@@ -65,7 +65,7 @@ public class SeminarAction extends MeetingAction {
 	/**
 	 * Displays the selected seminar in the seminar form
 	 *
-	 * @return the string
+	 * @return the result string
 	 */
 	@SuppressWarnings("unchecked")
 	@SkipValidation
