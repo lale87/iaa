@@ -55,7 +55,8 @@ public class ElectiveAction extends MeetingAction {
 	}
 
 	/**
-	 * Saves the elective to the database
+	 * Saves the elective to the database.
+	 * Displays constraint error if entry already exists.
 	 *  
 	 *  @return the result string.
 	 */

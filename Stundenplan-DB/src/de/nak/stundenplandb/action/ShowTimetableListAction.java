@@ -14,7 +14,7 @@ import de.nak.stundenplandb.service.RoomService;
 import de.nak.stundenplandb.service.StudentGroupService;
 
 /**
- * Action for printing the timetable.
+ * Action for displaying the timetable.
  * 
  * @author Arne Roever
  */
@@ -26,7 +26,7 @@ public class ShowTimetableListAction extends ActionSupport {
 	/** The id selected by the user */
 	private Long selectedId;
 
-	/** The type selected by the user */
+	/** The type selected by the user (room/lecturer/studentgroup) */
 	private String selectedType;
 
 	/** The year entered by the user */
@@ -89,11 +89,9 @@ public class ShowTimetableListAction extends ActionSupport {
 	}
 
 	/**
-	 * Displays timetable depending on which type and time was selected by the
-	 * user.
+	 * Displays timetable depending on which type was selected by the user.
 	 * 
-	 * @param the
-	 *            result string
+	 * @param the result string
 	 * */
 	public String showTimetable() {
 		switch (selectedType) {

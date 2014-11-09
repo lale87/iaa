@@ -11,7 +11,7 @@ import de.nak.stundenplandb.model.Room;
 import de.nak.stundenplandb.service.RoomService;
 
 /**
- * Action for a single Room or getting all rooms. * 
+ * Action for a single Room or getting all rooms
  * 
  * @author Arne Roever
  */
@@ -27,7 +27,8 @@ public class RoomAction extends ActionSupport {
 	private RoomService roomService;
 
 	/**
-	 * Saves the room to the database.
+	 * Saves the room to the database
+	 * Displays constraint error if entry already exists.
 	 *
 	 * @return the result string
 	 */
@@ -51,7 +52,7 @@ public class RoomAction extends ActionSupport {
 	}
 	
 	/**
-	 * Gets the all rooms in the database
+	 * Gets all rooms in the database
 	 *
 	 * @return all rooms
 	 */
@@ -61,7 +62,7 @@ public class RoomAction extends ActionSupport {
 	
 	
 	/**
-	 * Gets the all room types in the database
+	 * Gets all room types in the database
 	 *
 	 * @return all room types
 	 */

@@ -18,192 +18,192 @@ import de.nak.stundenplandb.service.RoomService;
 import de.nak.stundenplandb.service.StudentGroupService;
 
 /**
- * Abstract Action for a single meeting. * 
+ * Abstract Action for a single meeting. *
  *
  * @author Arne Roever
  */
 public abstract class MeetingAction extends ActionSupport {
 
 	/** The Constant serialVersionUID. */
-	private static final long serialVersionUID = 7376786519031302846L;	
-	
-	/**  The lecturer id selected by the user. */
+	private static final long serialVersionUID = 7376786519031302846L;
+
+	/** The lecturer id selected by the user. */
 	protected Long lecturerId;
-	
-	/**  The room ids selected by the user. */
+
+	/** The room ids selected by the user. */
 	protected List<Long> roomIds;
 
-	/**  The start date entered by the user. */
+	/** The start date entered by the user. */
 	protected Date startDate;
-	
+
 	/** The end date entered by the user. */
 	protected Date endDate;
-	
-	/**  The number of appointments entered by the user. */
+
+	/** The number of appointments entered by the user. */
 	protected Integer numberOfAppointments;
-	
-	/**  The meeting name entered by the user. */
+
+	/** The meeting name entered by the user. */
 	protected String meetingName;
 
 	/** The lecturer service. */
 	protected LecturerService lecturerService;
-	
+
 	/** The room service. */
 	protected RoomService roomService;
-	
+
 	/** The student group service. */
 	protected StudentGroupService studentGroupService;
-	
+
 	/** The meeting service. */
 	protected MeetingService meetingService;
-	
-	/** Shows whether user has tried to save a meeting that collides with others.
-	 	The user can decide to save anyway or go back and change the attributes */
+
+	/**
+	 * Shows whether user has tried to save a meeting that collides with others.
+	 * The user can decide to save anyway or go back and change the attributes
+	 */
 	protected boolean isCollided = false;
-	
+
 	/** Shows whether the user wants to see only free rooms or all rooms */
 	protected boolean showOnlyFreeRooms = false;
-	
+
 	/** The list of all collisions detected when trying to save. */
 	protected List<ECollisionType> collisionList;
-	
+
 	/**
-	 * If start and end date are selected shows only available
-	 * rooms.
+	 * Displays only available rooms if start and enddate have been selected by
+	 * the user.
 	 *
 	 * @return the result string
 	 */
 	@SkipValidation
-	public String showAvailableRooms(){
-		if(startDate != null && endDate != null){
+	public String showAvailableRooms() {
+		if (startDate != null && endDate != null) {
 			showOnlyFreeRooms = true;
-		}else{
+		} else {
 			if (startDate == null) {
 				addFieldError("startDate", getText("msg.validator.required"));
 			}
 			if (endDate == null) {
 				addFieldError("endDate", getText("msg.validator.required"));
 			}
-			if (startDate != null && endDate != null){
-				if (startDate.after(endDate)){
-					addFieldError("startDate", getText("msg.validator.inconsistentDates"));
+			if (startDate != null && endDate != null) {
+				if (startDate.after(endDate)) {
+					addFieldError("startDate",
+							getText("msg.validator.inconsistentDates"));
 				}
 			}
-		}				
+		}
 		return SUCCESS;
-	}	
-	
+	}
+
 	/**
-	 * Cancel show only available rooms and
-	 * displays all possible rooms.
+	 * Cancels showing only available rooms and displays all possible rooms.
 	 *
 	 * @return the string
 	 */
 	@SkipValidation
-	public String cancelShowAvailableRooms(){
+	public String cancelShowAvailableRooms() {
 		showOnlyFreeRooms = false;
 		return SUCCESS;
 	}
-	
+
 	/**
-	 * Abstract save method that saves the meeting. 	 
+	 * Abstract save method that saves the meeting.
 	 * 
 	 * @return the result string
 	 */
 	public abstract String save();
-	
+
 	/**
-	 * Abstract method that checks for collision before 
-	 * saving the meeting.	 
+	 * Abstract method that checks for collision before saving the meeting.
 	 *
 	 * @return the result string
 	 */
 	public abstract String checkAndSave();
-	
+
 	/**
-	 * If collisions are found this method displays
-	 * the collision reasons in the meeting forms.
+	 * If collisions are found this method displays the collision reasons in the
+	 * meeting forms.
 	 *
-	 * @param collisionList the collision list
+	 * @param the collision list
 	 */
-	public void showCollisionErrors(List<ECollisionType> collisionList){
-		
-		addActionError(getText("msg.error.collision"));		
-		if(collisionList.contains(ECollisionType.ROOM_OCCUPIED)){
+	public void showCollisionErrors(List<ECollisionType> collisionList) {
+
+		addActionError(getText("msg.error.collision"));
+		if (collisionList.contains(ECollisionType.ROOM_OCCUPIED)) {
 			addActionError(getText("msg.error.roomOccupied"));
 		}
-		if(collisionList.contains(ECollisionType.LECTURER_BUSY)){
+		if (collisionList.contains(ECollisionType.LECTURER_BUSY)) {
 			addActionError(getText("msg.error.lecturerBusy"));
 		}
-		if(collisionList.contains(ECollisionType.STUDENTGROUP_BUSY)){
-			addActionError(getText("msg.error.studentGroupBusy"));	
+		if (collisionList.contains(ECollisionType.STUDENTGROUP_BUSY)) {
+			addActionError(getText("msg.error.studentGroupBusy"));
 		}
 		if (collisionList.contains(ECollisionType.COHORT_BUSY)) {
-			addActionError(getText("msg.error.studentGroupBusy"));	
-		}	
-		if (collisionList.contains(ECollisionType.ROOM_TOO_SMALL)){
+			addActionError(getText("msg.error.studentGroupBusy"));
+		}
+		if (collisionList.contains(ECollisionType.ROOM_TOO_SMALL)) {
 			addActionError(getText("msg.error.roomTooSmall"));
 		}
 	}
-	
+
 	/**
-	 * Displays message that meeting already exists.	 * 
-	 * 
+	 * Displays message that the meeting already exists.  
 	 */
-	public void showConstraintError(){
+	public void showConstraintError() {
 		addActionError(getText("msg.error.meetingConstraint"));
 	}
-	
+
 	/**
 	 * Cancels collision mode, so meetings are again checked for collisions
 	 * before being saved to the database.
 	 *
 	 * @return the result string
 	 */
-	public String cancelCollision(){
+	public String cancelCollision() {
 		isCollided = false;
 		return SUCCESS;
 	}
-	
+
 	/**
 	 * Gets all lecturers in the database
 	 *
 	 * @return all lecturers
 	 */
-	public List<Lecturer> getAllLecturers(){
+	public List<Lecturer> getAllLecturers() {
 		return lecturerService.loadAllLecturers();
 	}
-	
+
 	/**
 	 * Gets all rooms in the database
 	 *
 	 * @return all rooms
 	 */
-	public List<Room> getAllRooms(){
-		if(showOnlyFreeRooms && (startDate != null) && (endDate != null) ) {
+	public List<Room> getAllRooms() {
+		if (showOnlyFreeRooms && (startDate != null) && (endDate != null)) {
 			return roomService.findFreeRoomsForTimeperiod(startDate, endDate);
-		}		
+		}
 		return roomService.loadAllRoomsSortedBYBuildungAndNumber();
 	}
-	
+
 	/**
 	 * Gets all student groups in the database
 	 *
 	 * @return student groups
 	 */
-	public List<StudentGroup> getAllStudentGroups(){
+	public List<StudentGroup> getAllStudentGroups() {
 		return studentGroupService.loadAllStudentGroupsSorted();
 	}
-	
+
 	/**
 	 * Gets all cohorts in the database
 	 *
 	 * @return all cohorts
 	 */
-	public List<Cohort> getAllCohorts(){		
+	public List<Cohort> getAllCohorts() {
 		return studentGroupService.loadAllCohortsSortedByYearOfAdmission();
 	}
-	
+
 	public Long getLecturerId() {
 		return lecturerId;
 	}
@@ -219,7 +219,7 @@ public abstract class MeetingAction extends ActionSupport {
 	public void setRoomIds(List<Long> roomIds) {
 		this.roomIds = roomIds;
 	}
-	
+
 	public Date getStartDate() {
 		return startDate;
 	}
@@ -243,7 +243,7 @@ public abstract class MeetingAction extends ActionSupport {
 	public void setNumberOfAppointments(Integer numberOfAppointments) {
 		this.numberOfAppointments = numberOfAppointments;
 	}
-	
+
 	public String getMeetingName() {
 		return meetingName;
 	}

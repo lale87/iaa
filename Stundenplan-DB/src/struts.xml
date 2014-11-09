@@ -9,7 +9,6 @@
   - Description: All struts actions used in stundenplan-db.  
 -->
 
-
 <struts>
 
 	<package name="default" extends="tiles-default">
@@ -158,7 +157,7 @@
 		<!-- Action that deletes the selected lecture  -->
 		<action name="DeleteLecture" class="de.nak.stundenplandb.action.LectureAction" method="delete">			      
 			<result type="redirect">ShowMeetingMenu.action</result>		
-			<result type="tiles" name="error">meetingMenu</result>			
+			<result type="chain" name="error">ShowMeetingMenu</result>			
 		</action>	
 		
 		<!-- Action that opens the lecture form for editing -->
@@ -210,7 +209,7 @@
 		<!-- Action that deletes the selected exam -->
 		<action name="DeleteExam" class="de.nak.stundenplandb.action.ExamAction" method="delete">		   
 			<result type="redirect">ShowMeetingMenu.action</result>		
-			<result type="tiles" name="error">meetingMenu</result>	
+			<result type="chain" name="error">ShowMeetingMenu</result>	
 		</action>
 		
 		<!-- Action that opens the exam form for editing -->
@@ -262,7 +261,7 @@
 		<!-- Action that deletes the selected elective -->
 		<action name="DeleteElective" class="de.nak.stundenplandb.action.ElectiveAction" method="delete">		   
 			<result type="redirect">ShowMeetingMenu.action</result>	
-			<result type="tiles" name="error">meetingMenu</result>			
+			<result type="chain" name="error">ShowMeetingMenu</result>			
 		</action>
 		
 		<!-- Action that opens the elective form for editing -->
@@ -314,7 +313,7 @@
 		<!-- Action that deletes the selected seminar -->
 		<action name="DeleteSeminar" class="de.nak.stundenplandb.action.SeminarAction" method="delete">		   
 			<result type="redirect">ShowMeetingMenu.action</result>	
-			<result type="tiles" name="error">meetingMenu</result>					
+			<result type="chain" name="error">ShowMeetingMenu</result>					
 		</action>
 		
 		<!-- Action that opens the seminar form for editing -->
@@ -339,77 +338,7 @@
 		<action name="ShowTimetableList" class="de.nak.stundenplandb.action.ShowTimetableListAction" method="showTimetable">
 			<result type="tiles">timetableList</result>   
 			<result type="tiles" name="input">timetableMenu</result> 					
-		</action>	
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		<!--  -->
-		<action name="RoomForLectureAction" class="de.nak.stundenplandb.action.LectureAction">		   
-			<result type="tiles" >roomChoiceForm</result>	
-			<result type="tiles" name="input">lectureForm</result>				
-		</action>	
-		
-
-		<!-- Action that displays the list of cars. -->
-<!--
-		<action name="ShowCarList" class="de.nak.cars.action.ShowCarListAction">
-			<result type="tiles">carList</result>
-		</action>
--->
-		<!-- Shows the empty form for a new car. -->
-<!--
-		<action name="AddCar">
-			<result type="tiles">carForm</result>
-		</action>
--->
-
-		<!-- Saves the new or updated car into the database and shows the car list again. -->
-<!--
-		<action name="SaveCar" class="de.nak.cars.action.CarAction" method="save">
-			<result type="redirect">ShowCarList.action</result>
-			<result type="tiles" name="input">carForm</result>
-		</action>
--->
-
-		<!-- Loads a existing car and shows it in the car form. -->
-<!--
-		<action name="EditCar" class="de.nak.cars.action.CarAction" method="load">
-			<result type="tiles">carForm</result>
-			<result type="chain" name="input">ShowCarList</result>
-		</action>
--->
-
-		<!-- Deletes the selected car and shows the car list again. -->
-<!--
-		<action name="DeleteCar" class="de.nak.cars.action.CarAction" method="delete">
-			<result type="redirect">ShowCarList.action</result>
-			<result type="chain" name="input">ShowCarList</result>
-		</action>
--->
-
-		<!-- Action for the cancel button. Is required to avoid stack traces in log. -->
-<!--
-		<action name="CancelCar" class="de.nak.cars.action.CarAction" method="cancel">
-			<result type="redirect">ShowCarList.action</result>
-		</action>
--->
+		</action>			
 
 	</package>
 </struts>

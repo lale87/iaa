@@ -32,6 +32,7 @@ public class StudentGroupAction extends ActionSupport {
 	
 	/**
 	 * Save student group to the database.
+	 * Displays constraint error if entry already exists.
 	 *
 	 * @return the result string
 	 */

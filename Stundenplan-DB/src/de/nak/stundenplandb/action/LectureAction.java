@@ -55,7 +55,8 @@ public class LectureAction extends MeetingAction {
 	}
 	
 	/**
-	 * Saves the lecture to the database without checking for collisions.
+	 * Saves the lecture to the database.
+	 * Displays constraint error if entry already exists.
 	 *
 	 * @return the result string
 	 */

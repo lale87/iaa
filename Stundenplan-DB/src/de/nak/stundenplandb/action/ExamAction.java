@@ -57,7 +57,8 @@ public class ExamAction extends MeetingAction {
 	}
 
 	/**
-	 * Saves the exam to the database
+	 * Saves the exam to the database.
+	 * Displays constraint error if entry already exists.
 	 * 
 	 * @return the result string.
 	 */
