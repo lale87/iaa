@@ -36,8 +36,13 @@
 		
 	<s:select name="roomIds" key="lbl.rooms" list="allRooms" listKey="id"
 		listValue="displayName" value="roomIds" multiple="true"
-		size="5" requiredLabel="true" />
-	<s:submit key="btn.showAvailableRooms" action="ShowAvailableRoomsForSeminar"/>	
+		size="5" requiredLabel="true" />		
+	<s:if test="!isShowOnlyFreeRooms()">
+		<s:submit key="btn.showAvailableRooms" action="ShowAvailableRoomsForSeminar"/>	
+	</s:if>
+	<s:else>
+		<s:submit key="btn.CancelShowAvailableRooms" action="CancelShowAvailableRoomsForSeminar"/>
+	</s:else>	
 
 	<%-- The buttons - normal and for collision mode--%>
 	<s:if test="!isCollided()">
