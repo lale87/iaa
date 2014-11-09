@@ -140,7 +140,10 @@ public abstract class MeetingAction extends ActionSupport {
 		}
 		if (collisionList.contains(ECollisionType.COHORT_BUSY)) {
 			addActionError(getText("msg.error.studentGroupBusy"));	
-		}			
+		}	
+		if (collisionList.contains(ECollisionType.ROOM_TOO_SMALL)){
+			addActionError(getText("msg.error.roomTooSmall"));
+		}
 	}
 	
 	/**
