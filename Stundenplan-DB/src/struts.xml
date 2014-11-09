@@ -11,7 +11,17 @@
 
 
 <struts>
+
 	<package name="default" extends="tiles-default">
+	<!-- Catch all java exceptions -->
+	<!-- source: https://github.com/apache/struts-examples/blob/master/exception_handling/src/main/resources/struts.xml -->
+    <global-results>
+        <result name="error">/error.jsp</result>
+    </global-results>
+    
+    <global-exception-mappings>
+        <exception-mapping exception="java.lang.Exception" result="error"/>
+    </global-exception-mappings>
 		
 		<!--  Action that displays the main menu. -->
 		
