@@ -2,7 +2,9 @@ package de.nak.stundenplandb.service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
+import de.nak.stundenplandb.model.Appointment;
 import de.nak.stundenplandb.model.EMeetingType;
 import de.nak.stundenplandb.model.Meeting;
 
@@ -37,6 +39,22 @@ public interface MeetingService {
 			List<Long> roomIds, int numberOfAppointments, Date startDate,
 			Date endDate, EMeetingType meetingType);
 
+	/**
+	 * creates a Set of Appointments starting with the first date. For each
+	 * repitition of an appointment starts seven days later than the appointment
+	 * before
+	 * 
+	 * @param numberOfAppointments
+	 *            <Integer>
+	 * @param begin
+	 *            <Date>
+	 * @param end
+	 *            <Date>
+	 * @return a Set of Appointments
+	 */
+	Set<Appointment> createAppointments(Integer numberOfAppointments,
+			Date begin, Date end);
+	
 	/**
 	 * Deletes a Meeting by a given ID
 	 * 

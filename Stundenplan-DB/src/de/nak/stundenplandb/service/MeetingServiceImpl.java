@@ -36,20 +36,8 @@ public class MeetingServiceImpl implements MeetingService {
 	private RoomDAO roomDAO;
 	private AppointmentDAO appointmentDAO;
 
-	/**
-	 * creates a Set of Appointments starting with the first date. For each
-	 * repitition of an appointment starts seven days later than the appointment
-	 * before
-	 * 
-	 * @param numberOfAppointments
-	 *            <Integer>
-	 * @param begin
-	 *            <Date>
-	 * @param end
-	 *            <Date>
-	 * @return a Set of Appointments
-	 */
-	protected Set<Appointment> createAppointments(Integer numberOfAppointments,
+	@Override
+	public Set<Appointment> createAppointments(Integer numberOfAppointments,
 			Date begin, Date end) {
 		Set<Appointment> appointmentSet = new HashSet<Appointment>();
 		for (int i = 0; i < numberOfAppointments; i++) {

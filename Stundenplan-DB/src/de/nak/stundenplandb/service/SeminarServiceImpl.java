@@ -12,6 +12,7 @@ import java.util.Set;
 import org.hibernate.Hibernate;
 
 import de.nak.stundenplandb.dao.SeminarDAO;
+import de.nak.stundenplandb.model.Appointment;
 import de.nak.stundenplandb.model.ECollisionType;
 import de.nak.stundenplandb.model.EMeetingType;
 import de.nak.stundenplandb.model.Seminar;
@@ -129,15 +130,26 @@ public class SeminarServiceImpl implements SeminarService {
 			Date endDate) {
 		// The set with all found collionsTypes
 		Set<ECollisionType> collisionsSet = new HashSet<ECollisionType>();
-		// Check for RoomCollisions
-		for (Long roomId : roomIds) {
-			if (this.roomService.isOccupied(roomId, startDate, endDate)) {
-				collisionsSet.add(ECollisionType.ROOM_OCCUPIED);
+
+		// generate appointments
+		Set<Appointment> appointments = meetingService.createAppointments(
+				numberOfAppointments, startDate, endDate);
+		
+		for (Appointment appointment : appointments) {
+			// set start and end date
+			Date start = appointment.getStart();
+			Date end = appointment.getEnd();
+			
+			// Check for RoomCollisions
+			for (Long roomId : roomIds) {
+				if (this.roomService.isOccupied(roomId, start, end)) {
+					collisionsSet.add(ECollisionType.ROOM_OCCUPIED);
+				}
 			}
-		}
-		// Check for LecturerCollisions
-		if (lecturerService.isBusy(lecturerId, startDate, endDate)) {
-			collisionsSet.add(ECollisionType.LECTURER_BUSY);
+			// Check for LecturerCollisions
+			if (lecturerService.isBusy(lecturerId, start, end)) {
+				collisionsSet.add(ECollisionType.LECTURER_BUSY);
+			}
 		}
 
 		// returns a List of all found collsionTypes

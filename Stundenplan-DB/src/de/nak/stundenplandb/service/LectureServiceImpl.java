@@ -13,6 +13,7 @@ import org.hibernate.Hibernate;
 
 import de.nak.stundenplandb.dao.LectureDAO;
 import de.nak.stundenplandb.dao.StudentGroupDAO;
+import de.nak.stundenplandb.model.Appointment;
 import de.nak.stundenplandb.model.ECollisionType;
 import de.nak.stundenplandb.model.EMeetingType;
 import de.nak.stundenplandb.model.Lecture;
@@ -161,24 +162,34 @@ public class LectureServiceImpl implements LectureService {
 			Date startDate, Date endDate) {
 		// Set with all found collisions
 		Set<ECollisionType> collisionsSet = new HashSet<ECollisionType>();
-
-		for (Long roomId : roomIds) {
-			// Check for RoomCollisions
-			if (this.roomService.isOccupied(roomId, startDate, endDate)) {
-				collisionsSet.add(ECollisionType.ROOM_OCCUPIED);
+		
+		// generate appointments
+		Set<Appointment> appointments = meetingService.createAppointments(
+				numberOfAppointments, startDate, endDate);
+		
+		for (Appointment appointment : appointments) {
+			// set start and end date
+			Date start = appointment.getStart();
+			Date end = appointment.getEnd();
+			
+			for (Long roomId : roomIds) {
+				// Check for RoomCollisions
+				if (this.roomService.isOccupied(roomId, start, end)) {
+					collisionsSet.add(ECollisionType.ROOM_OCCUPIED);
+				}
+				// Check for RoomSizeCollisions
+				if (this.roomService.hasEnoughSeats(roomId, studentGroupId)) {
+					collisionsSet.add(ECollisionType.ROOM_TOO_SMALL);
+				}
 			}
-			// Check for RoomSizeCollisions
-			if (this.roomService.hasEnoughSeats(roomId, studentGroupId)) {
-				collisionsSet.add(ECollisionType.ROOM_TOO_SMALL);
+			// Check for LecturerCollisions
+			if (lecturerService.isBusy(lecturerId, start, end)) {
+				collisionsSet.add(ECollisionType.LECTURER_BUSY);
 			}
-		}
-		// Check for LecturerCollisions
-		if (lecturerService.isBusy(lecturerId, startDate, endDate)) {
-			collisionsSet.add(ECollisionType.LECTURER_BUSY);
-		}
-		// Check for StudentGroupCollisions
-		if (studentGroupService.isBusy(studentGroupId, startDate, endDate)) {
-			collisionsSet.add(ECollisionType.STUDENTGROUP_BUSY);
+			// Check for StudentGroupCollisions
+			if (studentGroupService.isBusy(studentGroupId, start, end)) {
+				collisionsSet.add(ECollisionType.STUDENTGROUP_BUSY);
+			}
 		}
 
 		// Returns a List with all found collisions
