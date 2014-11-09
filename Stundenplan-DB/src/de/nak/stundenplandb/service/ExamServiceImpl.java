@@ -118,13 +118,13 @@ public class ExamServiceImpl implements ExamService {
 		this.lecturerService = lecturerService;
 	}
 
-	@Override
-	public boolean CheckCollisionsForExam(Long id, Long lecturerId,
-			List<Long> roomIds, List<Long> studentGroupIds,
-			int numberOfAppointments, Date startDate, Date endDate) {
-		// TODO Auto-generated method stub
-		return true;
-	}
+//	@Override
+//	public boolean CheckCollisionsForExam(Long id, Long lecturerId,
+//			List<Long> roomIds, List<Long> studentGroupIds,
+//			int numberOfAppointments, Date startDate, Date endDate) {
+//		// TODO Auto-generated method stub
+//		return true;
+//	}
 
 	@Override
 	public List<Exam> loadAllExams() {

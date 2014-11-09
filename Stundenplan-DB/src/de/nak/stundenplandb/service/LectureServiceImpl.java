@@ -84,14 +84,14 @@ public class LectureServiceImpl implements LectureService {
 		this.lecturerService = lecturerService;
 	}
 
-	// TODO löschen
-	@Override
-	@Deprecated
-	public boolean CheckCollisionsForLecture(Long id, Long lecturerId,
-			List<Long> roomIds, Long studentGroupId, int numberOfAppointments,
-			Date startDate, Date endDate) {
-		return false;
-	}
+//	// TODO löschen
+//	@Override
+//	@Deprecated
+//	public boolean CheckCollisionsForLecture(Long id, Long lecturerId,
+//			List<Long> roomIds, Long studentGroupId, int numberOfAppointments,
+//			Date startDate, Date endDate) {
+//		return false;
+//	}
 
 	@Override
 	public List<Lecture> loadAllLectures() {

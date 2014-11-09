@@ -40,30 +40,30 @@ public interface LectureService {
 			List<Long> roomIds, Long studentGroupId, int numberOfAppointments,
 			Date startDate, Date endDate);
 
-	/**
-	 * Collision check for a Lecture
-	 * 
-	 * @param id
-	 *            Set <code>null</code> in order to create a new lecture
-	 * @param meetingName
-	 *            Name of the lecture
-	 * @param lecturerId
-	 *            Id of the lecturer
-	 * @param roomIds
-	 *            List of room ids
-	 * @param studentGroupId
-	 *            Id of the student group
-	 * @param numberOfAppointments
-	 *            Number of weekly recurring appointments
-	 * @param startDate
-	 *            Start date/time
-	 * @param endDate
-	 *            End date/time
-	 */
-	@Deprecated
-	boolean CheckCollisionsForLecture(Long id, Long lecturerId,
-			List<Long> roomIds, Long studentGroupId, int numberOfAppointments,
-			Date startDate, Date endDate);
+//	/**
+//	 * Collision check for a Lecture
+//	 * 
+//	 * @param id
+//	 *            Set <code>null</code> in order to create a new lecture
+//	 * @param meetingName
+//	 *            Name of the lecture
+//	 * @param lecturerId
+//	 *            Id of the lecturer
+//	 * @param roomIds
+//	 *            List of room ids
+//	 * @param studentGroupId
+//	 *            Id of the student group
+//	 * @param numberOfAppointments
+//	 *            Number of weekly recurring appointments
+//	 * @param startDate
+//	 *            Start date/time
+//	 * @param endDate
+//	 *            End date/time
+//	 */
+//	@Deprecated
+//	boolean CheckCollisionsForLecture(Long id, Long lecturerId,
+//			List<Long> roomIds, Long studentGroupId, int numberOfAppointments,
+//			Date startDate, Date endDate);
 	
 	List<ECollisionType> getCollisions(Long id, Long lecturerId,
 			List<Long> roomIds, Long studentGroupId, int numberOfAppointments,

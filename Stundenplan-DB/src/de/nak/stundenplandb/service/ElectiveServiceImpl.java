@@ -117,13 +117,13 @@ public class ElectiveServiceImpl implements ElectiveService {
 		this.lecturerService = lecturerService;
 	}
 
-	@Override
-	@Deprecated
-	public boolean checkCollisionsForElective(Long id, Long lecturerId,
-			List<Long> roomIds, Long cohortId, int numberOfAppointments,
-			Date startDate, Date endDate) {
-		return true;
-	}
+//	@Override
+//	@Deprecated
+//	public boolean checkCollisionsForElective(Long id, Long lecturerId,
+//			List<Long> roomIds, Long cohortId, int numberOfAppointments,
+//			Date startDate, Date endDate) {
+//		return true;
+//	}
 
 	@Override
 	public List<Elective> loadAllElectives() {
