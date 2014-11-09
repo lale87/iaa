@@ -61,30 +61,49 @@ public abstract class MeetingAction extends ActionSupport {
 	 	The user can decide to save anyway or go back and change the attributes */
 	protected boolean isCollided = false;
 	
+	/** Shows whether the user wants to see only free rooms or all rooms */
+	protected boolean showOnlyFreeRooms = false;
+	
 	/** The list of all collisions detected when trying to save. */
 	protected List<ECollisionType> collisionList;
 	
 	/**
-	 * Displays available rooms.
-	 * Only used for checking for invalid dates.	 * 
+	 * If start and end date are selected shows only available
+	 * rooms.
 	 *
 	 * @return the result string
 	 */
 	@SkipValidation
 	public String showAvailableRooms(){
-		if (startDate == null) {
-			addFieldError("startDate", getText("msg.validator.required"));
-		}
-		if (endDate == null) {
-			addFieldError("endDate", getText("msg.validator.required"));
-		}
-		if (startDate != null && endDate != null){
-			if (startDate.after(endDate)){
-				addFieldError("startDate", getText("msg.validator.inconsistentDates"));
+		if(startDate != null && endDate != null){
+			showOnlyFreeRooms = true;
+		}else{
+			if (startDate == null) {
+				addFieldError("startDate", getText("msg.validator.required"));
 			}
-		}		
+			if (endDate == null) {
+				addFieldError("endDate", getText("msg.validator.required"));
+			}
+			if (startDate != null && endDate != null){
+				if (startDate.after(endDate)){
+					addFieldError("startDate", getText("msg.validator.inconsistentDates"));
+				}
+			}
+		}				
 		return SUCCESS;
 	}	
+	
+	/**
+	 * Cancel show only available rooms and
+	 * displays all possible rooms.
+	 *
+	 * @return the string
+	 */
+	@SkipValidation
+	public String cancelShowAvailableRooms(){
+		showOnlyFreeRooms = false;
+		return SUCCESS;
+	}
 	
 	/**
 	 * Abstract save method that saves the meeting. 	 
@@ -105,7 +124,7 @@ public abstract class MeetingAction extends ActionSupport {
 	 * If collisions are found this method displays
 	 * the collision reasons in the meeting forms.
 	 *
-	 * @param list of collisiontypes
+	 * @param collisionList the collision list
 	 */
 	public void showCollisionErrors(List<ECollisionType> collisionList){
 		
@@ -122,6 +141,14 @@ public abstract class MeetingAction extends ActionSupport {
 		if (collisionList.contains(ECollisionType.COHORT_BUSY)) {
 			addActionError(getText("msg.error.studentGroupBusy"));	
 		}			
+	}
+	
+	/**
+	 * Displays message that meeting already exists.	 * 
+	 * 
+	 */
+	public void showConstraintError(){
+		addActionError(getText("msg.error.meetingConstraint"));
 	}
 	
 	/**
@@ -150,10 +177,10 @@ public abstract class MeetingAction extends ActionSupport {
 	 * @return all rooms
 	 */
 	public List<Room> getAllRooms(){
-		if(startDate == null || endDate == null){
-			return roomService.loadAllRoomsSortedBYBuildungAndNumber();
-		}
-		return roomService.findFreeRoomsForTimeperiod(startDate, endDate);
+		if(showOnlyFreeRooms && (startDate != null) && (endDate != null) ) {
+			return roomService.findFreeRoomsForTimeperiod(startDate, endDate);
+		}		
+		return roomService.loadAllRoomsSortedBYBuildungAndNumber();
 	}
 	
 	/**
@@ -252,5 +279,13 @@ public abstract class MeetingAction extends ActionSupport {
 
 	public void setCollisionList(List<ECollisionType> collisionList) {
 		this.collisionList = collisionList;
+	}
+
+	public boolean isShowOnlyFreeRooms() {
+		return showOnlyFreeRooms;
+	}
+
+	public void setShowOnlyFreeRooms(boolean showOnlyFreeRooms) {
+		this.showOnlyFreeRooms = showOnlyFreeRooms;
 	}
 }

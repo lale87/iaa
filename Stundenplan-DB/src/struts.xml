@@ -125,10 +125,15 @@
 		        <param name="excludeMethods">execute</param>
 		    </interceptor-ref>
 			<result type="tiles">lectureForm</result>			
-		</action>
+		</action>		
 		
-		<!-- Action that reloads page so available rooms are shown -->
+		<!-- Action that only displays available rooms -->
 		<action name="ShowAvailableRoomsForLecture" class="de.nak.stundenplandb.action.LectureAction" method="showAvailableRooms">
+			<result type="tiles">lectureForm</result>			
+		</action>		
+		
+		<!-- Action that displays once again all rooms -->
+		<action name="CancelShowAvailableRoomsForLecture" class="de.nak.stundenplandb.action.LectureAction" method="cancelShowAvailableRooms">
 			<result type="tiles">lectureForm</result>			
 		</action>		
 				
@@ -177,6 +182,11 @@
 		<!-- Action that reloads page so available rooms are shown -->
 		<action name="ShowAvailableRoomsForExam" class="de.nak.stundenplandb.action.ExamAction" method="showAvailableRooms">
 			<result type="tiles">examForm</result>			
+		</action>		
+		
+		<!-- Action that displays once again all rooms -->
+		<action name="CancelShowAvailableRoomsForExam" class="de.nak.stundenplandb.action.ExamAction" method="cancelShowAvailableRooms">
+			<result type="tiles">examForm</result>			
 		</action>
 		
 		<!-- Action that saves the exam -->
@@ -224,6 +234,11 @@
 		<!-- Action that reloads page so available rooms are shown -->
 		<action name="ShowAvailableRoomsForElective" class="de.nak.stundenplandb.action.ElectiveAction" method="showAvailableRooms">
 			<result type="tiles">electiveForm</result>			
+		</action>		
+		
+		<!-- Action that displays once again all rooms -->
+		<action name="CancelShowAvailableRoomsForElective" class="de.nak.stundenplandb.action.ElectiveAction" method="cancelShowAvailableRooms">
+			<result type="tiles">electiveForm</result>			
 		</action>
 		
 		<!-- Action that saves the elective -->
@@ -270,6 +285,11 @@
 		
 		<!-- Action that reloads page so available rooms are shown -->
 		<action name="ShowAvailableRoomsForSeminar" class="de.nak.stundenplandb.action.SeminarAction" method="showAvailableRooms">
+			<result type="tiles">seminarForm</result>			
+		</action>		
+		
+		<!-- Action that displays once again all rooms -->
+		<action name="CancelShowAvailableRoomsForSeminar" class="de.nak.stundenplandb.action.SeminarAction" method="cancelShowAvailableRooms">
 			<result type="tiles">seminarForm</result>			
 		</action>
 		
