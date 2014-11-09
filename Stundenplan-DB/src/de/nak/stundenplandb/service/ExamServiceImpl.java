@@ -187,7 +187,7 @@ public class ExamServiceImpl implements ExamService {
 				}
 				// Check for RoomSizeCollisions
 				for (Long studentGroupId : studentGroupIds) {
-					if (this.roomService.hasEnoughSeats(roomId, studentGroupId)) {
+					if (!this.roomService.hasEnoughSeats(roomId, studentGroupId)) {
 						collisionsSet.add(ECollisionType.ROOM_TOO_SMALL);
 					}
 				}
