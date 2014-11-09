@@ -160,6 +160,9 @@ public class LectureServiceImpl implements LectureService {
 	public List<ECollisionType> getCollisions(Long id, Long lecturerId,
 			List<Long> roomIds, Long studentGroupId, int numberOfAppointments,
 			Date startDate, Date endDate) {
+		if (id != null) {
+			return new ArrayList<ECollisionType>();
+		}
 		// Set with all found collisions
 		Set<ECollisionType> collisionsSet = new HashSet<ECollisionType>();
 		

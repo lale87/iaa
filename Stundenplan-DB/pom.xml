@@ -5,7 +5,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>de.nak</groupId>
   <artifactId>stundenplan-db</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>1.0.0</version>
   <packaging>war</packaging>
   <name>Stundenplan-DB</name>
   <description>Hausarbeit des Moduls Internet-Anwendungsarchitekturen von Arne Röver, Lars Lembke und Fabian Kolossa</description>

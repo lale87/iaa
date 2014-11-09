@@ -165,6 +165,9 @@ public class ExamServiceImpl implements ExamService {
 	public List<ECollisionType> getCollisions(Long id, Long lecturerId,
 			List<Long> roomIds, List<Long> studentGroupIds,
 			int numberOfAppointments, Date startDate, Date endDate) {
+		if (id != null) {
+			return new ArrayList<ECollisionType>();
+		}
 		// The set with all found collionsTypes
 		Set<ECollisionType> collisionsSet = new HashSet<ECollisionType>();
 

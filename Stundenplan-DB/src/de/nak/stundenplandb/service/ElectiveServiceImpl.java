@@ -163,6 +163,9 @@ public class ElectiveServiceImpl implements ElectiveService {
 	public List<ECollisionType> getCollisions(Long id, Long lecturerId,
 			List<Long> roomIds, Long cohortId, int numberOfAppointments,
 			Date startDate, Date endDate) {
+		if (id != null) {
+			return new ArrayList<ECollisionType>();
+		}
 		// The set with all found collionsTypes
 		Set<ECollisionType> collisionsSet = new HashSet<ECollisionType>();
 
