@@ -281,8 +281,6 @@ public class RoomServiceImpl implements RoomService {
 	public boolean hasEnoughSeats(Long roomId, Long studentGroupId) {
 		Room room = roomDAO.load(roomId);
 		StudentGroup studentGroup = studentGroupDAO.load(studentGroupId);
-		System.out.println("### room: " + room.getSeats() + " >= "
-		+ studentGroup.getStudentCount() + " studentgroup");
 		return room.getSeats() >= studentGroup.getStudentCount();
 	}
 
