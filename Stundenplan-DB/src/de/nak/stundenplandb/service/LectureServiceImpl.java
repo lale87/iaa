@@ -178,7 +178,7 @@ public class LectureServiceImpl implements LectureService {
 					collisionsSet.add(ECollisionType.ROOM_OCCUPIED);
 				}
 				// Check for RoomSizeCollisions
-				if (this.roomService.hasEnoughSeats(roomId, studentGroupId)) {
+				if (!this.roomService.hasEnoughSeats(roomId, studentGroupId)) {
 					collisionsSet.add(ECollisionType.ROOM_TOO_SMALL);
 				}
 			}
