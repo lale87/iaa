@@ -167,34 +167,6 @@ public class RoomServiceImpl implements RoomService {
 
 			List<Appointment> appointments = appointmentDAO
 					.loadAppointmentsForRoom(room);
-			// TODO kann das weg?
-			// boolean isOccupied = false;
-			// for (Appointment a : appointments) {
-			// // create date/time objects
-			// Calendar as = Calendar.getInstance();
-			// Calendar ae = Calendar.getInstance();
-			// Calendar s = Calendar.getInstance();
-			// Calendar e = Calendar.getInstance();
-			// as.setTime(a.getStart());
-			// ae.setTime(a.getEnd());
-			// s.setTime(startDateWithChangingTime);
-			// e.setTime(endDateWithChangingTime);
-			//
-			// // s' >= s && e' <= e
-			// if ((as.after(s) || as.equals(s))
-			// && (ae.before(e) || ae.equals(e))) {
-			// isOccupied = true;
-			// break;
-			// // s' < s && e' >= s
-			// } else if (as.before(s) && (ae.after(s) || ae.equals(s))) {
-			// isOccupied = true;
-			// break;
-			// // s' <= e && e' > e
-			// } else if ((as.before(e) || as.equals(e)) && ae.after(e)) {
-			// isOccupied = true;
-			// break;
-			// }
-			// }
 
 			if (filterAppointmentsForTimeperiod(appointments,
 					startDateWithChangingTime, endDateWithChangingTime)
