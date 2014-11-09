@@ -5,6 +5,8 @@ package de.nak.stundenplandb.action;
 
 import java.util.List;
 
+import org.hibernate.exception.ConstraintViolationException;
+
 import com.opensymphony.xwork2.ActionSupport;
 
 import de.nak.stundenplandb.model.EFieldOfStudy;
@@ -34,7 +36,12 @@ public class StudentGroupAction extends ActionSupport {
 	 * @return the result string
 	 */
 	public String save(){
-		studentGroupService.saveStudentGroup(studentGroup);
+		try {
+			studentGroupService.saveStudentGroup(studentGroup);
+		} catch (ConstraintViolationException e) {
+			addActionError(getText("msg.error.studentGroupConstraint"));
+			return INPUT;
+		}		
 		return SUCCESS;
 	}
 	

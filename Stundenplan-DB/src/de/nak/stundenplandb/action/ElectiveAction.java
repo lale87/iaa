@@ -8,6 +8,7 @@ import java.util.List;
 import org.apache.commons.beanutils.BeanToPropertyValueTransformer;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.struts2.interceptor.validation.SkipValidation;
+import org.hibernate.exception.ConstraintViolationException;
 
 import de.nak.stundenplandb.model.Elective;
 import de.nak.stundenplandb.service.ElectiveService;
@@ -60,7 +61,12 @@ public class ElectiveAction extends MeetingAction {
 	 */
 	@Override
 	public String save() {
-		electiveService.saveOrUpdateElective(elective.getId(),meetingName,lecturerId,roomIds,cohortId,  numberOfAppointments, startDate, endDate);
+		try {
+			electiveService.saveOrUpdateElective(elective.getId(),meetingName,lecturerId,roomIds,cohortId,  numberOfAppointments, startDate, endDate);
+		} catch (ConstraintViolationException e) {
+			showConstraintError();
+		}
+		
 		return SUCCESS;
 	}
 	

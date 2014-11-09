@@ -2,6 +2,8 @@ package de.nak.stundenplandb.action;
 
 import java.util.List;
 
+import org.hibernate.exception.ConstraintViolationException;
+
 import com.opensymphony.xwork2.ActionSupport;
 
 import de.nak.stundenplandb.model.EAcademicTitle;
@@ -30,7 +32,12 @@ public class LecturerAction extends ActionSupport {
 	 * @return the result string
 	 */
 	public String save(){
-		lecturerService.saveLecturer(lecturer);
+		try {
+			lecturerService.saveLecturer(lecturer);
+		} catch (ConstraintViolationException e) {
+			addActionError(getText("msg.error.lecturerConstraint"));
+			return INPUT;
+		}		
 		return SUCCESS;
 	}
 	

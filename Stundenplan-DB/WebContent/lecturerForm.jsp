@@ -7,6 +7,7 @@
 --%>
 
 <h3><s:text name="hdl.newLecturer"></s:text></h3>
+<s:actionerror/>
 <s:form cssClass="strutsTable">
 	<%-- Form fields for the lecturer's attributes --%>
 	<s:hidden name="lecturer.id" />

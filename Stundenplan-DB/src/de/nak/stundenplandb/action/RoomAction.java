@@ -2,6 +2,8 @@ package de.nak.stundenplandb.action;
 
 import java.util.List;
 
+import org.hibernate.exception.ConstraintViolationException;
+
 import com.opensymphony.xwork2.ActionSupport;
 
 import de.nak.stundenplandb.model.ERoomType;
@@ -30,7 +32,12 @@ public class RoomAction extends ActionSupport {
 	 * @return the result string
 	 */
 	public String save() {
-		roomService.saveRoom(room);
+		try {
+			roomService.saveRoom(room);
+		} catch (ConstraintViolationException e) {
+			addActionError(getText("msg.error.roomConstraint"));
+			return INPUT;
+		}		
 		return SUCCESS;
 	}
 	

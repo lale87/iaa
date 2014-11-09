@@ -8,6 +8,7 @@ import java.util.List;
 import org.apache.commons.beanutils.BeanToPropertyValueTransformer;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.struts2.interceptor.validation.SkipValidation;
+import org.hibernate.exception.ConstraintViolationException;
 
 import de.nak.stundenplandb.model.Seminar;
 import de.nak.stundenplandb.service.SeminarService;
@@ -58,7 +59,13 @@ public class SeminarAction extends MeetingAction {
 	 * @result the result string
 	 */
 	public String save() {
-		seminarService.saveOrUpdateSeminar(seminar.getId(), meetingName,lecturerId,roomIds, numberOfAppointments, startDate, endDate);
+		try {
+			seminarService.saveOrUpdateSeminar(seminar.getId(), meetingName,lecturerId,roomIds, numberOfAppointments, startDate, endDate);
+		} catch (ConstraintViolationException e) {
+			showConstraintError();
+			return INPUT;
+		}
+		
 		return SUCCESS;
 	}
 	
