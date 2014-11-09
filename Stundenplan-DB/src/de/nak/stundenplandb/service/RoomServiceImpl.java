@@ -12,6 +12,7 @@ import org.hibernate.Hibernate;
 
 import de.nak.stundenplandb.dao.AppointmentDAO;
 import de.nak.stundenplandb.dao.RoomDAO;
+import de.nak.stundenplandb.dao.StudentGroupDAO;
 import de.nak.stundenplandb.model.Appointment;
 import de.nak.stundenplandb.model.EMeetingType;
 import de.nak.stundenplandb.model.ERoomType;
@@ -19,6 +20,7 @@ import de.nak.stundenplandb.model.Elective;
 import de.nak.stundenplandb.model.Exam;
 import de.nak.stundenplandb.model.Lecture;
 import de.nak.stundenplandb.model.Room;
+import de.nak.stundenplandb.model.StudentGroup;
 
 /**
  * Implementation for the RoomService
@@ -35,6 +37,10 @@ public class RoomServiceImpl implements RoomService {
 	 * Injected AppointmentDAO
 	 */
 	private AppointmentDAO appointmentDAO;
+	/**
+	 * Injected StudentGroupDAO
+	 */
+	private StudentGroupDAO studentGroupDAO;
 
 	@Override
 	public void saveRoom(Room room) {
@@ -240,6 +246,10 @@ public class RoomServiceImpl implements RoomService {
 		this.appointmentDAO = appointmentDAO;
 	}
 
+	public void setStudentGroupDAO(StudentGroupDAO studentGroupDAO) {
+		this.studentGroupDAO = studentGroupDAO;
+	}
+
 	@Override
 	public boolean isOccupied(Long id, Date startDate, Date endDate) {
 		Room room = roomDAO.load(id);
@@ -264,6 +274,14 @@ public class RoomServiceImpl implements RoomService {
 				startDateWithChangingTime, endDateWithChangingTime).isEmpty();
 		// return roomDAO.isOccupied(id, startDateWithChangingTime,
 		// endDateWithChangingTime);
+	}
+
+
+	@Override
+	public boolean hasEnoughSeats(Long roomId, Long studentGroupId) {
+		Room room = roomDAO.load(roomId);
+		StudentGroup studentGroup = studentGroupDAO.load(studentGroupId);
+		return room.getSeats() >= studentGroup.getStudentCount();
 	}
 
 }

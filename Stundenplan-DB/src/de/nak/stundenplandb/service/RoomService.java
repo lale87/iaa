@@ -102,4 +102,13 @@ public interface RoomService {
 	 * @return
 	 */
 	boolean isOccupied(Long id, Date startDate, Date endDate);
+	
+	/**
+	 * True if the given Room has enough seats for a student group
+	 * 
+	 * @param roomId
+	 * @param studentGroupId
+	 * @return
+	 */
+	boolean hasEnoughSeats(Long roomId, Long studentGroupId);
 }

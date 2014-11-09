@@ -162,10 +162,14 @@ public class LectureServiceImpl implements LectureService {
 		// Set with all found collisions
 		Set<ECollisionType> collisionsSet = new HashSet<ECollisionType>();
 
-		// Check for RoomCollisions
 		for (Long roomId : roomIds) {
+			// Check for RoomCollisions
 			if (this.roomService.isOccupied(roomId, startDate, endDate)) {
 				collisionsSet.add(ECollisionType.ROOM_OCCUPIED);
+			}
+			// Check for RoomSizeCollisions
+			if (this.roomService.hasEnoughSeats(roomId, studentGroupId)) {
+				collisionsSet.add(ECollisionType.ROOM_TOO_SMALL);
 			}
 		}
 		// Check for LecturerCollisions

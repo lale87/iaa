@@ -166,10 +166,16 @@ public class ExamServiceImpl implements ExamService {
 			int numberOfAppointments, Date startDate, Date endDate) {
 		// The set with all found collionsTypes
 		Set<ECollisionType> collisionsSet = new HashSet<ECollisionType>();
-		// Check for RoomCollisions
 		for (Long roomId : roomIds) {
+			// Check for RoomCollisions
 			if (this.roomService.isOccupied(roomId, startDate, endDate)) {
 				collisionsSet.add(ECollisionType.ROOM_OCCUPIED);
+			}
+			// Check for RoomSizeCollisions
+			for (Long studentGroupId : studentGroupIds) {
+				if (this.roomService.hasEnoughSeats(roomId, studentGroupId)) {
+					collisionsSet.add(ECollisionType.ROOM_TOO_SMALL);
+				}
 			}
 		}
 		// Check for LecturerCollisions
